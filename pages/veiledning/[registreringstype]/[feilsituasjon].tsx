@@ -25,6 +25,7 @@ const TEKSTER: Tekster<string> = {
         heading: 'En veileder må hjelpe deg slik at du blir registrert',
         utvandretBody1: 'Du står registrert som utvandret i våre systemer.',
         manglerArbeidstillatelseBody1: 'Vi har ikke mulighet til å sjekke om du har en godkjent oppholdstillatelse.',
+        kanIkkeReaktiveresForenkletBody1: 'Vi har ikke mulighet til å reaktivere deg (NB fiks denne teksten).',
         body2: 'Dette gjør at du ikke kan registrere deg som arbeidssøker på nett.',
         kontaktOss: 'Kontakt oss, så hjelper vi deg videre.',
         kontaktOssMedTlfnr: 'Ring oss på 55 55 33 33, så hjelper vi deg videre.',
@@ -34,6 +35,19 @@ const TEKSTER: Tekster<string> = {
     en: {
         //TODO: Oversetting
     },
+};
+
+const feiltypeTilTekstKey = (feiltype: Feiltype) => {
+    switch (feiltype) {
+        case Feiltype.KAN_IKKE_REAKTIVERES_FORENKLET:
+            return 'kanIkkeReaktiveresForenkletBody1';
+        case Feiltype.MANGLER_ARBEIDSTILLATELSE:
+            return 'manglerArbeidstillatelseBody1';
+        case Feiltype.UTVANDRET:
+            return 'utvandretBody1';
+        default:
+            throw Error(`Ingen tekst for feiltype ${feiltype}`);
+    }
 };
 
 const KontaktVeileder = (props: Feilsituasjon) => {
@@ -91,11 +105,7 @@ const KontaktVeileder = (props: Feilsituasjon) => {
                     <Heading size="medium" spacing={true} level="1">
                         {tekst('heading')}
                     </Heading>
-                    <BodyLong>
-                        {tekst(
-                            props.feiltype === Feiltype.UTVANDRET ? 'utvandretBody1' : 'manglerArbeidstillatelseBody1'
-                        )}
-                    </BodyLong>
+                    <BodyLong>{tekst(feiltypeTilTekstKey(props.feiltype))}</BodyLong>
                     <BodyLong spacing>{tekst('body2')}</BodyLong>
                     <BodyLong>
                         {props.oppgaveRegistreringstype === OppgaveRegistreringstype.REGISTRERING

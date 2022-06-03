@@ -39,6 +39,15 @@ describe('hent-registrering-feilet-url', () => {
         ).toBe('/veiledning/reaktivering/mangler-arbeidstillatelse/');
     });
 
+    it('returnerer "/veiledning/reaktivering/kan-ikke-reaktiveres-forenklet/" for bruker som ikke kan reaktiveres forenklet', () => {
+        expect(
+            hentRegistreringFeiletUrl(
+                ErrorTypes.BRUKER_KAN_IKKE_REAKTIVERES_FORENKLET,
+                OppgaveRegistreringstype.REAKTIVERING
+            )
+        ).toBe('/veiledning/reaktivering/kan-ikke-reaktiveres-forenklet/');
+    });
+
     it('returnerer "/feil/" for ukjent bruker', () => {
         expect(hentRegistreringFeiletUrl(ErrorTypes.BRUKER_ER_UKJENT, OppgaveRegistreringstype.REGISTRERING)).toBe(
             '/feil/'
