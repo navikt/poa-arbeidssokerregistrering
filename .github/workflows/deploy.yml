@@ -77,7 +77,7 @@ jobs:
   deploy-demo:
     name: Deploy to demo
     needs: [test, build]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/ds-v1'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Fetch NAIS yaml
@@ -97,7 +97,7 @@ jobs:
   deploy-dev:
     name: Deploy to dev
     needs: [test, build]
-    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/ds-v1'
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Fetch NAIS yaml
