@@ -27,7 +27,7 @@
         "jsonwebtoken": "9.0.0",
         "lodash": "4.17.21",
         "nanoid": "4.0.2",
-        "next": "13.3.4",
+        "next": "13.4.4",
         "node-jose": "2.2.0",
         "openid-client": "5.4.2",
         "pino": "8.12.1",
