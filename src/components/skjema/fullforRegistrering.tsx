@@ -150,7 +150,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
                 });
                 loggFlyt({ hendelse: 'Registrering fullført' });
 
-                return router.push(`${dittNavUrl}?goTo=registrering`);
+                return router.push(`${dittNavUrl}?goTo=registrering&aia.aktivTab=ytelse`);
             }
             return router.push(hentKvitteringsUrl(props.side));
         } catch (e) {
