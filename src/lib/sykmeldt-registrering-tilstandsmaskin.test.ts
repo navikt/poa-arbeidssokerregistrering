@@ -13,7 +13,7 @@ describe('Sykmeldt registrering tilstandsmaskin', () => {
         });
         it('returnerer Utdanning som neste for USIKKER', () => {
             const state = beregnNavigering(SkjemaSide.SykmeldtFremtidigSituasjon, {
-                fremtidigSituasjon: FremtidigSituasjon.USIKKER,
+                fremtidigSituasjon: FremtidigSituasjon.USIKKER_SITUASJON,
             });
             expect(state.neste).toBe(SkjemaSide.Utdanning);
         });

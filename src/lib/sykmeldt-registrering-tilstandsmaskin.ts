@@ -5,7 +5,9 @@ const TILSTANDER: NavigeringsTilstandsMaskin<SykmeldtSkjemaSide> = {
     [SkjemaSide.SykmeldtFremtidigSituasjon]: (state: SkjemaState) => {
         if (
             state.fremtidigSituasjon &&
-            [FremtidigSituasjon.NY_ARBEIDSGIVER, FremtidigSituasjon.USIKKER].includes(state.fremtidigSituasjon)
+            [FremtidigSituasjon.NY_ARBEIDSGIVER, FremtidigSituasjon.USIKKER_SITUASJON].includes(
+                state.fremtidigSituasjon,
+            )
         ) {
             return {
                 neste: SkjemaSide.Utdanning,
@@ -106,7 +108,7 @@ const TILSTANDER: NavigeringsTilstandsMaskin<SykmeldtSkjemaSide> = {
 };
 export type SykmeldtRegistreringTilstandsmaskin = (
     aktivSide: SykmeldtSkjemaSide,
-    state: SkjemaState
+    state: SkjemaState,
 ) => Navigering<SykmeldtSkjemaSide>;
 export const beregnNavigering: SykmeldtRegistreringTilstandsmaskin = (aktivSide, state) => {
     if (TILSTANDER[aktivSide]) {

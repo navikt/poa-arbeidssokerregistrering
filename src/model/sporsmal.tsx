@@ -70,7 +70,7 @@ export enum FremtidigSituasjon {
     SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
     SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
     NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
-    USIKKER = 'USIKKER',
+    USIKKER_SITUASJON = 'USIKKER_SITUASJON',
     INGEN_PASSER = 'INGEN_PASSER',
 }
 
@@ -108,8 +108,8 @@ const TEKSTER: Tekster<string> = {
         [JaEllerNei.JA]: 'Ja',
         [JaEllerNei.NEI]: 'Nei',
         [SporsmalId.utdanningGodkjent]: 'Er utdanningen din godkjent i Norge?',
-        [UtdanningGodkjentValg.JA]: 'Ja',
-        [UtdanningGodkjentValg.NEI]: 'Nei',
+        // [UtdanningGodkjentValg.JA]: 'Ja',
+        // [UtdanningGodkjentValg.NEI]: 'Nei',
         [UtdanningGodkjentValg.VET_IKKE]: 'Vet ikke',
         [SporsmalId.andreForhold]: 'Har du andre problemer med å søke eller være i jobb?',
         [SporsmalId.helseHinder]: 'Har du helseproblemer som hindrer deg i å søke eller være i jobb?',
@@ -117,13 +117,13 @@ const TEKSTER: Tekster<string> = {
         [TilbakeIArbeid.JA_FULL_STILLING]: 'Ja, i full stilling',
         [TilbakeIArbeid.JA_REDUSERT_STILLING]: 'Ja, i redusert stilling',
         [TilbakeIArbeid.USIKKER]: 'Usikker',
-        [TilbakeIArbeid.NEI]: 'Nei',
+        // [TilbakeIArbeid.NEI]: 'Nei',
         [SporsmalId.fremtidigSituasjon]: 'Hva tenker du om din fremtidige situasjon?',
         [FremtidigSituasjon.SAMME_ARBEIDSGIVER]: 'Jeg skal tilbake til jobben jeg har',
         [FremtidigSituasjon.SAMME_ARBEIDSGIVER_NY_STILLING]:
             'Jeg skal tilbake til arbeidsgiveren min, men i ny stilling',
         [FremtidigSituasjon.NY_ARBEIDSGIVER]: 'Jeg trenger ny jobb',
-        [FremtidigSituasjon.USIKKER]: 'Jeg er usikker',
+        [FremtidigSituasjon.USIKKER_SITUASJON]: 'Jeg er usikker',
         [FremtidigSituasjon.INGEN_PASSER]: 'Ingen av disse alternativene passer',
     },
 };
