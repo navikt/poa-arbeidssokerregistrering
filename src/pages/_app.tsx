@@ -1,15 +1,20 @@
-import '../styles/globals.css';
+import { useEffect } from 'react';
 import NextApp, { AppContext, AppProps } from 'next/app';
+import Head from 'next/head';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
+
+import useSprak from '../hooks/useSprak';
+
 import { AmplitudeProvider } from '../contexts/amplitude-context';
 import { FeatureToggleProvider } from '../contexts/featuretoggle-context';
 import { ErrorProvider } from '../contexts/error-context';
 import { GlobalFeilmelding } from '../components/feilmeldinger/feilmeldinger';
-import Head from 'next/head';
 import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
-import useSprak from '../hooks/useSprak';
-import styles from '../styles/app.module.css';
 import { ConfigProvider } from '../contexts/config-context';
+import { initFaro } from '../faro/initFaro';
+
+import styles from '../styles/app.module.css';
+import '../styles/globals.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -25,6 +30,10 @@ const TEKSTER: Tekster<string> = {
 function MyApp({ Component, pageProps, router }: AppProps) {
     onLanguageSelect(({ locale }) => router.push(router.asPath, router.asPath, { locale }));
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
+
+    useEffect(() => {
+        initFaro();
+    }, []);
 
     return (
         <main className={styles.main} lang="nb" id="maincontent" role="main" tabIndex={-1}>
