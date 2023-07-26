@@ -33,6 +33,7 @@ export const initFaro = (): Faro | null => {
     if (!isBrowser() || isDemo || isLocal) return null;
 
     return initializeFaro({
+        isolate: true,
         url: TELEMETRY_URL[getEnvironment()],
         app: {
             name: 'poa-arbeidssokerregistrering',
