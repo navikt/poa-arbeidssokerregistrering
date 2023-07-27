@@ -1,7 +1,7 @@
 import { Alert, Detail, Heading, HelpText, Label, Link, Panel } from '@navikt/ds-react';
 import useSprak from '../hooks/useSprak';
 import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
-import { ExternalLink } from '@navikt/ds-icons';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Kontaktinformasjon as KontaktInfo } from '../model/kontaktinformasjon';
 import useSWR from 'swr';
 import { fetcher } from '../lib/api-utils';
@@ -79,7 +79,7 @@ const EndreOpplysningerLink = (props: { tekst: string }) => {
     return (
         <Link href="https://www.nav.no/person/personopplysninger/#kontaktinformasjon" target="_blank">
             {props.tekst}
-            <ExternalLink />
+            <ExternalLinkIcon />
         </Link>
     );
 };

@@ -1,5 +1,4 @@
-import { Back } from '@navikt/ds-icons';
-import { Link } from '@navikt/ds-react';
+import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import NextLink from 'next/link';
 
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
@@ -23,7 +22,7 @@ const TilbakeKnapp = (props: TilbakeKnappProps) => {
 
     return (
         <NextLink href={props.href} locale={false} className="navds-link mbs">
-            <Back aria-hidden="true" /> {tekst('tilbake')}
+            <ChevronLeftIcon aria-hidden="true" /> {tekst('tilbake')}
         </NextLink>
     );
 };
