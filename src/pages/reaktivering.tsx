@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { BodyLong, Button, GuidePanel, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 
@@ -22,6 +22,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 const Reaktivering = () => {
+    const [reaktiveringPagar, setReaktiveringPagar] = useState(false);
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const router = useRouter();
@@ -33,6 +34,7 @@ const Reaktivering = () => {
     };
 
     const reaktiverBruker = async () => {
+        setReaktiveringPagar(true);
         loggAktivitet({ aktivitet: 'Arbeidssøkeren reaktiverer seg' });
         loggFlyt({ hendelse: 'Sender inn skjema for registrering' });
 
@@ -70,7 +72,7 @@ const Reaktivering = () => {
                 <BodyLong>{tekst('vilDuRegistreres')}</BodyLong>
             </GuidePanel>
             <section className="flex-center mhl">
-                <Button variant={'primary'} className="mrl" onClick={reaktiverBruker}>
+                <Button variant={'primary'} className="mrl" onClick={reaktiverBruker} disabled={reaktiveringPagar}>
                     {tekst('ja')}
                 </Button>
                 <Button variant={'secondary'} onClick={() => loggAvbrytReaktivering()}>
