@@ -1,5 +1,5 @@
 import { BodyLong, Heading, Link } from '@navikt/ds-react';
-import { Next } from '@navikt/ds-icons';
+import { ChevronRightIcon } from '@navikt/aksel-icons';
 import Image from 'next/image';
 
 import useSprak from '../../hooks/useSprak';
@@ -53,7 +53,7 @@ const ElektroniskID = () => {
                     </Heading>
                     <BodyLong spacing={true}>{tekst('skaffDegBody')}</BodyLong>
                     <Link className="mbm" href="https://eid.difi.no/bankid">
-                        {tekst('skaffDegTittel')} <Next aria-hidden="true" />
+                        {tekst('skaffDegTittel')} <ChevronRightIcon aria-hidden="true" />
                     </Link>
                 </div>
                 <div className={styles.info}>
@@ -66,7 +66,7 @@ const ElektroniskID = () => {
                     <BodyLong spacing={true}>{tekst('navKontoretBody1')}</BodyLong>
                     <BodyLong spacing={true}>{tekst('navKontoretBody2')}</BodyLong>
                     <Link href="https://www.nav.no/sok-nav-kontor">
-                        {tekst('navKontoretSok')} <Next aria-hidden="true" />
+                        {tekst('navKontoretSok')} <ChevronRightIcon aria-hidden="true" />
                     </Link>
                 </div>
             </div>
