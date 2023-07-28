@@ -1,26 +1,92 @@
-ingress: https://arbeid.intern.dev.nav.no/arbeid/registrering
-basePath: /arbeid/registrering
-mocking: disabled
-nodeEnv: test
-dekorator:
-  url: https://dekoratoren.dev.nav.no/
-  env: dev
-amplitude:
-  apiKey: 9845ded64c69cd068651cd0d968e0796
-  endPoint: amplitude.nav.no/collect
-pamJanzzUrl: https://arbeidsplassen.nav.no/pam-janzz/rest
-startUrl: https://arbeid.intern.dev.nav.no/arbeid/registrering/start
-startRegistreringUrl: http://veilarbregistrering/veilarbregistrering/api/startregistrering/
-fullforRegistreringUrl: http://veilarbregistrering/veilarbregistrering/api/fullfoerordinaerregistrering/
-fullforRegistreringSykmeldtUrl: http://veilarbregistrering/veilarbregistrering/api/fullfoersykmeldtregistrering/
-reaktiveringUrl: http://veilarbregistrering/veilarbregistrering/api/fullfoerreaktivering/
-sisteArbeidsforholdUrl: http://veilarbregistrering/veilarbregistrering/api/sistearbeidsforhold/
-opprettOppgaveUrl: http://veilarbregistrering/veilarbregistrering/api/oppgave/
-kontaktinformasjonUrl: http://veilarbregistrering/veilarbregistrering/api/person/kontaktinfo
-dittNAVUrl: https://www.intern.dev.nav.no/minside
-dagpengesoknadUrl: https://arbeid.dev.nav.no/dagpenger/dialog/soknad
-dialogUrl: https://www.dev.nav.no/arbeid/dialog
-featureToggles:
-  server: https://unleash.nais.io/api/client/features?tag[]=simple:arbeidssokerregistrering
-  client: https://arbeid.intern.dev.nav.no/arbeid/registrering/api/features
-hentProfileringUrl: http://veilarbregistrering/veilarbregistrering/api/profilering/
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "arbeidssokerregistrering"
+  namespace: "paw"
+  labels:
+    "team": "paw"
+spec:
+  image: {{image}}
+  port: 3000
+  liveness:
+    path: "/arbeid/registrering/api/isalive"
+    initialDelay: 3
+  readiness:
+    path: "/arbeid/registrering/api/isready"
+    initialDelay: 3
+  replicas:
+    min: 1
+    max: 1
+    cpuThresholdPercentage: 50
+  prometheus:
+    enabled: false
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  env:
+    - name: SELF_URL
+      value: https://arbeid.intern.dev.nav.no/arbeid/registrering
+    - name: DEKORATOR_URL
+      value: https://dekoratoren.ekstern.dev.nav.no/
+    - name: DEKORATOR_ENV
+      value: dev
+    - name: NEXT_PUBLIC_SELF_URL
+      value: https://arbeid.intern.dev.nav.no/arbeid/registrering
+    - name: NEXT_PUBLIC_START_URL
+      value: https://arbeid.intern.dev.nav.no/arbeid/registrering/start
+    - name: NEXT_PUBLIC_AMPLITUDE_API_KEY
+      value: 9845ded64c69cd068651cd0d968e0796
+    - name: NEXT_PUBLIC_AMPLITUDE_ENDPOINT
+      value: amplitude.nav.no/collect
+    - name: NEXT_PUBLIC_ENABLE_MOCK
+      value: disabled
+    - name: NEXT_PUBLIC_FEATURETOGGLE_URL
+      value: https://arbeid.intern.dev.nav.no/arbeid/registrering/api/features
+    - name: NEXT_PUBLIC_DITTNAV_URL
+      value: https://www.intern.dev.nav.no/minside
+    - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
+      value: https://arbeid.dev.nav.no/dagpenger/dialog/soknad
+    - name: NEXT_PUBLIC_DIALOG_URL
+      value: https://www.dev.nav.no/arbeid/dialog
+    - name: PAM_JANZZ_URL
+      value: https://arbeidsplassen.nav.no/pam-janzz/rest
+    - name: START_REGISTRERING_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/startregistrering/
+    - name: FULLFOR_REGISTRERING_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/fullfoerordinaerregistrering/
+    - name: FULLFOR_REGISTRERING_SYKMELDT_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/fullfoersykmeldtregistrering/
+    - name: REAKTIVERING_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/fullfoerreaktivering/
+    - name: SISTE_ARBEIDSFORHOLD_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/sistearbeidsforhold/
+    - name: OPPRETT_OPPGAVE_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/oppgave/
+    - name: KONTAKTINFORMASJON_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/person/kontaktinfo
+    - name: FEATURE_TOGGLE_URL
+      value: https://unleash.nais.io/api/client/features?tag[]=simple:arbeidssokerregistrering
+    - name: NODE_ENV
+      value: test
+    - name: HENT_PROFILERING_URL
+      value: http://veilarbregistrering/veilarbregistrering/api/profilering/
+  ingresses:
+    - https://arbeid.intern.dev.nav.no/arbeid/registrering
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      level: Level4
+  tokenx:
+    enabled: true
+  accessPolicy:
+    outbound:
+      external:
+        - host: arbeidsplassen.nav.no
+      rules:
+        - application: veilarbregistrering
+        - application: nav-dekoratoren
+          namespace: personbruker

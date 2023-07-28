@@ -1,26 +1,85 @@
-ingress: https://arbeid.ekstern.dev.nav.no/arbeid/registrering
-basePath: /arbeid/registrering
-mocking: enabled
-nodeEnv: development
-dekorator:
-  url: https://dekoratoren.ekstern.dev.nav.no/
-  env: dev
-amplitude:
-  apiKey: 9845ded64c69cd068651cd0d968e0796
-  endPoint: amplitude.nav.no/collect
-pamJanzzUrl: https://arbeidsplassen.nav.no/pam-janzz/rest
-startUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/start
-startRegistreringUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/startregistrering
-fullforRegistreringUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/fullforregistrering
-fullforRegistreringSykmeldtUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/fullforregistreringsykmeldt
-reaktiveringUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/reaktivering
-sisteArbeidsforholdUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/sistearbeidsforhold
-opprettOppgaveUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/oppgave
-kontaktinformasjonUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/kontaktinformasjon
-dittNAVUrl: https://www.nav.no/minside
-dagpengesoknadUrl: https://www.nav.no/dagpenger/dialog/soknad
-dialogUrl: https://www.nav.no/arbeid/dialog
-featureToggles:
-  server: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/features
-  client: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/features
-hentProfileringUrl: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/profilering
+apiVersion: "nais.io/v1alpha1"
+kind: "Application"
+metadata:
+  name: "arbeidssokerregistrering-demo"
+  namespace: "paw"
+  labels:
+    "team": "paw"
+spec:
+  image: {{image}}
+  port: 3000
+  liveness:
+    path: "/arbeid/registrering/api/isalive"
+    initialDelay: 3
+  readiness:
+    path: "/arbeid/registrering/api/isready"
+    initialDelay: 3
+  replicas:
+    min: 1
+    max: 1
+    cpuThresholdPercentage: 50
+  prometheus:
+    enabled: false
+  limits:
+    cpu: "200m"
+    memory: "256Mi"
+  requests:
+    cpu: "200m"
+    memory: "256Mi"
+  env:
+    - name: SELF_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering
+    - name: DEKORATOR_URL
+      value: https://dekoratoren.ekstern.dev.nav.no/
+    - name: DEKORATOR_ENV
+      value: dev
+    - name: NEXT_PUBLIC_SELF_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering
+    - name: NEXT_PUBLIC_START_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/start
+    - name: NEXT_PUBLIC_AMPLITUDE_API_KEY
+      value: 9845ded64c69cd068651cd0d968e0796
+    - name: NEXT_PUBLIC_AMPLITUDE_ENDPOINT
+      value: amplitude.nav.no/collect
+    - name: NEXT_PUBLIC_ENABLE_MOCK
+      value: enabled
+    - name: NEXT_PUBLIC_FEATURETOGGLE_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/features
+    - name: NEXT_PUBLIC_DITTNAV_URL
+      value: https://www.nav.no/minside
+    - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
+      value: https://www.nav.no/dagpenger/dialog/soknad
+    - name: NEXT_PUBLIC_DIALOG_URL
+      value: https://www.nav.no/arbeid/dialog
+    - name: PAM_JANZZ_URL
+      value: https://arbeidsplassen.nav.no/pam-janzz/rest
+    - name: START_REGISTRERING_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/startregistrering
+    - name: FULLFOR_REGISTRERING_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/fullforregistrering
+    - name: FULLFOR_REGISTRERING_SYKMELDT_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/fullforregistreringsykmeldt
+    - name: REAKTIVERING_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/reaktivering
+    - name: SISTE_ARBEIDSFORHOLD_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/sistearbeidsforhold
+    - name: OPPRETT_OPPGAVE_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/oppgave
+    - name: KONTAKTINFORMASJON_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/kontaktinformasjon
+    - name: FEATURE_TOGGLE_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/features
+    - name: NODE_ENV
+      value: development
+    - name: HENT_PROFILERING_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/profilering
+  ingresses:
+    - https://arbeid.ekstern.dev.nav.no/arbeid/registrering
+  accessPolicy:
+    outbound:
+      rules:
+        - application: nav-dekoratoren
+          namespace: personbruker
+      external:
+        - host: arbeidsplassen.nav.no
+        - host: arbeid.ekstern.dev.nav.no
