@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 import { Alert, BodyLong, Button, Heading, Link } from '@navikt/ds-react';
 
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import useSprak from '../../hooks/useSprak';
-import { loggStoppsituasjon } from '../../lib/amplitude';
 import { useErrorContext } from '../../contexts/error-context';
+
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { loggStoppsituasjon } from '../../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -32,9 +33,7 @@ const FeilmeldingGenerell = () => {
                 <BodyLong spacing>{tekst('feilISystemene')}</BodyLong>
                 <BodyLong spacing>{tekst('provIgjen')}</BodyLong>
                 <BodyLong>
-                    <Link href="https://www.nav.no/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/kontakt-teknisk-brukerstotte-nav.no">
-                        {tekst('kontaktBrukerstotte')}
-                    </Link>
+                    <Link href="https://www.nav.no/kontaktoss">{tekst('kontaktBrukerstotte')}</Link>
                 </BodyLong>
             </Alert>
         </>
@@ -62,9 +61,7 @@ const GlobalFeilmelding = () => {
             <BodyLong spacing>{tekst('feilISystemene')}</BodyLong>
             <BodyLong spacing>{tekst('provIgjen')}</BodyLong>
             <BodyLong spacing>
-                <Link href="https://www.nav.no/no/nav-og-samfunn/kontakt-nav/teknisk-brukerstotte/kontakt-teknisk-brukerstotte-nav.no">
-                    {tekst('kontaktBrukerstotte')}
-                </Link>
+                <Link href="https://www.nav.no/kontaktoss">{tekst('kontaktBrukerstotte')}</Link>
             </BodyLong>
             <BodyLong>
                 <Button variant={'secondary'} onClick={() => setError(null)}>
