@@ -149,7 +149,7 @@ jobs:
           version: ${{ github.sha }}
           set_commits: skip
 
-apply-apitoken-unleash:
+  apply-apitoken-unleash:
     name: Legger til ApiToken for Unleash
     runs-on: ubuntu-latest
     needs: [test, build]
