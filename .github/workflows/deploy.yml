@@ -148,3 +148,17 @@ jobs:
           environment: production
           version: ${{ github.sha }}
           set_commits: skip
+
+apply-apitoken-unleash:
+    name: Legger til ApiToken for Unleash
+    runs-on: ubuntu-latest
+    needs: [test, build]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      - name: deploy to dev
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/dev-gcp/unleash-apitoken.yaml
