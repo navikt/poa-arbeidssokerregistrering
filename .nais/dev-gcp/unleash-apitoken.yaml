@@ -1,8 +1,10 @@
 apiVersion: unleash.nais.io/v1
 kind: ApiToken
 metadata:
-  name: poa-arbeidssokerregistrering
+  name: poa-arbeidssokerregistrering-unleash
   namespace: paw
+  labels:
+    "team": "paw"
 spec:
     unleashInstance:
       apiVersion: unleash.nais.io/v1
