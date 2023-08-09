@@ -38,7 +38,7 @@ function Vedlikehold() {
             </Heading>
             <GuidePanel poster>
                 <BodyLong>{tekst('vedlikehold')}</BodyLong>
-                <BodyLong>{tekst('provIgjen')}</BodyLong>
+                <BodyLong spacing>{tekst('provIgjen')}</BodyLong>
                 <Alert variant="info">{tekst('dagpenger')}</Alert>
             </GuidePanel>
         </>
