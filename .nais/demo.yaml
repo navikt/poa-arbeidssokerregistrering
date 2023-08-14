@@ -83,3 +83,4 @@ spec:
       external:
         - host: arbeidsplassen.nav.no
         - host: arbeid.ekstern.dev.nav.no
+        - host: paw-unleash-api.nav.cloud.nais.io

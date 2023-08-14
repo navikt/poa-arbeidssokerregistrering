@@ -73,6 +73,10 @@ spec:
       value: test
     - name: HENT_PROFILERING_URL
       value: http://veilarbregistrering/veilarbregistrering/api/profilering/
+    - name: UNLEASH_SERVER_API_URL
+      value: 'https://paw-unleash-api.nav.cloud.nais.io/api'
+  envFrom:
+    - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
     - https://arbeid.intern.dev.nav.no/arbeid/registrering
   idporten:
@@ -86,6 +90,7 @@ spec:
     outbound:
       external:
         - host: arbeidsplassen.nav.no
+        - host: paw-unleash-api.nav.cloud.nais.io
       rules:
         - application: veilarbregistrering
         - application: nav-dekoratoren

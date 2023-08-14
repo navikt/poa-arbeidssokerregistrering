@@ -86,6 +86,7 @@ spec:
     outbound:
       external:
         - host: arbeidsplassen.nav.no
+        - host: paw-unleash-api.nav.cloud.nais.io
       rules:
         - application: veilarbregistrering
         - application: nav-dekoratoren
