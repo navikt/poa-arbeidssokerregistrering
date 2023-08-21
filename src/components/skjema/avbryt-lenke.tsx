@@ -39,27 +39,22 @@ const Avbryt = () => {
     return (
         <>
             <Modal
-                shouldCloseOnOverlayClick={false}
                 open={open}
                 onClose={() => setOpen(false)}
                 aria-label={tekst('ariaLabel')}
+                header={{ heading: tekst('avbryt') }}
             >
-                <Modal.Content>
-                    <Panel>
-                        <Heading spacing level="1" size="medium" className={'mbm'}>
-                            {tekst('avbryt')}
-                        </Heading>
-                        <BodyLong className={'mbm'}>{tekst('erDuSikker')}</BodyLong>
-                        <div className={skjemaStyles.spaceEvenly}>
-                            <Button variant="secondary" onClick={avbrytRegistrering} className={skjemaStyles.w10}>
-                                {tekst('knappJa')}
-                            </Button>
-                            <Button variant="secondary" onClick={() => setOpen(false)} className={skjemaStyles.w10}>
-                                {tekst('knappNei')}
-                            </Button>
-                        </div>
-                    </Panel>
-                </Modal.Content>
+                <Modal.Body>
+                    <BodyLong className={'mbm'}>{tekst('erDuSikker')}</BodyLong>
+                    <div className={skjemaStyles.spaceEvenly}>
+                        <Button variant="secondary" onClick={avbrytRegistrering} className={skjemaStyles.w10}>
+                            {tekst('knappJa')}
+                        </Button>
+                        <Button variant="secondary" onClick={() => setOpen(false)} className={skjemaStyles.w10}>
+                            {tekst('knappNei')}
+                        </Button>
+                    </div>
+                </Modal.Body>
             </Modal>
             <div className={skjemaStyles.taCenter}>
                 <Link href="#" onClick={() => setOpen(true)}>
