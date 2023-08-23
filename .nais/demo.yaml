@@ -43,8 +43,6 @@ spec:
       value: amplitude.nav.no/collect
     - name: NEXT_PUBLIC_ENABLE_MOCK
       value: enabled
-    - name: NEXT_PUBLIC_FEATURETOGGLE_URL
-      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/features
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: https://www.nav.no/minside
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL

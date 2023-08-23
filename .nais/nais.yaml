@@ -43,8 +43,6 @@ spec:
       value: {{amplitude.endPoint}}
     - name: NEXT_PUBLIC_ENABLE_MOCK
       value: {{mocking}}
-    - name: NEXT_PUBLIC_FEATURETOGGLE_URL
-      value: {{featureToggles.client}}
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: {{dittNAVUrl}}
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
@@ -67,12 +65,12 @@ spec:
       value: {{opprettOppgaveUrl}}
     - name: KONTAKTINFORMASJON_URL
       value: {{kontaktinformasjonUrl}}
-    - name: FEATURE_TOGGLE_URL
-      value: {{featureToggles.server}}
     - name: NODE_ENV
       value: {{nodeEnv}}
     - name: HENT_PROFILERING_URL
       value: {{hentProfileringUrl}}
+    - name: UNLEASH_SERVER_API_URL
+      value: {{unleashServerApiUrl}}
   ingresses:
     - {{ingress}}
   idporten:

@@ -22,7 +22,5 @@ kontaktinformasjonUrl: http://veilarbregistrering/veilarbregistrering/api/person
 dittNAVUrl: https://www.nav.no/minside
 dagpengesoknadUrl: https://www.nav.no/dagpenger/dialog/soknad
 dialogUrl: https://www.nav.no/arbeid/dialog
-featureToggles:
-  server: https://unleash.nais.io/api/client/features?tag[]=simple:arbeidssokerregistrering
-  client: https://www.nav.no/arbeid/registrering/api/features
 hentProfileringUrl: http://veilarbregistrering/veilarbregistrering/api/profilering/
+unleashServerApiUrl: https://paw-unleash-api.nav.cloud.nais.io/api
