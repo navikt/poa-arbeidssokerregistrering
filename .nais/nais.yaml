@@ -71,6 +71,8 @@ spec:
       value: {{hentProfileringUrl}}
     - name: UNLEASH_SERVER_API_URL
       value: {{unleashServerApiUrl}}
+  envFrom:
+     - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
     - {{ingress}}
   idporten:
