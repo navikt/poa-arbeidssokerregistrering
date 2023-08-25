@@ -5,9 +5,7 @@ const TILSTANDER: NavigeringsTilstandsMaskin<SykmeldtSkjemaSide> = {
     [SkjemaSide.SykmeldtFremtidigSituasjon]: (state: SkjemaState) => {
         if (
             state.fremtidigSituasjon &&
-            [FremtidigSituasjon.NY_ARBEIDSGIVER, FremtidigSituasjon.USIKKER_SITUASJON].includes(
-                state.fremtidigSituasjon,
-            )
+            [FremtidigSituasjon.NY_ARBEIDSGIVER, FremtidigSituasjon.USIKKER].includes(state.fremtidigSituasjon)
         ) {
             return {
                 neste: SkjemaSide.Utdanning,

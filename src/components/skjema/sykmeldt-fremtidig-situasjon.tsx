@@ -18,7 +18,7 @@ const SykmeldtFremtidigSituasjon = (props: SkjemaKomponentProps<FremtidigSituasj
         lagValg(FremtidigSituasjon.SAMME_ARBEIDSGIVER),
         lagValg(FremtidigSituasjon.SAMME_ARBEIDSGIVER_NY_STILLING),
         lagValg(FremtidigSituasjon.NY_ARBEIDSGIVER),
-        lagValg(FremtidigSituasjon.USIKKER_SITUASJON),
+        lagValg(FremtidigSituasjon.USIKKER),
         lagValg(FremtidigSituasjon.INGEN_PASSER),
     ];
 

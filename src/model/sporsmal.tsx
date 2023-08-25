@@ -70,7 +70,7 @@ export enum FremtidigSituasjon {
     SAMME_ARBEIDSGIVER = 'SAMME_ARBEIDSGIVER',
     SAMME_ARBEIDSGIVER_NY_STILLING = 'SAMME_ARBEIDSGIVER_NY_STILLING',
     NY_ARBEIDSGIVER = 'NY_ARBEIDSGIVER',
-    USIKKER_SITUASJON = 'USIKKER_SITUASJON',
+    USIKKER = 'USIKKER',
     INGEN_PASSER = 'INGEN_PASSER',
 }
 
@@ -123,7 +123,6 @@ const TEKSTER: Tekster<string> = {
         [FremtidigSituasjon.SAMME_ARBEIDSGIVER_NY_STILLING]:
             'Jeg skal tilbake til arbeidsgiveren min, men i ny stilling',
         [FremtidigSituasjon.NY_ARBEIDSGIVER]: 'Jeg trenger ny jobb',
-        [FremtidigSituasjon.USIKKER_SITUASJON]: 'Jeg er usikker',
         [FremtidigSituasjon.INGEN_PASSER]: 'Ingen av disse alternativene passer',
     },
 };
