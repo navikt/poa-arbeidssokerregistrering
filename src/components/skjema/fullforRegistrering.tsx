@@ -110,7 +110,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
                 {
                     method: 'post',
                     body: JSON.stringify(body),
-                }
+                },
             );
 
             const profilering = await hentProfilering(response, props.side);
@@ -119,7 +119,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
             const harMistetJobbSagtOppEllerPermittert =
                 dinSituasjon &&
                 [DinSituasjon.MISTET_JOBBEN, DinSituasjon.ER_PERMITTERT, DinSituasjon.HAR_SAGT_OPP].includes(
-                    dinSituasjon
+                    dinSituasjon,
                 );
 
             const feiltype = response.type;
@@ -156,7 +156,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
         } catch (e) {
             settVisFeilmeldingTeller(visFeilmeldingTeller + 1);
             settVisFeilmelding(true);
-
+            logger.error(e, `Registrering (${props.side}) feilet`);
             if (visFeilmeldingTeller >= 3) {
                 return router.push('/feil/');
             }
