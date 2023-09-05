@@ -15,6 +15,7 @@ const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
         simple: true,
         context: 'privatperson',
         chatbot: false,
+        logoutWarning: true,
         // availableLanguages,
     },
 };
