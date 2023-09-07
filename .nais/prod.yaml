@@ -24,3 +24,4 @@ dagpengesoknadUrl: https://www.nav.no/dagpenger/dialog/soknad
 dialogUrl: https://www.nav.no/arbeid/dialog
 hentProfileringUrl: http://veilarbregistrering/veilarbregistrering/api/profilering/
 unleashServerApiUrl: https://paw-unleash-api.nav.cloud.nais.io/api
+arbeidssokerUrl: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3

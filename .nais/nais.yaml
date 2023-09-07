@@ -71,6 +71,8 @@ spec:
       value: {{hentProfileringUrl}}
     - name: UNLEASH_SERVER_API_URL
       value: {{unleashServerApiUrl}}
+    - name: ARBEIDSSOKER_PERIODER_URL
+      value: {{arbeidssokerUrl}}
   envFrom:
      - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
