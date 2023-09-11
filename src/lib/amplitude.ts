@@ -56,7 +56,11 @@ type AktivitetData =
     | { aktivitet: 'Åpner personopplysninger' };
 
 type FlytData =
-    | { hendelse: 'Ikke mulig å starte registreringen'; aarsak?: RegistreringType }
+    | {
+          hendelse: 'Ikke mulig å starte registreringen';
+          aarsak?: RegistreringType;
+          harAktivArbeidssokerperiode: boolean;
+      }
     | { hendelse: 'Starter registrering' }
     | { hendelse: 'Sender inn skjema for registrering' }
     | { hendelse: 'Avbryter registreringen' }

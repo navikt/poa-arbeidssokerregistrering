@@ -11,6 +11,8 @@ import { Config } from '../model/config';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import beregnBrukergruppe from '../lib/beregn-brukergruppe';
 import { loggFlyt } from '../lib/amplitude';
+import useSWRImmutable from 'swr/immutable';
+import harAktivArbeidssokerperiode from '../lib/har-aktiv-arbeidssoker-periode';
 
 const isBrowser = () => typeof window !== 'undefined';
 
@@ -49,10 +51,11 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
 const Start = () => {
     const { dittNavUrl, loginUrl } = useConfig() as Config;
     const { data, error } = useSWR('api/startregistrering/', fetcher);
+    const { data: perioder, error: e } = useSWRImmutable('/api/arbeidssoker/', fetcher);
     const router = useRouter();
 
     useEffect(() => {
-        if (!data || !dittNavUrl) {
+        if (!data || !dittNavUrl || (!perioder && !e)) {
             return;
         }
         if (isBrowser()) {
@@ -64,11 +67,15 @@ const Start = () => {
                 loggFlyt({ hendelse: 'Starter registrering' });
             }
             if (RegistreringType.ALLEREDE_REGISTRERT === registreringType) {
-                loggFlyt({ hendelse: 'Ikke mulig å starte registreringen', aarsak: formidlingsgruppe });
+                loggFlyt({
+                    hendelse: 'Ikke mulig å starte registreringen',
+                    aarsak: formidlingsgruppe,
+                    harAktivArbeidssokerperiode: harAktivArbeidssokerperiode(perioder ?? []),
+                });
             }
         }
         router.push(hentNesteSideUrl(data, dittNavUrl));
-    }, [data, router, dittNavUrl]);
+    }, [data, router, dittNavUrl, perioder, e]);
 
     useEffect(() => {
         if (error) {
