@@ -12,7 +12,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         dagpengesoknadUrl: process.env.NEXT_PUBLIC_DAGPENGESOKNAD_URL!,
         dialogUrl: process.env.NEXT_PUBLIC_DIALOG_URL!,
         enableMock: process.env.NEXT_PUBLIC_ENABLE_MOCK!,
-        loginUrl: `${process.env.LOGINSERVICE_URL}?redirect=${process.env.NEXT_PUBLIC_START_URL}`, // TODO
+        loginUrl: `${process.env.NEXT_PUBLIC_SELF_URL}/oauth2/login?redirect=${process.env.NEXT_PUBLIC_START_URL}`,
     } as Config);
 }
 
