@@ -16,6 +16,6 @@ describe('har-aktiv-arbeidssoker-periode', () => {
                 { fraOgMedDato: '2023-08-11', tilOgMedDato: '2023-09-10' },
                 { fraOgMedDato: '2023-09-11', tilOgMedDato: null },
             ]),
-        );
+        ).toBe(true);
     });
 });

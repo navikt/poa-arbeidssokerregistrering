@@ -50,14 +50,15 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
 
 const Start = () => {
     const { dittNavUrl, loginUrl } = useConfig() as Config;
-    const { data, error } = useSWR('api/startregistrering/', fetcher);
-    const { data: perioder, error: e } = useSWRImmutable('/api/arbeidssoker/', fetcher);
+    const { data, error } = useSWR('api/startregistrering', fetcher);
+    const { data: perioder, error: e } = useSWRImmutable('api/arbeidssoker', fetcher);
     const router = useRouter();
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
             return;
         }
+
         if (isBrowser()) {
             const { servicegruppe, alder, registreringType, formidlingsgruppe } = data;
             const brukergruppe = beregnBrukergruppe(servicegruppe, alder);
@@ -70,7 +71,7 @@ const Start = () => {
                 loggFlyt({
                     hendelse: 'Ikke mulig å starte registreringen',
                     aarsak: formidlingsgruppe,
-                    harAktivArbeidssokerperiode: harAktivArbeidssokerperiode(perioder ?? []),
+                    harAktivArbeidssokerperiode: harAktivArbeidssokerperiode(perioder?.arbeidssokerperioder),
                 });
             }
         }

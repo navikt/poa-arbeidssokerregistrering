@@ -15,7 +15,7 @@ function sorterArbeidssokerperioderSisteForst(a: Periode, b: Periode) {
     return delta;
 }
 
-function harAktivArbeidssokerperiode(perioder: Periode[]) {
+function harAktivArbeidssokerperiode(perioder: Periode[] = []) {
     if (perioder.length === 0) {
         return false;
     }
