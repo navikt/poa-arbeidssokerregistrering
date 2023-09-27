@@ -16,7 +16,7 @@
         "@alheimsins/virkedager": "2.2.0",
         "@grafana/faro-web-sdk": "1.1.4",
         "@grafana/faro-web-tracing": "1.1.4",
-        "@navikt/aksel-icons": "5.3.1",
+        "@navikt/aksel-icons": "5.3.3",
         "@navikt/ds-css": "5.3.1",
         "@navikt/ds-react": "5.3.1",
         "@navikt/nav-dekoratoren-moduler": "2.1.3",
