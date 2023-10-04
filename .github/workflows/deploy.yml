@@ -20,7 +20,7 @@ jobs:
       - name: Set up node
         uses: actions/setup-node@v3
         with:
-          node-version: "18.17.1"
+          node-version: "18.18.0"
           cache: "npm"
           registry-url: "https://npm.pkg.github.com"
 
@@ -56,7 +56,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           registry-url: "https://npm.pkg.github.com"
-          node-version: "18.17.1"
+          node-version: "18.18.0"
 
       - run: cp $NPM_CONFIG_USERCONFIG .npmrc
 
