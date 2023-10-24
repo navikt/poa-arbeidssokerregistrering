@@ -82,6 +82,19 @@ const featureToggles = (req: NextApiRequest, res: NextApiResponse): void => {
                 variants: null,
             },
             {
+                name: 'arbeidssokerregistrering.mer-oppfolging',
+                type: 'release',
+                enabled: false,
+                stale: false,
+                strategies: [
+                    {
+                        name: 'default',
+                        parameters: {},
+                    },
+                ],
+                variants: null,
+            },
+            {
                 name: 'arbeidssokerregistrering.ny-ingress',
                 type: 'release',
                 enabled: false,
