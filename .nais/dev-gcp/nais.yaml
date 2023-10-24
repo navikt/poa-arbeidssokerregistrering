@@ -49,6 +49,8 @@ spec:
       value: https://arbeid.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.dev.nav.no/arbeid/dialog
+    - name: NEXT_PUBLIC_MER_OPPFOLGING_URL
+      value: https://www.dev.nav.no/syk/info/snart-slutt-pa-sykepengene
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
     - name: START_REGISTRERING_URL

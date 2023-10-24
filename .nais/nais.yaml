@@ -49,6 +49,8 @@ spec:
       value: {{dagpengesoknadUrl}}
     - name: NEXT_PUBLIC_DIALOG_URL
       value: {{dialogUrl}}
+    - name: NEXT_PUBLIC_MER_OPPFOLGING_URL
+      value: {{merOppfolgingUrl}}
     - name: PAM_JANZZ_URL
       value: {{pamJanzzUrl}}
     - name: START_REGISTRERING_URL

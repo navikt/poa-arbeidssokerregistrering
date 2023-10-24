@@ -53,7 +53,8 @@ type AktivitetData =
     | { aktivitet: 'Åpner bistandsbehov' }
     | { aktivitet: 'Går til lovdata' }
     | { aktivitet: 'Går til personvernsiden' }
-    | { aktivitet: 'Åpner personopplysninger' };
+    | { aktivitet: 'Åpner personopplysninger' }
+    | { aktivitet: 'Går til siden for mer sykemldtoppfølging' };
 
 type FlytData =
     | {

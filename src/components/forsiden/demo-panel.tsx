@@ -36,6 +36,11 @@ function DemoPanel({ brukerMock }: Props) {
                                 </NextLink>
                             </p>
                             <p>
+                                <NextLink href={`/mer-oppfolging/`} passHref locale={false}>
+                                    <Button variant="secondary">Mer sykmeldt oppfølging</Button>
+                                </NextLink>
+                            </p>
+                            <p>
                                 <NextLink href="/kvittering/" passHref locale={false}>
                                     <Button variant="secondary">Kvittering</Button>
                                 </NextLink>

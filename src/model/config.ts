@@ -9,4 +9,5 @@ export type Config = {
     dialogUrl: string;
     enableMock: string;
     loginUrl: string;
+    merOppfolgingUrl: string;
 };
