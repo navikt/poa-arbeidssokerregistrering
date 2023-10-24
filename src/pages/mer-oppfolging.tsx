@@ -1,18 +1,14 @@
 import { Alert, BodyLong, GuidePanel, Panel, Heading, Link, List } from '@navikt/ds-react';
-import { nanoid } from 'nanoid';
-import { GetServerSidePropsContext, NextApiRequest } from 'next';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 
 import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
 import { Config } from '../model/config';
-import { Kontaktinformasjon } from '../model/kontaktinformasjon';
-import { getHeaders, getVeilarbregistreringToken } from '../lib/next-api-handler';
 import { loggAktivitet, loggFlyt } from '../lib/amplitude';
+import { withAuthenticatedPage } from '../auth/withAuthentication';
 
 import styles from '../styles/skjema.module.css';
-import { withAuthenticatedPage } from '../auth/withAuthentication';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -78,4 +74,5 @@ const MerOppfolgingSide = () => {
     );
 };
 
+export const getServerSideProps = withAuthenticatedPage();
 export default MerOppfolgingSide;
