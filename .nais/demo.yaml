@@ -50,7 +50,7 @@ spec:
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.nav.no/arbeid/dialog
     - name: NEXT_PUBLIC_MER_OPPFOLGING_URL
-      value: https://demo.ekstern.nav.no/syk/info/snart-slutt-pa-sykepengene
+      value: https://demo.ekstern.dev.nav.no/syk/meroppfolging/reg/0
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
     - name: START_REGISTRERING_URL
