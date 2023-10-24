@@ -22,7 +22,7 @@ kontaktinformasjonUrl: http://veilarbregistrering/veilarbregistrering/api/person
 dittNAVUrl: https://www.nav.no/minside
 dagpengesoknadUrl: https://www.nav.no/dagpenger/dialog/soknad
 dialogUrl: https://www.nav.no/arbeid/dialog
-merOppfolgingUrl: https://www.nav.no/syk/info/snart-slutt-pa-sykepengene
+merOppfolgingUrl: https://www.nav.no/syk/meroppfolging/reg/0
 hentProfileringUrl: http://veilarbregistrering/veilarbregistrering/api/profilering/
 unleashServerApiUrl: https://paw-unleash-api.nav.cloud.nais.io/api
 arbeidssokerUrl: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
