@@ -79,6 +79,9 @@ const Start = () => {
                     harAktivArbeidssokerperiode: harAktivArbeidssokerperiode(perioder?.arbeidssokerperioder),
                 });
             }
+            if (RegistreringType.SYKMELDT_REGISTRERING === registreringType && brukMeroppfolging) {
+                loggFlyt({ hendelse: 'Sendes til siden for mer sykmeldtoppfølging' });
+            }
         }
         router.push(hentNesteSideUrl(data, dittNavUrl, sykmeldtRegistreringUrl));
     }, [data, router, dittNavUrl, perioder, e]);

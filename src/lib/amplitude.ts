@@ -63,6 +63,7 @@ type FlytData =
           harAktivArbeidssokerperiode: boolean;
       }
     | { hendelse: 'Starter registrering' }
+    | { hendelse: 'Sendes til siden for mer sykmeldtoppfølging' }
     | { hendelse: 'Sender inn skjema for registrering' }
     | { hendelse: 'Avbryter registreringen' }
     | { hendelse: 'Får ikke fullført registreringen'; aarsak?: ErrorTypes }
