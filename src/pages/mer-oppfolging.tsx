@@ -16,10 +16,10 @@ const TEKSTER: Tekster<string> = {
         infoTekst: 'Vi får ikke til å starte registreringsprosessen for deg',
         merVeiledningTittel: 'Ønsker du mer veiledning?',
         merVeiledningIngress:
-            'Hvis du tror du fortsatt er syk etter at sykepengene tar slutt, må du registrere deg for mer veiledning.',
+            'Hvis du tror du fortsatt er syk etter at sykepengene tar slutt, kan du registrere deg for mer veiledning.',
         merVeiledningVeileder: 'Du kan snakke med veilederen din om mulighetene fremover',
         merVeiledningInformasjon: 'Du får informasjon om du har krav på annen økonomisk støtte',
-        merVeiledningGaaTil: 'Jeg trenger mer veiledning',
+        merVeiledningGaaTil: 'Jeg vil ha mer veiledning',
         vilDuRegistreresTittel: 'Ønsker du å registrere deg som arbeidssøker?',
         vilDuRegistreresIngress:
             'Hvis du trenger å registrere deg som arbeidssøker så må du kontakte NAV, som hjelper deg videre i prosessen. Si fra at du ikke får registrert deg som arbeidssøker på nav.no så kan vi gjøre endringer slik at du får registrert deg.',
