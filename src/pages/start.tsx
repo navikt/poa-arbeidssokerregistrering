@@ -80,7 +80,7 @@ const Start = () => {
                 });
             }
             if (RegistreringType.SYKMELDT_REGISTRERING === registreringType && brukMeroppfolging) {
-                loggFlyt({ hendelse: 'Sendes til siden for mer sykmeldtoppfølging' });
+                loggFlyt({ hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' });
             }
         }
         router.push(hentNesteSideUrl(data, dittNavUrl, sykmeldtRegistreringUrl));

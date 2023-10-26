@@ -5,7 +5,7 @@ import { useConfig } from '../contexts/config-context';
 
 import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
 import { Config } from '../model/config';
-import { loggAktivitet, loggFlyt } from '../lib/amplitude';
+import { loggFlyt } from '../lib/amplitude';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 
 import styles from '../styles/skjema.module.css';
@@ -32,8 +32,11 @@ const MerOppfolgingSide = () => {
     const { merOppfolgingUrl } = useConfig() as Config;
 
     const loggFortsetter = () => {
-        loggAktivitet({ aktivitet: 'Går til siden for mer sykemldtoppfølging' });
-        loggFlyt({ hendelse: 'Avbryter registreringen' });
+        loggFlyt({ hendelse: 'Vil registrere seg for mer sykmeldtoppfølging' });
+    };
+
+    const loggAvbryter = () => {
+        loggFlyt({ hendelse: 'Vil registrere seg som arbeidssøker' });
     };
 
     return (
@@ -66,7 +69,7 @@ const MerOppfolgingSide = () => {
                     {tekst('vilDuRegistreresTittel')}
                 </Heading>
                 <BodyLong spacing>{tekst('vilDuRegistreresIngress')}</BodyLong>
-                <Link href="https://www.nav.no/kontaktoss" target="_blank">
+                <Link onClick={() => loggAvbryter()} href="https://www.nav.no/kontaktoss" target="_blank">
                     {tekst('taKontaktMedNAV')}
                 </Link>
             </Panel>

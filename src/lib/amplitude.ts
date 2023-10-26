@@ -54,7 +54,7 @@ type AktivitetData =
     | { aktivitet: 'Går til lovdata' }
     | { aktivitet: 'Går til personvernsiden' }
     | { aktivitet: 'Åpner personopplysninger' }
-    | { aktivitet: 'Går til siden for mer sykemldtoppfølging' };
+    | { aktivitet: 'Går til kontakt oss' };
 
 type FlytData =
     | {
@@ -63,7 +63,9 @@ type FlytData =
           harAktivArbeidssokerperiode: boolean;
       }
     | { hendelse: 'Starter registrering' }
-    | { hendelse: 'Sendes til siden for mer sykmeldtoppfølging' }
+    | { hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' }
+    | { hendelse: 'Vil registrere seg for mer sykmeldtoppfølging' }
+    | { hendelse: 'Vil registrere seg som arbeidssøker' }
     | { hendelse: 'Sender inn skjema for registrering' }
     | { hendelse: 'Avbryter registreringen' }
     | { hendelse: 'Får ikke fullført registreringen'; aarsak?: ErrorTypes }
