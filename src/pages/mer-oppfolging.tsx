@@ -22,7 +22,7 @@ const TEKSTER: Tekster<string> = {
         merVeiledningGaaTil: 'Jeg trenger mer veiledning',
         vilDuRegistreresTittel: 'Ønsker du å registrere deg som arbeidssøker?',
         vilDuRegistreresIngress:
-            'Hvis du trenger å registrere deg som arbeidssøker så må du kontakte NAV, som hjelper deg videre i prosessen. Si fra at du ikke får registrert deg på nav.no så kan vi gjøre endringer slik at du får registrert deg.',
+            'Hvis du trenger å registrere deg som arbeidssøker så må du kontakte NAV, som hjelper deg videre i prosessen. Si fra at du ikke får registrert deg som arbeidssøker på nav.no så kan vi gjøre endringer slik at du får registrert deg.',
         taKontaktMedNAV: 'Ta kontakt med NAV',
     },
 };
