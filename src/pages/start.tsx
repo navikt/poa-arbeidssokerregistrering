@@ -57,7 +57,9 @@ const Start = () => {
     const router = useRouter();
     const { toggles } = useFeatureToggles();
     const brukMeroppfolging = toggles['arbeidssokerregistrering.mer-oppfolging'];
-    const sykmeldtRegistreringUrl = brukMeroppfolging ? merOppfolgingUrl : '/sykmeldt/';
+    // dropper toggle-sjekk
+    const sykmeldtRegistreringUrl = brukMeroppfolging;
+    //const sykmeldtRegistreringUrl = brukMeroppfolging ? merOppfolgingUrl : '/sykmeldt/';
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
@@ -79,7 +81,13 @@ const Start = () => {
                     harAktivArbeidssokerperiode: harAktivArbeidssokerperiode(perioder?.arbeidssokerperioder),
                 });
             }
+            /*
             if (RegistreringType.SYKMELDT_REGISTRERING === registreringType && brukMeroppfolging) {
+                loggFlyt({ hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' });
+            }
+            */
+            // dropper togglesjekk
+            if (RegistreringType.SYKMELDT_REGISTRERING === registreringType) {
                 loggFlyt({ hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' });
             }
         }
