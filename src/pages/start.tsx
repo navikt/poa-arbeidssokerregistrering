@@ -4,7 +4,6 @@ import useSWR from 'swr';
 import { useRouter } from 'next/router';
 
 import { useConfig } from '../contexts/config-context';
-import { useFeatureToggles } from '../contexts/featuretoggle-context';
 import useSWRImmutable from 'swr/immutable';
 
 import { SkjemaSide } from '../model/skjema';
@@ -23,7 +22,7 @@ function skalVideresendesTilDittNAV(data: any) {
     return formidlingsgruppe === Formidlingsgruppe.ARBS && underOppfolging === true;
 }
 
-function hentNesteSideUrl(data: any, dittNavUrl: string, sykmeldtRegistreringUrl: string) {
+function hentNesteSideUrl(data: any, dittNavUrl: string) {
     const { registreringType } = data;
 
     switch (registreringType) {
@@ -31,7 +30,7 @@ function hentNesteSideUrl(data: any, dittNavUrl: string, sykmeldtRegistreringUrl
             return `/skjema/${SkjemaSide.DinSituasjon}/`;
         }
         case RegistreringType.SYKMELDT_REGISTRERING: {
-            return sykmeldtRegistreringUrl;
+            return '/mer-oppfolging/';
         }
         case RegistreringType.REAKTIVERING: {
             return '/reaktivering/';
@@ -51,15 +50,10 @@ function hentNesteSideUrl(data: any, dittNavUrl: string, sykmeldtRegistreringUrl
 }
 
 const Start = () => {
-    const { dittNavUrl, loginUrl, merOppfolgingUrl } = useConfig() as Config;
+    const { dittNavUrl, loginUrl } = useConfig() as Config;
     const { data, error } = useSWR('api/startregistrering', fetcher);
     const { data: perioder, error: e } = useSWRImmutable('api/arbeidssoker', fetcher);
     const router = useRouter();
-    const { toggles } = useFeatureToggles();
-    const brukMeroppfolging = toggles['arbeidssokerregistrering.mer-oppfolging'];
-    // dropper toggle-sjekk
-    const sykmeldtRegistreringUrl = brukMeroppfolging;
-    //const sykmeldtRegistreringUrl = brukMeroppfolging ? merOppfolgingUrl : '/sykmeldt/';
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
@@ -81,17 +75,11 @@ const Start = () => {
                     harAktivArbeidssokerperiode: harAktivArbeidssokerperiode(perioder?.arbeidssokerperioder),
                 });
             }
-            /*
-            if (RegistreringType.SYKMELDT_REGISTRERING === registreringType && brukMeroppfolging) {
-                loggFlyt({ hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' });
-            }
-            */
-            // dropper togglesjekk
             if (RegistreringType.SYKMELDT_REGISTRERING === registreringType) {
                 loggFlyt({ hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' });
             }
         }
-        router.push(hentNesteSideUrl(data, dittNavUrl, sykmeldtRegistreringUrl));
+        router.push(hentNesteSideUrl(data, dittNavUrl));
     }, [data, router, dittNavUrl, perioder, e]);
 
     useEffect(() => {
