@@ -136,3 +136,8 @@ export function loggEksperiment(data: EksperimentData) {
     const eventData = data || {};
     logAmplitudeEvent('arbeidssokerregistrering.eksperimenter', eventData);
 }
+
+export function loggSidevisning(data: SidevisningData) {
+    const eventData = data || {};
+    logAmplitudeEvent('arbeidssokerregistrering.sidevisning', eventData);
+}

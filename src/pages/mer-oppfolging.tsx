@@ -1,11 +1,12 @@
 import { Alert, BodyLong, GuidePanel, Panel, Heading, Link, List } from '@navikt/ds-react';
+import { useEffect } from 'react';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 
 import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
 import { Config } from '../model/config';
-import { loggFlyt } from '../lib/amplitude';
+import { loggFlyt, loggSidevisning } from '../lib/amplitude';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 
 import styles from '../styles/skjema.module.css';
@@ -38,6 +39,10 @@ const MerOppfolgingSide = () => {
     const loggAvbryter = () => {
         loggFlyt({ hendelse: 'Vil registrere seg som arbeidssøker' });
     };
+
+    useEffect(() => {
+        loggSidevisning({ sidetittel: 'Infoside - mer oppfølging' });
+    }, []);
 
     return (
         <div className={styles.merOppfolging}>
