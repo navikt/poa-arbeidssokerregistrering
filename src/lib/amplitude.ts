@@ -60,7 +60,7 @@ type FlytData =
     | {
           hendelse: 'Ikke mulig å starte registreringen';
           aarsak?: RegistreringType;
-          harAktivArbeidssokerperiode: boolean;
+          harAktivArbeidssokerperiode?: boolean;
       }
     | { hendelse: 'Starter registrering' }
     | { hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' }
