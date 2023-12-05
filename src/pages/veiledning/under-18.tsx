@@ -12,7 +12,7 @@ import {
     KvitteringOppgaveIkkeOpprettet,
     KvitteringOppgaveOpprettet,
     Opprettelsesfeil,
-} from '../../components/KvitteringOppgave';
+} from '../../components/KvitteringOppgaveUnder18';
 import { fetcher, fetcher as api } from '../../lib/api-utils';
 import { withAuthenticatedPage } from '../../auth/withAuthentication';
 
