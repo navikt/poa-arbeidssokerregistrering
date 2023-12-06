@@ -26,3 +26,4 @@ merOppfolgingUrl: https://www.nav.no/syk/meroppfolging/reg/0
 hentProfileringUrl: http://veilarbregistrering/veilarbregistrering/api/profilering/
 unleashServerApiUrl: https://paw-unleash-api.nav.cloud.nais.io/api
 arbeidssokerUrl: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
+oppgaveApiUrl: https://www.nav.no/aia-backend/oppgave
