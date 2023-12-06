@@ -15,14 +15,17 @@ export const getHeaders = (token: string, callId: string) => {
 
 export const lagApiPostHandlerMedAuthHeaders: (
     url: string,
-    errorHandler?: (response: Response) => void
-) => NextApiHandler = (url: string, errorHandler) => async (req, res) => {
-    if (req.method === 'POST') {
-        return lagApiHandlerMedAuthHeaders(url, errorHandler)(req, res);
-    } else {
-        res.status(405).end();
-    }
-};
+    errorHandler?: (response: Response) => void,
+    clientId?: ClientIds,
+) => NextApiHandler =
+    (url: string, errorHandler, clientId = VEILARBREGISTRERING_CLIENT_ID) =>
+    async (req, res) => {
+        if (req.method === 'POST') {
+            return lagApiHandlerMedAuthHeaders(url, errorHandler, clientId)(req, res);
+        } else {
+            res.status(405).end();
+        }
+    };
 
 export interface ApiError extends Error {
     status?: number;
@@ -42,8 +45,12 @@ const getTokenDings = async (): Promise<Auth> => {
     return _tokenDings;
 };
 
-const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
-const exchangeIDPortenToken = async (idPortenToken: string): Promise<TokenSet> => {
+export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
+export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
+
+type ClientIds = typeof VEILARBREGISTRERING_CLIENT_ID | typeof AIA_BACKEND_CLIENT_ID;
+
+const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<TokenSet> => {
     return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, VEILARBREGISTRERING_CLIENT_ID);
 };
 
@@ -55,12 +62,21 @@ const getTokenFromRequest = (req: NextApiRequest) => {
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 
 export const getVeilarbregistreringToken = async (req: NextApiRequest) => {
-    const tokenSet = await exchangeIDPortenToken(getTokenFromRequest(req)!);
+    return getTokenXToken(req, VEILARBREGISTRERING_CLIENT_ID);
+};
+
+const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
+    const tokenSet = await exchangeIDPortenToken(clientId, getTokenFromRequest(req)!);
     return tokenSet.access_token!;
 };
 
-const lagApiHandlerMedAuthHeaders: (url: string, errorHandler?: (response: Response) => void) => NextApiHandler =
-    (url: string, errorHandler) => async (req, res) => {
+const lagApiHandlerMedAuthHeaders: (
+    url: string,
+    errorHandler?: (response: Response) => void,
+    clientId?: ClientIds,
+) => NextApiHandler =
+    (url: string, errorHandler, clientId = VEILARBREGISTRERING_CLIENT_ID) =>
+    async (req, res) => {
         const callId = nanoid();
         let body = null;
 
@@ -75,7 +91,7 @@ const lagApiHandlerMedAuthHeaders: (url: string, errorHandler?: (response: Respo
                 body,
                 headers: brukerMock
                     ? getHeaders('token', callId)
-                    : getHeaders(await getVeilarbregistreringToken(req), callId),
+                    : getHeaders(await getTokenXToken(req, clientId), callId),
             }).then(async (apiResponse) => {
                 logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
                 const contentType = apiResponse.headers.get('content-type');
@@ -98,7 +114,7 @@ const lagApiHandlerMedAuthHeaders: (url: string, errorHandler?: (response: Respo
 
                 if (!contentType || !contentType.includes('application/json')) {
                     throw new TypeError(
-                        `Fikk ikke JSON fra ${url} (callId ${callId}). Body: ${await apiResponse.text()}.`
+                        `Fikk ikke JSON fra ${url} (callId ${callId}). Body: ${await apiResponse.text()}.`,
                     );
                 }
 
