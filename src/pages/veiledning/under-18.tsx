@@ -38,10 +38,11 @@ function Under18() {
 
     const opprettOppgave = useCallback(async () => {
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave' });
+        const beskrivelse = '';
         try {
-            await api('/api/oppgave', {
+            await api('/api/oppgave-under-18', {
                 method: 'post',
-                body: JSON.stringify({ oppgaveType: 'UNDER_18' }),
+                body: JSON.stringify({ beskrivelse }),
                 onError: (res) => {
                     if (res.status === 403) {
                         settFeil('finnesAllerede');
