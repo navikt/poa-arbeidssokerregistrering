@@ -54,12 +54,12 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
 }
 
 const Start = () => {
-    const { dittNavUrl, loginUrl } = useConfig() as Config;
+    const { dittNavUrl, loginUrl, aarsTall } = useConfig() as Config;
     const { data, error } = useSWR('api/startregistrering', fetcher);
     const { data: perioder, error: e } = useSWRImmutable('api/arbeidssoker', fetcher);
     const router = useRouter();
     const { toggles } = useFeatureToggles();
-    const sperrUnder18 = toggles['arbeidssokerregistrering.bruk-under-18-sperre'];
+    const sperrUnder18 = toggles['arbeidssokerregistrering.bruk-under-18-sperre'] && aarsTall > 2023;
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
