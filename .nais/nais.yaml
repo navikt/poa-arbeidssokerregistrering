@@ -93,5 +93,6 @@ spec:
         - host: paw-unleash-api.nav.cloud.nais.io
       rules:
         - application: veilarbregistrering
+        - application: aia-backend
         - application: nav-dekoratoren
           namespace: personbruker
