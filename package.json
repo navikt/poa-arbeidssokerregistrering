@@ -25,6 +25,7 @@
         "@unleash/nextjs": "1.3.0",
         "amplitude-js": "8.21.9",
         "cookie": "0.6.0",
+        "jose": "5.1.3",
         "jsonwebtoken": "9.0.2",
         "lodash": "4.17.21",
         "nanoid": "5.0.4",

@@ -54,7 +54,7 @@ const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): P
     return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, VEILARBREGISTRERING_CLIENT_ID);
 };
 
-const getTokenFromRequest = (req: NextApiRequest) => {
+export const getTokenFromRequest = (req: NextApiRequest) => {
     const bearerToken = req.headers['authorization'];
     return bearerToken?.replace('Bearer ', '');
 };
