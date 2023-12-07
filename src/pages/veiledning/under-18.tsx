@@ -3,10 +3,12 @@ import { BodyLong, GuidePanel, Heading, Button } from '@navikt/ds-react';
 import { preload } from 'swr';
 import { useRouter } from 'next/router';
 
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import useSprak from '../../hooks/useSprak';
+import { useConfig } from '../../contexts/config-context';
 
+import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet } from '../../lib/amplitude';
+import { Config } from '../../model/config';
 
 import {
     KvitteringOppgaveIkkeOpprettet,
@@ -34,13 +36,16 @@ function Under18() {
     const [responseMottatt, settResponseMottatt] = useState<boolean>(false);
     const [feil, settFeil] = useState<Opprettelsesfeil | undefined>(undefined);
     const Router = useRouter();
+    const { enableMock } = useConfig() as Config;
+    const brukerMock = enableMock === 'enabled';
     preload('api/kontaktinformasjon/', fetcher);
 
     const opprettOppgave = useCallback(async () => {
+        const oppgaveUrl = brukerMock ? '/api/mocks/oppgave-under-18' : '/api/oppgave-under-18';
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave' });
         const beskrivelse = '';
         try {
-            await api('/api/oppgave-under-18', {
+            await api(oppgaveUrl, {
                 method: 'post',
                 body: JSON.stringify({ beskrivelse }),
                 onError: (res) => {
