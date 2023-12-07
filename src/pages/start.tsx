@@ -24,11 +24,7 @@ function skalVideresendesTilDittNAV(data: any) {
 }
 
 function hentNesteSideUrl(data: any, dittNavUrl: string) {
-    const { registreringType, alder } = data;
-
-    if (alder < 18) {
-        return '/veiledning/under-18';
-    }
+    const { registreringType } = data;
 
     switch (registreringType) {
         case RegistreringType.ORDINAER_REGISTRERING: {
