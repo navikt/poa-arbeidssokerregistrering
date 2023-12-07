@@ -95,11 +95,6 @@ const lagApiHandlerMedAuthHeaders: (
             }).then(async (apiResponse) => {
                 logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
                 const contentType = apiResponse.headers.get('content-type');
-                const statusCode = apiResponse.status;
-
-                if (statusCode === 204) {
-                    return apiResponse;
-                }
 
                 if (!apiResponse.ok) {
                     logger.error(`apiResponse ikke ok, contentType: ${contentType}, callId - ${callId}`);
@@ -112,13 +107,11 @@ const lagApiHandlerMedAuthHeaders: (
                     }
                 }
 
-                if (!contentType || !contentType.includes('application/json')) {
-                    throw new TypeError(
-                        `Fikk ikke JSON fra ${url} (callId ${callId}). Body: ${await apiResponse.text()}.`,
-                    );
+                if (contentType?.includes('application/json')) {
+                    return apiResponse.json();
+                } else {
+                    return apiResponse;
                 }
-
-                return apiResponse.json();
             });
 
             return res.json(response);
