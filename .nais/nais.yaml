@@ -75,6 +75,8 @@ spec:
       value: {{unleashServerApiUrl}}
     - name: ARBEIDSSOKER_PERIODER_URL
       value: {{arbeidssokerUrl}}
+    - name: OPPGAVE_API_URL
+      value: {{oppgaveApiUrl}}
   envFrom:
      - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
@@ -93,5 +95,6 @@ spec:
         - host: paw-unleash-api.nav.cloud.nais.io
       rules:
         - application: veilarbregistrering
+        - application: aia-backend
         - application: nav-dekoratoren
           namespace: personbruker

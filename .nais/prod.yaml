@@ -8,8 +8,6 @@ dekorator:
 amplitude:
   apiKey: 913768927b84cde5eac0d0d18c737561
   endPoint: amplitude.nav.no/collect
-sentry:
-  dsn: https://b2f662d8ed7a42b29f465f365e25832f@sentry.gc.nav.no/118
 pamJanzzUrl: https://arbeidsplassen.nav.no/pam-janzz/rest
 startUrl: https://www.nav.no/arbeid/registrering/start
 startRegistreringUrl: http://veilarbregistrering/veilarbregistrering/api/startregistrering/
@@ -26,3 +24,4 @@ merOppfolgingUrl: https://www.nav.no/syk/meroppfolging/reg/0
 hentProfileringUrl: http://veilarbregistrering/veilarbregistrering/api/profilering/
 unleashServerApiUrl: https://paw-unleash-api.nav.cloud.nais.io/api
 arbeidssokerUrl: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
+oppgaveApiUrl: https://www.nav.no/aia-backend/oppgave

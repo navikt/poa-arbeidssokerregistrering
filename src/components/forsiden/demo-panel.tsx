@@ -73,6 +73,11 @@ function DemoPanel({ brukerMock }: Props) {
                                     <Button variant="secondary">Sperret</Button>
                                 </NextLink>
                             </p>
+                            <p>
+                                <NextLink href="/veiledning/under-18/" passHref locale={false}>
+                                    <Button variant="secondary">Under 18 år</Button>
+                                </NextLink>
+                            </p>
                             <Heading level="4" size="medium">
                                 Feilmeldinger
                             </Heading>

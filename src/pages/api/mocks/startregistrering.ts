@@ -9,6 +9,7 @@ const startRegistrering = (req: NextApiRequest, res: NextApiResponse): void => {
         formidlingsgruppe: 'IARBS',
         geografiskTilknytning: '0807',
         rettighetsgruppe: 'IYT',
+        alder: 43,
     });
 };
 

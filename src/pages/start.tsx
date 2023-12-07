@@ -2,9 +2,10 @@ import { useEffect } from 'react';
 import { Loader } from '@navikt/ds-react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
+import useSWRImmutable from 'swr/immutable';
 
 import { useConfig } from '../contexts/config-context';
-import useSWRImmutable from 'swr/immutable';
+import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
 import { SkjemaSide } from '../model/skjema';
 import { Formidlingsgruppe, RegistreringType } from '../model/registrering';
@@ -42,6 +43,9 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
         case RegistreringType.SPERRET: {
             return '/veiledning/sperret/';
         }
+        case RegistreringType.UNDER_18: {
+            return '/veiledning/under-18/';
+        }
         case RegistreringType.ALLEREDE_REGISTRERT: {
             if (skalVideresendesTilDittNAV(data)) {
                 return `${dittNavUrl}?goTo=registrering`;
@@ -54,10 +58,12 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
 }
 
 const Start = () => {
-    const { dittNavUrl, loginUrl } = useConfig() as Config;
+    const { dittNavUrl, loginUrl, aarsTall } = useConfig() as Config;
     const { data, error } = useSWR('api/startregistrering', fetcher);
     const { data: perioder, error: e } = useSWRImmutable('api/arbeidssoker', fetcher);
     const router = useRouter();
+    const { toggles } = useFeatureToggles();
+    const sperrUnder18 = toggles['arbeidssokerregistrering.bruk-under-18-sperre'] && aarsTall > 2023;
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
@@ -82,9 +88,19 @@ const Start = () => {
             if (RegistreringType.SYKMELDT_REGISTRERING === registreringType) {
                 loggFlyt({ hendelse: 'Får tilbud om registrering for mer sykmeldtoppfølging' });
             }
+            if (RegistreringType.UNDER_18 === registreringType) {
+                loggFlyt({
+                    hendelse: 'Ikke mulig å starte registreringen',
+                    aarsak: registreringType,
+                });
+            }
+        }
+        const { alder } = data;
+        if (sperrUnder18 && alder < 18) {
+            data.registreringType = RegistreringType.UNDER_18;
         }
         router.push(hentNesteSideUrl(data, dittNavUrl));
-    }, [data, router, dittNavUrl, perioder, e]);
+    }, [data, router, dittNavUrl, perioder, e, sperrUnder18]);
 
     useEffect(() => {
         if (error) {

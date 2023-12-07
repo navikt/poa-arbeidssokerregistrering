@@ -10,4 +10,5 @@ export type Config = {
     enableMock: string;
     loginUrl: string;
     merOppfolgingUrl: string;
+    aarsTall: number;
 };

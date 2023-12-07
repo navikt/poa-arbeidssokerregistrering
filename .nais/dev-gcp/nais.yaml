@@ -75,6 +75,8 @@ spec:
       value: https://paw-unleash-api.nav.cloud.nais.io/api
     - name: ARBEIDSSOKER_PERIODER_URL
       value: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
+    - name: OPPGAVE_API_URL
+      value: https://www.intern.dev.nav.no/aia-backend/oppgave
   envFrom:
     - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
@@ -93,5 +95,6 @@ spec:
         - host: paw-unleash-api.nav.cloud.nais.io
       rules:
         - application: veilarbregistrering
+        - application: aia-backend
         - application: nav-dekoratoren
           namespace: personbruker
