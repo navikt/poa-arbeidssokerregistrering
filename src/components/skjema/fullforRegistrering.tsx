@@ -110,12 +110,15 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
                 {
                     method: 'post',
                     body: JSON.stringify(body),
-                    onError(resp) {
-                        if (resp.type) {
-                            loggFlyt({ hendelse: 'Får ikke fullført registreringen', aarsak: resp.type });
-                            return router.push(
-                                hentRegistreringFeiletUrl(resp.type, OppgaveRegistreringstype.REGISTRERING),
-                            );
+                    async onError(resp: Response) {
+                        if (resp.headers.get('content-type')?.includes('application/json')) {
+                            const body = await resp.json();
+                            if (body.type) {
+                                loggFlyt({ hendelse: 'Får ikke fullført registreringen', aarsak: body.type });
+                                await router.push(
+                                    hentRegistreringFeiletUrl(body.type, OppgaveRegistreringstype.REGISTRERING),
+                                );
+                            }
                         }
                         throw new Error(resp.statusText);
                     },
