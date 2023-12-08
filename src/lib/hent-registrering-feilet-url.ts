@@ -9,7 +9,7 @@ export const hentRegistreringFeiletUrl = (feiltype: ErrorTypes, registreringstyp
     } else if (feiltype && [ErrorTypes.BRUKER_ER_UKJENT, ErrorTypes.BRUKER_KAN_IKKE_REAKTIVERES].includes(feiltype)) {
         return '/feil/';
     } else if (feiltype === ErrorTypes.BRUKER_ER_UNDER_18) {
-        return '/veiledning/under-18/';
+        return '/veiledning/under-18';
     } else {
         return '/feil/';
     }

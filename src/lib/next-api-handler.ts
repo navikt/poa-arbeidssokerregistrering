@@ -29,6 +29,7 @@ export const lagApiPostHandlerMedAuthHeaders: (
 
 export interface ApiError extends Error {
     status?: number;
+    body?: any;
 }
 
 let _tokenDings: Auth | undefined;
@@ -93,7 +94,6 @@ const lagApiHandlerMedAuthHeaders: (
                     ? getHeaders('token', callId)
                     : getHeaders(await getTokenXToken(req, clientId), callId),
             }).then(async (apiResponse) => {
-                logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
                 const contentType = apiResponse.headers.get('content-type');
 
                 if (!apiResponse.ok) {
@@ -113,11 +113,12 @@ const lagApiHandlerMedAuthHeaders: (
                     return apiResponse;
                 }
             });
-
+            logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
             return res.json(response);
         } catch (error) {
             logger.error(`Kall mot ${url} (callId: ${callId}) feilet. Feilmelding: ${error}`);
-            res.status((error as ApiError).status || 500).end(`Noe gikk galt (callId: ${callId})`);
+            const apiError = error as ApiError;
+            res.status(apiError.status || 500).send(apiError.body ?? `Noe gikk galt (callId: ${callId})`);
         }
     };
 
