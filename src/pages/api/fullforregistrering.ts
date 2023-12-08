@@ -6,6 +6,7 @@ import { decodeJwt } from 'jose';
 import { FnrOgDnrTilAlder } from '../../lib/fnr-og-dnr-til-alder';
 import { getDefinitions } from '@unleash/nextjs';
 import { logger } from '@navikt/next-logger';
+import { ErrorTypes } from '../../model/error';
 
 const fullforRegistreringUrl = `${process.env.FULLFOR_REGISTRERING_URL}`;
 
@@ -26,19 +27,21 @@ function withAgeCheck(handler: NextApiHandler): NextApiHandler {
     return async (req, res, ...rest) => {
         try {
             const definitions = await getDefinitions();
-            const toggle = definitions.features.find((f) => f.name === 'arbeidssokerregistrering.bruk-under-18-sperre');
+            const toggle = definitions?.features.find(
+                (f) => f.name === 'arbeidssokerregistrering.bruk-under-18-sperre',
+            );
             if (toggle?.enabled) {
                 const token = getTokenFromRequest(req)!;
                 const result = await verifyToken(token, decodeJwt(token));
                 const fnr = result.payload.pid as string;
                 const alder = FnrOgDnrTilAlder(fnr);
                 if (alder < 18) {
-                    return res.status(403).end();
+                    return res.status(403).send({ type: ErrorTypes.BRUKER_ER_UNDER_18 });
                 }
             }
             return handler(req, res, ...rest);
         } catch (e) {
-            logger.error({ e, msg: 'Feil i withAgeCheck' });
+            logger.error({ e, msg: 'Feil i alder-sjekk ved fullfør-registrering' });
             return handler(req, res, ...rest);
         }
     };
