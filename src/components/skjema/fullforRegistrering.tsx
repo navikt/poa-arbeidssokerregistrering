@@ -106,10 +106,19 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
             onSubmit();
 
             const response: FullforRegistreringResponse = await api(
-                `api/fullforregistrering${props.side === 'sykmeldt' ? 'sykmeldt' : ''}/`,
+                `api/fullforregistrering${props.side === 'sykmeldt' ? 'sykmeldt' : ''}`,
                 {
                     method: 'post',
                     body: JSON.stringify(body),
+                    onError(resp) {
+                        if (resp.type) {
+                            loggFlyt({ hendelse: 'Får ikke fullført registreringen', aarsak: resp.type });
+                            return router.push(
+                                hentRegistreringFeiletUrl(resp.type, OppgaveRegistreringstype.REGISTRERING),
+                            );
+                        }
+                        throw new Error(resp.statusText);
+                    },
                 },
             );
 
@@ -121,13 +130,6 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
                 [DinSituasjon.MISTET_JOBBEN, DinSituasjon.ER_PERMITTERT, DinSituasjon.HAR_SAGT_OPP].includes(
                     dinSituasjon,
                 );
-
-            const feiltype = response.type;
-
-            if (feiltype) {
-                loggFlyt({ hendelse: 'Får ikke fullført registreringen', aarsak: feiltype });
-                return router.push(hentRegistreringFeiletUrl(feiltype, OppgaveRegistreringstype.REGISTRERING));
-            }
 
             const skalHoppeOverKvittering =
                 erStandardInnsatsgruppe &&
