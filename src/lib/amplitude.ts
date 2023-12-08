@@ -47,7 +47,9 @@ type AktivitetData =
     | { aktivitet: 'Arbeidssøkeren avslår reaktivering' }
     | { aktivitet: 'Fortsetter til sykmeldtregistrering' }
     | { aktivitet: 'Oppretter kontakt meg oppgave' }
+    | { aktivitet: 'Oppretter kontakt meg oppgave - under 18' }
     | { aktivitet: 'Avbryter kontakt meg' }
+    | { aktivitet: 'Avbryter kontakt meg - under 18' }
     | { aktivitet: 'Endrer foreslått stilling' }
     | { aktivitet: 'Viser forsiden for arbeidssøkerregistreringen' }
     | { aktivitet: 'Åpner bistandsbehov' }

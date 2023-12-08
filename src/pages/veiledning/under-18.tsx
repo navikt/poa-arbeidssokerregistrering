@@ -42,7 +42,7 @@ function Under18() {
 
     const opprettOppgave = useCallback(async () => {
         const oppgaveUrl = brukerMock ? '/api/mocks/oppgave-under-18' : '/api/oppgave-under-18';
-        loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave' });
+        loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave - under 18' });
         const beskrivelse = '';
         try {
             await api(oppgaveUrl, {
@@ -63,7 +63,7 @@ function Under18() {
     }, []);
 
     const avbrytKontaktMeg = () => {
-        loggAktivitet({ aktivitet: 'Avbryter kontakt meg' });
+        loggAktivitet({ aktivitet: 'Avbryter kontakt meg - under 18' });
         Router.push('/');
     };
 
