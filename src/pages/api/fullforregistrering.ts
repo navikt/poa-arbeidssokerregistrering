@@ -1,11 +1,13 @@
-import { ApiError, getTokenFromRequest, lagApiPostHandlerMedAuthHeaders } from '../../lib/next-api-handler';
-import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { NextApiHandler } from 'next';
-import { verifyToken } from '../../auth/token-validation';
 import { decodeJwt } from 'jose';
-import { FnrOgDnrTilAlder } from '../../lib/fnr-og-dnr-til-alder';
-import { getDefinitions } from '@unleash/nextjs';
 import { logger } from '@navikt/next-logger';
+import { getDefinitions } from '@unleash/nextjs';
+
+import { withAuthenticatedApi } from '../../auth/withAuthentication';
+
+import { ApiError, getTokenFromRequest, lagApiPostHandlerMedAuthHeaders } from '../../lib/next-api-handler';
+import { verifyToken } from '../../auth/token-validation';
+import { personidentTilAlder } from '../../lib/personident-til-alder';
 import { ErrorTypes } from '../../model/error';
 
 const fullforRegistreringUrl = `${process.env.FULLFOR_REGISTRERING_URL}`;
@@ -33,7 +35,7 @@ function withAgeCheck(handler: NextApiHandler): NextApiHandler {
                 const token = getTokenFromRequest(req)!;
                 const result = await verifyToken(token, decodeJwt(token));
                 const fnr = result.payload.pid as string;
-                const alder = FnrOgDnrTilAlder(fnr);
+                const alder = personidentTilAlder(fnr);
                 if (alder < 18) {
                     return res.status(403).json({ type: ErrorTypes.BRUKER_ER_UNDER_18 });
                 }
