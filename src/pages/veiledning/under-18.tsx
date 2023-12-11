@@ -43,7 +43,8 @@ function Under18() {
     const opprettOppgave = useCallback(async () => {
         const oppgaveUrl = brukerMock ? '/api/mocks/oppgave-under-18' : '/api/oppgave-under-18';
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave - under 18' });
-        const beskrivelse = '';
+        const beskrivelse =
+            'Personen forsøkte å registrere seg, men siden vedkommende er under 18 år kreves det samtykke fra foresatte.\nFølg rutinen til samtykke for registrering av mindreårige https://www.vg.no';
         try {
             await api(oppgaveUrl, {
                 method: 'post',
