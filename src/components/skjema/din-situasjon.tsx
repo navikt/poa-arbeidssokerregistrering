@@ -1,7 +1,9 @@
 import { Heading, Panel } from '@navikt/ds-react';
 import { preload } from 'swr';
+import Head from 'next/head';
 
 import useSprak from '../../hooks/useSprak';
+
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { DinSituasjon as Jobbsituasjon, hentTekst, SporsmalId } from '../../model/sporsmal';
@@ -37,20 +39,25 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     preload('api/sistearbeidsforhold/', fetcher);
 
     return (
-        <Panel className={styles.panel} border={true}>
-            <form>
-                <Heading size="medium" spacing level="1">
-                    Din arbeidssøkersituasjon
-                </Heading>
-                <RadioGruppe
-                    legend={tekst(SporsmalId.dinSituasjon)}
-                    valg={valg}
-                    onSelect={(val) => onChange(val)}
-                    valgt={valgt}
-                    visFeilmelding={visFeilmelding!}
-                />
-            </form>
-        </Panel>
+        <>
+            <Head>
+                <title>Arbeidssøkerregistrering: Din arbeidssøkersituasjon</title>
+            </Head>
+            <Panel className={styles.panel} border={true}>
+                <form>
+                    <Heading size="medium" spacing level="1">
+                        Din arbeidssøkersituasjon
+                    </Heading>
+                    <RadioGruppe
+                        legend={tekst(SporsmalId.dinSituasjon)}
+                        valg={valg}
+                        onSelect={(val) => onChange(val)}
+                        valgt={valgt}
+                        visFeilmelding={visFeilmelding!}
+                    />
+                </form>
+            </Panel>
+        </>
     );
 };
 

@@ -1,4 +1,5 @@
 import { Alert, Heading, Panel } from '@navikt/ds-react';
+import Head from 'next/head';
 
 import useSprak from '../../hooks/useSprak';
 
@@ -47,6 +48,9 @@ const AndreProblemer = (props: AndreProblemerProps) => {
 
     return (
         <>
+            <Head>
+                <title>Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid</title>
+            </Head>
             <Panel className={`${styles.panel} mbm`} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">

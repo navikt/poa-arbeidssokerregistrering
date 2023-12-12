@@ -1,5 +1,6 @@
-import { GuidePanel, Heading, Ingress, Link, Table } from '@navikt/ds-react';
+import { GuidePanel, Heading, Ingress, Table } from '@navikt/ds-react';
 import NextLink from 'next/link';
+import Head from 'next/head';
 import useSWR from 'swr';
 
 import { hentTekst, SisteStillingValg, SporsmalId } from '../../../model/sporsmal';
@@ -44,6 +45,9 @@ const Oppsummering = ({ skjemaState, skjemaPrefix }: OppsummeringProps) => {
 
     return (
         <>
+            <Head>
+                <title>Arbeidssøkerregistrering: Gjennomgang av opplysninger</title>
+            </Head>
             <Heading size={'medium'} level="1" spacing>
                 {tekst('header')}
             </Heading>
@@ -81,7 +85,7 @@ const Oppsummering = ({ skjemaState, skjemaPrefix }: OppsummeringProps) => {
                                             url={`${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`}
                                             key={sporsmalId}
                                         />
-                                    )
+                                    ),
                             )}
                     </Table.Body>
                 </Table>

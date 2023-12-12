@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 import { Alert, Button, ConfirmationPanel, GuidePanel, Heading, ReadMore } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 import { logger } from '@navikt/next-logger';
+import Head from 'next/head';
 
 import useSprak from '../../hooks/useSprak';
 import { useConfig } from '../../contexts/config-context';
@@ -203,6 +204,9 @@ const FullforRegistrering = (props: FullforProps) => {
 
     return (
         <>
+            <Head>
+                <title>Arbeidssøkerregistrering: Fullfør registreringen</title>
+            </Head>
             <div style={{ width: '100%' }}>
                 <Heading size={'large'} level={'1'} className="text-center mbm">
                     {tekst('tittel')}

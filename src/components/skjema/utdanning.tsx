@@ -1,4 +1,5 @@
 import { Heading, Panel } from '@navikt/ds-react';
+import Head from 'next/head';
 
 import useSprak from '../../hooks/useSprak';
 
@@ -32,20 +33,25 @@ const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa>) => {
     ];
 
     return (
-        <Panel className={styles.panel} border={true}>
-            <form>
-                <Heading size="medium" spacing level="1">
-                    Utdanning
-                </Heading>
-                <RadioGruppe
-                    legend={tekst(SporsmalId.utdanning)}
-                    valg={valg}
-                    onSelect={(val) => onChange(val)}
-                    valgt={valgt}
-                    visFeilmelding={visFeilmelding}
-                />
-            </form>
-        </Panel>
+        <>
+            <Head>
+                <title>Arbeidssøkerregistrering: Utdanningsnivå</title>
+            </Head>
+            <Panel className={styles.panel} border={true}>
+                <form>
+                    <Heading size="medium" spacing level="1">
+                        Utdanning
+                    </Heading>
+                    <RadioGruppe
+                        legend={tekst(SporsmalId.utdanning)}
+                        valg={valg}
+                        onSelect={(val) => onChange(val)}
+                        valgt={valgt}
+                        visFeilmelding={visFeilmelding}
+                    />
+                </form>
+            </Panel>
+        </>
     );
 };
 
