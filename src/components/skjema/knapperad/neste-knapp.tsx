@@ -1,4 +1,3 @@
-import skjemaStyles from '../../../styles/skjema.module.css';
 import { Button } from '@navikt/ds-react';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import useSprak from '../../../hooks/useSprak';
@@ -28,7 +27,7 @@ const Neste = (props: NesteProps) => {
 
     return (
         <>
-            <div className={skjemaStyles.taCenter}>
+            <div className="text-center py-4">
                 <Button onClick={onButtonClick}>{tekst('neste')}</Button>
             </div>
         </>

@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { BodyLong, Button, Heading, Link, Modal, Panel } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 
-import skjemaStyles from '../../styles/skjema.module.css';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import useSprak from '../../hooks/useSprak';
 import { loggAktivitet, loggFlyt } from '../../lib/amplitude';
@@ -46,17 +45,17 @@ const Avbryt = () => {
             >
                 <Modal.Body>
                     <BodyLong className={'mbm'}>{tekst('erDuSikker')}</BodyLong>
-                    <div className={skjemaStyles.spaceEvenly}>
-                        <Button variant="secondary" onClick={avbrytRegistrering} className={skjemaStyles.w10}>
+                    <div className="flex justify-evenly">
+                        <Button variant="secondary" onClick={avbrytRegistrering} className="w-40">
                             {tekst('knappJa')}
                         </Button>
-                        <Button variant="secondary" onClick={() => setOpen(false)} className={skjemaStyles.w10}>
+                        <Button variant="secondary" onClick={() => setOpen(false)} className="w-40">
                             {tekst('knappNei')}
                         </Button>
                     </div>
                 </Modal.Body>
             </Modal>
-            <div className={skjemaStyles.taCenter}>
+            <div className="text-center py-4">
                 <Link href="#" onClick={() => setOpen(true)}>
                     {tekst('avbryt')}
                 </Link>

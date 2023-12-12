@@ -1,6 +1,5 @@
 import { Button } from '@navikt/ds-react';
 
-import skjemaStyles from '../../../styles/skjema.module.css';
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import useSprak from '../../../hooks/useSprak';
 
@@ -18,7 +17,7 @@ export const TilbakeKnapp = (props: { onClick: () => void }) => {
 
     return (
         <>
-            <div className={skjemaStyles.taCenter}>
+            <div className="text-center py-4">
                 <Button variant="secondary" onClick={props.onClick}>
                     {' '}
                     {tekst('tilbake')}{' '}
