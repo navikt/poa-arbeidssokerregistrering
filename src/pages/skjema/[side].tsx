@@ -1,3 +1,7 @@
+import { Dispatch } from 'react';
+
+import { withAuthenticatedPage } from '../../auth/withAuthentication';
+
 import DinSituasjon from '../../components/skjema/din-situasjon';
 import SisteJobb from '../../components/skjema/siste-jobb/siste-jobb';
 import Utdanning from '../../components/skjema/utdanning';
@@ -5,7 +9,6 @@ import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
 import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
 import Helseproblemer from '../../components/skjema/helseproblemer';
 import AndreProblemer from '../../components/skjema/andre-problemer';
-import { Dispatch } from 'react';
 import Oppsummering from '../../components/skjema/oppsummering/oppsummering';
 import { beregnNavigering } from '../../lib/standard-registrering-tilstandsmaskin';
 import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
@@ -15,8 +18,6 @@ import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
 import { SisteStillingValg, SporsmalId } from '../../model/sporsmal';
 import skjemaSideFactory, { SiderMap } from '../../components/skjema-side-factory';
 import { loggBesvarelse } from '../../lib/amplitude';
-import { withAuthenticatedPage } from '../../auth/withAuthentication';
-import { logger } from '@navikt/next-logger';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
