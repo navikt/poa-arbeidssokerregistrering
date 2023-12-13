@@ -43,7 +43,7 @@ const DineOpplysninger = () => {
             </Heading>
             <BodyLong>{tekst('innledning')}</BodyLong>
             <div>
-                <ul>
+                <ul className="list-disc px-8 my-4">
                     <li>{tekst('alder')}</li>
                     <li>{tekst('jobb')}</li>
                     <li>{tekst('utdanning')}</li>

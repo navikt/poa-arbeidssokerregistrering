@@ -19,7 +19,7 @@ const PlikterPanel = () => {
             <Heading size={'small'} level={'2'}>
                 {tekst('tittel')}
             </Heading>
-            <ul>
+            <ul className="list-disc px-8 mt-4">
                 <li>{tekst('sendeMeldekort')}</li>
                 <li>{tekst('aktivArbeidssoker')}</li>
             </ul>

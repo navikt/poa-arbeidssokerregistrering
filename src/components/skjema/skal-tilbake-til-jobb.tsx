@@ -31,7 +31,7 @@ const SkalTilbakeTilJobb = (props: any) => {
                     <Heading level="2" size="small">
                         {tekst('tittel')}
                     </Heading>
-                    <ul className="leading-normal">
+                    <ul className="list-disc leading-normal px-8 my-4">
                         <li>{tekst('punkt1')}</li>
                         <li>{tekst('punkt2')}</li>
                     </ul>

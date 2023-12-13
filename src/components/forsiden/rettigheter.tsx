@@ -22,7 +22,7 @@ const RettigheterPanel = () => {
             <Heading size={'small'} level={'2'}>
                 {tekst('tittel')}
             </Heading>
-            <ul>
+            <ul className="list-disc px-8 mt-4">
                 <li>
                     {tekst('kravPaVurdering')}
                     <Link target="_blank" href="https://lovdata.no/dokument/NL/lov/2006-06-16-20/KAPITTEL_3#%C2%A714a">

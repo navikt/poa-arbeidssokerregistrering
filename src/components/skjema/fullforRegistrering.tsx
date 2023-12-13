@@ -215,7 +215,7 @@ const FullforRegistrering = (props: FullforProps) => {
                     <Heading level={'2'} size={'xsmall'}>
                         {tekst('naarDuFullforer')}
                     </Heading>
-                    <ul>
+                    <ul className="list-disc px-8 my-4">
                         <li> {tekst('sendeMeldekort')} </li>
                         <li>{tekst('registrereCV')}</li>
                         <li>{tekst('aktivJobbsoker')}</li>
@@ -223,7 +223,7 @@ const FullforRegistrering = (props: FullforProps) => {
                     </ul>
                 </GuidePanel>
                 <ReadMore header={tekst('lesMer')}>
-                    <ul>
+                    <ul className="list-disc px-8">
                         <li className="mb-4">
                             <Heading level={'3'} size={'xsmall'}>
                                 {tekst('okonomi')}
