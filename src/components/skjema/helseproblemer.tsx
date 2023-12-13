@@ -32,7 +32,7 @@ const Helseproblemer = (props: SkjemaKomponentProps<JaEllerNei>) => {
             <Head>
                 <title>Arbeidssøkerregistrering: Helse</title>
             </Head>
-            <Panel className={`${styles.panel} mbm`} border={true}>
+            <Panel className={`${styles.panel} mb-6`} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
                         Helse

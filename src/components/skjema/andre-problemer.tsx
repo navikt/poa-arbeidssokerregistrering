@@ -51,7 +51,7 @@ const AndreProblemer = (props: AndreProblemerProps) => {
             <Head>
                 <title>Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid</title>
             </Head>
-            <Panel className={`${styles.panel} mbm`} border={true}>
+            <Panel className={`${styles.panel} mb-6`} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
                         Andre utfordringer knyttet til arbeid

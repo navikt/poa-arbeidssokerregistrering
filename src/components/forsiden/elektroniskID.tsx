@@ -52,7 +52,7 @@ const ElektroniskID = () => {
                         {tekst('skaffDegTittel')}
                     </Heading>
                     <BodyLong spacing={true}>{tekst('skaffDegBody')}</BodyLong>
-                    <Link className="mbm" href="https://eid.difi.no/bankid">
+                    <Link className="mb-6" href="https://eid.difi.no/bankid">
                         {tekst('skaffDegTittel')} <ChevronRightIcon aria-hidden="true" />
                     </Link>
                 </div>

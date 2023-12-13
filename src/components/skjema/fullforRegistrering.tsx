@@ -174,7 +174,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
     return (
         <>
             {visFeilmelding && (
-                <div className="mbm">
+                <div className="mb-6">
                     <FeilmeldingGenerell />
                 </div>
             )}
@@ -208,10 +208,10 @@ const FullforRegistrering = (props: FullforProps) => {
                 <title>Arbeidssøkerregistrering: Fullfør registreringen</title>
             </Head>
             <div style={{ width: '100%' }}>
-                <Heading size={'large'} level={'1'} className="text-center mbm">
+                <Heading size={'large'} level={'1'} className="text-center mb-6">
                     {tekst('tittel')}
                 </Heading>
-                <GuidePanel className={`${guidePanelStyles.plikter} mbm`} poster illustration={<PlikterSvg />}>
+                <GuidePanel className={`${guidePanelStyles.plikter} mb-6`} poster illustration={<PlikterSvg />}>
                     <Heading level={'2'} size={'xsmall'}>
                         {tekst('naarDuFullforer')}
                     </Heading>
@@ -261,7 +261,7 @@ const FullforRegistrering = (props: FullforProps) => {
                 />
 
                 {visFeilmeldingLestKrav && (
-                    <div className="mbm">
+                    <div className="mb-6">
                         <Alert variant={'warning'}>{tekst('lestKravFeilmelding')}</Alert>
                     </div>
                 )}

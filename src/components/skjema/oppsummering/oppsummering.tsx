@@ -51,7 +51,7 @@ const Oppsummering = ({ skjemaState, skjemaPrefix }: OppsummeringProps) => {
             <Heading size={'medium'} level="1" spacing>
                 {tekst('header')}
             </Heading>
-            <Ingress className="mbm">{tekst('ingress')}</Ingress>
+            <Ingress className="mb-6">{tekst('ingress')}</Ingress>
             <GuidePanel poster illustration={<OppsummeringSvg />}>
                 {skjemaPrefix === '/skjema/' && (
                     <p>

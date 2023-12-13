@@ -120,7 +120,7 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
 
         return (
             <div ref={skjemaWrapperRef} className={styles.main}>
-                <ProgressBar value={erSkjemaSendt ? 1 : fremdrift} className={'mbm'} />
+                <ProgressBar value={erSkjemaSendt ? 1 : fremdrift} className={'mb-6'} />
                 {forrigeLenke && (
                     <div className="self-start">
                         <TilbakeKnapp href={forrigeLenke} />

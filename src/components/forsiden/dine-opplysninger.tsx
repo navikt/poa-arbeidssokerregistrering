@@ -38,7 +38,7 @@ const DineOpplysninger = () => {
 
     return (
         <>
-            <Heading size={'large'} level="2" className="text-center mbm">
+            <Heading size={'large'} level="2" className="text-center mb-6">
                 {tekst('tittel')}
             </Heading>
             <BodyLong>{tekst('innledning')}</BodyLong>
@@ -50,8 +50,8 @@ const DineOpplysninger = () => {
                     <li>{tekst('utfordringer')}</li>
                 </ul>
             </div>
-            <BodyLong className="mbm">{tekst('beskrivelse1')}</BodyLong>
-            <BodyLong className="mbm">{tekst('beskrivelse2')}</BodyLong>
+            <BodyLong className="mb-6">{tekst('beskrivelse1')}</BodyLong>
+            <BodyLong className="mb-6">{tekst('beskrivelse2')}</BodyLong>
             <ReadMore
                 header={tekst('bistandsbehovOverskrift')}
                 className="mb-4"

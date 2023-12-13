@@ -44,7 +44,7 @@ const Avbryt = () => {
                 header={{ heading: tekst('avbryt') }}
             >
                 <Modal.Body>
-                    <BodyLong className={'mbm'}>{tekst('erDuSikker')}</BodyLong>
+                    <BodyLong className={'mb-6'}>{tekst('erDuSikker')}</BodyLong>
                     <div className="flex justify-evenly">
                         <Button variant="secondary" onClick={avbrytRegistrering} className="w-40">
                             {tekst('knappJa')}

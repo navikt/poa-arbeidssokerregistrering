@@ -60,13 +60,13 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
             <Head>
                 <title>Arbeidssøkerregistrering: Hva er din siste jobb?</title>
             </Head>
-            <Panel className={`${styles.panel} mbm`} border={true}>
+            <Panel className={`${styles.panel} mb-6`} border={true}>
                 <div>
                     <Heading spacing size={'medium'} level="1">
                         {tekst('tittel')}
                     </Heading>
                     <BodyLong>{tekst('registrert')}</BodyLong>
-                    <BodyLong className="mbm">{tekst('feilOpplysninger')}</BodyLong>
+                    <BodyLong className="mb-6">{tekst('feilOpplysninger')}</BodyLong>
 
                     {props.children}
 

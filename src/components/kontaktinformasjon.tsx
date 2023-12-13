@@ -47,7 +47,7 @@ export const Kontaktinformasjon = () => {
     } else
         return (
             <>
-                <Alert variant="error" inline className="mbm">
+                <Alert variant="error" inline className="mb-6">
                     <div style={{ display: 'flex' }}>
                         {tekst('ingenOpplysninger')}
                         <HelpText>{tekst('hjelpetekst')}</HelpText>
@@ -65,7 +65,7 @@ const Telefonnummer = (props: { kilde: Kilde; telefonnummer: string }) => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Panel border className="mbm">
+        <Panel border className="mb-6">
             <Heading level="2" size={'small'}>
                 {tekst(`tlfHos${props.kilde}`)}
             </Heading>

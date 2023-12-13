@@ -37,7 +37,7 @@ export const Kontaktinformasjon = () => {
     } else
         return (
             <>
-                <Alert variant="error" inline className="mbm">
+                <Alert variant="error" inline className="mb-6">
                     {tekst('ingenOpplysninger')}
                 </Alert>
                 <EndreOpplysningerLink tekst={tekst('leggInnOpplysninger')} />
@@ -52,7 +52,7 @@ const Telefonnummer = (props: { kilde: Kilde; telefonnummer: string }) => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <div className="mbm">
+        <div className="mb-6">
             <Heading level="2" size="xsmall">
                 {tekst(`tlfHos${props.kilde}`)}
             </Heading>

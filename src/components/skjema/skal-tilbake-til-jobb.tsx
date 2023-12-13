@@ -26,7 +26,7 @@ const SkalTilbakeTilJobb = (props: any) => {
     return (
         <div>
             <GuidePanel poster className="mbxl">
-                <BodyLong className="mbm ">{tekst('infoTekst')}</BodyLong>
+                <BodyLong className="mb-6">{tekst('infoTekst')}</BodyLong>
                 <section>
                     <Heading level="2" size="small">
                         {tekst('tittel')}
@@ -41,7 +41,7 @@ const SkalTilbakeTilJobb = (props: any) => {
                 </Alert>
             </GuidePanel>
 
-            <Heading level="1" size="small" className="mbm text-center">
+            <Heading level="1" size="small" className="mb-6 text-center">
                 {tekst('enigTittel')}
             </Heading>
 

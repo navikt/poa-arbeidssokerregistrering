@@ -56,10 +56,10 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     }
     return (
         <GuidePanel poster>
-            <Alert variant="error" className={'mbm'}>
+            <Alert variant="error" className={'mb-6'}>
                 {tekst('alertFeil')}
             </Alert>
-            <BodyLong className="mbm">{tekst('klarteIkkeMotta')}</BodyLong>
+            <BodyLong className="mb-6">{tekst('klarteIkkeMotta')}</BodyLong>
         </GuidePanel>
     );
 };
@@ -67,7 +67,7 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
 const Kvittering = (alertProps: AlertProps, infotekst: string, tittel?: string) => {
     return (
         <GuidePanel poster>
-            <Alert variant={alertProps.variant} className={'mbm'}>
+            <Alert variant={alertProps.variant} className={'mb-6'}>
                 {alertProps.children}
             </Alert>
             {tittel && (
@@ -75,7 +75,7 @@ const Kvittering = (alertProps: AlertProps, infotekst: string, tittel?: string) 
                     {tittel}
                 </Heading>
             )}
-            <BodyLong className="mbm">{infotekst}</BodyLong>
+            <BodyLong className="mb-6">{infotekst}</BodyLong>
             <Kontaktinformasjon />
         </GuidePanel>
     );
