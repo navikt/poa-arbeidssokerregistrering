@@ -44,7 +44,7 @@ function Feedback({ id, sporsmal, className }: Props) {
     };
 
     return (
-        <div className={'mym'}>
+        <div className={'my-6'}>
             <Detail className={'mb-4'}>{sporsmal ? sporsmal : tekst('varDetteNyttig')}</Detail>
             <div>
                 <Button
