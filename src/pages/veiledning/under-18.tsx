@@ -87,7 +87,7 @@ function Under18() {
                     <BodyLong>{tekst('veileder')}</BodyLong>
                 </GuidePanel>
                 <section className="flex-center my-8">
-                    <Button onClick={opprettOppgave} className="mrl">
+                    <Button onClick={opprettOppgave} className="mr-8">
                         {tekst('knappeTekst')}
                     </Button>
                     <Button variant="tertiary" onClick={avbrytKontaktMeg}>
