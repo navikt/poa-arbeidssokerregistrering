@@ -7,16 +7,6 @@
   max-width: 1280px;
 }
 
-.show-md-up {
-  display: none;
-}
-
 .tekst-svak-graa {
   color: var(--a-gray-300);
-}
-
-@media screen and (min-width: 648px) {
-  .show-md-up {
-    display: initial;
-  }
 }

@@ -63,13 +63,13 @@ const SykmeldtStartside = (props: SykmeldtProps) => {
                 {tekst('naarRegistrertTittel')}
             </Heading>
             <div className={'flex items-center justify-center flex-wrap mb-6'}>
-                <ul className={'mr-8'}>
+                <ul className={'list-disc px-8'}>
                     <li>{tekst('faaVeiledning')}</li>
                     <li>{tekst('brukeAktivitetsplan')}</li>
                     <li>{tekst('kravPaaStotte')}</li>
                     <li>{tekst('dialogMedVeileder')}</li>
                 </ul>
-                <div className="show-md-up mb-6">
+                <div className="hidden md:block mb-6">
                     <VeiledningSvg />
                 </div>
             </div>
