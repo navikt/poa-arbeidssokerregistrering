@@ -48,7 +48,7 @@ const SkalTilbakeTilJobb = (props: any) => {
             <section className="flex-center flex-wrap">
                 <Button
                     variant="secondary"
-                    className="mrs mb-4"
+                    className="mr-4 mb-4"
                     style={{ flex: '1' }}
                     onClick={() => navigerTilSide(`/sykmeldt/${SkjemaSide.Oppsummering}`)}
                 >
