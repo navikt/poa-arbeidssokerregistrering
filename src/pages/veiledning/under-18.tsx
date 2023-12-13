@@ -86,7 +86,7 @@ function Under18() {
                     <BodyLong>{tekst('sendMelding')}</BodyLong>
                     <BodyLong>{tekst('veileder')}</BodyLong>
                 </GuidePanel>
-                <section className="flex-center mhl">
+                <section className="flex-center my-8">
                     <Button onClick={opprettOppgave} className="mrl">
                         {tekst('knappeTekst')}
                     </Button>

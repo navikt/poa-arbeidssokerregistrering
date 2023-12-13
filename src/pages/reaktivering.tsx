@@ -71,7 +71,7 @@ const Reaktivering = () => {
                 <BodyLong>{tekst('maaSokePaaNytt')}</BodyLong>
                 <BodyLong>{tekst('vilDuRegistreres')}</BodyLong>
             </GuidePanel>
-            <section className="flex-center mhl">
+            <section className="flex-center my-8">
                 <Button variant={'primary'} className="mrl" onClick={reaktiverBruker} disabled={reaktiveringPagar}>
                     {tekst('ja')}
                 </Button>

@@ -44,7 +44,7 @@ const KvitteringSykmeldt = () => {
             </GuidePanel>
             <a
                 href={dittNavUrl}
-                className="mhl navds-button navds-button--primary navds-button--medium"
+                className="my-8 navds-button navds-button--primary navds-button--medium"
                 onClick={() =>
                     loggAktivitet({
                         aktivitet: 'Velger å lese mer om økonomisk støtte',

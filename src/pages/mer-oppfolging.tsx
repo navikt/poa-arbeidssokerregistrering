@@ -64,7 +64,7 @@ const MerOppfolgingSide = () => {
                 <a
                     href={merOppfolgingUrl}
                     onClick={() => loggFortsetter()}
-                    className="mhl navds-button navds-button--primary navds-button--medium"
+                    className="my-8 navds-button navds-button--primary navds-button--medium"
                 >
                     {tekst('merVeiledningGaaTil')}
                 </a>

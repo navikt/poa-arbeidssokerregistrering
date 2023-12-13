@@ -55,7 +55,7 @@ const Kvittering = () => {
                         aktivitet: 'Går til dagpenger fra kvittering',
                     })
                 }
-                className="mhl navds-button navds-button--primary navds-button--medium"
+                className="my-8 navds-button navds-button--primary navds-button--medium"
             >
                 {tekst('sokDagpenger')}
             </a>

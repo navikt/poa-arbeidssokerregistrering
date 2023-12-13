@@ -257,7 +257,7 @@ const FullforRegistrering = (props: FullforProps) => {
                         setLestKravChecked(!lestKravChecked);
                     }}
                     label={tekst('lestOgForstaatt')}
-                    className="mhl"
+                    className="my-8"
                 />
 
                 {visFeilmeldingLestKrav && (

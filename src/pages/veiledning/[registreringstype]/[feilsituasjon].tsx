@@ -94,7 +94,7 @@ const KontaktVeileder = (props: Feilsituasjon) => {
                     </Heading>
                     <BodyLong>
                         {tekst(
-                            props.feiltype === Feiltype.UTVANDRET ? 'utvandretBody1' : 'manglerArbeidstillatelseBody1'
+                            props.feiltype === Feiltype.UTVANDRET ? 'utvandretBody1' : 'manglerArbeidstillatelseBody1',
                         )}
                     </BodyLong>
                     <BodyLong spacing>{tekst('body2')}</BodyLong>
@@ -105,7 +105,7 @@ const KontaktVeileder = (props: Feilsituasjon) => {
                     </BodyLong>
                 </GuidePanel>
                 {props.oppgaveRegistreringstype === OppgaveRegistreringstype.REGISTRERING && (
-                    <section className="flex-center mhl">
+                    <section className="flex-center my-8">
                         <Button onClick={opprettOppgave} className="mrl">
                             {tekst('kontaktKnapp')}
                         </Button>
