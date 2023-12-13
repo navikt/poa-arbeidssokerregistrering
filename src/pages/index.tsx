@@ -73,7 +73,7 @@ const Home: NextPage = () => {
                             {tekst('elektroniskIdInfo')}
                         </BodyLong>
                     </Cell>
-                    <Cell xs={12} className={'text-center phs'}>
+                    <Cell xs={12} className={'text-center py-4'}>
                         <NextLink href="/start" passHref locale={false}>
                             <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
                         </NextLink>
