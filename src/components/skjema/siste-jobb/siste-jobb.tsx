@@ -82,7 +82,7 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
                                     {props.valgt?.label}
                                     <Button
                                         variant="tertiary"
-                                        className="mls"
+                                        className="ml-4"
                                         onClick={() => settVisStillingsSok(true)}
                                     >
                                         Endre
