@@ -174,7 +174,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
     return (
         <>
             {visFeilmelding && (
-                <div className="mbm">
+                <div className="mb-6">
                     <FeilmeldingGenerell />
                 </div>
             )}
@@ -208,14 +208,14 @@ const FullforRegistrering = (props: FullforProps) => {
                 <title>Arbeidssøkerregistrering: Fullfør registreringen</title>
             </Head>
             <div style={{ width: '100%' }}>
-                <Heading size={'large'} level={'1'} className="text-center mbm">
+                <Heading size={'large'} level={'1'} className="text-center mb-6">
                     {tekst('tittel')}
                 </Heading>
-                <GuidePanel className={`${guidePanelStyles.plikter} mbm`} poster illustration={<PlikterSvg />}>
+                <GuidePanel className={`${guidePanelStyles.plikter} mb-6`} poster illustration={<PlikterSvg />}>
                     <Heading level={'2'} size={'xsmall'}>
                         {tekst('naarDuFullforer')}
                     </Heading>
-                    <ul>
+                    <ul className="list-disc px-8 my-4">
                         <li> {tekst('sendeMeldekort')} </li>
                         <li>{tekst('registrereCV')}</li>
                         <li>{tekst('aktivJobbsoker')}</li>
@@ -223,20 +223,20 @@ const FullforRegistrering = (props: FullforProps) => {
                     </ul>
                 </GuidePanel>
                 <ReadMore header={tekst('lesMer')}>
-                    <ul>
-                        <li className="mbs">
+                    <ul className="list-disc px-8">
+                        <li className="mb-4">
                             <Heading level={'3'} size={'xsmall'}>
                                 {tekst('okonomi')}
                             </Heading>
                             {tekst('okonomiInfo')}
                         </li>
-                        <li className="mbs">
+                        <li className="mb-4">
                             <Heading level={'3'} size={'xsmall'}>
                                 {tekst('meldekort')}
                             </Heading>
                             {tekst('meldekortInfo')}
                         </li>
-                        <li className="mbs">
+                        <li className="mb-4">
                             <Heading level={'3'} size={'xsmall'}>
                                 {tekst('aktivitetsplan')}
                             </Heading>
@@ -257,11 +257,11 @@ const FullforRegistrering = (props: FullforProps) => {
                         setLestKravChecked(!lestKravChecked);
                     }}
                     label={tekst('lestOgForstaatt')}
-                    className="mhl"
+                    className="my-8"
                 />
 
                 {visFeilmeldingLestKrav && (
-                    <div className="mbm">
+                    <div className="mb-6">
                         <Alert variant={'warning'}>{tekst('lestKravFeilmelding')}</Alert>
                     </div>
                 )}

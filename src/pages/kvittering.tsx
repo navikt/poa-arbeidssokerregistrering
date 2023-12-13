@@ -37,11 +37,11 @@ const Kvittering = () => {
 
     return (
         <>
-            <Heading level="1" size={'large'} className={'mbl'}>
+            <Heading level="1" size={'large'} className={'mb-8'}>
                 {tekst('header')}
             </Heading>
             <GuidePanel poster>
-                <Heading level={'2'} size={'medium'} className={'mbm'}>
+                <Heading level={'2'} size={'medium'} className={'mb-6'}>
                     {tekst('dagpengerTittel')}
                 </Heading>
                 <BodyLong>{tekst('permittert')}</BodyLong>
@@ -55,7 +55,7 @@ const Kvittering = () => {
                         aktivitet: 'Går til dagpenger fra kvittering',
                     })
                 }
-                className="mhl navds-button navds-button--primary navds-button--medium"
+                className="my-8 navds-button navds-button--primary navds-button--medium"
             >
                 {tekst('sokDagpenger')}
             </a>

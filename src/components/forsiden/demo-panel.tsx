@@ -15,11 +15,11 @@ function DemoPanel({ brukerMock }: Props) {
 
     return (
         <Panel className="text-center" style={{ backgroundColor: 'var(--a-orange-200)' }}>
-            <Heading level="2" size="xlarge" className={'mbm'}>
+            <Heading level="2" size="xlarge" className={'mb-6'}>
                 Demovalg
             </Heading>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Panel className={'mxxs'} style={{ backgroundColor: 'var(--a-orange-50)' }}>
+                <Panel className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }}>
                     <div className="text-center">
                         <Heading level="3" size="large">
                             Velg side
@@ -112,7 +112,7 @@ function DemoPanel({ brukerMock }: Props) {
                         </div>
                     </div>
                 </Panel>
-                <Panel className={'mxxs'} style={{ backgroundColor: 'var(--a-orange-50)' }}>
+                <Panel className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }}>
                     <Heading level="3" size="large">
                         Velg tekstversjon
                     </Heading>

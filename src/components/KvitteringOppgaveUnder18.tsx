@@ -32,7 +32,7 @@ export const KvitteringOppgaveOpprettet = () => {
 
     return (
         <GuidePanel poster>
-            <Alert variant="success" className={'mbm'}>
+            <Alert variant="success" className={'mb-6'}>
                 <BodyShort spacing>Henvendelse mottatt</BodyShort>
                 <BodyLong spacing>
                     Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som
@@ -43,7 +43,7 @@ export const KvitteringOppgaveOpprettet = () => {
                 </BodyLong>
                 <BodyLong spacing>Veilederen vil hjelpe deg videre med samtykke og registrering.</BodyLong>
             </Alert>
-            <BodyLong className="mbm">
+            <BodyLong className="mb-6">
                 <strong>{tekst('kontaktopplysningerOppdatert')}</strong>
             </BodyLong>
             <Kontaktinformasjon />
@@ -59,7 +59,7 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     }
     return (
         <GuidePanel poster>
-            <Alert variant="error" className={'mbm'}>
+            <Alert variant="error" className={'mb-6'}>
                 Klarte ikke å opprette henvendelsen
             </Alert>
             <BodyLong spacing>
@@ -79,7 +79,7 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
 const Kvittering = (alertProps: AlertProps, infotekst: string, tittel?: string) => {
     return (
         <GuidePanel poster>
-            <Alert variant={alertProps.variant} className={'mbm'}>
+            <Alert variant={alertProps.variant} className={'mb-6'}>
                 {alertProps.children}
             </Alert>
             {tittel && (
@@ -87,7 +87,7 @@ const Kvittering = (alertProps: AlertProps, infotekst: string, tittel?: string) 
                     {tittel}
                 </Heading>
             )}
-            <BodyLong className="mbm">{infotekst}</BodyLong>
+            <BodyLong className="mb-6">{infotekst}</BodyLong>
             <Kontaktinformasjon />
         </GuidePanel>
     );

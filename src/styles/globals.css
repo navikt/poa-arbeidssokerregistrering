@@ -1,99 +1,12 @@
-@import 'node_modules/@navikt/ds-css';
-
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
+@import 'tailwindcss/base';
+@import '@navikt/ds-css';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
 
 .maxWidth {
   max-width: 1280px;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.mbs {
-  margin-bottom: 1rem;
-}
-.mbm {
-  margin-bottom: 1.5rem;
-}
-.mbl {
-  margin-bottom: 2rem;
-}
-.mbxl {
-  margin-bottom: 2.5rem;
-}
-.mym {
-  margin: 1.5rem 0;
-}
-.mhl {
-  margin: 2rem 0;
-}
-.mxxs {
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
-}
-.mrs {
-  margin-right: 1rem;
-}
-.mrm {
-  margin-right: 1.5rem;
-}
-.mrl {
-  margin-right: 2rem;
-}
-.mls {
-  margin-left: 1rem;
-}
-
-.flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.flex-wrap {
-  flex-wrap: wrap;
-}
-.text-center {
-  text-align: center;
-}
-
-.pam {
-  padding: 1.5rem;
-}
-
-.phs {
-  padding: 1rem 0;
-}
-
-.knapp {
-  min-width: 80px;
-}
-
-.show-md-up {
-  display: none;
-}
-
-.listSpacing {
-  line-height: 1.5
-}
-
 .tekst-svak-graa {
   color: var(--a-gray-300);
-}
-
-@media screen and (min-width: 648px) {
-  .show-md-up {
-    display: initial;
-  }
 }

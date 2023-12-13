@@ -61,7 +61,7 @@ const Reaktivering = () => {
 
     return (
         <>
-            <Heading level="1" size={'large'} className={'mbl'}>
+            <Heading level="1" size={'large'} className={'mb-8'}>
                 {tekst('tittel')}
             </Heading>
             <GuidePanel poster>
@@ -71,8 +71,8 @@ const Reaktivering = () => {
                 <BodyLong>{tekst('maaSokePaaNytt')}</BodyLong>
                 <BodyLong>{tekst('vilDuRegistreres')}</BodyLong>
             </GuidePanel>
-            <section className="flex-center mhl">
-                <Button variant={'primary'} className="mrl" onClick={reaktiverBruker} disabled={reaktiveringPagar}>
+            <section className="flex items-center justify-center my-8">
+                <Button variant={'primary'} className="mr-8" onClick={reaktiverBruker} disabled={reaktiveringPagar}>
                     {tekst('ja')}
                 </Button>
                 <Button variant={'secondary'} onClick={() => loggAvbrytReaktivering()}>

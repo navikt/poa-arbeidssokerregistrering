@@ -53,19 +53,19 @@ const Home: NextPage = () => {
     return (
         <>
             <RedirectTilVedlikehold />
-            <div className="maxWidth flex-center flex-wrap">
-                <Heading className="mbl" size="xlarge" level="1">
+            <div className="maxWidth flex items-center justify-center flex-wrap">
+                <Heading className="mb-8" size="xlarge" level="1">
                     {tekst('tittel')}
                 </Heading>
                 <Grid>
                     <Cell xs={12} md={6}>
                         <RettigheterPanel />
                     </Cell>
-                    <Cell xs={12} md={6} className="mbs">
+                    <Cell xs={12} md={6} className="mb-4">
                         <PlikterPanel />
                     </Cell>
                     <Cell xs={12}>{visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}</Cell>
-                    <Cell xs={12} className="text-center pam">
+                    <Cell xs={12} className="text-center p-6">
                         <Heading size={'medium'} level="3" spacing={true}>
                             {tekst('elektroniskId')}
                         </Heading>
@@ -73,7 +73,7 @@ const Home: NextPage = () => {
                             {tekst('elektroniskIdInfo')}
                         </BodyLong>
                     </Cell>
-                    <Cell xs={12} className={'text-center phs'}>
+                    <Cell xs={12} className={'text-center py-4'}>
                         <NextLink href="/start" passHref locale={false}>
                             <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
                         </NextLink>

@@ -24,7 +24,7 @@ export interface LagSkjemaSideProps {
         side: SkjemaSide,
         skjemaState: SkjemaState,
         dispatch: Dispatch<SkjemaAction>,
-        visFeilmelding: boolean
+        visFeilmelding: boolean,
     ) => JSX.Element;
     beregnNavigering: StandardRegistreringTilstandsmaskin | SykmeldtRegistreringTilstandsmaskin;
 }
@@ -50,7 +50,7 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
         const [skjemaState, dispatch] = useReducer<SkjemaReducer, SkjemaState>(
             skjemaReducer,
             initialArgs(),
-            initializer
+            initializer,
         );
 
         const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
@@ -120,9 +120,9 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
 
         return (
             <div ref={skjemaWrapperRef} className={styles.main}>
-                <ProgressBar value={erSkjemaSendt ? 1 : fremdrift} className={'mbm'} />
+                <ProgressBar value={erSkjemaSendt ? 1 : fremdrift} className={'mb-6'} />
                 {forrigeLenke && (
-                    <div className={styles.forrigeLenke}>
+                    <div className="self-start">
                         <TilbakeKnapp href={forrigeLenke} />
                     </div>
                 )}

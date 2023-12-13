@@ -18,7 +18,7 @@ const SisteStilling = (props: SkjemaKomponentProps<SisteStillingValg>) => {
     ];
 
     return (
-        <Panel className={`${styles.panel} mbm`} border={true} style={{ backgroundColor: 'var(--a-gray-100)' }}>
+        <Panel className={`${styles.panel} mb-6`} border={true} style={{ backgroundColor: 'var(--a-gray-100)' }}>
             <RadioGruppe
                 valg={valg}
                 valgt={props.valgt}

@@ -15,7 +15,7 @@ const SykmeldtOppsummering = (props: Props) => {
     return (
         <>
             <Oppsummering skjemaState={skjemaState} skjemaPrefix={'/sykmeldt/'} />
-            <div style={{ textAlign: 'center' }} className={'mhl'}>
+            <div style={{ textAlign: 'center' }} className={'my-8'}>
                 <FullforRegistreringKnapp
                     skjemaState={skjemaState}
                     side={'sykmeldt'}

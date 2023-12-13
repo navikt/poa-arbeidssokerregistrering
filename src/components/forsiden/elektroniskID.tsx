@@ -43,21 +43,21 @@ const ElektroniskID = () => {
             <Heading level="2" size={'large'} className={'text-center'} spacing={true}>
                 {tekst('tittel')}
             </Heading>
-            <div className={`${styles.wrapper} flex-center flex-wrap`} style={{ alignItems: 'flex-start' }}>
+            <div className={`${styles.wrapper} flex items-start justify-center flex-wrap`}>
                 <div className={styles.info}>
-                    <div className="text-center mbs">
+                    <div className="text-center mb-4">
                         <Image src={bankIdSvg} alt="" />
                     </div>
                     <Heading size={'small'} level="3" spacing={true}>
                         {tekst('skaffDegTittel')}
                     </Heading>
                     <BodyLong spacing={true}>{tekst('skaffDegBody')}</BodyLong>
-                    <Link className="mbm" href="https://eid.difi.no/bankid">
+                    <Link className="mb-6" href="https://eid.difi.no/bankid">
                         {tekst('skaffDegTittel')} <ChevronRightIcon aria-hidden="true" />
                     </Link>
                 </div>
                 <div className={styles.info}>
-                    <div className="text-center mbs">
+                    <div className="text-center mb-4">
                         <Image src={navKontorSvg} alt="" />
                     </div>
                     <Heading size={'small'} level="3" spacing={true}>

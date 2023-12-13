@@ -29,24 +29,24 @@ const DineOpplysninger = () => {
 
     return (
         <>
-            <Heading size={'large'} level="2" className="text-center mbm">
+            <Heading size={'large'} level="2" className="text-center mb-6">
                 {tekst('tittel')}
             </Heading>
             <BodyLong>{tekst('innledning')}</BodyLong>
             <div>
-                <ul>
+                <ul className="list-disc px-8 mt-4">
                     <li>{tekst('alder')}</li>
                     <li>{tekst('jobb')}</li>
                     <li>{tekst('utdanning')}</li>
                     <li>{tekst('utfordringer')}</li>
                 </ul>
             </div>
-            <BodyLong className="mbm">{tekst('beskrivelse')}</BodyLong>
+            <BodyLong className="mb-6">{tekst('beskrivelse')}</BodyLong>
             <Heading spacing size={'small'} level="3">
                 {tekst('overskriftPersonopplysninger')}
             </Heading>
             <BodyLong>{tekst('personopplysninger')}</BodyLong>
-            <BodyLong className="mbm">
+            <BodyLong className="mb-6">
                 <Link target="_blank" href="https://www.nav.no/personvern">
                     {tekst('personopplysningerLenkeTekst')}
                 </Link>

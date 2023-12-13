@@ -51,7 +51,7 @@ const SykmeldtStartside = (props: SykmeldtProps) => {
             <Heading size="medium" spacing level="1">
                 Informasjon om registreringen
             </Heading>
-            <GuidePanel className={'mbl'}>
+            <GuidePanel className={'mb-8'}>
                 <Label>
                     {tekst('hei')}
                     {kontaktinformasjon?.navn.fornavn}
@@ -62,14 +62,14 @@ const SykmeldtStartside = (props: SykmeldtProps) => {
             <Heading level="2" spacing size="medium">
                 {tekst('naarRegistrertTittel')}
             </Heading>
-            <div className={'flex-center flex-wrap mbm'}>
-                <ul className={'mrl'}>
+            <div className={'flex items-center justify-center flex-wrap mb-6'}>
+                <ul className={'list-disc px-8'}>
                     <li>{tekst('faaVeiledning')}</li>
                     <li>{tekst('brukeAktivitetsplan')}</li>
                     <li>{tekst('kravPaaStotte')}</li>
                     <li>{tekst('dialogMedVeileder')}</li>
                 </ul>
-                <div className="show-md-up mbm">
+                <div className="hidden md:block mb-6">
                     <VeiledningSvg />
                 </div>
             </div>

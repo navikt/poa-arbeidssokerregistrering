@@ -44,8 +44,8 @@ function Feedback({ id, sporsmal, className }: Props) {
     };
 
     return (
-        <div className={'mym'}>
-            <Detail className={'mbs'}>{sporsmal ? sporsmal : tekst('varDetteNyttig')}</Detail>
+        <div className={'my-6'}>
+            <Detail className={'mb-4'}>{sporsmal ? sporsmal : tekst('varDetteNyttig')}</Detail>
             <div>
                 <Button
                     size="xsmall"
@@ -54,7 +54,7 @@ function Feedback({ id, sporsmal, className }: Props) {
                 >
                     <Detail>{tekst('ja')}</Detail>
                 </Button>
-                <span className={'mxxs tekst-svak-graa'} aria-hidden="true">
+                <span className={'mx-2 tekst-svak-graa'} aria-hidden="true">
                     |
                 </span>
                 <Button
@@ -64,7 +64,7 @@ function Feedback({ id, sporsmal, className }: Props) {
                 >
                     <Detail>{tekst('nei')}</Detail>
                 </Button>
-                <span className={'mxxs tekst-svak-graa'} aria-hidden="true">
+                <span className={'mx-2 tekst-svak-graa'} aria-hidden="true">
                     |
                 </span>
                 <Button

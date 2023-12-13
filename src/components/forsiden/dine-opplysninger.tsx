@@ -38,30 +38,30 @@ const DineOpplysninger = () => {
 
     return (
         <>
-            <Heading size={'large'} level="2" className="text-center mbm">
+            <Heading size={'large'} level="2" className="text-center mb-6">
                 {tekst('tittel')}
             </Heading>
             <BodyLong>{tekst('innledning')}</BodyLong>
             <div>
-                <ul>
+                <ul className="list-disc px-8 my-4">
                     <li>{tekst('alder')}</li>
                     <li>{tekst('jobb')}</li>
                     <li>{tekst('utdanning')}</li>
                     <li>{tekst('utfordringer')}</li>
                 </ul>
             </div>
-            <BodyLong className="mbm">{tekst('beskrivelse1')}</BodyLong>
-            <BodyLong className="mbm">{tekst('beskrivelse2')}</BodyLong>
+            <BodyLong className="mb-6">{tekst('beskrivelse1')}</BodyLong>
+            <BodyLong className="mb-6">{tekst('beskrivelse2')}</BodyLong>
             <ReadMore
                 header={tekst('bistandsbehovOverskrift')}
-                className="mbs"
+                className="mb-4"
                 onClick={() =>
                     loggAktivitet({
                         aktivitet: 'Åpner bistandsbehov',
                     })
                 }
             >
-                <BodyLong className="mbs">
+                <BodyLong className="mb-4">
                     Alle personer med lovlig opphold i Norge har rett til å bli registrert som arbeidssøkere. Dette går
                     frem av{' '}
                     <Link
@@ -112,7 +112,7 @@ const DineOpplysninger = () => {
                     })
                 }
             >
-                <BodyLong className="mbs">
+                <BodyLong className="mb-4">
                     Når du registrerer deg som arbeidssøker ber vi om opplysninger fra deg for å kunne tilby oppfølging
                     tilpasset din situasjon og dine behov. Opplysningene bruker vi til en behovsvurdering som vi etter{' '}
                     <Link
