@@ -25,7 +25,7 @@ const SkalTilbakeTilJobb = (props: any) => {
 
     return (
         <div>
-            <GuidePanel poster className="mbxl">
+            <GuidePanel poster className="mb-10">
                 <BodyLong className="mb-6">{tekst('infoTekst')}</BodyLong>
                 <section>
                     <Heading level="2" size="small">
