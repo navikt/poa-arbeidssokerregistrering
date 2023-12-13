@@ -46,13 +46,13 @@ const MerOppfolgingSide = () => {
 
     return (
         <div className={styles.merOppfolging}>
-            <Alert variant="info" size="medium" className="mbl">
+            <Alert variant="info" size="medium" className="mb-8">
                 <Heading level="1" spacing size="medium">
                     {tekst('infoTittel')}
                 </Heading>
                 <BodyLong>{tekst('infoTekst')}</BodyLong>
             </Alert>
-            <GuidePanel poster className={'mbl'}>
+            <GuidePanel poster className={'mb-8'}>
                 <Heading level="1" spacing size="medium">
                     {tekst('merVeiledningTittel')}
                 </Heading>

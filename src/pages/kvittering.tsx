@@ -37,7 +37,7 @@ const Kvittering = () => {
 
     return (
         <>
-            <Heading level="1" size={'large'} className={'mbl'}>
+            <Heading level="1" size={'large'} className={'mb-8'}>
                 {tekst('header')}
             </Heading>
             <GuidePanel poster>

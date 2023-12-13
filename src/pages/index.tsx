@@ -54,7 +54,7 @@ const Home: NextPage = () => {
         <>
             <RedirectTilVedlikehold />
             <div className="maxWidth flex-center flex-wrap">
-                <Heading className="mbl" size="xlarge" level="1">
+                <Heading className="mb-8" size="xlarge" level="1">
                     {tekst('tittel')}
                 </Heading>
                 <Grid>

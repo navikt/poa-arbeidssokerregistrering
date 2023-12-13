@@ -51,7 +51,7 @@ const SykmeldtStartside = (props: SykmeldtProps) => {
             <Heading size="medium" spacing level="1">
                 Informasjon om registreringen
             </Heading>
-            <GuidePanel className={'mbl'}>
+            <GuidePanel className={'mb-8'}>
                 <Label>
                     {tekst('hei')}
                     {kontaktinformasjon?.navn.fornavn}
