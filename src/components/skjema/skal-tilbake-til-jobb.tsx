@@ -31,7 +31,7 @@ const SkalTilbakeTilJobb = (props: any) => {
                     <Heading level="2" size="small">
                         {tekst('tittel')}
                     </Heading>
-                    <ul className="listSpacing">
+                    <ul className="leading-normal">
                         <li>{tekst('punkt1')}</li>
                         <li>{tekst('punkt2')}</li>
                     </ul>

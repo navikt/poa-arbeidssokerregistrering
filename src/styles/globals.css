@@ -11,10 +11,6 @@
   display: none;
 }
 
-.listSpacing {
-  line-height: 1.5
-}
-
 .tekst-svak-graa {
   color: var(--a-gray-300);
 }
