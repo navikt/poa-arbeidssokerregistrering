@@ -65,7 +65,7 @@ const Home: NextPage = () => {
                         <PlikterPanel />
                     </Cell>
                     <Cell xs={12}>{visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}</Cell>
-                    <Cell xs={12} className="text-center pam">
+                    <Cell xs={12} className="text-center p-6">
                         <Heading size={'medium'} level="3" spacing={true}>
                             {tekst('elektroniskId')}
                         </Heading>
