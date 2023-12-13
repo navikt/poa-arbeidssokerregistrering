@@ -105,7 +105,7 @@ const KontaktVeileder = (props: Feilsituasjon) => {
                     </BodyLong>
                 </GuidePanel>
                 {props.oppgaveRegistreringstype === OppgaveRegistreringstype.REGISTRERING && (
-                    <section className="flex-center my-8">
+                    <section className="flex items-center justify-center my-8">
                         <Button onClick={opprettOppgave} className="mr-8">
                             {tekst('kontaktKnapp')}
                         </Button>

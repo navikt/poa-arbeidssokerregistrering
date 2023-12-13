@@ -45,7 +45,7 @@ const SkalTilbakeTilJobb = (props: any) => {
                 {tekst('enigTittel')}
             </Heading>
 
-            <section className="flex-center flex-wrap">
+            <section className="flex items-center justify-center flex-wrap">
                 <Button
                     variant="secondary"
                     className="mr-4 mb-4"

@@ -43,7 +43,7 @@ const ElektroniskID = () => {
             <Heading level="2" size={'large'} className={'text-center'} spacing={true}>
                 {tekst('tittel')}
             </Heading>
-            <div className={`${styles.wrapper} flex-center flex-wrap`} style={{ alignItems: 'flex-start' }}>
+            <div className={`${styles.wrapper} flex items-start justify-center flex-wrap`}>
                 <div className={styles.info}>
                     <div className="text-center mb-4">
                         <Image src={bankIdSvg} alt="" />

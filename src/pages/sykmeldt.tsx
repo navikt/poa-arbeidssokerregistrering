@@ -62,7 +62,7 @@ const SykmeldtStartside = (props: SykmeldtProps) => {
             <Heading level="2" spacing size="medium">
                 {tekst('naarRegistrertTittel')}
             </Heading>
-            <div className={'flex-center flex-wrap mb-6'}>
+            <div className={'flex items-center justify-center flex-wrap mb-6'}>
                 <ul className={'mr-8'}>
                     <li>{tekst('faaVeiledning')}</li>
                     <li>{tekst('brukeAktivitetsplan')}</li>
