@@ -1,5 +1,5 @@
 import virkedager from '@alheimsins/virkedager';
-import { Alert, AlertProps, BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
+import { Alert, AlertProps, BodyLong, BodyShort, GuidePanel, Heading, Link } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 
@@ -29,13 +29,19 @@ export const KvitteringOppgaveOpprettet = () => {
 
     const idag = new Date();
     const toVirkedagerFraNaa = formaterDato(virkedager(idag, 2));
-    const suksessTekst = tekst('kontakterDegInnen') + toVirkedagerFraNaa + '. ';
 
     return (
         <GuidePanel poster>
             <Alert variant="success" className={'mb-6'}>
-                {tekst('alertMottatt')}
-                <BodyLong>{suksessTekst}</BodyLong>
+                <BodyShort spacing>Henvendelse mottatt</BodyShort>
+                <BodyLong spacing>
+                    Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som
+                    arbeidssøker.
+                </BodyLong>
+                <BodyLong spacing>
+                    En veileder hos oss vil kontakte deg innen utgangen av {toVirkedagerFraNaa}.
+                </BodyLong>
+                <BodyLong spacing>Veilederen vil hjelpe deg videre med samtykke og registrering.</BodyLong>
             </Alert>
             <BodyLong className="mb-6">
                 <strong>{tekst('kontaktopplysningerOppdatert')}</strong>
@@ -54,9 +60,18 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     return (
         <GuidePanel poster>
             <Alert variant="error" className={'mb-6'}>
-                {tekst('alertFeil')}
+                Klarte ikke å opprette henvendelsen
             </Alert>
-            <BodyLong className="mb-6">{tekst('klarteIkkeMotta')}</BodyLong>
+            <BodyLong spacing>
+                Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som arbeidssøker.
+            </BodyLong>
+            <BodyLong spacing>
+                Vi har forsøkt å opprette en melding til en veileder som kan hjelpe deg videre, men det gikk ikke.
+            </BodyLong>
+            <BodyLong spacing>
+                Prøv å registrere deg igjen senere, men hvis det fortsetter å feile så{' '}
+                <Link href="https://www.nav.no/kontaktoss">ta kontakt med oss</Link>.
+            </BodyLong>
         </GuidePanel>
     );
 };
