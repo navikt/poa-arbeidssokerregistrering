@@ -45,7 +45,7 @@ const ElektroniskID = () => {
             </Heading>
             <div className={`${styles.wrapper} flex-center flex-wrap`} style={{ alignItems: 'flex-start' }}>
                 <div className={styles.info}>
-                    <div className="text-center mbs">
+                    <div className="text-center mb-4">
                         <Image src={bankIdSvg} alt="" />
                     </div>
                     <Heading size={'small'} level="3" spacing={true}>
@@ -57,7 +57,7 @@ const ElektroniskID = () => {
                     </Link>
                 </div>
                 <div className={styles.info}>
-                    <div className="text-center mbs">
+                    <div className="text-center mb-4">
                         <Image src={navKontorSvg} alt="" />
                     </div>
                     <Heading size={'small'} level="3" spacing={true}>

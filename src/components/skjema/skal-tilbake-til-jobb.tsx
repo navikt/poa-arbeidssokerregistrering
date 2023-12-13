@@ -48,13 +48,13 @@ const SkalTilbakeTilJobb = (props: any) => {
             <section className="flex-center flex-wrap">
                 <Button
                     variant="secondary"
-                    className="mrs mbs"
+                    className="mrs mb-4"
                     style={{ flex: '1' }}
                     onClick={() => navigerTilSide(`/sykmeldt/${SkjemaSide.Oppsummering}`)}
                 >
                     {tekst('uenig')}
                 </Button>
-                <Button variant="secondary" className="mbs" style={{ flex: '1' }} onClick={() => navigerTilSide('/')}>
+                <Button variant="secondary" className="mb-4" style={{ flex: '1' }} onClick={() => navigerTilSide('/')}>
                     {tekst('enig')}
                 </Button>
             </section>

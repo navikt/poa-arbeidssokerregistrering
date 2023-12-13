@@ -71,7 +71,7 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
                     {props.children}
 
                     {visSisteJobb && (
-                        <div className="mbs">
+                        <div className="mb-4">
                             <Heading spacing size={'small'} level="2">
                                 {tekst('stilling')}
                             </Heading>

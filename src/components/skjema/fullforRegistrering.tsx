@@ -224,19 +224,19 @@ const FullforRegistrering = (props: FullforProps) => {
                 </GuidePanel>
                 <ReadMore header={tekst('lesMer')}>
                     <ul>
-                        <li className="mbs">
+                        <li className="mb-4">
                             <Heading level={'3'} size={'xsmall'}>
                                 {tekst('okonomi')}
                             </Heading>
                             {tekst('okonomiInfo')}
                         </li>
-                        <li className="mbs">
+                        <li className="mb-4">
                             <Heading level={'3'} size={'xsmall'}>
                                 {tekst('meldekort')}
                             </Heading>
                             {tekst('meldekortInfo')}
                         </li>
-                        <li className="mbs">
+                        <li className="mb-4">
                             <Heading level={'3'} size={'xsmall'}>
                                 {tekst('aktivitetsplan')}
                             </Heading>

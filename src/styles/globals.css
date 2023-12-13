@@ -3,40 +3,19 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
 .maxWidth {
   max-width: 1280px;
 }
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-.mbs {
-  margin-bottom: 1rem;
-}
-.mbm {
+.mbm { /* mb-6 */
   margin-bottom: 1.5rem;
 }
-.mbl {
+.mbl { /* mb-8 */
   margin-bottom: 2rem;
 }
-.mbxl {
+.mbxl { /* mb-10 */
   margin-bottom: 2.5rem;
 }
-.mym {
+.mym { /* mb-6 */
   margin: 1.5rem 0;
 }
 .mhl {

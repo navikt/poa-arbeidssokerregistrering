@@ -61,7 +61,7 @@ const Home: NextPage = () => {
                     <Cell xs={12} md={6}>
                         <RettigheterPanel />
                     </Cell>
-                    <Cell xs={12} md={6} className="mbs">
+                    <Cell xs={12} md={6} className="mb-4">
                         <PlikterPanel />
                     </Cell>
                     <Cell xs={12}>{visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}</Cell>
