@@ -38,7 +38,7 @@ jobs:
       packages: 'write'
       id-token: 'write'
     outputs:
-      image: ${{ steps.build.outputs.image }}
+      image: ${{ steps.docker-build-push.outputs.image }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -94,7 +94,6 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: .nais/demo.yaml
           VAR: image=${{ needs.build.outputs.image }}
-          PRINT_PAYLOAD: true
 
   deploy-dev:
     name: Deploy to dev
