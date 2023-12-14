@@ -18,6 +18,12 @@ const errorHandler = async (response: Response) => {
     error.status = response.status;
     if (contentType && contentType.includes('application/json')) {
         error.body = await response.json();
+    } else {
+        try {
+            error.body = { type: await response.text() };
+        } catch (e) {
+            // ignore
+        }
     }
     throw error;
 };

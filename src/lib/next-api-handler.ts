@@ -118,7 +118,12 @@ const lagApiHandlerMedAuthHeaders: (
         } catch (error) {
             logger.error(`Kall mot ${url} (callId: ${callId}) feilet. Feilmelding: ${error}`);
             const apiError = error as ApiError;
-            res.status(apiError.status || 500).send(apiError.body ?? `Noe gikk galt (callId: ${callId})`);
+            const status = apiError.status || 500;
+            if (apiError.body) {
+                res.status(status).json(apiError.body);
+            } else {
+                res.status(status).send(`Noe gikk galt (callId: ${callId})`);
+            }
         }
     };
 
