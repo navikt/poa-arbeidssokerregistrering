@@ -46,7 +46,13 @@ export const KvitteringOppgaveOpprettet = () => {
             <BodyLong className="mb-6">
                 <strong>{tekst('kontaktopplysningerOppdatert')}</strong>
             </BodyLong>
-            <Kontaktinformasjon />
+            <div className="mb-8">
+                <Kontaktinformasjon />
+            </div>
+            <BodyLong spacing>
+                Hvis du ikke ønsker å registrere deg som arbeidssøker likevel eller heller vil snakke med oss på andre
+                måter enn telefon så <Link href="https://www.nav.no/kontaktoss">ta kontakt med oss her</Link>.
+            </BodyLong>
         </GuidePanel>
     );
 };
