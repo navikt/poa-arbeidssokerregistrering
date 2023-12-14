@@ -26,11 +26,11 @@ function Under18() {
     const opprettOppgave = useCallback(async () => {
         const oppgaveUrl = brukerMock ? '/api/mocks/oppgave-under-18' : '/api/oppgave-under-18';
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave - under 18' });
-        const beskrivelse = `Personen har forsøkt å registrere seg som arbeidssøker, men er sperret fra å gjøre dette da personen er under 18 år. 
-            For mindreårige arbeidssøkere trengs det samtykke fra begge foresatte for å kunne registrere seg. 
-            Se "Servicerutine samtykke fra foresatte til unge under 18 år". 
-            
-            Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell registrering i modia.`;
+        const beskrivelse = `Personen har forsøkt å registrere seg som arbeidssøker, men er sperret fra å gjøre dette da personen er under 18 år.
+For mindreårige arbeidssøkere trengs det samtykke fra begge foresatte for å kunne registrere seg.
+Se "Servicerutine samtykke fra foresatte til unge under 18 år".
+        
+Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell registrering i modia.`;
 
         try {
             await api(oppgaveUrl, {
