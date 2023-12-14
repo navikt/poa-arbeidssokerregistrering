@@ -56,9 +56,9 @@ const Telefonnummer = (props: { kilde: Kilde; telefonnummer: string }) => {
             <Heading level="2" size="xsmall">
                 {tekst(`tlfHos${props.kilde}`)}
             </Heading>
-            <BodyShort size="large">
+            <BodyShort size="large" className="flex">
                 <PhoneIcon />
-                {props.telefonnummer}
+                <span className="ml-1">{props.telefonnummer}</span>
             </BodyShort>
         </div>
     );
