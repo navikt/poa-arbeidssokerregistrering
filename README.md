@@ -8,7 +8,7 @@ Arbeidssøkerregistrering
 
 # Utvikling
 
-Bruk Node.js 18 `nvm use` (dersom du bruker nvm til versjonshåndtering av Node.js).
+Bruk Node.js 20 `nvm use` (dersom du bruker nvm til versjonshåndtering av Node.js).
 
 Dersom du ikke kjører i mock-modus må du ha koblet til [naisdevice](https://doc.nais.io/device/) for å nå noen av endepunktene.
 
@@ -40,6 +40,7 @@ For å teste løsningen i dev bruker du [https://arbeid.intern.dev.nav.no/arbeid
 
 -   [Next.js](https://nextjs.org/)
 -   [testing-library](https://testing-library.com/)
+-   [Tailwind CSS](https://tailwindcss.com/)
 
 # Henvendelser
 
