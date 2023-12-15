@@ -14,18 +14,13 @@ const fullforRegistreringUrl = `${process.env.FULLFOR_REGISTRERING_URL}`;
 
 const errorHandler = async (response: Response) => {
     const contentType = response.headers.get('content-type');
-    const error = new Error(response.statusText) as ApiError;
-    error.status = response.status;
     if (contentType && contentType.includes('application/json')) {
-        error.body = await response.json();
+        return response.json();
     } else {
-        try {
-            error.body = { type: await response.text() };
-        } catch (e) {
-            // ignore
-        }
+        const error = new Error(response.statusText) as ApiError;
+        error.status = response.status;
+        throw error;
     }
-    throw error;
 };
 
 const fullforHandler = lagApiPostHandlerMedAuthHeaders(fullforRegistreringUrl, errorHandler);
@@ -43,7 +38,7 @@ function withAgeCheck(handler: NextApiHandler): NextApiHandler {
                 const fnr = result.payload.pid as string;
                 const alder = personidentTilAlder(fnr);
                 if (alder < 18) {
-                    return res.status(403).json({ type: ErrorTypes.BRUKER_ER_UNDER_18 });
+                    return res.status(200).json({ type: ErrorTypes.BRUKER_ER_UNDER_18 });
                 }
             }
             return handler(req, res, ...rest);

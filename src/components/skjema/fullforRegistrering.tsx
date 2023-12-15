@@ -111,20 +111,15 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
                 {
                     method: 'post',
                     body: JSON.stringify(body),
-                    async onError(resp: Response) {
-                        if (resp.headers.get('content-type')?.includes('application/json')) {
-                            const body = await resp.json();
-                            if (body.type) {
-                                loggFlyt({ hendelse: 'Får ikke fullført registreringen', aarsak: body.type });
-                                await router.push(
-                                    hentRegistreringFeiletUrl(body.type, OppgaveRegistreringstype.REGISTRERING),
-                                );
-                            }
-                        }
-                        throw new Error(resp.statusText);
-                    },
                 },
             );
+
+            const feiltype = response.type;
+
+            if (feiltype) {
+                loggFlyt({ hendelse: 'Får ikke fullført registreringen', aarsak: feiltype });
+                return router.push(hentRegistreringFeiletUrl(feiltype, OppgaveRegistreringstype.REGISTRERING));
+            }
 
             const profilering = await hentProfilering(response, props.side);
             const dinSituasjon = skjemaState[SporsmalId.dinSituasjon];

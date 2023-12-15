@@ -29,7 +29,6 @@ export const lagApiPostHandlerMedAuthHeaders: (
 
 export interface ApiError extends Error {
     status?: number;
-    body?: any;
 }
 
 let _tokenDings: Auth | undefined;
@@ -117,13 +116,7 @@ const lagApiHandlerMedAuthHeaders: (
             return res.json(response);
         } catch (error) {
             logger.error(`Kall mot ${url} (callId: ${callId}) feilet. Feilmelding: ${error}`);
-            const apiError = error as ApiError;
-            const status = apiError.status || 500;
-            if (apiError.body) {
-                res.status(status).json(apiError.body);
-            } else {
-                res.status(status).send(`Noe gikk galt (callId: ${callId})`);
-            }
+            res.status((error as ApiError).status || 500).end(`Noe gikk galt (callId: ${callId})`);
         }
     };
 
