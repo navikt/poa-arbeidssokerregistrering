@@ -9,10 +9,10 @@ spec:
   image: {{image}}
   port: 3000
   liveness:
-    path: "{{basePath}}/api/isalive"
+    path: "/arbeid/registrering/api/isalive"
     initialDelay: 3
   readiness:
-    path: "{{basePath}}/api/isready"
+    path: "/arbeid/registrering/api/isready"
     initialDelay: 3
   replicas:
     min: 2
@@ -28,59 +28,61 @@ spec:
     memory: "256Mi"
   env:
     - name: SELF_URL
-      value: {{ingress}}
+      value: https://www.nav.no/arbeid/registrering
     - name: DEKORATOR_URL
-      value: {{dekorator.url}}
+      value: https://dekoratoren.nav.no/
     - name: DEKORATOR_ENV
-      value: {{dekorator.env}}
+      value: prod
     - name: NEXT_PUBLIC_SELF_URL
-      value: {{ingress}}
+      value: https://www.nav.no/arbeid/registrering
     - name: NEXT_PUBLIC_START_URL
-      value: {{startUrl}}
+      value: https://www.nav.no/arbeid/registrering/start
     - name: NEXT_PUBLIC_AMPLITUDE_API_KEY
-      value: {{amplitude.apiKey}}
+      value: 913768927b84cde5eac0d0d18c737561
     - name: NEXT_PUBLIC_AMPLITUDE_ENDPOINT
-      value: {{amplitude.endPoint}}
+      value: amplitude.nav.no/collect
     - name: NEXT_PUBLIC_ENABLE_MOCK
-      value: {{mocking}}
+      value: disabled
     - name: NEXT_PUBLIC_DITTNAV_URL
-      value: {{dittNAVUrl}}
+      value: https://www.nav.no/minside
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
-      value: {{dagpengesoknadUrl}}
+      value: https://www.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
-      value: {{dialogUrl}}
+      value: https://www.nav.no/arbeid/dialog
     - name: NEXT_PUBLIC_MER_OPPFOLGING_URL
-      value: {{merOppfolgingUrl}}
+      value: https://www.nav.no/syk/meroppfolging/reg/0
     - name: PAM_JANZZ_URL
-      value: {{pamJanzzUrl}}
+      value: amplitude.nav.no/collect
     - name: START_REGISTRERING_URL
-      value: {{startRegistreringUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/startregistrering/
     - name: FULLFOR_REGISTRERING_URL
-      value: {{fullforRegistreringUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/fullfoerordinaerregistrering/
     - name: FULLFOR_REGISTRERING_SYKMELDT_URL
-      value: {{fullforRegistreringSykmeldtUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/fullfoersykmeldtregistrering/
     - name: REAKTIVERING_URL
-      value: {{reaktiveringUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/fullfoerreaktivering/
     - name: SISTE_ARBEIDSFORHOLD_URL
-      value: {{sisteArbeidsforholdUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/sistearbeidsforhold/
     - name: OPPRETT_OPPGAVE_URL
-      value: {{opprettOppgaveUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/oppgave/
     - name: KONTAKTINFORMASJON_URL
-      value: {{kontaktinformasjonUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/person/kontaktinfo
     - name: NODE_ENV
-      value: {{nodeEnv}}
+      value: production
     - name: HENT_PROFILERING_URL
-      value: {{hentProfileringUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/profilering/
     - name: UNLEASH_SERVER_API_URL
-      value: {{unleashServerApiUrl}}
+      value: https://paw-unleash-api.nav.cloud.nais.io/api
     - name: ARBEIDSSOKER_PERIODER_URL
-      value: {{arbeidssokerUrl}}
+      value: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
     - name: OPPGAVE_API_URL
-      value: {{oppgaveApiUrl}}
+      value: https://www.nav.no/aia-backend/oppgave
+    - name: NEXT_PUBLIC_ASSET_PREFIX
+      value: https://cdn.nav.no/paw/arbeidssokerregistrering
   envFrom:
      - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
-    - {{ingress}}
+    - https://www.nav.no/arbeid/registrering
   idporten:
     enabled: true
     sidecar:

@@ -6,8 +6,6 @@ on:
       - main
       - dev/*
 
-env:
-  IMAGE: ghcr.io/${{ github.repository }}/poa-arbeidssokerregistrering:${{ github.sha }}
 
 jobs:
   test:
@@ -36,46 +34,53 @@ jobs:
     name: Build and Publish Docker image
     runs-on: ubuntu-latest
     permissions:
-      packages: write
-
+      contents: 'read'
+      packages: 'write'
+      id-token: 'write'
+    outputs:
+      image: ${{ steps.docker-build-push.outputs.image }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@master
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Set up .npmrc to use in Docker build
+      - name: Set up node
         uses: actions/setup-node@v3
         with:
-          registry-url: "https://npm.pkg.github.com"
           node-version: "20.10.0"
+          cache: "npm"
+          registry-url: "https://npm.pkg.github.com"
 
-      - run: cp $NPM_CONFIG_USERCONFIG .npmrc
+      - name: Install
+        run: npm install --no-save --no-audit --prefer-offline --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-      - name: Build and push
-        uses: docker/build-push-action@v2
+      - name: Set up node
+        uses: actions/setup-node@v3
         with:
-          context: .
-          push: true
-          tags: ${{ env.IMAGE }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          secrets: |
-            "NODE_AUTH_TOKEN=${{ secrets.READER_TOKEN }}"
+          node-version: "20.10.0"
+          cache: "npm"
+          registry-url: "https://npm.pkg.github.com"
 
-      - name: Archive NAIS yaml
-        uses: actions/upload-artifact@v1
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_ASSET_PREFIX: https://cdn.nav.no/paw/arbeidssokerregistrering
+
+      - name: Upload static files to NAV CDN
+        uses: navikt/frontend/actions/cdn-upload/v1@main
         with:
-          name: nais-yaml
-          path: .nais
+          cdn-team-name: paw
+          source: ./.next/static
+          destination: arbeidssokerregistrering/_next
+
+      - name: Push docker image to GAR
+        uses: nais/docker-build-push@v0
+        id: docker-build-push
+        with:
+          team: paw
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
   deploy-demo:
     name: Deploy to demo
@@ -83,18 +88,15 @@ jobs:
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch NAIS yaml
-        uses: actions/download-artifact@v1
-        with:
-          name: nais-yaml
-          path: .nais
-
-      - uses: nais/deploy/actions/deploy@v1
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Deploy
+        uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/demo.yaml
-          PRINT_PAYLOAD: true
+          VAR: image=${{ needs.build.outputs.image }}
 
   deploy-dev:
     name: Deploy to dev
@@ -102,17 +104,15 @@ jobs:
     if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch NAIS yaml
-        uses: actions/download-artifact@v1
-        with:
-          name: nais-yaml
-          path: .nais
-
-      - uses: nais/deploy/actions/deploy@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Deploy
+        uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/dev-gcp/nais.yaml
+          VAR: image=${{ needs.build.outputs.image }}
           PRINT_PAYLOAD: true
 
   deploy-prod:
@@ -121,18 +121,15 @@ jobs:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
-      - name: Fetch NAIS yaml
-        uses: actions/download-artifact@v1
-        with:
-          name: nais-yaml
-          path: .nais
-
-      - uses: nais/deploy/actions/deploy@v1
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Deploy
+        uses: nais/deploy/actions/deploy@v1
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
-          RESOURCE: .nais/nais.yaml
-          VARS: .nais/prod.yaml
+          RESOURCE: .nais/prod-gcp/nais.yaml
+          VAR: image=${{ needs.build.outputs.image }}
           PRINT_PAYLOAD: true
 
   apply-apitoken-unleash:

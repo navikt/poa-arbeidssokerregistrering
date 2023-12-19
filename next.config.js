@@ -15,6 +15,7 @@ const appSecurityPolicy = {
 const nextConfig = {
     reactStrictMode: true,
     basePath,
+    assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX,
     // i18n: {
     //     locales: ['nb', 'en', 'nn', 'pl'],
     //     defaultLocale: 'nb',
