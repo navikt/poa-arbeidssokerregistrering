@@ -77,6 +77,8 @@ spec:
       value: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
     - name: OPPGAVE_API_URL
       value: https://www.nav.no/aia-backend/oppgave
+    - name: NEXT_PUBLIC_ASSET_PREFIX
+      value: https://cdn.nav.no/paw/arbeidssokerregistrering
   envFrom:
      - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
