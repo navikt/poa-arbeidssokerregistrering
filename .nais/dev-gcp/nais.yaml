@@ -40,7 +40,7 @@ spec:
     - name: NEXT_PUBLIC_AMPLITUDE_API_KEY
       value: 9845ded64c69cd068651cd0d968e0796
     - name: NEXT_PUBLIC_AMPLITUDE_ENDPOINT
-      value: amplitude.nav.no/collect
+      value: https://amplitude.nav.no/collect
     - name: NEXT_PUBLIC_ENABLE_MOCK
       value: disabled
     - name: NEXT_PUBLIC_DITTNAV_URL
