@@ -1,4 +1,4 @@
-import amplitude from 'amplitude-js';
+import * as amplitude from '@amplitude/analytics-browser';
 
 import { DinSituasjon, SporsmalId } from '../model/sporsmal';
 import { ErrorTypes } from '../model/error';
@@ -10,9 +10,9 @@ const config = {
     saveEvents: false,
     includeUtm: true,
     includeReferrer: true,
+    defaultTracking: false,
     trackingOptions: {
-        city: false,
-        ip_address: false,
+        ipAddress: false,
     },
 };
 
@@ -89,9 +89,9 @@ type EksperimentData = {
 type AmplitudeParams = { apiKey: string; apiEndpoint: string };
 type AmplitudeInitFunction = (params: AmplitudeParams) => void;
 
-export const initAmplitude: AmplitudeInitFunction = ({ apiKey, apiEndpoint }) => {
+export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint }) => {
     if (isBrowser()) {
-        amplitude.getInstance().init(apiKey, undefined, { ...config, apiEndpoint });
+        await amplitude.init(apiKey, undefined, { ...config, serverUrl: apiEndpoint });
         logAmplitudeEvent('sidevisning', {
             sidetittel: document.title,
         });
@@ -99,14 +99,12 @@ export const initAmplitude: AmplitudeInitFunction = ({ apiKey, apiEndpoint }) =>
 };
 
 export function logAmplitudeEvent(eventName: string, data: EventData) {
-    return new Promise(function (resolve) {
-        const eventData = data || {};
-        if (isBrowser()) {
-            const brukergruppe = window.sessionStorage.getItem('beregnetBrukergruppe') || 'Ikke tilgjengelig';
-            const registreringstype = window.sessionStorage.getItem('registreringType') || 'Ikke tilgjengelig';
-            amplitude.getInstance().logEvent(eventName, { ...eventData, brukergruppe, registreringstype }, resolve);
-        }
-    });
+    const eventData = data || {};
+    if (isBrowser()) {
+        const brukergruppe = window.sessionStorage.getItem('beregnetBrukergruppe') || 'Ikke tilgjengelig';
+        const registreringstype = window.sessionStorage.getItem('registreringType') || 'Ikke tilgjengelig';
+        amplitude.logEvent(eventName, { ...eventData, brukergruppe, registreringstype });
+    }
 }
 
 export function loggStoppsituasjon(data: StoppsituasjonData) {
