@@ -10,6 +10,11 @@ function datoSorteringSluttdato(a: any, b: any) {
     return new Date(b.sluttdato).getTime() - new Date(a.sluttdato).getTime();
 }
 
+/*
+  Dersom du har arbeidsforhold som ikke er avsluttet så returneres det som ble startet sist
+  Dersom du kun har avsluttede arbeidsforhold returneres det som ble avsluttet sist
+*/
+
 export function hentSisteArbeidsForhold(data: any): SisteArbeidsforhold {
     const { arbeidsforholdoversikter } = data;
     const aapneArbeidsforhold = arbeidsforholdoversikter.filter((forhold: any) => !forhold.sluttdato);
