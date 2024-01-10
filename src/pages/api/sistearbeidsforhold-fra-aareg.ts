@@ -33,6 +33,7 @@ const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
     };
 };
 async function hentFraAareg(req: NextApiRequest, callId: string) {
+    logger.info(`Starter kall callId: ${callId} mot ${url}`);
     const arbeidsforholdoversikt = await fetch(url, { headers: await getAaregHeaders(req, callId) }).then(
         async (res) => {
             if (!res.ok) {
@@ -43,6 +44,7 @@ async function hentFraAareg(req: NextApiRequest, callId: string) {
             return res.json();
         },
     );
+    logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
     return hentSisteArbeidsForhold(arbeidsforholdoversikt);
 }
 
@@ -50,7 +52,6 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
     const callId = nanoid();
 
     try {
-        logger.info(`Starter kall callId: ${callId} mot ${url}`);
         const { styrk } = await hentFraAareg(req, callId);
         const { konseptMedStyrk08List } = await fetch(
             `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
@@ -58,7 +59,7 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
                 headers: getHeaders('token', callId),
             },
         ).then((res) => res.json());
-        logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
+
         res.json(konseptMedStyrk08List[0]);
     } catch (e) {
         logger.error(`Feil ved henting av siste arbeidsforhold fra aareg [callId: ${callId}]`, e);
