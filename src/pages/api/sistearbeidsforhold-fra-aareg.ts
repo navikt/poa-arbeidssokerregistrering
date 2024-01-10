@@ -51,28 +51,24 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
     const callId = nanoid();
 
     try {
-        const aaregDataV1 = await fetch(
-            `${process.env.AAREG_REST_API}/v1/arbeidstaker/arbeidsforhold?regelverk=A_ORDNINGEN`,
-            { headers: await getAaregHeaders(req, callId) },
-        ).then((res) => res.json());
-        return res.json(aaregDataV1);
-        //
-        // const aaregData = await hentFraAareg(req, callId);
-        //
+        const aaregData = await hentFraAareg(req, callId);
         // if (aaregData.totalAntall === 0) {
         //     return res.status(204).end();
         // }
-        //
-        // const { styrk } = hentSisteArbeidsForhold(aaregData);
-        // logger.debug(`Slår opp styrk-kode [callId: ${callId}`);
-        // const { konseptMedStyrk08List } = await fetch(
-        //     `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
-        //     {
-        //         headers: getHeaders('token', callId),
-        //     },
-        // ).then((res) => res.json());
-        //
-        // res.json(konseptMedStyrk08List[0]);
+        const { styrk } = hentSisteArbeidsForhold(aaregData);
+        if (!styrk) {
+            return res.status(204).end();
+        }
+
+        logger.debug(`Slår opp styrk-kode [callId: ${callId}`);
+        const { konseptMedStyrk08List } = await fetch(
+            `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
+            {
+                headers: getHeaders('token', callId),
+            },
+        ).then((res) => res.json());
+
+        res.json(konseptMedStyrk08List[0]);
     } catch (e) {
         logger.error(`Feil ved henting av siste arbeidsforhold fra aareg [callId: ${callId}]`, e);
         res.status(500).end(`${e}`);

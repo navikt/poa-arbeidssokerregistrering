@@ -26,6 +26,6 @@ export function hentSisteArbeidsForhold(data: any): SisteArbeidsforhold {
     const sisteArbeidsforhold = gjeldendeArbeidsforhold || senesteAvsluttede;
 
     return {
-        styrk: sisteArbeidsforhold.yrke.kode,
+        styrk: sisteArbeidsforhold?.yrke?.kode,
     };
 }
