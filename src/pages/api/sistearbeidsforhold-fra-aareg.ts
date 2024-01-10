@@ -6,6 +6,7 @@ import { getAaregToken, getHeaders, getTokenFromRequest } from '../../lib/next-a
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { verifyToken } from '../../auth/token-validation';
 import { logger } from '@navikt/next-logger';
+import { hentSisteArbeidsForhold } from '../../lib/hent-siste-arbeidsforhold';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 const url = brukerMock
@@ -45,23 +46,28 @@ async function hentFraAareg(req: NextApiRequest, callId: string) {
     );
     logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
     return arbeidsforholdoversikt;
-    // return hentSisteArbeidsForhold(arbeidsforholdoversikt);
 }
 
 const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any>) => {
     const callId = nanoid();
 
     try {
-        res.json(await hentFraAareg(req, callId));
-        // const { styrk } = await hentFraAareg(req, callId);
-        //     const { konseptMedStyrk08List } = await fetch(
-        //         `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
-        //         {
-        //             headers: getHeaders('token', callId),
-        //         },
-        //     ).then((res) => res.json());
-        //
-        //     res.json(konseptMedStyrk08List[0]);
+        const aaregData = await hentFraAareg(req, callId);
+
+        if (aaregData.totalAntall === 0) {
+            return res.status(204).end();
+        }
+
+        const { styrk } = hentSisteArbeidsForhold(aaregData);
+        logger.debug(`Slår opp styrk-kode [callId: ${callId}`);
+        const { konseptMedStyrk08List } = await fetch(
+            `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
+            {
+                headers: getHeaders('token', callId),
+            },
+        ).then((res) => res.json());
+
+        res.json(konseptMedStyrk08List[0]);
     } catch (e) {
         logger.error(`Feil ved henting av siste arbeidsforhold fra aareg [callId: ${callId}]`, e);
         res.status(500).end(`${e}`);
