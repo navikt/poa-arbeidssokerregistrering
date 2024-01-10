@@ -63,6 +63,8 @@ spec:
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/reaktivering
     - name: SISTE_ARBEIDSFORHOLD_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/sistearbeidsforhold
+    - name: SISTE_ARBEIDSFORHOLD_FRA_AAREG_URL
+      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/sistearbeidsforhold-fra-aareg
     - name: OPPRETT_OPPGAVE_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/oppgave
     - name: KONTAKTINFORMASJON_URL

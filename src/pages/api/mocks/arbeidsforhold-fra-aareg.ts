@@ -1,10 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-const sisteArbeidsforhold = (req: NextApiRequest, res: NextApiResponse): void => {
+const arbeidsforholdFraAareg = (req: NextApiRequest, res: NextApiResponse): void => {
     res.status(200).json(responseData);
 };
 
-export default sisteArbeidsforhold;
+export default arbeidsforholdFraAareg;
 
 export const responseData = {
     arbeidsforholdoversikter: [
