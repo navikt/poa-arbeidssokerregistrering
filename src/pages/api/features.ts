@@ -2,9 +2,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { logger } from '@navikt/next-logger';
 import { getDefinitions } from '@unleash/nextjs';
 
+import { mockToggles } from './mocks/features';
+
+const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
+
 async function features(req: NextApiRequest, res: NextApiResponse) {
     try {
-        const definitions = await getDefinitions();
+        const definitions = brukerMock ? mockToggles : await getDefinitions();
         return res.status(200).json(definitions.features || []);
     } catch (error) {
         logger.error(error);

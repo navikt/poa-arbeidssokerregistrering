@@ -48,10 +48,12 @@ const getTokenDings = async (): Promise<Auth> => {
 export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
 export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
 
-type ClientIds = typeof VEILARBREGISTRERING_CLIENT_ID | typeof AIA_BACKEND_CLIENT_ID;
+const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
+
+type ClientIds = typeof VEILARBREGISTRERING_CLIENT_ID | typeof AIA_BACKEND_CLIENT_ID | typeof AAREG_CLIENT_ID;
 
 const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<TokenSet> => {
-    return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, VEILARBREGISTRERING_CLIENT_ID);
+    return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, clientId);
 };
 
 export const getTokenFromRequest = (req: NextApiRequest) => {
@@ -63,6 +65,10 @@ const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 
 export const getVeilarbregistreringToken = async (req: NextApiRequest) => {
     return getTokenXToken(req, VEILARBREGISTRERING_CLIENT_ID);
+};
+
+export const getAaregToken = async (req: NextApiRequest) => {
+    return getTokenXToken(req, AAREG_CLIENT_ID);
 };
 
 const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
