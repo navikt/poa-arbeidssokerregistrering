@@ -8,24 +8,33 @@ import { verifyToken } from '../../auth/token-validation';
 import { hentSisteArbeidsForhold } from '../../lib/hent-siste-arbeidsforhold';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
+const url = brukerMock
+    ? `${process.env.SISTEARBEIDSFORHOLD_FRA_AAREG_URL}`
+    : `${process.env.AAREG_REST_API}/v2/arbeidstaker/arbeidsforholdoversikt`;
 
-async function hentFraAareg(req: NextApiRequest, callId: string) {
-    const headers = brukerMock ? getHeaders('token', callId) : getHeaders(await getAaregToken(req), callId);
+const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
+    if (brukerMock) {
+        return {
+            ...getHeaders('token', callId),
+            'Nav-Personident': '123456789',
+        };
+    }
 
-    const url = brukerMock
-        ? `${process.env.SISTEARBEIDSFORHOLD_FRA_AAREG_URL}`
-        : `${process.env.AAREG_REST_API}/v2/arbeidstaker/arbeidsforholdoversikt`;
+    const headers = getHeaders(await getAaregToken(req), callId);
+
     const token = getTokenFromRequest(req)!;
     const result = await verifyToken(token, decodeJwt(token));
     const fnr = result.payload.pid as string;
 
-    const arbeidsforholdoversikt = await fetch(url, {
-        headers: {
-            ...headers,
-            'Nav-Personident': fnr,
-        },
-    }).then((res) => res.json());
-
+    return {
+        ...headers,
+        'Nav-Personident': fnr,
+    };
+};
+async function hentFraAareg(req: NextApiRequest, callId: string) {
+    const arbeidsforholdoversikt = await fetch(url, { headers: await getAaregHeaders(req, callId) }).then((res) =>
+        res.json(),
+    );
     return hentSisteArbeidsForhold(arbeidsforholdoversikt);
 }
 
