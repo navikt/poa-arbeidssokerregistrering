@@ -50,10 +50,10 @@ export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-b
 
 const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
 
-type ClientIds = typeof VEILARBREGISTRERING_CLIENT_ID | typeof AIA_BACKEND_CLIENT_ID;
+type ClientIds = typeof VEILARBREGISTRERING_CLIENT_ID | typeof AIA_BACKEND_CLIENT_ID | typeof AAREG_CLIENT_ID;
 
 const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<TokenSet> => {
-    return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, VEILARBREGISTRERING_CLIENT_ID);
+    return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, clientId);
 };
 
 export const getTokenFromRequest = (req: NextApiRequest) => {
