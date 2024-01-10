@@ -33,12 +33,16 @@ const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
     };
 };
 async function hentFraAareg(req: NextApiRequest, callId: string) {
-    const arbeidsforholdoversikt = await fetch(url, { headers: await getAaregHeaders(req, callId) }).then((res) => {
-        if (!res.ok) {
-            logger.error(`Respons ikke OK  [callId: ${callId}] ${res.status} ${res.statusText} ${res.body}`);
-        }
-        return res.json();
-    });
+    const arbeidsforholdoversikt = await fetch(url, { headers: await getAaregHeaders(req, callId) }).then(
+        async (res) => {
+            if (!res.ok) {
+                logger.error(`Respons fra aareg ikke OK - [callId: ${callId}] ${res.status} ${res.statusText}`);
+                logger.error(`[callId: ${callId}] ${await res.json()}`, await res.json());
+                throw new Error('Feil ved henting av siste arbeidsforhold');
+            }
+            return res.json();
+        },
+    );
     return hentSisteArbeidsForhold(arbeidsforholdoversikt);
 }
 
@@ -57,7 +61,7 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
         logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
         res.json(konseptMedStyrk08List[0]);
     } catch (e) {
-        logger.error({ e, msg: 'Feil ved henting av siste arbeidsforhold fra aareg' });
+        logger.error(`Feil ved henting av siste arbeidsforhold fra aareg [callId: ${callId}]`, e);
         res.status(500).end(`${e}`);
     }
 };
