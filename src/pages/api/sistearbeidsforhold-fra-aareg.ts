@@ -45,6 +45,8 @@ async function hentFraAareg(req: NextApiRequest, callId: string) {
         },
     );
     logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
+    logger.info(arbeidsforholdoversikt, 'Arbeidsforholdoversikt');
+    logger.info({ arbeidsforholdoversikt, msg: 'Arbeidsforholdoversikt' });
     return hentSisteArbeidsForhold(arbeidsforholdoversikt);
 }
 
