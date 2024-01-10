@@ -51,11 +51,8 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
     const callId = nanoid();
 
     try {
-        const aaregData = await hentFraAareg(req, callId);
-        // if (aaregData.totalAntall === 0) {
-        //     return res.status(204).end();
-        // }
-        const { styrk } = hentSisteArbeidsForhold(aaregData);
+        const { styrk } = hentSisteArbeidsForhold(await hentFraAareg(req, callId));
+
         if (!styrk) {
             return res.status(204).end();
         }
