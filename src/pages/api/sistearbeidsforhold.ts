@@ -41,6 +41,7 @@ async function hentFraAareg(req: NextApiRequest, callId: string) {
 
     return hentSisteArbeidsForhold(arbeidsforholdoversikt);
 }
+
 const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any>) => {
     const callId = nanoid();
 

@@ -18,6 +18,19 @@ const featureToggles = (req: NextApiRequest, res: NextApiResponse): void => {
                 variants: [],
             },
             {
+                name: 'arbeidssokerregistrering.bruk-direkte-kobling-mot-aareg',
+                type: 'release',
+                enabled: false,
+                stale: false,
+                strategies: [
+                    {
+                        name: 'default',
+                        parameters: {},
+                    },
+                ],
+                variants: [],
+            },
+            {
                 name: 'arbeidssokerregistrering.bruk-under-18-sperre',
                 type: 'release',
                 enabled: false,
