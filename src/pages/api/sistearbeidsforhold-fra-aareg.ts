@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { nanoid } from 'nanoid';
+import { decodeJwt } from 'jose';
+
 import { getAaregToken, getHeaders, getTokenFromRequest } from '../../lib/next-api-handler';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { verifyToken } from '../../auth/token-validation';
-import { decodeJwt } from 'jose';
 import { hentSisteArbeidsForhold } from '../../lib/hent-siste-arbeidsforhold';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
@@ -32,7 +33,6 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
     const callId = nanoid();
 
     try {
-        // const { styrk } = await hentFraVeilarbregistrering(req, callId);
         const { styrk } = await hentFraAareg(req, callId);
         const { konseptMedStyrk08List } = await fetch(
             `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
