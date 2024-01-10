@@ -6,6 +6,7 @@ import { getAaregToken, getHeaders, getTokenFromRequest } from '../../lib/next-a
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { verifyToken } from '../../auth/token-validation';
 import { hentSisteArbeidsForhold } from '../../lib/hent-siste-arbeidsforhold';
+import { logger } from '@navikt/next-logger';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 const url = brukerMock
@@ -32,9 +33,12 @@ const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
     };
 };
 async function hentFraAareg(req: NextApiRequest, callId: string) {
-    const arbeidsforholdoversikt = await fetch(url, { headers: await getAaregHeaders(req, callId) }).then((res) =>
-        res.json(),
-    );
+    const arbeidsforholdoversikt = await fetch(url, { headers: await getAaregHeaders(req, callId) }).then((res) => {
+        if (!res.ok) {
+            logger.error(`Respons ikke OK  [callId: ${callId}] ${res.status} ${res.statusText} ${res.body}`);
+        }
+        return res.json();
+    });
     return hentSisteArbeidsForhold(arbeidsforholdoversikt);
 }
 
@@ -42,6 +46,7 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
     const callId = nanoid();
 
     try {
+        logger.info(`Starter kall callId: ${callId} mot ${url}`);
         const { styrk } = await hentFraAareg(req, callId);
         const { konseptMedStyrk08List } = await fetch(
             `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
@@ -49,9 +54,10 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
                 headers: getHeaders('token', callId),
             },
         ).then((res) => res.json());
-
+        logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
         res.json(konseptMedStyrk08List[0]);
     } catch (e) {
+        logger.error({ e, msg: 'Feil ved henting av siste arbeidsforhold fra aareg' });
         res.status(500).end(`${e}`);
     }
 };
