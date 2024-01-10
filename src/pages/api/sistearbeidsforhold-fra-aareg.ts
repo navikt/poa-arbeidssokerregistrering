@@ -34,15 +34,15 @@ const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
 };
 async function hentFraAareg(req: NextApiRequest, callId: string) {
     logger.info(`Starter kall callId: ${callId} mot ${url}`);
-    const arbeidsforholdoversikt = await fetch(url, { headers: await getAaregHeaders(req, callId) }).then(
-        async (res) => {
-            if (!res.ok) {
-                logger.error(`Respons fra aareg ikke OK - [callId: ${callId}] ${res.status} ${res.statusText}`);
-                throw new Error('Feil ved henting av siste arbeidsforhold');
-            }
-            return res.json();
-        },
-    );
+    const arbeidsforholdoversikt = await fetch(`${url}?arbeidsforholdstatus=AKTIV,AVSLUTTET,FREMTIDIG`, {
+        headers: await getAaregHeaders(req, callId),
+    }).then(async (res) => {
+        if (!res.ok) {
+            logger.error(`Respons fra aareg ikke OK - [callId: ${callId}] ${res.status} ${res.statusText}`);
+            throw new Error('Feil ved henting av siste arbeidsforhold');
+        }
+        return res.json();
+    });
     logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
     return arbeidsforholdoversikt;
 }
