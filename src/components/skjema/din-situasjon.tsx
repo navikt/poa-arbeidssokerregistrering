@@ -39,7 +39,7 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     ];
 
     // initialiser / cache data for rask tilgang i <SisteJobb>
-    const sisteArbeidsforholdUrl = brukAareg ? 'api/sistearbeidsforhold-fra-aareg/' : 'api/sistearbeidsforhold/';
+    const sisteArbeidsforholdUrl = brukAareg ? 'api/sistearbeidsforhold-fra-aareg' : 'api/sistearbeidsforhold';
     preload(sisteArbeidsforholdUrl, fetcher);
 
     return (
