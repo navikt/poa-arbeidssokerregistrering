@@ -34,7 +34,7 @@ const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
 };
 async function hentFraAareg(req: NextApiRequest, callId: string) {
     logger.info(`Starter kall callId: ${callId} mot ${url}`);
-    const arbeidsforholdoversikt = await fetch(`${url}?arbeidsforholdstatus=AKTIV,AVSLUTTET,FREMTIDIG`, {
+    const arbeidsforholdoversikt = await fetch(`${url}?arbeidsforholdstatus=AKTIV,AVSLUTTET`, {
         headers: await getAaregHeaders(req, callId),
     }).then(async (res) => {
         if (!res.ok) {
