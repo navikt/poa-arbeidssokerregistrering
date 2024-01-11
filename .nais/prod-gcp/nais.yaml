@@ -52,7 +52,7 @@ spec:
     - name: NEXT_PUBLIC_MER_OPPFOLGING_URL
       value: https://www.nav.no/syk/meroppfolging/reg/0
     - name: PAM_JANZZ_URL
-      value: amplitude.nav.no/collect
+      value: https://arbeidsplassen.nav.no/pam-janzz/rest
     - name: START_REGISTRERING_URL
       value: http://veilarbregistrering/veilarbregistrering/api/startregistrering/
     - name: FULLFOR_REGISTRERING_URL
