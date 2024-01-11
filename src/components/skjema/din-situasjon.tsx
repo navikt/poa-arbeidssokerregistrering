@@ -1,22 +1,22 @@
 import { Heading, Panel } from '@navikt/ds-react';
-import { preload } from 'swr';
+//import { preload } from 'swr';
 import Head from 'next/head';
 
 import useSprak from '../../hooks/useSprak';
-import { useFeatureToggles } from '../../contexts/featuretoggle-context';
+// import { useFeatureToggles } from '../../contexts/featuretoggle-context';
 
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { DinSituasjon as Jobbsituasjon, hentTekst, SporsmalId } from '../../model/sporsmal';
-import { fetcher } from '../../lib/api-utils';
+// import { fetcher } from '../../lib/api-utils';
 
 import styles from '../../styles/skjema.module.css';
 
 const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     const { onChange, valgt, visFeilmelding } = props;
     const sprak = useSprak();
-    const { toggles } = useFeatureToggles();
-    const brukAareg = toggles['arbeidssokerregistrering.bruk-direkte-kobling-mot-aareg'];
+    // const { toggles } = useFeatureToggles();
+    // const brukAareg = toggles['arbeidssokerregistrering.bruk-direkte-kobling-mot-aareg'];
     const tekst = (key: string) => hentTekst(sprak, key);
 
     const valg = [
@@ -39,8 +39,8 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     ];
 
     // initialiser / cache data for rask tilgang i <SisteJobb>
-    const sisteArbeidsforholdUrl = brukAareg ? 'api/sistearbeidsforhold-fra-aareg' : 'api/sistearbeidsforhold';
-    preload(sisteArbeidsforholdUrl, fetcher);
+    // const sisteArbeidsforholdUrl = brukAareg ? 'api/sistearbeidsforhold-fra-aareg' : 'api/sistearbeidsforhold';
+    // preload(sisteArbeidsforholdUrl, fetcher);
 
     return (
         <>
