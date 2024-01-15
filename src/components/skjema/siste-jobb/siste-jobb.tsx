@@ -4,7 +4,6 @@ import useSWR from 'swr';
 import Head from 'next/head';
 
 import useSprak from '../../../hooks/useSprak';
-import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
 
 import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 import StillingsSok from './stillings-sok';
@@ -33,10 +32,8 @@ const annenStilling: SisteJobb = {
 
 const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Element; visSisteJobb: boolean }) => {
     const { onChange, visSisteJobb } = props;
-    const { toggles } = useFeatureToggles();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const [visStillingsSok, settVisStillingsSok] = useState<boolean>(false);
-    const brukAareg = toggles['arbeidssokerregistrering.bruk-direkte-kobling-mot-aareg'];
     const onCloseStillingssok = (value?: any) => {
         if (value) {
             onChange(value);
@@ -44,7 +41,7 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
         settVisStillingsSok(false);
     };
 
-    const sisteArbeidsforholdUrl = brukAareg ? 'api/sistearbeidsforhold-fra-aareg/' : 'api/sistearbeidsforhold/';
+    const sisteArbeidsforholdUrl = 'api/sistearbeidsforhold-fra-aareg/';
     const { data: sisteArbeidsforhold, error } = useSWR(sisteArbeidsforholdUrl, fetcher);
 
     useEffect(() => {

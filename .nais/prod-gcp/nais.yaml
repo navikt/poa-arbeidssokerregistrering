@@ -61,8 +61,6 @@ spec:
       value: http://veilarbregistrering/veilarbregistrering/api/fullfoersykmeldtregistrering/
     - name: REAKTIVERING_URL
       value: http://veilarbregistrering/veilarbregistrering/api/fullfoerreaktivering/
-    - name: SISTE_ARBEIDSFORHOLD_URL
-      value: http://veilarbregistrering/veilarbregistrering/api/sistearbeidsforhold/
     - name: OPPRETT_OPPGAVE_URL
       value: http://veilarbregistrering/veilarbregistrering/api/oppgave/
     - name: KONTAKTINFORMASJON_URL
