@@ -42,13 +42,17 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
     };
 
     const sisteArbeidsforholdUrl = 'api/sistearbeidsforhold-fra-aareg/';
-    const { data: sisteArbeidsforhold, error } = useSWR(sisteArbeidsforholdUrl, fetcher);
+    const { data: sisteArbeidsforhold, error, isLoading } = useSWR(sisteArbeidsforholdUrl, fetcher);
 
     useEffect(() => {
         if (sisteArbeidsforhold && !props.valgt) {
             onChange(sisteArbeidsforhold);
         }
-    }, [onChange, props.valgt, sisteArbeidsforhold]);
+        if (!sisteArbeidsforhold && !props.valgt && !isLoading) {
+            // 204 fra server
+            onChange(annenStilling);
+        }
+    }, [onChange, props.valgt, sisteArbeidsforhold, isLoading]);
 
     useEffect(() => {
         if (error && !props.valgt) {

@@ -1,6 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 const arbeidsforholdFraAareg = (req: NextApiRequest, res: NextApiResponse): void => {
+    // res.status(200).json({
+    //     arbeidsforholdoversikter: [],
+    //     totalAntall: 0
+    // });
     res.status(200).json(responseData);
 };
 
