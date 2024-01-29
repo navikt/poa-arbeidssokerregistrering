@@ -6,6 +6,7 @@ import { BodyLong, Button, Cell, Grid, Heading } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
+import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
 import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
 import DineOpplysninger from '../components/forsiden/dine-opplysninger';
@@ -17,6 +18,7 @@ import DemoPanel from '../components/forsiden/demo-panel';
 import { Config } from '../model/config';
 import { loggAktivitet } from '../lib/amplitude';
 import ElektroniskID from '../components/forsiden/elektroniskID';
+import NyeRettigheterPanel from '../components/forsiden/nye-rettigheter';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -41,6 +43,8 @@ const Home: NextPage = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const { enableMock } = useConfig() as Config;
     const brukerMock = enableMock === 'enabled';
+    const { toggles } = useFeatureToggles();
+    const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
 
     const logStartHandler = () => {
         loggAktivitet({ aktivitet: 'Går til start registrering' });
@@ -57,28 +61,34 @@ const Home: NextPage = () => {
                 <Heading className="mb-8" size="xlarge" level="1">
                     {tekst('tittel')}
                 </Heading>
-                <Grid>
-                    <Cell xs={12} md={6}>
-                        <RettigheterPanel />
-                    </Cell>
-                    <Cell xs={12} md={6} className="mb-4">
-                        <PlikterPanel />
-                    </Cell>
-                    <Cell xs={12}>{visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}</Cell>
-                    <Cell xs={12} className="text-center p-6">
-                        <Heading size={'medium'} level="3" spacing={true}>
-                            {tekst('elektroniskId')}
-                        </Heading>
-                        <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>
-                            {tekst('elektroniskIdInfo')}
-                        </BodyLong>
-                    </Cell>
-                    <Cell xs={12} className={'text-center py-4'}>
-                        <NextLink href="/start" passHref locale={false}>
-                            <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
-                        </NextLink>
-                    </Cell>
-                </Grid>
+                {fjernPlikter && <NyeRettigheterPanel />}
+                {!fjernPlikter && (
+                    <Grid>
+                        <Cell xs={12} md={6}>
+                            <RettigheterPanel />
+                        </Cell>
+                        <Cell xs={12} md={6} className="mb-4">
+                            <PlikterPanel />
+                        </Cell>
+                        <Cell xs={12}>
+                            {visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}
+                        </Cell>
+                        <Cell xs={12} className="text-center p-6">
+                            <Heading size={'medium'} level="3" spacing={true}>
+                                {tekst('elektroniskId')}
+                            </Heading>
+                            <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>
+                                {tekst('elektroniskIdInfo')}
+                            </BodyLong>
+                        </Cell>
+                        <Cell xs={12} className={'text-center py-4'}>
+                            <NextLink href="/start" passHref locale={false}>
+                                <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
+                            </NextLink>
+                        </Cell>
+                    </Grid>
+                )}
+
                 <ElektroniskID />
                 <DemoPanel brukerMock={brukerMock} />
             </div>
