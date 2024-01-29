@@ -10,7 +10,7 @@
         "test:ci": "npm run lint && jest",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
         "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
-        "prepare": "husky install"
+        "prepare": "husky"
     },
     "dependencies": {
         "@alheimsins/virkedager": "2.2.0",
