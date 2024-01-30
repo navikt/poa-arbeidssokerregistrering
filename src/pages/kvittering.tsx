@@ -2,12 +2,14 @@ import React from 'react';
 import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
+import { useConfig } from '../contexts/config-context';
+import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
 import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
 import { loggAktivitet, loggFlyt } from '../lib/amplitude';
-import { useConfig } from '../contexts/config-context';
 import { Config } from '../model/config';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
+import NyeRettigheterKvittering from '../components/nye-rettigheter-kvittering';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -25,6 +27,8 @@ const TEKSTER: Tekster<string> = {
 const Kvittering = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { toggles } = useFeatureToggles();
+    const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
 
     React.useEffect(() => {
         loggAktivitet({
@@ -40,6 +44,11 @@ const Kvittering = () => {
             <Heading level="1" size={'large'} className={'mb-8'}>
                 {tekst('header')}
             </Heading>
+            {fjernPlikter && (
+                <div>
+                    <NyeRettigheterKvittering />
+                </div>
+            )}
             <GuidePanel poster>
                 <Heading level={'2'} size={'medium'} className={'mb-6'}>
                     {tekst('dagpengerTittel')}
