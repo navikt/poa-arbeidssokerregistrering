@@ -1,24 +1,38 @@
-import { GuidePanel, Heading, Link, BodyShort, Box, List } from '@navikt/ds-react';
+import NextLink from 'next/link';
+import { GuidePanel, Heading, Link, BodyShort, BodyLong, Box, List, ReadMore, Button } from '@navikt/ds-react';
 
 import useSprak from '../../hooks/useSprak';
 
+import { loggAktivitet } from '../../lib/amplitude';
 import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import DineOpplysninger from './dine-opplysninger';
 
 const TEKSTER: Tekster<string> = {
     nb: {
         tittel: 'Rettigheter',
-        kravPaVurdering:
-            'Du har krav på at NAV vurderer behovet ditt for veiledning. Dette er en rettighet du har etter ',
-        paragraf14a: 'NAV-loven § 14a. (les paragrafen på lovdata.no)',
-        brev: 'Du får et brev der du kan lese mer om tjenestene vi foreslår for deg.',
+        startRegistrering: 'Start registrering',
+        elektroniskId: 'Du må ha elektronisk ID for å registrere deg',
+        elektroniskIdInfo:
+            'For å registrere deg hos NAV, må du logge inn med BankID, BankID på mobil, Buypass eller Commfides.',
+    },
+    en: {
+        tittel: 'Your rights',
+        startRegistrering: 'Start registration',
+        elektroniskId: 'You will need an electronic ID to register',
+        elektroniskIdInfo:
+            'To register at NAV, you must login with either BankID, BankID on mobile, Buypass or Commfides.',
     },
 };
 
 const NyeRettigheterPanel = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
 
+    const logStartHandler = () => {
+        loggAktivitet({ aktivitet: 'Går til start registrering' });
+    };
+
     return (
-        <>
+        <div>
             <GuidePanel poster>
                 <Heading size={'large'} level={'2'} className="text-center">
                     {tekst('tittel')}
@@ -53,6 +67,11 @@ const NyeRettigheterPanel = () => {
                     </li>
                 </ul>
             </GuidePanel>
+            <div className="mt-12 flex items-center justify-center">
+                <NextLink href="/start" passHref locale={false}>
+                    <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
+                </NextLink>
+            </div>
             <Box className="mt-12">
                 <Heading size={'large'} level={'2'} className="text-center">
                     Hva skjer etter at du har registrert deg?
@@ -83,7 +102,16 @@ const NyeRettigheterPanel = () => {
                     </List.Item>
                 </List>
             </Box>
-        </>
+            <ReadMore header="Hvilke opplysninger henter vi inn og hva brukes de til?">
+                <DineOpplysninger />
+            </ReadMore>
+            <div className="text-center p-6">
+                <Heading size={'medium'} level="3" spacing={true}>
+                    {tekst('elektroniskId')}
+                </Heading>
+                <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>{tekst('elektroniskIdInfo')}</BodyLong>
+            </div>
+        </div>
     );
 };
 
