@@ -5,6 +5,7 @@ import {
     SkjemaState,
     StandardSkjemaSideUtenPlikter,
 } from '../model/skjema';
+
 import { DinSituasjon, Utdanningsnivaa } from '../model/sporsmal';
 
 const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUtenPlikter> = {
@@ -95,12 +96,12 @@ const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUten
     },
 };
 
-export type StandardRegistreringTilstandsmaskin = (
+export type StandardRegistreringUtenPlikterTilstandsmaskin = (
     aktivSide: StandardSkjemaSideUtenPlikter,
     state: SkjemaState,
 ) => Navigering<StandardSkjemaSideUtenPlikter>;
 
-export const beregnNavigeringUtenPlikter: StandardRegistreringTilstandsmaskin = (aktivSide, state) => {
+export const beregnNavigering: StandardRegistreringUtenPlikterTilstandsmaskin = (aktivSide, state) => {
     if (TILSTANDER_UTEN_PLIKTER[aktivSide]) {
         return TILSTANDER_UTEN_PLIKTER[aktivSide](state);
     }
