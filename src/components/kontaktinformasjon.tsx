@@ -1,10 +1,10 @@
 import { Alert, Detail, Heading, HelpText, Label, Link, Panel } from '@navikt/ds-react';
 import useSprak from '../hooks/useSprak';
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Kontaktinformasjon as KontaktInfo } from '../model/kontaktinformasjon';
 import useSWR from 'swr';
 import { fetcher } from '../lib/api-utils';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 const TEKSTER: Tekster<string> = {
     nb: {

@@ -5,7 +5,7 @@ import { GetServerSidePropsContext, NextApiRequest } from 'next';
 
 import useSprak from '../hooks/useSprak';
 
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import VeiledningSvg from '../components/veiledningSvg';
 import { SkjemaSide } from '../model/skjema';
 import { Kontaktinformasjon } from '../model/kontaktinformasjon';

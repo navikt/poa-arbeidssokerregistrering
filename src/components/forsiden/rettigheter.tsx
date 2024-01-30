@@ -1,6 +1,6 @@
 import { GuidePanel, Heading, Link } from '@navikt/ds-react';
 import styles from '../../styles/guidepanel.module.css';
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
 import RettigheterSvg from './rettigheter-svg';
 

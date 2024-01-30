@@ -4,7 +4,7 @@ import { Alert, BodyLong, Button, Heading, Link } from '@navikt/ds-react';
 import useSprak from '../../hooks/useSprak';
 import { useErrorContext } from '../../contexts/error-context';
 
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { loggStoppsituasjon } from '../../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {

@@ -3,10 +3,9 @@ import Head from 'next/head';
 
 import useSprak from '../../hooks/useSprak';
 
-import lagHentTekstForSprak, { TeksterMedDefinerteNokler } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, TeksterMedDefinerteNokler, JaEllerNei } from '@navikt/arbeidssokerregisteret-utils';
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
-import { JaEllerNei } from '../../model/sporsmal';
 
 import styles from '../../styles/skjema.module.css';
 

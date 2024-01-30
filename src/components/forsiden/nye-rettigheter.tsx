@@ -4,7 +4,7 @@ import { GuidePanel, Heading, Link, BodyShort, BodyLong, Box, List, ReadMore, Bu
 import useSprak from '../../hooks/useSprak';
 
 import { loggAktivitet } from '../../lib/amplitude';
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import DineOpplysninger from './dine-opplysninger';
 
 const TEKSTER: Tekster<string> = {

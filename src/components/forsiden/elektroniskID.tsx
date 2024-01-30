@@ -4,7 +4,7 @@ import Image from 'next/image';
 
 import useSprak from '../../hooks/useSprak';
 
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import bankIdSvg from './bankid.svg';
 import navKontorSvg from './nav-kontor.svg';
 import styles from './elektroniskID.module.css';

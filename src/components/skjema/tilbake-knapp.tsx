@@ -1,7 +1,7 @@
 import { ChevronLeftIcon } from '@navikt/aksel-icons';
 import NextLink from 'next/link';
 
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
 
 interface TilbakeKnappProps {

@@ -8,7 +8,7 @@ import useSprak from '../../hooks/useSprak';
 import { useConfig } from '../../contexts/config-context';
 import { useFeatureToggles } from '../../contexts/featuretoggle-context';
 
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster, DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 import { Side, SkjemaState } from '../../model/skjema';
 import { fetcher as api } from '../../lib/api-utils';
 import byggFullforRegistreringPayload from '../../lib/bygg-fullfor-registrering-payload';
@@ -18,7 +18,6 @@ import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
 import { loggAktivitet, loggEksperiment, loggFlyt } from '../../lib/amplitude';
 import guidePanelStyles from '../../styles/guidepanel.module.css';
 import PlikterSvg from '../forsiden/plikter-svg';
-import { DinSituasjon, SporsmalId } from '../../model/sporsmal';
 import { Config } from '../../model/config';
 import { hentRegistreringFeiletUrl } from '../../lib/hent-registrering-feilet-url';
 import { OppgaveRegistreringstype } from '../../model/feilsituasjonTyper';

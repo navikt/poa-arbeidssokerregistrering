@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Config } from '../model/config';
 import { loggFlyt, loggSidevisning } from '../lib/amplitude';
 import { withAuthenticatedPage } from '../auth/withAuthentication';

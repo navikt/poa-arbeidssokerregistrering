@@ -4,7 +4,7 @@ import useSWR from 'swr';
 
 import useSprak from '../hooks/useSprak';
 
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Kontaktinformasjon as KontaktInfo } from '../model/kontaktinformasjon';
 import { fetcher } from '../lib/api-utils';
 

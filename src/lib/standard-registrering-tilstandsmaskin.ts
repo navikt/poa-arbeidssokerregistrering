@@ -1,5 +1,5 @@
 import { Navigering, NavigeringsTilstandsMaskin, SkjemaSide, SkjemaState, StandardSkjemaSide } from '../model/skjema';
-import { DinSituasjon, Utdanningsnivaa } from '../model/sporsmal';
+import { DinSituasjon, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 const TILSTANDER: NavigeringsTilstandsMaskin<StandardSkjemaSide> = {
     [SkjemaSide.DinSituasjon]: (skjemaState: SkjemaState) => {
@@ -98,7 +98,7 @@ const TILSTANDER: NavigeringsTilstandsMaskin<StandardSkjemaSide> = {
 
 export type StandardRegistreringTilstandsmaskin = (
     aktivSide: StandardSkjemaSide,
-    state: SkjemaState
+    state: SkjemaState,
 ) => Navigering<StandardSkjemaSide>;
 export const beregnNavigering: StandardRegistreringTilstandsmaskin = (aktivSide, state) => {
     if (TILSTANDER[aktivSide]) {

@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Button, Detail } from '@navikt/ds-react';
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
 import useSprak from '../../hooks/useSprak';
 import { loggFeedback } from '../../lib/amplitude';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 const TEKSTER: Tekster<string> = {
     nb: {

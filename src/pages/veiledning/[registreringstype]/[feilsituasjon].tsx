@@ -3,7 +3,7 @@ import { BodyLong, Button, GuidePanel, Heading } from '@navikt/ds-react';
 import { preload } from 'swr';
 import { useRouter } from 'next/router';
 
-import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../../hooks/useSprak';
 import { loggAktivitet, loggStoppsituasjon } from '../../../lib/amplitude';
 import { fetcher, fetcher as api } from '../../../lib/api-utils';

@@ -4,9 +4,10 @@ import useSprak from '../../hooks/useSprak';
 
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
-import { FremtidigSituasjon, hentTekst, SporsmalId } from '../../model/sporsmal';
+import { hentTekst } from '../../model/sporsmal';
 
 import styles from '../../styles/skjema.module.css';
+import { FremtidigSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 
 const SykmeldtFremtidigSituasjon = (props: SkjemaKomponentProps<FremtidigSituasjon>) => {
     const sprak = useSprak();
