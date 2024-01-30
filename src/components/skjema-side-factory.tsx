@@ -1,8 +1,9 @@
-import { SkjemaSide, SkjemaState } from '../model/skjema';
-import { Dispatch, useEffect, useReducer, useRef, useState } from 'react';
-import { SkjemaAction, skjemaReducer, SkjemaReducer } from '../lib/skjema-state';
 import { NextPage } from 'next';
+import { Dispatch, useEffect, useReducer, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+
+import { SkjemaSide, SkjemaState } from '../model/skjema';
+import { SkjemaAction, skjemaReducer, SkjemaReducer } from '../lib/skjema-state';
 import styles from '../styles/skjema.module.css';
 import TilbakeKnapp from './skjema/tilbake-knapp';
 import { Knapperad } from './skjema/knapperad/knapperad';

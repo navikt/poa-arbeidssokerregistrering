@@ -1,20 +1,26 @@
-import { Navigering, NavigeringsTilstandsMaskin, SkjemaSide, SkjemaState, StandardSkjemaSide } from '../model/skjema';
+import {
+    Navigering,
+    NavigeringsTilstandsMaskin,
+    SkjemaSide,
+    SkjemaState,
+    StandardSkjemaSideUtenPlikter,
+} from '../model/skjema';
 import { DinSituasjon, Utdanningsnivaa } from '../model/sporsmal';
 
-const TILSTANDER_MED_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSide> = {
+const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUtenPlikter> = {
     [SkjemaSide.DinSituasjon]: (skjemaState: SkjemaState) => {
         if (skjemaState.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB) {
             return {
                 neste: SkjemaSide.Utdanning,
                 forrige: undefined,
-                fremdrift: 1 / 10,
+                fremdrift: 1 / 9,
             };
         }
 
         return {
             neste: SkjemaSide.SisteJobb,
             forrige: undefined,
-            fremdrift: 1 / 10,
+            fremdrift: 1 / 9,
         };
     },
     [SkjemaSide.SisteJobb]: (skjemaState: SkjemaState) => {
@@ -22,13 +28,13 @@ const TILSTANDER_MED_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSide> = {
             return {
                 neste: SkjemaSide.Helseproblemer,
                 forrige: SkjemaSide.DinSituasjon,
-                fremdrift: 2 / 10,
+                fremdrift: 2 / 9,
             };
         }
         return {
             neste: SkjemaSide.Utdanning,
             forrige: SkjemaSide.DinSituasjon,
-            fremdrift: 2 / 10,
+            fremdrift: 2 / 9,
         };
     },
     [SkjemaSide.Utdanning]: (skjemaState: SkjemaState) => {
@@ -41,21 +47,21 @@ const TILSTANDER_MED_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSide> = {
                 skjemaState.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB
                     ? SkjemaSide.DinSituasjon
                     : SkjemaSide.SisteJobb,
-            fremdrift: 3 / 10,
+            fremdrift: 3 / 9,
         };
     },
     [SkjemaSide.GodkjentUtdanning]: () => {
         return {
             neste: SkjemaSide.BestaattUtdanning,
             forrige: SkjemaSide.Utdanning,
-            fremdrift: 4 / 10,
+            fremdrift: 4 / 9,
         };
     },
     [SkjemaSide.BestaattUtdanning]: () => {
         return {
             neste: SkjemaSide.Helseproblemer,
             forrige: SkjemaSide.GodkjentUtdanning,
-            fremdrift: 5 / 10,
+            fremdrift: 5 / 9,
         };
     },
     [SkjemaSide.Helseproblemer]: (skjemaState: SkjemaState) => {
@@ -70,40 +76,33 @@ const TILSTANDER_MED_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSide> = {
         return {
             neste: SkjemaSide.AndreProblemer,
             forrige: forrige(),
-            fremdrift: 6 / 10,
+            fremdrift: 6 / 9,
         };
     },
     [SkjemaSide.AndreProblemer]: () => {
         return {
             neste: SkjemaSide.Oppsummering,
             forrige: SkjemaSide.Helseproblemer,
-            fremdrift: 7 / 10,
+            fremdrift: 7 / 9,
         };
     },
     [SkjemaSide.Oppsummering]: () => {
         return {
-            neste: SkjemaSide.FullforRegistrering,
-            forrige: SkjemaSide.AndreProblemer,
-            fremdrift: 8 / 10,
-        };
-    },
-    [SkjemaSide.FullforRegistrering]: () => {
-        return {
             neste: undefined,
-            forrige: SkjemaSide.Oppsummering,
-            fremdrift: 9 / 10,
+            forrige: SkjemaSide.AndreProblemer,
+            fremdrift: 8 / 9,
         };
     },
 };
 
 export type StandardRegistreringTilstandsmaskin = (
-    aktivSide: StandardSkjemaSide,
+    aktivSide: StandardSkjemaSideUtenPlikter,
     state: SkjemaState,
-) => Navigering<StandardSkjemaSide>;
+) => Navigering<StandardSkjemaSideUtenPlikter>;
 
-export const beregnNavigering: StandardRegistreringTilstandsmaskin = (aktivSide, state) => {
-    if (TILSTANDER_MED_PLIKTER[aktivSide]) {
-        return TILSTANDER_MED_PLIKTER[aktivSide](state);
+export const beregnNavigeringUtenPlikter: StandardRegistreringTilstandsmaskin = (aktivSide, state) => {
+    if (TILSTANDER_UTEN_PLIKTER[aktivSide]) {
+        return TILSTANDER_UTEN_PLIKTER[aktivSide](state);
     }
 
     return {
