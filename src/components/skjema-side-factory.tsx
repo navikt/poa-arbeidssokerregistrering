@@ -10,6 +10,7 @@ import { Knapperad } from './skjema/knapperad/knapperad';
 import Avbryt from './skjema/avbryt-lenke';
 import { SykmeldtRegistreringTilstandsmaskin } from '../lib/sykmeldt-registrering-tilstandsmaskin';
 import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
+import { StandardRegistreringUtenPlikterTilstandsmaskin } from '../lib/standard-registrering-uten-plikter-tilstandsmaskin';
 import ProgressBar from './progress-bar/progress-bar';
 import { loggAktivitet } from '../lib/amplitude';
 
@@ -19,7 +20,7 @@ export interface SkjemaProps {
 }
 
 export interface LagSkjemaSideProps {
-    urlPrefix: 'skjema' | 'sykmeldt';
+    urlPrefix: 'skjema' | 'sykmeldt' | 'opplysninger';
     validerSkjemaForSide: (side: SkjemaSide, skjemaState: SkjemaState) => boolean;
     hentKomponentForSide: (
         side: SkjemaSide,
@@ -27,7 +28,10 @@ export interface LagSkjemaSideProps {
         dispatch: Dispatch<SkjemaAction>,
         visFeilmelding: boolean,
     ) => JSX.Element;
-    beregnNavigering: StandardRegistreringTilstandsmaskin | SykmeldtRegistreringTilstandsmaskin;
+    beregnNavigering:
+        | StandardRegistreringTilstandsmaskin
+        | SykmeldtRegistreringTilstandsmaskin
+        | StandardRegistreringUtenPlikterTilstandsmaskin;
 }
 
 export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
