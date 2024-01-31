@@ -67,13 +67,8 @@ const NyeRettigheterPanel = () => {
                     </li>
                 </ul>
             </GuidePanel>
-            <div className="mt-12 flex items-center justify-center">
-                <NextLink href="/start" passHref locale={false}>
-                    <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
-                </NextLink>
-            </div>
-            <Box className="mt-12">
-                <Heading size={'large'} level={'2'} className="text-center">
+            <Box className="mt-12 pl-12 pr-12">
+                <Heading size={'medium'} level={'2'} className="text-center">
                     Hva skjer etter at du har registrert deg?
                 </Heading>
                 <List as="ul">
@@ -102,10 +97,17 @@ const NyeRettigheterPanel = () => {
                     </List.Item>
                 </List>
             </Box>
-            <ReadMore header="Hvilke opplysninger henter vi inn og hva brukes de til?">
-                <DineOpplysninger />
-            </ReadMore>
-            <div className="text-center p-6">
+            <div className="pl-12 pr-12">
+                <ReadMore header="Hvilke opplysninger henter vi inn og hva brukes de til?">
+                    <DineOpplysninger />
+                </ReadMore>
+            </div>
+            <div className="mt-12 flex items-center justify-center">
+                <NextLink href="/start" passHref locale={false}>
+                    <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
+                </NextLink>
+            </div>
+            <div className="text-center p-6 mt-6">
                 <Heading size={'medium'} level="3" spacing={true}>
                     {tekst('elektroniskId')}
                 </Heading>
