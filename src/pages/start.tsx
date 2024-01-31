@@ -27,11 +27,11 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
     const { registreringType } = data;
 
     switch (registreringType) {
-        case RegistreringType.ORDINAER_REGISTRERING: {
-            return `/skjema/${SkjemaSide.DinSituasjon}/`;
-        }
         case RegistreringType.REGISTRERING: {
             return `/opplysninger/${SkjemaSide.DinSituasjon}/`;
+        }
+        case RegistreringType.ORDINAER_REGISTRERING: {
+            return `/skjema/${SkjemaSide.DinSituasjon}/`;
         }
         case RegistreringType.SYKMELDT_REGISTRERING: {
             return '/mer-oppfolging/';
@@ -75,7 +75,13 @@ const Start = () => {
             const brukergruppe = beregnBrukergruppe(servicegruppe, alder);
             window.sessionStorage.setItem('beregnetBrukergruppe', brukergruppe);
             window.sessionStorage.setItem('registreringType', registreringType);
-            if ([RegistreringType.ORDINAER_REGISTRERING, RegistreringType.REAKTIVERING].includes(registreringType)) {
+            if (
+                [
+                    RegistreringType.ORDINAER_REGISTRERING,
+                    RegistreringType.REAKTIVERING,
+                    RegistreringType.REGISTRERING,
+                ].includes(registreringType)
+            ) {
                 loggFlyt({ hendelse: 'Starter registrering' });
             }
             if (RegistreringType.ALLEREDE_REGISTRERT === registreringType) {
@@ -101,11 +107,11 @@ const Start = () => {
             data.registreringType = RegistreringType.UNDER_18;
         }
         // Setter egen registreringstype når plikter er fjernet
-        if (fjernPlikter && data.registreringstype === RegistreringType.ORDINAER_REGISTRERING) {
-            data.registreringsType = RegistreringType.REGISTRERING;
+        if (fjernPlikter && data.registreringType === RegistreringType.ORDINAER_REGISTRERING) {
+            data.registreringType = RegistreringType.REGISTRERING;
         }
         router.push(hentNesteSideUrl(data, dittNavUrl));
-    }, [data, router, dittNavUrl, perioder, e, sperrUnder18]);
+    }, [data, router, dittNavUrl, perioder, e, sperrUnder18, fjernPlikter]);
 
     useEffect(() => {
         if (error) {
