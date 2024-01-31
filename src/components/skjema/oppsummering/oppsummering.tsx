@@ -35,7 +35,7 @@ const TEKSTER: Tekster<string> = {
 
 interface OppsummeringProps {
     skjemaState: SkjemaState;
-    skjemaPrefix: '/skjema/' | '/sykmeldt/';
+    skjemaPrefix: '/skjema/' | '/sykmeldt/' | '/opplysninger/';
 }
 
 const Oppsummering = ({ skjemaState, skjemaPrefix }: OppsummeringProps) => {

@@ -36,6 +36,16 @@ export type StandardSkjemaSide =
     | SkjemaSide.Oppsummering
     | SkjemaSide.FullforRegistrering;
 
+export type StandardSkjemaSideUtenPlikter =
+    | SkjemaSide.DinSituasjon
+    | SkjemaSide.SisteJobb
+    | SkjemaSide.Utdanning
+    | SkjemaSide.GodkjentUtdanning
+    | SkjemaSide.BestaattUtdanning
+    | SkjemaSide.Helseproblemer
+    | SkjemaSide.AndreProblemer
+    | SkjemaSide.Oppsummering;
+
 export type SykmeldtSkjemaSide =
     | SkjemaSide.SykmeldtFremtidigSituasjon
     | SkjemaSide.Utdanning

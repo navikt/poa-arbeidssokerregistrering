@@ -1,14 +1,16 @@
-import { SkjemaSide, SkjemaState } from '../model/skjema';
-import { Dispatch, useEffect, useReducer, useRef, useState } from 'react';
-import { SkjemaAction, skjemaReducer, SkjemaReducer } from '../lib/skjema-state';
 import { NextPage } from 'next';
+import { Dispatch, useEffect, useReducer, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+
+import { SkjemaSide, SkjemaState } from '../model/skjema';
+import { SkjemaAction, skjemaReducer, SkjemaReducer } from '../lib/skjema-state';
 import styles from '../styles/skjema.module.css';
 import TilbakeKnapp from './skjema/tilbake-knapp';
 import { Knapperad } from './skjema/knapperad/knapperad';
 import Avbryt from './skjema/avbryt-lenke';
 import { SykmeldtRegistreringTilstandsmaskin } from '../lib/sykmeldt-registrering-tilstandsmaskin';
 import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
+import { StandardRegistreringUtenPlikterTilstandsmaskin } from '../lib/standard-registrering-uten-plikter-tilstandsmaskin';
 import ProgressBar from './progress-bar/progress-bar';
 import { loggAktivitet } from '../lib/amplitude';
 
@@ -18,7 +20,7 @@ export interface SkjemaProps {
 }
 
 export interface LagSkjemaSideProps {
-    urlPrefix: 'skjema' | 'sykmeldt';
+    urlPrefix: 'skjema' | 'sykmeldt' | 'opplysninger';
     validerSkjemaForSide: (side: SkjemaSide, skjemaState: SkjemaState) => boolean;
     hentKomponentForSide: (
         side: SkjemaSide,
@@ -26,7 +28,10 @@ export interface LagSkjemaSideProps {
         dispatch: Dispatch<SkjemaAction>,
         visFeilmelding: boolean,
     ) => JSX.Element;
-    beregnNavigering: StandardRegistreringTilstandsmaskin | SykmeldtRegistreringTilstandsmaskin;
+    beregnNavigering:
+        | StandardRegistreringTilstandsmaskin
+        | SykmeldtRegistreringTilstandsmaskin
+        | StandardRegistreringUtenPlikterTilstandsmaskin;
 }
 
 export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;

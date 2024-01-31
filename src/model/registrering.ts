@@ -7,6 +7,7 @@ export enum RegistreringType {
     SYKMELDT_REGISTRERING = 'SYKMELDT_REGISTRERING',
     ORDINAER_REGISTRERING = 'ORDINAER_REGISTRERING',
     UNDER_18 = 'UNDER_18',
+    REGISTRERING = 'REGISTRERING',
 }
 
 export enum Formidlingsgruppe {
