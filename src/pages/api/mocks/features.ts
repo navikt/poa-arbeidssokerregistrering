@@ -10,7 +10,7 @@ export const mockToggles = {
         {
             name: 'arbeidssokerregistrering.fjern-plikter',
             type: 'release',
-            enabled: true,
+            enabled: false,
             stale: false,
             strategies: [
                 {
