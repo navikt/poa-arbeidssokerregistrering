@@ -30,6 +30,9 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
         case RegistreringType.ORDINAER_REGISTRERING: {
             return `/skjema/${SkjemaSide.DinSituasjon}/`;
         }
+        case RegistreringType.REGISTRERING: {
+            return `/opplysninger/${SkjemaSide.DinSituasjon}/`;
+        }
         case RegistreringType.SYKMELDT_REGISTRERING: {
             return '/mer-oppfolging/';
         }
@@ -60,6 +63,7 @@ const Start = () => {
     const router = useRouter();
     const { toggles } = useFeatureToggles();
     const sperrUnder18 = toggles['arbeidssokerregistrering.bruk-under-18-sperre'] && aarsTall > 2023;
+    const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
@@ -91,9 +95,14 @@ const Start = () => {
                 });
             }
         }
+        // Setter egen registreringstype for de under 18
         const { alder } = data;
         if (sperrUnder18 && alder < 18) {
             data.registreringType = RegistreringType.UNDER_18;
+        }
+        // Setter egen registreringstype når plikter er fjernet
+        if (fjernPlikter && data.registreringstype === RegistreringType.ORDINAER_REGISTRERING) {
+            data.registreringsType = RegistreringType.REGISTRERING;
         }
         router.push(hentNesteSideUrl(data, dittNavUrl));
     }, [data, router, dittNavUrl, perioder, e, sperrUnder18]);
