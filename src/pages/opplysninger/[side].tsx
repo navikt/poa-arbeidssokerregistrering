@@ -79,7 +79,11 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
             />
         ),
         [SkjemaSide.OppsummeringUtenPlikter]: (
-            <OppsummeringUtenPlikter skjemaState={skjemaState} skjemaPrefix={'/opplysninger/'} />
+            <OppsummeringUtenPlikter
+                skjemaState={skjemaState}
+                skjemaPrefix={'/opplysninger/'}
+                onSubmit={() => dispatch({ type: 'SenderSkjema' })}
+            />
         ),
     };
 };
