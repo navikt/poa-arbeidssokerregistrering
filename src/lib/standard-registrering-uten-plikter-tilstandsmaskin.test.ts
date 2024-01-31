@@ -1,6 +1,6 @@
 import { beregnNavigering } from './standard-registrering-uten-plikter-tilstandsmaskin';
 import { SkjemaSide } from '../model/skjema';
-import { DinSituasjon, Utdanningsnivaa } from '../model/sporsmal';
+import { DinSituasjon, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 const sisteStilling = {
     label: 'Klovn kommunal sektor',

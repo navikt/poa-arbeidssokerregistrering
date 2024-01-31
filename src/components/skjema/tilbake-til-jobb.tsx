@@ -4,9 +4,10 @@ import useSprak from '../../hooks/useSprak';
 
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
-import { hentTekst, SporsmalId, TilbakeIArbeid } from '../../model/sporsmal';
+import { hentTekst } from '../../model/sporsmal';
 
 import styles from '../../styles/skjema.module.css';
+import { SporsmalId, TilbakeIArbeid } from '@navikt/arbeidssokerregisteret-utils';
 
 const TilbakeTilJobb = (props: SkjemaKomponentProps<TilbakeIArbeid>) => {
     const sprak = useSprak();

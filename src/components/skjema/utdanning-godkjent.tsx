@@ -5,9 +5,10 @@ import useSprak from '../../hooks/useSprak';
 
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
-import { hentTekst, SporsmalId, UtdanningGodkjentValg } from '../../model/sporsmal';
+import { hentTekst } from '../../model/sporsmal';
 
 import styles from '../../styles/skjema.module.css';
+import { SporsmalId, UtdanningGodkjentValg } from '@navikt/arbeidssokerregisteret-utils';
 
 const UtdanningGodkjent = (props: SkjemaKomponentProps<UtdanningGodkjentValg>) => {
     const { onChange, valgt, visFeilmelding } = props;

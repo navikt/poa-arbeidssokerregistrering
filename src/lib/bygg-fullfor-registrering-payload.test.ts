@@ -1,5 +1,5 @@
 import byggFullforRegistreringPayload, { aldriJobbet } from './bygg-fullfor-registrering-payload';
-import { DinSituasjon, SisteStillingValg, SporsmalId } from '../model/sporsmal';
+import { DinSituasjon, SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 import { expect } from '@jest/globals';
 
 describe('bygg-fullfor-registrering-payload', () => {
@@ -21,7 +21,7 @@ describe('bygg-fullfor-registrering-payload', () => {
                 {
                     sisteStilling: SisteStillingValg.HAR_IKKE_HATT_JOBB,
                 },
-                'sykmeldt'
+                'sykmeldt',
             );
             expect(Object.keys(resultat)).not.toContain('sisteStilling');
         });
@@ -31,7 +31,7 @@ describe('bygg-fullfor-registrering-payload', () => {
                 sisteStilling: SisteStillingValg.HAR_IKKE_HATT_JOBB,
             });
             const sisteStillingTekst = teksterForBesvarelse.find(
-                (spm) => spm.sporsmalId === SporsmalId.sisteStilling
+                (spm) => spm.sporsmalId === SporsmalId.sisteStilling,
             )?.svar;
 
             expect(sisteStillingTekst).toBe('Ingen yrkeserfaring');
@@ -42,7 +42,7 @@ describe('bygg-fullfor-registrering-payload', () => {
                 dinSituasjon: DinSituasjon.ALDRI_HATT_JOBB,
             });
             const sisteStillingTekst = teksterForBesvarelse.find(
-                (spm) => spm.sporsmalId === SporsmalId.sisteStilling
+                (spm) => spm.sporsmalId === SporsmalId.sisteStilling,
             )?.svar;
 
             expect(sisteStillingTekst).toBe('Ingen yrkeserfaring');
@@ -52,7 +52,7 @@ describe('bygg-fullfor-registrering-payload', () => {
                 sisteJobb: { styrk08: '12345', label: '', konseptId: 123 },
             });
             const sisteStillingTekst = teksterForBesvarelse.find(
-                (spm) => spm.sporsmalId === SporsmalId.sisteStilling
+                (spm) => spm.sporsmalId === SporsmalId.sisteStilling,
             )?.svar;
 
             expect(sisteStillingTekst).toBe('Ikke oppgitt');
@@ -62,7 +62,7 @@ describe('bygg-fullfor-registrering-payload', () => {
                 sisteJobb: { styrk08: '12345', label: 'Kokk', konseptId: 123 },
             });
             const sisteStillingTekst = teksterForBesvarelse.find(
-                (spm) => spm.sporsmalId === SporsmalId.sisteStilling
+                (spm) => spm.sporsmalId === SporsmalId.sisteStilling,
             )?.svar;
 
             expect(sisteStillingTekst).toBe('Kokk');
@@ -72,7 +72,7 @@ describe('bygg-fullfor-registrering-payload', () => {
                 sisteJobb: { styrk08: 'sdfsd', label: '', konseptId: 123 },
             });
             const sisteStillingSporsmalstekst = teksterForBesvarelse.find(
-                (spm) => spm.sporsmalId === SporsmalId.sisteStilling
+                (spm) => spm.sporsmalId === SporsmalId.sisteStilling,
             )?.sporsmal;
 
             expect(sisteStillingSporsmalstekst).toBe('Hva er din siste jobb?');

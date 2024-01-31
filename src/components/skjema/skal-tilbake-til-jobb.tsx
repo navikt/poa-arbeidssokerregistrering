@@ -1,7 +1,6 @@
-import { Alert, BodyLong, Button, GuidePanel, Heading, Panel } from '@navikt/ds-react';
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { Alert, BodyLong, Button, GuidePanel, Heading } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
-import styles from '../../styles/skjema.module.css';
 import { useRouter } from 'next/router';
 import { SkjemaSide } from '../../model/skjema';
 

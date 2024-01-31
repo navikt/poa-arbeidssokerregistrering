@@ -5,10 +5,9 @@ import Head from 'next/head';
 
 import useSprak from '../../../hooks/useSprak';
 
-import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster, SisteJobb } from '@navikt/arbeidssokerregisteret-utils';
 import StillingsSok from './stillings-sok';
 import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
-import { SisteJobb } from '../../../model/skjema';
 import { fetcher } from '../../../lib/api-utils';
 import styles from '../../../styles/skjema.module.css';
 

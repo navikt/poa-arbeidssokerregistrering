@@ -1,4 +1,4 @@
-import { SisteJobb, SkjemaState } from '../model/skjema';
+import { SkjemaState } from '../model/skjema';
 import { Reducer } from 'react';
 import {
     DinSituasjon,
@@ -9,7 +9,8 @@ import {
     TilbakeIArbeid,
     UtdanningGodkjentValg,
     Utdanningsnivaa,
-} from '../model/sporsmal';
+    SisteJobb,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 export type SkjemaReducer = Reducer<SkjemaState, SkjemaAction>;
 export type SkjemaAction =

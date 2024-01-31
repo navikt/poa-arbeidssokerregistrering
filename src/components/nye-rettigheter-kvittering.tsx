@@ -2,7 +2,7 @@ import { GuidePanel, Heading, Link, BodyShort, Box, List } from '@navikt/ds-reac
 
 import useSprak from '../hooks/useSprak';
 
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 const TEKSTER: Tekster<string> = {
     nb: {

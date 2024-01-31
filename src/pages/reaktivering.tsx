@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { BodyLong, Button, GuidePanel, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../hooks/useSprak';
 import { fetcher as api } from '../lib/api-utils';
 import { loggAktivitet, loggStoppsituasjon, loggFlyt } from '../lib/amplitude';

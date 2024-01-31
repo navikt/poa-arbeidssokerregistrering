@@ -8,12 +8,12 @@ import SykmeldtFremtidigSituasjon from '../../components/skjema/sykmeldt-fremtid
 import TilbakeTilJobb from '../../components/skjema/tilbake-til-jobb';
 import SkalTilbakeTilJobb from '../../components/skjema/skal-tilbake-til-jobb';
 import { SkjemaAction } from '../../lib/skjema-state';
-import { SporsmalId } from '../../model/sporsmal';
 import AndreProblemer from '../../components/skjema/andre-problemer';
 import skjemaSideFactory, { SiderMap } from '../../components/skjema-side-factory';
 import { loggBesvarelse } from '../../lib/amplitude';
 import SykmeldtOppsummering from '../../components/skjema/oppsummering/sykmeldt-oppsummering';
 import { withAuthenticatedPage } from '../../auth/withAuthentication';
+import { SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {

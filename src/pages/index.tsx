@@ -8,7 +8,7 @@ import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import DineOpplysninger from '../components/forsiden/dine-opplysninger';
 import DineOpplysningerGammel from '../components/forsiden/dine-opplysninger-gammel';
 import RettigheterPanel from '../components/forsiden/rettigheter';

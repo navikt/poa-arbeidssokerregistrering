@@ -7,7 +7,8 @@ import {
     TilbakeIArbeid,
     UtdanningGodkjentValg,
     Utdanningsnivaa,
-} from './sporsmal';
+    SisteJobb,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 export enum SkjemaSide {
     DinSituasjon = '0',
@@ -55,12 +56,6 @@ export type SykmeldtSkjemaSide =
     | SkjemaSide.Oppsummering
     | SkjemaSide.TilbakeTilJobb
     | SkjemaSide.SkalTilbakeTilJobb;
-
-export type SisteJobb = {
-    label: string;
-    konseptId: Number;
-    styrk08: string;
-};
 
 export type Navigering<T extends SkjemaSide> = {
     neste?: T;

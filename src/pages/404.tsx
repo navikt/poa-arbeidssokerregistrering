@@ -1,7 +1,7 @@
 import React from 'react';
 import { ContentContainer } from '@navikt/ds-react';
 import Head from 'next/head';
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {

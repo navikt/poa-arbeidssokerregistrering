@@ -1,14 +1,15 @@
 import {
     DinSituasjon,
-    hentTekst,
     JaEllerNei,
     SisteStillingValg,
     SporsmalId,
     Svar,
     UtdanningGodkjentValg,
     Utdanningsnivaa,
-} from '../model/sporsmal';
-import { Side, SisteJobb, SkjemaState } from '../model/skjema';
+    SisteJobb,
+} from '@navikt/arbeidssokerregisteret-utils';
+import { Side, SkjemaState } from '../model/skjema';
+import { hentTekst } from '../model/sporsmal';
 
 export const aldriJobbet: SisteJobb = {
     label: 'X',
@@ -72,7 +73,7 @@ function byggFullforRegistreringPayload(skjemaState: SkjemaState, side: Side = '
             }
             return resultat;
         },
-        { besvarelse: {}, teksterForBesvarelse: [] as TeksterForBesvarelse } as Payload
+        { besvarelse: {}, teksterForBesvarelse: [] as TeksterForBesvarelse } as Payload,
     );
 
     const sisteStilling = harAldriJobbet ? aldriJobbet : skjemaState.sisteJobb;
