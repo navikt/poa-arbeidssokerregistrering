@@ -3,9 +3,9 @@ import NextLink from 'next/link';
 import Head from 'next/head';
 import useSWR from 'swr';
 
-import { hentTekst, SisteStillingValg, SporsmalId } from '../../../model/sporsmal';
+import { hentTekst } from '../../../model/sporsmal';
 import OppsummeringSvg from './oppsummering-svg';
-import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster, SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../../hooks/useSprak';
 import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
 import { fetcher } from '../../../lib/api-utils';

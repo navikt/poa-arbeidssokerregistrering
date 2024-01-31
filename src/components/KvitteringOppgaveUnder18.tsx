@@ -3,7 +3,7 @@ import { Alert, AlertProps, BodyLong, BodyShort, GuidePanel, Heading, Link } fro
 
 import useSprak from '../hooks/useSprak';
 
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { formaterDato } from '../lib/date-utils';
 import { Kontaktinformasjon } from './kontaktinformasjonUnder18';
 

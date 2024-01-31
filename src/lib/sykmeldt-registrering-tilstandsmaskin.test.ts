@@ -1,6 +1,6 @@
 import { SkjemaSide } from '../model/skjema';
 import { beregnNavigering } from './sykmeldt-registrering-tilstandsmaskin';
-import { FremtidigSituasjon, TilbakeIArbeid, Utdanningsnivaa } from '../model/sporsmal';
+import { FremtidigSituasjon, TilbakeIArbeid, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 describe('Sykmeldt registrering tilstandsmaskin', () => {
     describe('Fremtidig situasjon', () => {

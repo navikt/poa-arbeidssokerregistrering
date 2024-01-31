@@ -5,8 +5,7 @@ import {
     SkjemaState,
     StandardSkjemaSideUtenPlikter,
 } from '../model/skjema';
-
-import { DinSituasjon, Utdanningsnivaa } from '../model/sporsmal';
+import { DinSituasjon, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUtenPlikter> = {
     [SkjemaSide.DinSituasjon]: (skjemaState: SkjemaState) => {

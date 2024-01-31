@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { erStottetSprak, Sprak } from '../lib/lag-hent-tekst-for-sprak';
+import { erStottetSprak, Sprak } from '@navikt/arbeidssokerregisteret-utils';
 
 const useSprak = (): Sprak => {
     const { locale } = useRouter() || { locale: 'nb' };

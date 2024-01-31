@@ -1,6 +1,12 @@
 import { SkjemaState } from '../model/skjema';
 import { oppdaterDinSituasjon, oppdaterUtdanning } from './skjema-state';
-import { DinSituasjon, JaEllerNei, SisteStillingValg, UtdanningGodkjentValg, Utdanningsnivaa } from '../model/sporsmal';
+import {
+    DinSituasjon,
+    JaEllerNei,
+    SisteStillingValg,
+    UtdanningGodkjentValg,
+    Utdanningsnivaa,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 const sisteStilling = {
     label: 'Klovn kommunal sektor',
@@ -33,13 +39,13 @@ describe('Oppdatering av skjemastate', () => {
         };
 
         expect(oppdaterDinSituasjon(state, DinSituasjon.USIKKER_JOBBSITUASJON).sisteStilling).toEqual(
-            SisteStillingValg.HAR_HATT_JOBB
+            SisteStillingValg.HAR_HATT_JOBB,
         );
         expect(oppdaterDinSituasjon(state, DinSituasjon.JOBB_OVER_2_AAR).sisteStilling).toEqual(
-            SisteStillingValg.HAR_HATT_JOBB
+            SisteStillingValg.HAR_HATT_JOBB,
         );
         expect(oppdaterDinSituasjon(state, DinSituasjon.AKKURAT_FULLFORT_UTDANNING).sisteStilling).toEqual(
-            SisteStillingValg.HAR_HATT_JOBB
+            SisteStillingValg.HAR_HATT_JOBB,
         );
     });
     test('setter siste-stilling verdien til undefined', () => {

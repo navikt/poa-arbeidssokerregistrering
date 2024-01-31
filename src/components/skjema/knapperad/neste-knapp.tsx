@@ -1,9 +1,7 @@
 import { Button } from '@navikt/ds-react';
 import { useCallback } from 'react';
-
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../../hooks/useSprak';
-
-import lagHentTekstForSprak, { Tekster } from '../../../lib/lag-hent-tekst-for-sprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {

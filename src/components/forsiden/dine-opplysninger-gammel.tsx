@@ -2,7 +2,7 @@ import { BodyLong, Heading, Link } from '@navikt/ds-react';
 
 import useSprak from '../../hooks/useSprak';
 
-import lagHentTekstForSprak, { Tekster } from '../../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 const TEKSTER: Tekster<string> = {
     nb: {

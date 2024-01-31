@@ -6,10 +6,11 @@ import useSprak from '../../hooks/useSprak';
 
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
-import { DinSituasjon as Jobbsituasjon, hentTekst, SporsmalId } from '../../model/sporsmal';
+import { hentTekst } from '../../model/sporsmal';
 import { fetcher } from '../../lib/api-utils';
 
 import styles from '../../styles/skjema.module.css';
+import { SporsmalId, DinSituasjon as Jobbsituasjon } from '@navikt/arbeidssokerregisteret-utils';
 
 const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     const { onChange, valgt, visFeilmelding } = props;

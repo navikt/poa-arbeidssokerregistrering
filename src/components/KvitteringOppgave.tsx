@@ -1,4 +1,4 @@
-import lagHentTekstForSprak, { Tekster } from '../lib/lag-hent-tekst-for-sprak';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../hooks/useSprak';
 import { formaterDato } from '../lib/date-utils';
 import virkedager from '@alheimsins/virkedager';

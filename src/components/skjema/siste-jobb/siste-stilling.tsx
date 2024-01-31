@@ -4,9 +4,10 @@ import useSprak from '../../../hooks/useSprak';
 
 import RadioGruppe from '../../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
-import { hentTekst, SisteStillingValg } from '../../../model/sporsmal';
+import { hentTekst } from '../../../model/sporsmal';
 
 import styles from '../../../styles/skjema.module.css';
+import { SisteStillingValg } from '@navikt/arbeidssokerregisteret-utils';
 
 const SisteStilling = (props: SkjemaKomponentProps<SisteStillingValg>) => {
     const { onChange, visFeilmelding } = props;

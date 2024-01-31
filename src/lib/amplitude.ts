@@ -1,8 +1,8 @@
 import * as amplitude from '@amplitude/analytics-browser';
 
-import { DinSituasjon, SporsmalId } from '../model/sporsmal';
 import { ErrorTypes } from '../model/error';
 import { RegistreringType } from '../model/registrering';
+import { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 
 const isBrowser = () => typeof window !== 'undefined';
 
