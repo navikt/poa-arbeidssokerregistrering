@@ -9,7 +9,7 @@ import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
 import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
 import Helseproblemer from '../../components/skjema/helseproblemer';
 import AndreProblemer from '../../components/skjema/andre-problemer';
-import Oppsummering from '../../components/skjema/oppsummering/oppsummering';
+import OppsummeringUtenPlikter from '../../components/skjema/oppsummering/oppsummering-uten-plikter';
 import { beregnNavigering } from '../../lib/standard-registrering-uten-plikter-tilstandsmaskin';
 import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
 import { SkjemaAction } from '../../lib/skjema-state';
@@ -78,7 +78,13 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
                 visFeilmelding={visFeilmelding}
             />
         ),
-        [SkjemaSide.Oppsummering]: <Oppsummering skjemaState={skjemaState} skjemaPrefix={'/opplysninger/'} />,
+        [SkjemaSide.OppsummeringUtenPlikter]: (
+            <OppsummeringUtenPlikter
+                skjemaState={skjemaState}
+                skjemaPrefix={'/opplysninger/'}
+                onSubmit={() => dispatch({ type: 'SenderSkjema' })}
+            />
+        ),
     };
 };
 

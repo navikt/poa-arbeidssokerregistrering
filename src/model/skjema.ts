@@ -19,6 +19,7 @@ export enum SkjemaSide {
     Helseproblemer = '5',
     AndreProblemer = '6',
     Oppsummering = '8',
+    OppsummeringUtenPlikter = '8',
     SykmeldtFremtidigSituasjon = '9',
     TilbakeTilJobb = '10',
     SkalTilbakeTilJobb = '11',
@@ -44,7 +45,7 @@ export type StandardSkjemaSideUtenPlikter =
     | SkjemaSide.BestaattUtdanning
     | SkjemaSide.Helseproblemer
     | SkjemaSide.AndreProblemer
-    | SkjemaSide.Oppsummering;
+    | SkjemaSide.OppsummeringUtenPlikter;
 
 export type SykmeldtSkjemaSide =
     | SkjemaSide.SykmeldtFremtidigSituasjon
