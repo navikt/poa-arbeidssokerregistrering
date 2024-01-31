@@ -87,7 +87,7 @@ const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUten
             fremdrift: 7 / 9,
         };
     },
-    [SkjemaSide.Oppsummering]: () => {
+    [SkjemaSide.OppsummeringUtenPlikter]: () => {
         return {
             neste: undefined,
             forrige: SkjemaSide.AndreProblemer,
