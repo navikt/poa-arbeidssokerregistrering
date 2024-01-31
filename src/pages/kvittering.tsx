@@ -40,8 +40,8 @@ const Kvittering = () => {
     const { dagpengesoknadUrl, dittNavUrl } = useConfig() as Config;
 
     return (
-        <>
-            <Heading level="1" size={'large'} className={'mb-8'}>
+        <div className="max-w-4xl flex items-center justify-center flex-wrap">
+            <Heading level="1" size={'large'}>
                 {tekst('header')}
             </Heading>
             {fjernPlikter && (
@@ -49,36 +49,38 @@ const Kvittering = () => {
                     <NyeRettigheterKvittering />
                 </div>
             )}
-            <GuidePanel poster>
-                <Heading level={'2'} size={'medium'} className={'mb-6'}>
-                    {tekst('dagpengerTittel')}
-                </Heading>
-                <BodyLong>{tekst('permittert')}</BodyLong>
-                <BodyLong>{tekst('tidligstFaaDagpenger')}</BodyLong>
-                <BodyLong>{tekst('sendeSoknaden')}</BodyLong>
-            </GuidePanel>
-            <a
-                href={dagpengesoknadUrl}
-                onClick={() =>
-                    loggAktivitet({
-                        aktivitet: 'Går til dagpenger fra kvittering',
-                    })
-                }
-                className="my-8 navds-button navds-button--primary navds-button--medium"
-            >
-                {tekst('sokDagpenger')}
-            </a>
-            <Link
-                href={dittNavUrl}
-                onClick={() =>
-                    loggAktivitet({
-                        aktivitet: 'Velger å ikke gå til dagpenger fra kvittering',
-                    })
-                }
-            >
-                {tekst('skalIkkeSoke')}
-            </Link>
-        </>
+            <div className="flex flex-col items-center justify-center flex-wrap">
+                <GuidePanel poster>
+                    <Heading level={'2'} size={'medium'} className={'mb-6'}>
+                        {tekst('dagpengerTittel')}
+                    </Heading>
+                    <BodyLong>{tekst('permittert')}</BodyLong>
+                    <BodyLong>{tekst('tidligstFaaDagpenger')}</BodyLong>
+                    <BodyLong>{tekst('sendeSoknaden')}</BodyLong>
+                </GuidePanel>
+                <a
+                    href={dagpengesoknadUrl}
+                    onClick={() =>
+                        loggAktivitet({
+                            aktivitet: 'Går til dagpenger fra kvittering',
+                        })
+                    }
+                    className="my-8 navds-button navds-button--primary navds-button--medium"
+                >
+                    {tekst('sokDagpenger')}
+                </a>
+                <Link
+                    href={dittNavUrl}
+                    onClick={() =>
+                        loggAktivitet({
+                            aktivitet: 'Velger å ikke gå til dagpenger fra kvittering',
+                        })
+                    }
+                >
+                    {tekst('skalIkkeSoke')}
+                </Link>
+            </div>
+        </div>
     );
 };
 
