@@ -19,6 +19,20 @@ const TEKSTER: Tekster<string> = {
         viktig: 'Viktig:',
         kontakterDegInnen: 'Du vil bli kontaktet av en veileder innen utgangen av ',
         kontaktopplysningerOppdatert: 'Kontaktopplysningene dine må være oppdatert, ellers kan vi ikke nå deg.',
+        henvendelseMottatt: 'Henvendelse mottatt',
+        trengerSamtykke:
+            'Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som arbeidssøker.',
+        veilederKontakterDeg: 'En veileder hos oss vil kontakte deg innen utgangen av',
+        veilederenHjelperDeg: 'Veilederen vil hjelpe deg videre med samtykke og registrering.',
+        hvisDuIkkeVilRegistreres:
+            'Hvis du ikke ønsker å registrere deg som arbeidssøker likevel eller heller vil snakke med oss på andre måter enn telefon så',
+        taKontaktMedOss: 'ta kontakt med oss her',
+        klarteIkkeOppretteHenvendelsen: 'Klarte ikke å opprette henvendelsen',
+        duErUnder18:
+            'Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som arbeidssøker.',
+        viHarForsoektOppretteMelding:
+            'Vi har forsøkt å opprette en melding til en veileder som kan hjelpe deg videre, men det gikk ikke.',
+        proevSenere: 'Prøv å registrere deg igjen senere, men hvis det fortsetter å feile så',
     },
 };
 
@@ -33,15 +47,12 @@ export const KvitteringOppgaveOpprettet = () => {
     return (
         <GuidePanel poster>
             <Alert variant="success" className={'mb-6'}>
-                <BodyShort spacing>Henvendelse mottatt</BodyShort>
+                <BodyShort spacing>{tekst('henvendelseMottatt')}</BodyShort>
+                <BodyLong spacing>{tekst('trengerSamtykke')}</BodyLong>
                 <BodyLong spacing>
-                    Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som
-                    arbeidssøker.
+                    {tekst('veilederKontakterDeg')} {toVirkedagerFraNaa}.
                 </BodyLong>
-                <BodyLong spacing>
-                    En veileder hos oss vil kontakte deg innen utgangen av {toVirkedagerFraNaa}.
-                </BodyLong>
-                <BodyLong spacing>Veilederen vil hjelpe deg videre med samtykke og registrering.</BodyLong>
+                <BodyLong spacing>{tekst('veilederenHjelperDeg')}</BodyLong>
             </Alert>
             <BodyLong className="mb-6">
                 <strong>{tekst('kontaktopplysningerOppdatert')}</strong>
@@ -50,8 +61,8 @@ export const KvitteringOppgaveOpprettet = () => {
                 <Kontaktinformasjon />
             </div>
             <BodyLong spacing>
-                Hvis du ikke ønsker å registrere deg som arbeidssøker likevel eller heller vil snakke med oss på andre
-                måter enn telefon så <Link href="https://www.nav.no/kontaktoss">ta kontakt med oss her</Link>.
+                {tekst('hvisDuIkkeVilRegistreres')}{' '}
+                <Link href="https://www.nav.no/kontaktoss">{tekst('taKontaktMedOss')}</Link>.
             </BodyLong>
         </GuidePanel>
     );
@@ -66,17 +77,12 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     return (
         <GuidePanel poster>
             <Alert variant="error" className={'mb-6'}>
-                Klarte ikke å opprette henvendelsen
+                {tekst('klarteIkkeOppretteHenvendelsen')}
             </Alert>
+            <BodyLong spacing>{tekst('duErUnder18')}</BodyLong>
+            <BodyLong spacing>{tekst('viHarForsoektOppretteMelding')}</BodyLong>
             <BodyLong spacing>
-                Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som arbeidssøker.
-            </BodyLong>
-            <BodyLong spacing>
-                Vi har forsøkt å opprette en melding til en veileder som kan hjelpe deg videre, men det gikk ikke.
-            </BodyLong>
-            <BodyLong spacing>
-                Prøv å registrere deg igjen senere, men hvis det fortsetter å feile så{' '}
-                <Link href="https://www.nav.no/kontaktoss">ta kontakt med oss</Link>.
+                {tekst('proevSenere')} <Link href="https://www.nav.no/kontaktoss">{tekst('taKontaktMedOss')}</Link>.
             </BodyLong>
         </GuidePanel>
     );

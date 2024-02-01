@@ -18,7 +18,7 @@ import { withAuthenticatedPage } from '../../auth/withAuthentication';
 function Under18() {
     const [responseMottatt, settResponseMottatt] = useState<boolean>(false);
     const [oppretterOppgave, settOppretterOppgave] = useState<boolean>(false);
-    const [feil, settFeil] = useState<Opprettelsesfeil | undefined>(undefined);
+    const [feil, settFeil] = useState<Opprettelsesfeil | undefined>();
     const { enableMock } = useConfig() as Config;
     const brukerMock = enableMock === 'enabled';
     preload('api/kontaktinformasjon/', fetcher);

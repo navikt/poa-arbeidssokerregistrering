@@ -1,4 +1,4 @@
-import { Alert, BodyShort, Heading, HelpText, Link } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, Link } from '@navikt/ds-react';
 import { ExternalLinkIcon, PhoneIcon } from '@navikt/aksel-icons';
 import useSWR from 'swr';
 
