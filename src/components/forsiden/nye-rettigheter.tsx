@@ -6,6 +6,7 @@ import useSprak from '../../hooks/useSprak';
 import { loggAktivitet } from '../../lib/amplitude';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import DineOpplysninger from './dine-opplysninger';
+import ElektroniskID from './elektroniskID';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -113,6 +114,7 @@ const NyeRettigheterPanel = () => {
                 </Heading>
                 <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>{tekst('elektroniskIdInfo')}</BodyLong>
             </div>
+            <ElektroniskID />
         </div>
     );
 };

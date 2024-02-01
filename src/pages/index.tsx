@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { NextPage } from 'next';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
@@ -44,7 +44,8 @@ const Home: NextPage = () => {
     const { enableMock } = useConfig() as Config;
     const brukerMock = enableMock === 'enabled';
     const { toggles } = useFeatureToggles();
-    const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
+    const [visKrav, settVisKrav] = useState(false);
+    const [visRettigheter, settVisRettigheter] = useState(false);
 
     const logStartHandler = () => {
         loggAktivitet({ aktivitet: 'Går til start registrering' });
@@ -54,6 +55,14 @@ const Home: NextPage = () => {
         loggAktivitet({ aktivitet: 'Viser forsiden for arbeidssøkerregistreringen' });
     }, []);
 
+    useEffect(() => {
+        if (toggles && Object.keys(toggles).length > 0) {
+            const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
+            settVisRettigheter(fjernPlikter);
+            settVisKrav(!fjernPlikter);
+        }
+    }, [toggles]);
+
     return (
         <>
             <RedirectTilVedlikehold />
@@ -61,35 +70,37 @@ const Home: NextPage = () => {
                 <Heading className="mb-8" size="xlarge" level="1">
                     {tekst('tittel')}
                 </Heading>
-                {fjernPlikter && <NyeRettigheterPanel />}
-                {!fjernPlikter && (
-                    <Grid>
-                        <Cell xs={12} md={6}>
-                            <RettigheterPanel />
-                        </Cell>
-                        <Cell xs={12} md={6} className="mb-4">
-                            <PlikterPanel />
-                        </Cell>
-                        <Cell xs={12}>
-                            {visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}
-                        </Cell>
-                        <Cell xs={12} className="text-center p-6">
-                            <Heading size={'medium'} level="3" spacing={true}>
-                                {tekst('elektroniskId')}
-                            </Heading>
-                            <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>
-                                {tekst('elektroniskIdInfo')}
-                            </BodyLong>
-                        </Cell>
-                        <Cell xs={12} className={'text-center py-4'}>
-                            <NextLink href="/start" passHref locale={false}>
-                                <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
-                            </NextLink>
-                        </Cell>
-                    </Grid>
+                {visRettigheter && <NyeRettigheterPanel />}
+                {visKrav && (
+                    <>
+                        <Grid>
+                            <Cell xs={12} md={6}>
+                                <RettigheterPanel />
+                            </Cell>
+                            <Cell xs={12} md={6} className="mb-4">
+                                <PlikterPanel />
+                            </Cell>
+                            <Cell xs={12}>
+                                {visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}
+                            </Cell>
+                            <Cell xs={12} className="text-center p-6">
+                                <Heading size={'medium'} level="3" spacing={true}>
+                                    {tekst('elektroniskId')}
+                                </Heading>
+                                <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>
+                                    {tekst('elektroniskIdInfo')}
+                                </BodyLong>
+                            </Cell>
+                            <Cell xs={12} className={'text-center py-4'}>
+                                <NextLink href="/start" passHref locale={false}>
+                                    <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
+                                </NextLink>
+                            </Cell>
+                        </Grid>
+                        <ElektroniskID />
+                    </>
                 )}
 
-                <ElektroniskID />
                 <DemoPanel brukerMock={brukerMock} />
             </div>
         </>
