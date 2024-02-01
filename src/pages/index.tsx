@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { BodyLong, Button, Cell, Grid, Heading } from '@navikt/ds-react';
+import { BodyLong, Button, Cell, Grid, Heading, Skeleton } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
-import { useFeatureToggles } from '../contexts/featuretoggle-context';
+import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
 
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import DineOpplysninger from '../components/forsiden/dine-opplysninger';
@@ -19,6 +19,8 @@ import { Config } from '../model/config';
 import { loggAktivitet } from '../lib/amplitude';
 import ElektroniskID from '../components/forsiden/elektroniskID';
 import NyeRettigheterPanel from '../components/forsiden/nye-rettigheter';
+import { hentFeatures } from './api/features';
+import { logger } from '@navikt/next-logger';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -37,15 +39,16 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Home: NextPage = () => {
+const Home: NextPage<{ toggles: any }> = ({ toggles }) => {
     const router = useRouter();
     const { visGammelDineOpplysninger } = router.query;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const { enableMock } = useConfig() as Config;
     const brukerMock = enableMock === 'enabled';
-    const { toggles } = useFeatureToggles();
-    const [visKrav, settVisKrav] = useState(false);
-    const [visRettigheter, settVisRettigheter] = useState(false);
+
+    const fjernPlikterToggletPaa = toggles['arbeidssokerregistrering.fjern-plikter'];
+    const visRettigheter = fjernPlikterToggletPaa;
+    const visKrav = !fjernPlikterToggletPaa;
 
     const logStartHandler = () => {
         loggAktivitet({ aktivitet: 'Går til start registrering' });
@@ -54,14 +57,6 @@ const Home: NextPage = () => {
     useEffect(() => {
         loggAktivitet({ aktivitet: 'Viser forsiden for arbeidssøkerregistreringen' });
     }, []);
-
-    useEffect(() => {
-        if (toggles && Object.keys(toggles).length > 0) {
-            const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
-            settVisRettigheter(fjernPlikter);
-            settVisKrav(!fjernPlikter);
-        }
-    }, [toggles]);
 
     return (
         <>
@@ -100,11 +95,29 @@ const Home: NextPage = () => {
                         <ElektroniskID />
                     </>
                 )}
-
                 <DemoPanel brukerMock={brukerMock} />
             </div>
         </>
     );
 };
+
+export async function getServerSideProps() {
+    try {
+        const { features } = await hentFeatures();
+
+        return {
+            props: {
+                toggles: tilAktiveFeatures(features),
+            },
+        };
+    } catch (err) {
+        logger.error(`Feil ved server-side henting av feature toggles: ${err}`);
+        return {
+            props: {
+                toggles: {},
+            },
+        };
+    }
+}
 
 export default Home;
