@@ -5,19 +5,21 @@ import { fetcher } from '../lib/api-utils';
 
 const FeatureToggleContext = createContext();
 
+function tilAktiveFeatures(data = []) {
+    return data.reduce((features, feature) => {
+        if (feature.enabled) {
+            features[feature.name] = true;
+        }
+        return features;
+    }, {});
+}
 function FeatureToggleProvider({ children }) {
     const [toggles, setToggles] = useState({});
     const { data } = useSWR('api/features/', fetcher);
 
     useEffect(() => {
         if (data) {
-            const aktiveFeatures = data.reduce((features, feature) => {
-                if (feature.enabled) {
-                    features[feature.name] = true;
-                }
-                return features;
-            }, {});
-            setToggles(aktiveFeatures);
+            setToggles(tilAktiveFeatures(data));
         }
     }, [data]);
 
@@ -32,4 +34,4 @@ function useFeatureToggles() {
     return context;
 }
 
-export { FeatureToggleProvider, useFeatureToggles };
+export { FeatureToggleProvider, useFeatureToggles, tilAktiveFeatures };
