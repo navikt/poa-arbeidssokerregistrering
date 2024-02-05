@@ -1,9 +1,9 @@
 import virkedager from '@alheimsins/virkedager';
 import { Alert, AlertProps, BodyLong, BodyShort, GuidePanel, Heading, Link } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
 
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { formaterDato } from '../lib/date-utils';
 import { Kontaktinformasjon } from './kontaktinformasjonUnder18';
 
@@ -24,6 +24,8 @@ const TEKSTER: Tekster<string> = {
             'Du er under 18 år og da trenger du samtykke fra foresatte for å kunne registrere deg som arbeidssøker.',
         veilederKontakterDeg: 'En veileder hos oss vil kontakte deg innen utgangen av',
         veilederenHjelperDeg: 'Veilederen vil hjelpe deg videre med samtykke og registrering.',
+        lesMerOmSamtykkeIntro: 'Du kan lese mer om',
+        samtykkeIntroLenkeTekst: 'samtykke fra forestatte på nav.no',
         hvisDuIkkeVilRegistreres:
             'Hvis du ikke ønsker å registrere deg som arbeidssøker likevel eller heller vil snakke med oss på andre måter enn telefon så',
         taKontaktMedOss: 'ta kontakt med oss her',
@@ -53,6 +55,10 @@ export const KvitteringOppgaveOpprettet = () => {
                     {tekst('veilederKontakterDeg')} {toVirkedagerFraNaa}.
                 </BodyLong>
                 <BodyLong spacing>{tekst('veilederenHjelperDeg')}</BodyLong>
+                <BodyLong spacing>
+                    {tekst('lesMerOmSamtykkeIntro')}{' '}
+                    <Link href="https://www.nav.no/samtykke-oppfolging-unge">{tekst('samtykkeIntroLenkeTekst')}</Link>.
+                </BodyLong>
             </Alert>
             <BodyLong className="mb-6">
                 <strong>{tekst('kontaktopplysningerOppdatert')}</strong>

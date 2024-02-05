@@ -55,6 +55,7 @@ type AktivitetData =
     | { aktivitet: 'Åpner bistandsbehov' }
     | { aktivitet: 'Går til lovdata' }
     | { aktivitet: 'Går til personvernsiden' }
+    | { aktivitet: 'Går til Samtykke fra foresatte' }
     | { aktivitet: 'Åpner personopplysninger' }
     | { aktivitet: 'Går til kontakt oss' };
 
