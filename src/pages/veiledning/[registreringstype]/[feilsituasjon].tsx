@@ -40,7 +40,7 @@ const TEKSTER: Tekster<string> = {
 const KontaktVeileder = (props: Feilsituasjon) => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const [responseMottatt, settResponseMottatt] = useState<boolean>(false);
-    const [feil, settFeil] = useState<Opprettelsesfeil | undefined>(undefined);
+    const [feil, settFeil] = useState<Opprettelsesfeil | undefined>();
     const Router = useRouter();
 
     const opprettOppgave = useCallback(async () => {
