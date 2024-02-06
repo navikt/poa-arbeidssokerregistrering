@@ -7,6 +7,7 @@ import useSprak from '../hooks/useSprak';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Kontaktinformasjon as KontaktInfo } from '../model/kontaktinformasjon';
 import { fetcher } from '../lib/api-utils';
+import { loggAktivitet } from '../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -25,6 +26,10 @@ export const Kontaktinformasjon = () => {
     const tlfNav = data?.telefonnummerHosNav;
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+
+    const gaarTilEndreOpplysninger = () => {
+        loggAktivitet({ aktivitet: 'Går til endre personopplysninger', komponent: 'kontaktinformasjonUnder18' });
+    };
 
     if (tlfKrr || tlfNav) {
         return (

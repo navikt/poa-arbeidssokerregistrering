@@ -51,6 +51,10 @@ export const KvitteringOppgaveOpprettet = () => {
         loggAktivitet({ aktivitet: 'Går til Samtykke fra foresatte' });
     };
 
+    const gaarTilKontaktOss = () => {
+        loggAktivitet({ aktivitet: 'Går til kontakt oss', komponent: 'KvitteringOppgaveUnder18' });
+    };
+
     return (
         <GuidePanel poster>
             <Alert variant="success" className={'mb-6'}>
@@ -76,7 +80,10 @@ export const KvitteringOppgaveOpprettet = () => {
             </div>
             <BodyLong spacing>
                 {tekst('hvisDuIkkeVilRegistreres')}{' '}
-                <Link href="https://www.nav.no/kontaktoss">{tekst('taKontaktMedOss')}</Link>.
+                <Link href="https://www.nav.no/kontaktoss" onClick={gaarTilKontaktOss}>
+                    {tekst('taKontaktMedOss')}
+                </Link>
+                .
             </BodyLong>
         </GuidePanel>
     );
