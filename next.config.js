@@ -16,11 +16,11 @@ const nextConfig = {
     reactStrictMode: true,
     basePath,
     assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX,
-    // i18n: {
-    //     locales: ['nb', 'en', 'nn', 'pl'],
-    //     defaultLocale: 'nb',
-    //     localeDetection: false,
-    // },
+    i18n: {
+        locales: ['nb', 'en', 'nn'],
+        defaultLocale: 'nb',
+        localeDetection: false,
+    },
     trailingSlash: false,
     output: 'standalone',
     publicRuntimeConfig: {
