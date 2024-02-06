@@ -4,10 +4,25 @@ import {
     fetchDecoratorReact,
     DecoratorEnvProps,
     DecoratorFetchProps,
+    DecoratorLocale,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { logger } from '@navikt/next-logger';
 
 const dekoratorEnv = process.env.DEKORATOR_ENV as Exclude<DecoratorEnvProps['env'], 'localhost'>;
+const availableLanguages = [
+    {
+        locale: 'nb',
+        handleInApp: true,
+    },
+    {
+        locale: 'nn',
+        handleInApp: true,
+    },
+    {
+        locale: 'en',
+        handleInApp: true,
+    },
+] as any;
 
 const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
     env: dekoratorEnv ?? 'prod',
@@ -16,7 +31,7 @@ const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
         context: 'privatperson',
         chatbot: false,
         logoutWarning: true,
-        // availableLanguages,
+        availableLanguages,
     },
 };
 export default class MyDocument extends Document<DecoratorComponents> {
