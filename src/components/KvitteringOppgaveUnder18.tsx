@@ -6,6 +6,7 @@ import useSprak from '../hooks/useSprak';
 
 import { formaterDato } from '../lib/date-utils';
 import { Kontaktinformasjon } from './kontaktinformasjonUnder18';
+import { loggAktivitet } from '../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -46,6 +47,10 @@ export const KvitteringOppgaveOpprettet = () => {
     const idag = new Date();
     const toVirkedagerFraNaa = formaterDato(virkedager(idag, 2));
 
+    const gaarTilNavno = () => {
+        loggAktivitet({ aktivitet: 'Går til Samtykke fra foresatte' });
+    };
+
     return (
         <GuidePanel poster>
             <Alert variant="success" className={'mb-6'}>
@@ -57,7 +62,10 @@ export const KvitteringOppgaveOpprettet = () => {
                 <BodyLong spacing>{tekst('veilederenHjelperDeg')}</BodyLong>
                 <BodyLong spacing>
                     {tekst('lesMerOmSamtykkeIntro')}{' '}
-                    <Link href="https://www.nav.no/samtykke-oppfolging-unge">{tekst('samtykkeIntroLenkeTekst')}</Link>.
+                    <Link href="https://www.nav.no/samtykke-oppfolging-unge" onClick={gaarTilNavno}>
+                        {tekst('samtykkeIntroLenkeTekst')}
+                    </Link>
+                    .
                 </BodyLong>
             </Alert>
             <BodyLong className="mb-6">
