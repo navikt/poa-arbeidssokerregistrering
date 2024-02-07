@@ -6,6 +6,7 @@ import {
     fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { logger } from '@navikt/next-logger';
+import localeTilUrl from '../lib/locale-til-url';
 
 const dekoratorEnv = process.env.DEKORATOR_ENV as Exclude<DecoratorEnvProps['env'], 'localhost'>;
 const availableLanguages = [
@@ -42,6 +43,7 @@ export default class MyDocument extends Document<DecoratorComponents> {
             params: {
                 ...dekoratorProps.params,
                 language: locale as any,
+                redirectToUrl: `${process.env.NEXT_PUBLIC_SELF_URL}${`/${localeTilUrl(locale as any)}`}`,
             },
         }).catch((err) => {
             logger.error(err);

@@ -1,6 +1,7 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
 import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
 import { logger } from '@navikt/next-logger';
+import localeTilUrl from '../lib/locale-til-url';
 
 type PageHandler = (context: GetServerSidePropsContext) => Promise<GetServerSidePropsResult<unknown>>;
 type ApiHandler = (req: NextApiRequest, res: NextApiResponse) => Promise<unknown> | unknown;
@@ -15,19 +16,20 @@ const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
  */
 export function withAuthenticatedPage(handler: PageHandler = async () => ({ props: {} })) {
     return async function withBearerTokenHandler(
-        context: GetServerSidePropsContext
+        context: GetServerSidePropsContext,
     ): Promise<ReturnType<NonNullable<typeof handler>>> {
         if (brukerMock) {
             return handler(context);
         }
 
         const request = context.req;
-
+        const locale = localeTilUrl(context.locale as any);
+        const REDIRECT_URL = `${process.env.NEXT_PUBLIC_SELF_URL}/${locale ? `${locale}/` : ''}start`;
         const bearerToken: string | null | undefined = request.headers['authorization'];
         if (!bearerToken) {
             return {
                 redirect: {
-                    destination: `/oauth2/login?redirect=${process.env.NEXT_PUBLIC_START_URL}`,
+                    destination: `/oauth2/login?redirect=${REDIRECT_URL}`,
                     permanent: false,
                 },
             };
@@ -38,12 +40,12 @@ export function withAuthenticatedPage(handler: PageHandler = async () => ({ prop
             logger.error(
                 new Error(
                     `Invalid JWT token found (cause: ${validationResult.errorType} ${validationResult.message}, redirecting to login.`,
-                    { cause: validationResult.error }
-                )
+                    { cause: validationResult.error },
+                ),
             );
             return {
                 redirect: {
-                    destination: `/oauth2/login?redirect=${process.env.NEXT_PUBLIC_START_URL}`,
+                    destination: `/oauth2/login?redirect=${REDIRECT_URL}`,
                     permanent: false,
                 },
             };
