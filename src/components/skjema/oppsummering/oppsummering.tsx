@@ -109,7 +109,6 @@ const Rad = (props: RadProps) => {
             <Table.DataCell>
                 <NextLink
                     href={props.url}
-                    locale={false}
                     aria-label={`Endre svaret på ${props.radTittel.toLowerCase()}`}
                     className={'navds-link'}
                 >

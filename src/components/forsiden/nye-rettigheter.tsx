@@ -119,7 +119,7 @@ const NyeRettigheterPanel = () => {
                 </ReadMore>
             </div>
             <div className="mt-12 flex items-center justify-center">
-                <NextLink href="/start" passHref locale={false}>
+                <NextLink href="/start" passHref>
                     <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
                 </NextLink>
             </div>

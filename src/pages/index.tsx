@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import type { NextPage } from 'next';
+import type { NextPage, GetServerSideProps } from 'next';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { BodyLong, Button, Cell, Grid, Heading } from '@navikt/ds-react';
@@ -85,7 +85,7 @@ const Home: NextPage<{ toggles: any }> = ({ toggles }) => {
                                 </BodyLong>
                             </Cell>
                             <Cell xs={12} className={'text-center py-4'}>
-                                <NextLink href="/start" passHref locale={false}>
+                                <NextLink href="/start" passHref>
                                     <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
                                 </NextLink>
                             </Cell>
@@ -99,7 +99,7 @@ const Home: NextPage<{ toggles: any }> = ({ toggles }) => {
     );
 };
 
-export async function getServerSideProps() {
+export const getServerSideProps = (async () => {
     try {
         const { features } = await hentFeatures();
 
@@ -116,6 +116,6 @@ export async function getServerSideProps() {
             },
         };
     }
-}
+}) satisfies GetServerSideProps;
 
 export default Home;
