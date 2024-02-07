@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { Alert, BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+
+import useSprak from '../hooks/useSprak';
 
 import { loggStoppsituasjon } from '../lib/amplitude';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import useSprak from '../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {

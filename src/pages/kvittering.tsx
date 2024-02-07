@@ -1,11 +1,11 @@
 import React from 'react';
 import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { loggAktivitet, loggFlyt } from '../lib/amplitude';
 import { Config } from '../model/config';
 import { withAuthenticatedPage } from '../auth/withAuthentication';

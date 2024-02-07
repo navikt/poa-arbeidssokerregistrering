@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
 import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { loggAktivitet, loggFlyt } from '../lib/amplitude';
 import { useConfig } from '../contexts/config-context';
+
 import { Config } from '../model/config';
+import { loggAktivitet, loggFlyt } from '../lib/amplitude';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 
 const TEKSTER: Tekster<string> = {

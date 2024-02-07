@@ -1,10 +1,10 @@
 import { Alert, BodyLong, GuidePanel, Panel, Heading, Link, List } from '@navikt/ds-react';
 import { useEffect } from 'react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Config } from '../model/config';
 import { loggFlyt, loggSidevisning } from '../lib/amplitude';
 import { withAuthenticatedPage } from '../auth/withAuthentication';

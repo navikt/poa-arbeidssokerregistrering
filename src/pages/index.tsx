@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import type { NextPage } from 'next';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { BodyLong, Button, Cell, Grid, Heading, Skeleton } from '@navikt/ds-react';
+import { BodyLong, Button, Cell, Grid, Heading } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
