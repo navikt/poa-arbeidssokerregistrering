@@ -43,7 +43,7 @@ export default class MyDocument extends Document<DecoratorComponents> {
             params: {
                 ...dekoratorProps.params,
                 language: locale as any,
-                redirectToUrl: `${process.env.NEXT_PUBLIC_SELF_URL}${`/${localeTilUrl(locale as any)}`}`,
+                redirectToApp: true,
             },
         }).catch((err) => {
             logger.error(err);

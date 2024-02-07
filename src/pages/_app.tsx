@@ -29,12 +29,7 @@ const TEKSTER: Tekster<string> = {
 };
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-    onLanguageSelect(async ({ locale }) => {
-        await setParams({
-            redirectToUrl: `${process.env.NEXT_PUBLIC_SELF_URL}${`/${localeTilUrl(locale as any)}`}`,
-        });
-        return router.push(router.asPath, router.asPath, { locale });
-    });
+    onLanguageSelect(async ({ locale }) => router.push(router.asPath, router.asPath, { locale }));
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
 
     useEffect(() => {
