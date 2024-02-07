@@ -44,6 +44,26 @@ const TEKSTER: Tekster<string> = {
         [SporsmalId.andreForhold + 'radTittel']: 'Andre hensyn',
         fullfoerRegistrering: 'Fullfør registrering som arbeidssøker',
     },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Stemmer opplysningane',
+        header: 'Stemmer opplysningane?',
+        ingress: 'Her er opplysningane vi har registrert om deg.',
+        ikkeIJobbSisteAaret: `Ifølgje Arbeidsgivar- og arbeidstakarregisteret har du ikkje vore i jobb i løpet av det siste året. Om dette ikkje stemmer, er det likevel viktig at du fullfører registreringa. Du kan gi rett informasjon til NAV seinare.`,
+        harJobbetSisteAaret:
+            'Ifølgje Arbeidsgivar- og arbeidstakarregisteret har du vore i jobb i løpet av det siste året. Om dette ikkje stemmer, er det likevel viktig at du fullfører registreringa. Du kan gi rett informasjon til NAV seinare.',
+        [SporsmalId.dinSituasjon + 'radTittel']: 'Situasjon',
+        [SporsmalId.sisteJobb + 'radTittel']: 'Siste stilling',
+        [SporsmalId.fremtidigSituasjon + 'radTittel']: 'Fremtidig situasjon',
+        [SporsmalId.tilbakeIArbeid + 'radTittel']: 'Tilbake i jobb før sykmeldt i 52 uker',
+        [SporsmalId.utdanning + 'radTittel']: 'Høgaste fullførte utdanning',
+        [SporsmalId.utdanningGodkjent + 'radTittel']: 'Utdanning godkjent i Norge',
+        [SporsmalId.utdanningBestatt + 'radTittel']: 'Utdanning bestått',
+        [SporsmalId.helseHinder + 'radTittel']: 'Helseproblem',
+        //TODO: Hvilken av andre forhold-tekstene skal vi bruke i oppsummeringen?
+        [SporsmalId.andreForhold + 'radTittel']: 'Andre problem',
+        [SporsmalId.andreForhold + 'radTittel']: 'Andre omsyn',
+        fullfoerRegistrering: 'Fullfør registreringa som arbeidssøkjar',
+    },
 };
 
 interface FullforProps {
