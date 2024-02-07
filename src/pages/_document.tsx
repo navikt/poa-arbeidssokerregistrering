@@ -1,10 +1,9 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import {
     DecoratorComponents,
-    fetchDecoratorReact,
     DecoratorEnvProps,
     DecoratorFetchProps,
-    DecoratorLocale,
+    fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { logger } from '@navikt/next-logger';
 
@@ -40,7 +39,10 @@ export default class MyDocument extends Document<DecoratorComponents> {
         const initialProps = await Document.getInitialProps(ctx);
         const Dekorator: DecoratorComponents = await fetchDecoratorReact({
             ...dekoratorProps,
-            //language: locale as any,
+            params: {
+                ...dekoratorProps.params,
+                language: locale as any,
+            },
         }).catch((err) => {
             logger.error(err);
             const empty = () => <></>;
