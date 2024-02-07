@@ -29,7 +29,6 @@ const TEKSTER: Tekster<string> = {
         viktig: 'Important:',
         kontakterDegInnen: 'We will contact you before the end of ',
         kontaktopplysningerOppdatert: 'Please make sure your contact details are updated.',
-        //TODO: Oversette alle tekster
     },
 };
 
