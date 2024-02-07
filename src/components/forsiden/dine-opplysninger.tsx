@@ -29,6 +29,19 @@ const TEKSTER: Tekster<string> = {
         Opplysningene bruker vi til en behovsvurdering som vi etter <a href="https://lovdata.no/dokument/NL/lov/2006-06-16-20/KAPITTEL_3#%C2%A714a">NAV-loven § 14 a</a> er pålagt å utføre. 
         Formålet er å gi NAVs veiledere støtte til å treffe vedtak om riktig bistandsbehov slik at vi kan tilby oppfølging og informasjon tilpasset din situasjon.`,
         personopplysningerLenkeTekst: `Les mer om hvordan NAV behandler personopplysninger`,
+        lovligOpphold:
+            'Alle personer med lovlig opphold i Norge har rett til å bli registrert som arbeidssøkere. Dette går frem av',
+        aml10: 'arbeidsmarkedsloven § 10',
+        vurdertBistandsbehov:
+            'Når du henvender deg til NAV som arbeidssøker har du også en rett til å få vurdert ditt bistandsbehov for å komme i arbeid. Dette går frem av',
+        nav14a: 'NAV-loven § 14 a',
+        navogsa: 'NAV er også etter',
+        nav4: 'NAV-loven § 4',
+        navForpliktet: 'forpliktet til å bistå deg som arbeidssøker med å komme i jobb.',
+        registreringOgBehovsvurdering:
+            'Når du registrerer deg som arbeidssøker ber vi om opplysninger fra deg for å kunne tilby oppfølging tilpasset din situasjon og dine behov. Opplysningene bruker vi til en behovsvurdering som vi etter',
+        tilpassetInformasjon:
+            'er pålagt å utføre. Formålet er å gi NAVs veiledere støtte til å treffe vedtak om riktig bistandsbehov slik at vi kan tilby oppfølging og informasjon tilpasset din situasjon.',
     },
 };
 
@@ -62,8 +75,7 @@ const DineOpplysninger = () => {
                 }
             >
                 <BodyLong className="mb-4">
-                    Alle personer med lovlig opphold i Norge har rett til å bli registrert som arbeidssøkere. Dette går
-                    frem av{' '}
+                    {tekst('lovligOpphold')}{' '}
                     <Link
                         href="https://lovdata.no/lov/2004-12-10-76/§10"
                         target="_blank"
@@ -73,10 +85,9 @@ const DineOpplysninger = () => {
                             })
                         }
                     >
-                        arbeidsmarkedsloven § 10
+                        {tekst('aml10')}
                     </Link>
-                    . Når du henvender deg til NAV som arbeidssøker har du også en rett til å få vurdert ditt
-                    bistandsbehov for å komme i arbeid. Dette går frem av{' '}
+                    . {tekst('vurdertBistandsbehov')}{' '}
                     <Link
                         href="https://lovdata.no/lov/2006-06-16-20/§14a"
                         target="_blank"
@@ -86,9 +97,9 @@ const DineOpplysninger = () => {
                             })
                         }
                     >
-                        NAV-loven § 14 a
+                        {tekst('nav14a')}
                     </Link>
-                    . NAV er også etter{' '}
+                    . {tekst('navogsa')}{' '}
                     <Link
                         href="https://lovdata.no/lov/2006-06-16-20/§4"
                         target="_blank"
@@ -98,9 +109,9 @@ const DineOpplysninger = () => {
                             })
                         }
                     >
-                        NAV-loven § 4
+                        {tekst('nav4')}
                     </Link>{' '}
-                    forpliktet til å bistå deg som arbeidssøker med å komme i jobb.
+                    {tekst('navForpliktet')}
                 </BodyLong>
                 <Feedback id={'bistandsbehov'}></Feedback>
             </ReadMore>
@@ -113,8 +124,7 @@ const DineOpplysninger = () => {
                 }
             >
                 <BodyLong className="mb-4">
-                    Når du registrerer deg som arbeidssøker ber vi om opplysninger fra deg for å kunne tilby oppfølging
-                    tilpasset din situasjon og dine behov. Opplysningene bruker vi til en behovsvurdering som vi etter{' '}
+                    {tekst('registreringOgBehovsvurdering')}{' '}
                     <Link
                         href="https://lovdata.no/lov/2006-06-16-20/§14a"
                         target="_blank"
@@ -124,10 +134,9 @@ const DineOpplysninger = () => {
                             })
                         }
                     >
-                        NAV-loven § 14 a
+                        {tekst('nav14a')}
                     </Link>{' '}
-                    er pålagt å utføre. Formålet er å gi NAVs veiledere støtte til å treffe vedtak om riktig
-                    bistandsbehov slik at vi kan tilby oppfølging og informasjon tilpasset din situasjon.
+                    {tekst('tilpassetInformasjon')}
                 </BodyLong>
                 <Link
                     target="_blank"

@@ -12,6 +12,7 @@ const TEKSTER: Tekster<string> = {
         feilISystemene: 'På grunn av feil i systemene våre kan du ikke registrere deg akkurat nå.',
         provIgjen: 'Vennligst prøv igjen litt senere.',
         kontaktBrukerstotte: 'Kontakt teknisk brukerstøtte dersom problemene vedvarer.',
+        lukkKnapp: 'Lukk',
     },
 };
 
@@ -65,7 +66,7 @@ const GlobalFeilmelding = () => {
             </BodyLong>
             <BodyLong>
                 <Button variant={'secondary'} onClick={() => setError(null)}>
-                    Lukk
+                    {tekst('lukkKnapp')}
                 </Button>
             </BodyLong>
         </Alert>
