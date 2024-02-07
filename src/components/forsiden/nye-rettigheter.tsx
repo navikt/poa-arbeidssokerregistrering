@@ -15,13 +15,26 @@ const TEKSTER: Tekster<string> = {
         elektroniskId: 'Du må ha elektronisk ID for å registrere deg',
         elektroniskIdInfo:
             'For å registrere deg hos NAV, må du logge inn med BankID, BankID på mobil, Buypass eller Commfides.',
-    },
-    en: {
-        tittel: 'Your rights',
-        startRegistrering: 'Start registration',
-        elektroniskId: 'You will need an electronic ID to register',
-        elektroniskIdInfo:
-            'To register at NAV, you must login with either BankID, BankID on mobile, Buypass or Commfides.',
+        duHarRettTil:
+            'Du har rett til å registrere deg som arbeidssøker hos NAV hvis du oppfyller forutsetningene gitt i',
+        aml10: 'arbeidsmarkedslovens §10',
+        duHarKravPaa:
+            'Du har krav på at NAV vurderer behovet ditt for veiledning med mål om å komme tilbake i arbeid. Du kan lese mer om dette i',
+        nav14a: 'NAV-loven §14a',
+        lovdata: 'på lovdata.no',
+        ytelser: 'Du kan søke om dagpenger eller andre ytelser når du har registrert deg som arbeidssøker',
+        etterRegistrering: 'Hva skjer etter at du har registrert deg?',
+        brukAvOpplysninger:
+            'Etter at du har registrert deg vil opplysningene du har gitt om utdanning, livssituasjon og tidligere arbeidsforhold bli brukt til å vurdere hvilken hjelp du skal få fra NAV. Vi vurderer de opplysningene du har gitt oss opp mot de opplysningene vi har om andre arbeidssøkere i omtrent samme situasjon som deg. På bakgrunn av dette vil en veileder fatte et vedtak som sendes til deg. Vedtaket forteller hvordan NAV vurderer din situasjon i arbeidsmarkedet.',
+        uenigIvurdering:
+            'Dersom du er uenig i NAV sin vurdering, har du mulighet til å gi tilbakemelding om dette inne på innloggede sider.',
+        muligePlikter:
+            'Avhengig av hvilken hjelp og ytelser du har krav på kan du få ulike plikter som NAV forventer at du følger opp.',
+        meldekort:
+            'I den perioden du ønsker å være registrert som arbeidssøker hos NAV er det viktig at du leverer meldekort.',
+        endringerIsituasjon:
+            'Hvis det skjer endringer i livet ditt som påvirker din status som arbeidssøker må du ta kontakt med NAV. Da gjør vi en ny vurdering av ditt behov.',
+        dineOpplysninger: 'Hvilke opplysninger henter vi inn og hva brukes de til?',
     },
 };
 
@@ -41,65 +54,43 @@ const NyeRettigheterPanel = () => {
                 <ul className="list-disc px-8 mt-4">
                     <li>
                         <BodyShort spacing>
-                            Du har rett til å registrere deg som arbeidssøker hos NAV hvis du oppfyller forutsetningene
-                            gitt i{' '}
+                            {tekst('duHarRettTil')}{' '}
                             <Link target="_blank" href="https://lovdata.no/lov/2004-12-10-76/§10">
-                                arbeidsmarkedslovens §10
+                                {tekst('aml10')}
                             </Link>
                         </BodyShort>
                     </li>
                     <li>
                         <BodyShort spacing>
-                            Du har krav på at NAV vurderer behovet ditt for veiledning med mål om å komme tilbake i
-                            arbeid. Du kan lese mer om dette i{' '}
+                            {tekst('duHarKravPaa')}{' '}
                             <Link
                                 target="_blank"
                                 href="https://lovdata.no/dokument/NL/lov/2006-06-16-20/KAPITTEL_3#%C2%A714a"
                             >
-                                NAV-loven §14a
+                                {tekst('nav14a')}
                             </Link>{' '}
-                            på lovdata.no
+                            {tekst('lovdata')}
                         </BodyShort>
                     </li>
                     <li>
-                        <BodyShort spacing>
-                            Du kan søke om dagpenger eller andre ytelser når du har registrert deg som arbeidssøker
-                        </BodyShort>
+                        <BodyShort spacing>{tekst('ytelser')}</BodyShort>
                     </li>
                 </ul>
             </GuidePanel>
             <Box className="mt-12 pl-12 pr-12">
                 <Heading size={'medium'} level={'2'} className="text-center">
-                    Hva skjer etter at du har registrert deg?
+                    {tekst('etterRegistrering')}
                 </Heading>
                 <List as="ul">
-                    <List.Item>
-                        Etter at du har registrert deg vil opplysningene du har gitt om utdanning, livssituasjon og
-                        tidligere arbeidsforhold bli brukt til å vurdere hvilken hjelp du skal få fra NAV. Vi vurderer
-                        de opplysningene du har gitt oss opp mot de opplysningene vi har om andre arbeidssøkere i
-                        omtrent samme situasjon som deg. På bakgrunn av dette vil en veileder fatte et vedtak som sendes
-                        til deg. Vedtaket forteller hvordan NAV vurderer din situasjon i arbeidsmarkedet.
-                    </List.Item>
-                    <List.Item>
-                        Dersom du er uenig i NAV sin vurdering, har du mulighet til å gi tilbakemelding om dette inne på
-                        innloggede sider.
-                    </List.Item>
-                    <List.Item>
-                        Avhengig av hvilken hjelp og ytelser du har krav på kan du få ulike plikter som NAV forventer at
-                        du følger opp.
-                    </List.Item>
-                    <List.Item>
-                        I den perioden du ønsker å være registrert som arbeidssøker hos NAV er det viktig at du leverer
-                        meldekort.
-                    </List.Item>
-                    <List.Item>
-                        Hvis det skjer endringer i livet ditt som påvirker din status som arbeidssøker må du ta kontakt
-                        med NAV. Da gjør vi en ny vurdering av ditt behov.
-                    </List.Item>
+                    <List.Item>{tekst('brukAvOpplysninger')}</List.Item>
+                    <List.Item>{tekst('uenigIvurdering')}</List.Item>
+                    <List.Item>{tekst('muligePlikter')}</List.Item>
+                    <List.Item>{tekst('meldekort')}</List.Item>
+                    <List.Item>{tekst('endringerIsituasjon')}</List.Item>
                 </List>
             </Box>
             <div className="pl-12 pr-12">
-                <ReadMore header="Hvilke opplysninger henter vi inn og hva brukes de til?">
+                <ReadMore header={tekst('dineOpplysninger')}>
                     <DineOpplysninger />
                 </ReadMore>
             </div>
