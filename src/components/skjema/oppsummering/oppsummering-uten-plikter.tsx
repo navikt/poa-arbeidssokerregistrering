@@ -5,12 +5,12 @@ import { logger } from '@navikt/next-logger';
 import NextLink from 'next/link';
 import Head from 'next/head';
 import useSWR from 'swr';
+import { SisteStillingValg, SporsmalId, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
 
 import { hentTekst } from '../../../model/sporsmal';
 import OppsummeringSvg from './oppsummering-svg';
-import { SisteStillingValg, SporsmalId, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
 import { fetcher as api } from '../../../lib/api-utils';
 import byggFullforRegistreringPayload from '../../../lib/bygg-fullfor-registrering-payload';

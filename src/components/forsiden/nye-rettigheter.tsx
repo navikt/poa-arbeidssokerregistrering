@@ -13,8 +13,7 @@ const TEKSTER: Tekster<string> = {
         tittel: 'Rettigheter',
         startRegistrering: 'Start registrering',
         elektroniskId: 'Du må ha elektronisk ID for å registrere deg',
-        elektroniskIdInfo:
-            'For å registrere deg hos NAV, må du logge inn med BankID, BankID på mobil, Buypass eller Commfides.',
+        elektroniskIdInfo: 'For å registrere deg hos NAV, må du logge inn med BankID, Buypass eller Commfides.',
         duHarRettTil:
             'Du har rett til å registrere deg som arbeidssøker hos NAV hvis du oppfyller forutsetningene gitt i',
         aml10: 'arbeidsmarkedslovens §10',
@@ -35,6 +34,31 @@ const TEKSTER: Tekster<string> = {
         endringerIsituasjon:
             'Hvis det skjer endringer i livet ditt som påvirker din status som arbeidssøker må du ta kontakt med NAV. Da gjør vi en ny vurdering av ditt behov.',
         dineOpplysninger: 'Hvilke opplysninger henter vi inn og hva brukes de til?',
+    },
+    nn: {
+        tittel: 'Rettar',
+        startRegistrering: 'Start registrering',
+        elektroniskId: 'Du må ha elektronisk ID for å registrere deg',
+        elektroniskIdInfo: 'For å registrere deg hos NAV må du logge inn med BankID, Buypass eller Commfides.',
+        duHarRettTil: 'Du har rett til å registrere deg som arbeidssøkjar hos NAV dersom du oppfyller føresetnadene i',
+        aml10: 'arbeidsmarknadslova §10',
+        duHarKravPaa:
+            'Du har krav på at NAV vurderer behovet ditt for rettleiing med mål om å kome tilbake i arbeid. Du kan lese meir om dette i',
+        nav14a: 'NAV-lova §14a',
+        lovdata: 'på lovdata.no',
+        ytelser: 'Du kan søkje om dagpengar eller andre ytingar når du har registrert deg som arbeidssøkjar',
+        etterRegistrering: 'Kva skjer etter at du har registrert deg?',
+        brukAvOpplysninger:
+            'Etter at du har registrert deg, vil opplysningane du har gitt om utdanning, livssituasjon og tidlegare arbeidsforhold, bli brukte til å slå fast kva hjelp du skal få frå NAV. Opplysningane du har gitt oss, vil bli vurderte opp mot opplysningane vi har om andre arbeidssøkjarar som er i omtrent same situasjon som deg. Ein rettleiar vil på grunnlag av dette fatte eit vedtak som blir sendt til deg. Vedtaket seier noko om korleis NAV ser på situasjonen din på arbeidsmarknaden.',
+        uenigIvurdering:
+            'Dersom du er usamd i vurderinga som NAV har gjort, kan du logge på og gi tilbakemelding om dette.',
+        muligePlikter:
+            'Avhengig av hjelpa og ytingane du har krav på, kan du få ulike plikter som NAV forventar at du følgjer opp.',
+        meldekort:
+            'I den perioden du ønskjer å vere registrert som arbeidssøkjar hos NAV, er det viktig at du leverer meldekort.',
+        endringerIsituasjon:
+            'Dersom det skjer endringar i livet ditt som påverkar statusen din som arbeidssøkjar, må du ta kontakt med NAV. Vi gjer då ei ny vurdering av behovet ditt.',
+        dineOpplysninger: 'Kva opplysningar hentar vi inn, og kva bruker vi dei til?',
     },
 };
 

@@ -43,6 +43,35 @@ const TEKSTER: Tekster<string> = {
         tilpassetInformasjon:
             'er pålagt å utføre. Formålet er å gi NAVs veiledere støtte til å treffe vedtak om riktig bistandsbehov slik at vi kan tilby oppfølging og informasjon tilpasset din situasjon.',
     },
+    nn: {
+        tittel: 'Dine opplysningar',
+        innledning:
+            'Når du registrerer deg som arbeidssøkjar, vil NAV vurdere opplysningane dine og foreslå ei oppfølging. For at vi skal kunne danne oss eit bilete av tenestene du treng, må vi ha opplysningar om',
+        alder: 'alderen din',
+        jobb: 'du har vore i arbeid før',
+        utdanning: 'utdanninga di',
+        utfordringer: 'eventuelle utfordringar',
+        beskrivelse1: `Opplysningane du har gitt oss, vil bli vurderte opp mot opplysningane vi har om andre arbeidssøkjarar som er i omtrent same situasjon som deg. På bakgrunn av dette blir det utarbeidd eit automatisk forslag til tenester som kan passe for deg. Ein rettleiar vurderer forslaget og sender deg eit vedtak.`,
+        beskrivelse2: `Dersom det skjer endringar som gjer at opplysningane du er registrert med hos oss, ikkje lenger stemmer, kan du kontakte oss på nav.no. Vi gjer då ei ny vurdering av behovet ditt for tenester. Dersom du er usamd i oppfølginga vi foreslår, kan du logge på og gi tilbakemelding om dette.`,
+        bistandsbehovOverskrift: 'Kvifor vurderer NAV behovet mitt for bistand?',
+        bistandsbehovInnhold: `Alle personar med lovleg opphald i Noreg har rett til å bli registrerte som arbeidssøkjarar. Dette går fram av arbeidsmarknadslova § 10. Når du kontaktar NAV som arbeidssøkjar, har du også rett til å få vurdert bistanden du treng for å kome i arbeid. Dette går fram av NAV-lova § 14 a. Etter NAV-lova § 4 har NAV dessutan plikt til å hjelpe deg som arbeidssøkjar med å kome i jobb.`,
+        personopplysningerOverskrift: 'Behandling av personopplysningane mine',
+        personopplysningerInnhold: `Når du registrerer deg som arbeidssøkjar, ber vi deg om ulike opplysningar for å kunne tilby oppfølging tilpassa situasjonen din og behova du har. Vi bruker opplysningane til å gjere behovsvurderinga som NAV-lova § 14 a pålegg oss å utføre. Hensikta er å hjelpe rettleiarane hos NAV å gjere ei korrekt vurdering av bistandsbehovet, slik at vi kan tilby oppfølging og informasjon tilpassa situasjonen din.`,
+        personopplysningerLenkeTekst: `Les mer om hvordan NAV behandler personopplysninger`,
+        lovligOpphold:
+            'Alle personar med lovleg opphald i Noreg har rett til å bli registrerte som arbeidssøkjarar. Dette går fram av',
+        aml10: 'arbeidsmarknadslova § 10',
+        vurdertBistandsbehov:
+            'Når du kontaktar NAV som arbeidssøkjar, har du også rett til å få vurdert bistanden du treng for å kome i arbeid. Dette går fram av',
+        nav14a: 'NAV-lova § 14 a',
+        navogsa: 'Etter',
+        nav4: 'NAV-lova § 4',
+        navForpliktet: 'har NAV dessutan plikt til å hjelpe deg som arbeidssøkjar med å kome i jobb.',
+        registreringOgBehovsvurdering:
+            'Når du registrerer deg som arbeidssøkjar, ber vi deg om ulike opplysningar for å kunne tilby oppfølging tilpassa situasjonen din og behova du har. Vi bruker opplysningane til å gjere behovsvurderinga som NAV-lova § 14 a',
+        tilpassetInformasjon:
+            'pålegg oss å utføre. Hensikta er å hjelpe rettleiarane hos NAV å gjere ei korrekt vurdering av bistandsbehovet, slik at vi kan tilby oppfølging og informasjon tilpassa situasjonen din.',
+    },
 };
 
 const DineOpplysninger = () => {

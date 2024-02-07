@@ -27,15 +27,13 @@ const TEKSTER: Tekster<string> = {
         tittel: 'Registrer deg som arbeidssøker',
         startRegistrering: 'Start registrering',
         elektroniskId: 'Du må ha elektronisk ID for å registrere deg',
-        elektroniskIdInfo:
-            'For å registrere deg hos NAV, må du logge inn med BankID, BankID på mobil, Buypass eller Commfides.',
+        elektroniskIdInfo: 'For å registrere deg hos NAV, må du logge inn med BankID, Buypass eller Commfides.',
     },
-    en: {
-        tittel: 'Register as job seeker',
-        startRegistrering: 'Start registration',
-        elektroniskId: 'You will need an electronic ID to register',
-        elektroniskIdInfo:
-            'To register at NAV, you must login with either BankID, BankID on mobile, Buypass or Commfides.',
+    nn: {
+        tittel: 'Registrer deg som arbeidssøkjar',
+        startRegistrering: 'Start registrering',
+        elektroniskId: 'Du må ha elektronisk ID for å registrere deg',
+        elektroniskIdInfo: 'For å registrere deg hos NAV må du logge inn med BankID, Buypass eller Commfides.',
     },
 };
 
