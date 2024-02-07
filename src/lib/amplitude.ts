@@ -58,7 +58,8 @@ type AktivitetData =
     | { aktivitet: 'Går til Samtykke fra foresatte' }
     | { aktivitet: 'Åpner personopplysninger' }
     | { aktivitet: 'Går til endre personopplysninger'; komponent?: string }
-    | { aktivitet: 'Går til kontakt oss'; komponent?: string };
+    | { aktivitet: 'Går til kontakt oss'; komponent?: string }
+    | { aktivitet: 'Bytter språk'; locale: string };
 
 type FlytData =
     | {

@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import NextApp, { AppContext, AppProps } from 'next/app';
 import Head from 'next/head';
-import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
+import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 
 import useSprak from '../hooks/useSprak';
 
@@ -15,7 +15,7 @@ import { initFaro } from '../faro/initFaro';
 
 import styles from '../styles/app.module.css';
 import '../styles/globals.css';
-import localeTilUrl from '../lib/locale-til-url';
+import { loggAktivitet } from '../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -29,7 +29,10 @@ const TEKSTER: Tekster<string> = {
 };
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-    onLanguageSelect(async ({ locale }) => router.push(router.asPath, router.asPath, { locale }));
+    onLanguageSelect(async ({ locale }) => {
+        loggAktivitet({ aktivitet: 'Bytter språk', locale });
+        return router.push(router.asPath, router.asPath, { locale });
+    });
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
 
     useEffect(() => {
