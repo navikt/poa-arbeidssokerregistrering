@@ -14,12 +14,12 @@ const TEKSTER: Tekster<string> = {
         knappNei: 'Nei',
         ariaLabel: 'Bekreft at du ønsker å avbryte registreringen',
     },
-    en: {
-        avbryt: 'Cancel the registration',
-        erDuSikker: 'Are you sure you want to cancel the registration?',
-        knappJa: 'Yes, cancel',
-        knappNei: 'No',
-        ariaLabel: 'Confirm the cancellation',
+    nn: {
+        avbryt: 'Avbryt registreringa',
+        erDuSikker: 'Er du sikker på at du vil avbryte registreringa?',
+        knappJa: 'Ja, avbryt',
+        knappNei: 'Nei',
+        ariaLabel: 'Bekreft at du ønskjer å avbryte registreringa',
     },
 };
 
