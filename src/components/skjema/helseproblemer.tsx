@@ -11,6 +11,8 @@ import styles from '../../styles/skjema.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Helse',
+        heading: 'Helse',
         tittel: 'Har du helseproblemer som hindrer deg i å søke eller være i jobb?',
         JA: 'Ja',
         NEI: 'Nei',
@@ -29,12 +31,12 @@ const Helseproblemer = (props: SkjemaKomponentProps<JaEllerNei>) => {
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Helse</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Panel className={`${styles.panel} mb-6`} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
-                        Helse
+                        {tekst('heading')}
                     </Heading>
                     <RadioGruppe
                         legend={tekst('tittel')}

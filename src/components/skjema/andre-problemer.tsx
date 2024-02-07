@@ -11,6 +11,8 @@ import styles from '../../styles/skjema.module.css';
 
 const TEKSTER_STANDARD: AndreProblemerTekster = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid',
+        andreUtfordringer: 'Andre utfordringer knyttet til arbeid',
         tittel: 'Har du andre problemer med å søke eller være i jobb?',
         ingress: 'For eksempel språk, lesing og skriving eller familiesituasjon.',
         JA: 'Ja',
@@ -22,6 +24,8 @@ const TEKSTER_STANDARD: AndreProblemerTekster = {
 
 const TEKSTER_SYKMELDT: AndreProblemerTekster = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid',
+        andreUtfordringer: 'Andre utfordringer knyttet til arbeid',
         tittel: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
         ingress: 'For eksempel språk, lesing og skriving eller familiesituasjon',
         JA: 'Ja',
@@ -31,7 +35,7 @@ const TEKSTER_SYKMELDT: AndreProblemerTekster = {
 };
 
 export type AndreProblemerTekster = TeksterMedDefinerteNokler<
-    'tittel' | 'ingress' | 'JA' | 'NEI' | 'fortellMer',
+    'sideTittel' | 'andreUtfordringer' | 'tittel' | 'ingress' | 'JA' | 'NEI' | 'fortellMer',
     string
 >;
 
@@ -48,12 +52,12 @@ const AndreProblemer = (props: AndreProblemerProps) => {
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Panel className={`${styles.panel} mb-6`} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
-                        Andre utfordringer knyttet til arbeid
+                        {tekst('andreUtfordringer')}
                     </Heading>
                     <RadioGruppe
                         legend={tekst('tittel')}

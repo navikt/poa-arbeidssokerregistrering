@@ -13,6 +13,7 @@ import styles from '../../../styles/skjema.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Hva er din siste jobb?',
         tittel: 'Hva er din siste jobb?',
         registrert: 'Følgende informasjon er registrert i Aa-registeret om din siste stilling.',
         feilOpplysninger: 'Hvis opplysningen er feil, kan du endre under.',
@@ -62,7 +63,7 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Hva er din siste jobb?</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Panel className={`${styles.panel} mb-6`} border={true}>
                 <div>

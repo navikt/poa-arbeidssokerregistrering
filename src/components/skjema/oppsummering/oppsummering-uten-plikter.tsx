@@ -5,7 +5,9 @@ import { logger } from '@navikt/next-logger';
 import NextLink from 'next/link';
 import Head from 'next/head';
 import useSWR from 'swr';
+
 import useSprak from '../../../hooks/useSprak';
+
 import { hentTekst } from '../../../model/sporsmal';
 import OppsummeringSvg from './oppsummering-svg';
 import { SisteStillingValg, SporsmalId, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
@@ -21,6 +23,7 @@ import { OppgaveRegistreringstype } from '../../../model/feilsituasjonTyper';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Gjennomgang av opplysninger',
         header: 'Er opplysningene riktige?',
         ingress: 'Her er opplysningene vi har registrert om deg.',
         ikkeIJobbSisteAaret: `Ifølge Arbeidsgiver- og arbeidstakerregisteret har du ikke vært i jobb i løpet av det siste året. 
@@ -163,7 +166,7 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Gjennomgang av opplysninger</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Heading size={'medium'} level="1" spacing>
                 {tekst('header')}
