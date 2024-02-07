@@ -20,6 +20,16 @@ const TEKSTER_STANDARD: AndreProblemerTekster = {
         fortellMer:
             'Svarer du ja, kan du fortelle mer til en veileder i en oppfølgingssamtale. Vi kontakter deg når du har registrert deg.',
     },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Andre utfordringar knytt til arbeid',
+        andreUtfordringer: 'Andre utfordringar knytt til arbeid',
+        tittel: 'Har du andre problem med å søkje eller vere i jobb?',
+        ingress: 'Dette kan til dømes vere vanskar knytt til språk, lesing og skriving eller familiesituasjon',
+        JA: 'Ja',
+        NEI: 'Nei',
+        fortellMer:
+            'Svarer du ja, kan du utdjupe dette nærmare til ein rettleiar i ein oppfølgingssamtale. Vi kontaktar deg når du har registrert deg.',
+    },
 };
 
 const TEKSTER_SYKMELDT: AndreProblemerTekster = {

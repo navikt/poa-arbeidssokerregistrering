@@ -19,6 +19,15 @@ const TEKSTER: Tekster<string> = {
         fortellMer:
             'Svarer du ja, kan du fortelle mer til en veileder i en oppfølgingssamtale. Vi kontakter deg når du har registrert deg.',
     },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Helse',
+        heading: 'Helse',
+        tittel: 'Har du helseproblem som hindrar deg i å søkje eller vere i jobb?',
+        JA: 'Ja',
+        NEI: 'Nei',
+        fortellMer:
+            'Svarer du ja, kan du utdjupe dette nærmare til ein rettleiar i ein oppfølgingssamtale. Vi kontaktar deg når du har registrert deg.',
+    },
 };
 
 const Helseproblemer = (props: SkjemaKomponentProps<JaEllerNei>) => {

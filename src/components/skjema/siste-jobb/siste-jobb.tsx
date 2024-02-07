@@ -21,6 +21,18 @@ const TEKSTER: Tekster<string> = {
         brukesTilInnhold:
             'Vi bruker opplysningene til å lage offentlig statistikk om arbeidsmarkedet. Hvis opplysningene er feil, kan du endre dem. Da får NAV riktigere statistikk. Vær oppmerksom på at opplysningene er hentet fra Arbeidsgiver- og arbeidstakerregisteret (Aa-registeret). Endrer du opplysninger hos NAV, blir de bare lagret hos oss. I Aa-registeret er det kun arbeidsgivere som kan endre.',
         stilling: 'Stilling',
+        endreKnapp: 'Endre',
+    },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Kva var den siste jobben din?',
+        tittel: 'Kva var den siste jobben din?',
+        registrert: 'Følgjande informasjon er registrert i Aa-registeret om den siste stillinga di.',
+        feilOpplysninger: 'Dersom informasjonen er feil, kan du gjere endringar under.',
+        brukesTilTittel: 'Kva bruker vi informasjonen om den siste stillinga di til?',
+        brukesTilInnhold:
+            'Vi bruker opplysningane til å lage offentleg statistikk om arbeidsmarknaden. Dersom opplysningane er feil, kan du endre dei. Dette bidrar til at NAV får rettare statistikk. Ver merksam på at opplysningane er henta frå Arbeidsgivar- og arbeidstakarregisteret (Aa-registeret). Dersom du endrar opplysningar hos NAV, blir dei berre lagra hos oss. Det er berre arbeidsgivarar som kan gjere endringar i Aa-registeret.',
+        stilling: 'Stilling',
+        endreKnapp: 'Endre',
     },
 };
 
@@ -90,7 +102,7 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
                                         className="ml-4"
                                         onClick={() => settVisStillingsSok(true)}
                                     >
-                                        Endre
+                                        {tekst('endreKnapp')}
                                     </Button>
                                 </div>
                             )}

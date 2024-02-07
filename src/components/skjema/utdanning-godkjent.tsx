@@ -15,6 +15,10 @@ const TEKSTER: Tekster<string> = {
         sideTittel: 'Arbeidssøkerregistrering: Er utdanningen godkjent',
         heading: 'Utdanning',
     },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Er utdanninga godkjend',
+        heading: 'Utdanning',
+    },
 };
 
 const UtdanningGodkjent = (props: SkjemaKomponentProps<UtdanningGodkjentValg>) => {
