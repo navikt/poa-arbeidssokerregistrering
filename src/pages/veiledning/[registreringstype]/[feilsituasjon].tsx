@@ -32,8 +32,15 @@ const TEKSTER: Tekster<string> = {
         kontaktKnapp: 'Ta kontakt',
         avbryt: 'Avbryt',
     },
-    en: {
-        //TODO: Oversetting
+    nn: {
+        heading: 'Ein rettleiar må hjelpe med å registrere deg ',
+        utvandretBody1: 'Du står registrert som utvandra i systema våre.',
+        manglerArbeidstillatelseBody1: 'Vi har ikkje høve til å sjekke om du har godkjent opphaldsløyve.',
+        body2: 'Dette gjer at du ikkje kan registrere deg som arbeidssøkjar på nett.',
+        kontaktOss: 'Kontakt oss, så hjelper vi deg vidare.',
+        kontaktOssMedTlfnr: 'Ring oss på 55 55 33 33, så hjelper vi deg vidare.',
+        kontaktKnapp: 'Ta kontakt',
+        avbryt: 'Avbryt',
     },
 };
 
@@ -47,7 +54,6 @@ const KontaktVeileder = (props: Feilsituasjon) => {
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave' });
         try {
             const oppgaveType = props.feiltype === Feiltype.UTVANDRET ? 'UTVANDRET' : 'OPPHOLDSTILLATELSE';
-
             await api('/api/oppgave', {
                 method: 'post',
                 body: JSON.stringify({ oppgaveType: oppgaveType }),

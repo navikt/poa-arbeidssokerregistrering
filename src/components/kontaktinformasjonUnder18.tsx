@@ -18,6 +18,14 @@ const TEKSTER: Tekster<string> = {
         leggInnOpplysninger: 'Legg inn kontaktopplysninger på nav.no',
         hjelpetekst: 'Pass på at kontaktopplysningene dine er oppdatert, ellers kan vi ikke nå deg.',
     },
+    nn: {
+        tlfHosKRR: 'Telefonnummer lagra hos Kontakt- og reservasjonsregisteret',
+        tlfHosNAV: 'Telefonnummer lagra hos NAV',
+        endreOpplysninger: 'Endre kontaktopplysningar på nav.no ',
+        ingenOpplysninger: 'Ingen kontaktopplysningar funnet!',
+        leggInnOpplysninger: 'Legg inn kontaktopplysninger på nav.no',
+        hjelpetekst: 'Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
+    },
 };
 
 export const Kontaktinformasjon = () => {

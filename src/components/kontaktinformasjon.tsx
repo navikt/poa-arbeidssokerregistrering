@@ -17,6 +17,16 @@ const TEKSTER: Tekster<string> = {
         leggInnOpplysninger: 'Legg inn kontaktopplysninger',
         hjelpetekst: 'Pass på at kontaktopplysningene dine er oppdatert, ellers kan vi ikke nå deg.',
     },
+    nn: {
+        tlfHosKRR: 'Telefonnummer lagra hos Kontakt- og reservasjonsregisteret',
+        kildeKRR: 'Kjelde: Kontakt- og reservasjonsregisteret',
+        tlfHosNAV: 'Telefonnummer lagra hos NAV',
+        kildeNAV: 'Kjelde: NAV',
+        endreOpplysninger: 'Endre opplysningar',
+        ingenOpplysninger: 'Ingen kontaktopplysningar funnet!',
+        leggInnOpplysninger: 'Legg inn kontaktopplysningar',
+        hjelpetekst: 'Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
+    },
     en: {
         tlfHosKRR: 'Phone number registered with the common contact register',
         kildeKRR: 'Source: The common contact register',

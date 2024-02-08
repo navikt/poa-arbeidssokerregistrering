@@ -20,6 +20,14 @@ const TEKSTER: Tekster<string> = {
         ja: 'Ja, jeg vil være registrert',
         avbryt: 'Avbryt',
     },
+    nn: {
+        tittel: 'Du er ikkje lenger registrert som arbeidssøkjar',
+        maaSokePaaNytt:
+            'Dersom du framleis skal få ytingar, må du først stadfeste at du ønskjer å vere registrert, og deretter søkje på nytt.',
+        vilDuRegistreres: 'Ønskjer du å vere registrert som arbeidssøkjar?',
+        ja: 'Ja, eg ønskjer å vere registrert',
+        avbryt: 'Avbryt',
+    },
 };
 
 const Reaktivering = () => {

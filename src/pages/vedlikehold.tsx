@@ -14,6 +14,13 @@ const TEKSTER: Tekster<string> = {
         dagpenger:
             'Hvis du skal søke om dagpenger kan du sende inn søknaden nå, og registrere deg som arbeidssøker etterpå.',
     },
+    nn: {
+        heading: 'Det blir utført vedlikehald',
+        vedlikehold: 'Arbeidssøkjarregistrering er ikkje tilgjengeleg grunna vedlikehald.',
+        provIgjen: 'Prøv igjen litt seinare.',
+        dagpenger:
+            'Dersom du skal søkje om dagpengar, kan du sende inn søknaden no, og registrere deg som arbeidssøkjar etterpå.',
+    },
     en: {
         heading: 'Maintenance',
         vedlikehold: 'Due to maintenance you can not register as a jobseeker at the moment.',

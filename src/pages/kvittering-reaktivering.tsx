@@ -20,6 +20,16 @@ const TEKSTER: Tekster<string> = {
         sokDagpenger: 'Søk dagpenger',
         skalIkkeSoke: 'Skal ikke søke nå',
     },
+    nn: {
+        header: 'Du er no registrert som arbeidssøkjar',
+        dagpengerTittel: 'Har du søkt om dagpengar?',
+        permittert: 'Viss du er permittert eller arbeidsledig, må du søkje om dagpengar i ein eigen søknad.',
+        tidligstFaaDagpenger: 'Du kan få dagpengar tidlegast frå den dagen du sender inn søknaden.',
+        sendeSoknaden:
+            'For å unngå å tape dagar med dagpengar er det viktig at du sender søknaden seinast same dag som du ønskjer dagpengar frå.',
+        sokDagpenger: 'Søk om dagpengar',
+        skalIkkeSoke: 'Skal ikkje søkje no',
+    },
 };
 
 const Kvittering = () => {

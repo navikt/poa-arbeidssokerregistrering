@@ -18,6 +18,19 @@ const TEKSTER: Tekster<string> = {
         kontakterDegInnen: 'Vi kontakter deg innen utgangen av ',
         kontaktopplysningerOppdatert: 'Pass på at kontaktopplysningene dine er oppdatert, ellers kan vi ikke nå deg.',
     },
+    nn: {
+        alertMottatt: 'Førespurnad motteken',
+        alertVennligstVent: 'Vent litt',
+        alertFeil: 'Noko gjekk gale',
+        alleredeBedtOmKontakt:
+            'Du har allereie spurt oss om å kontakte deg. Vi tek kontakt i løpet av to arbeidsdagar rekna frå første melding. Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
+        klarteIkkeMotta:
+            'Vi klarte ikkje å ta imot førespurnaden din. Prøv igjen seinare. Viss det same skjer gong på gong, kan du ringje oss på 55 55 33 33.',
+        viktig: 'Viktig:',
+        kontakterDegInnen: 'Vi tek kontakt innen utgangen av ',
+        kontaktopplysningerOppdatert:
+            'Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
+    },
     en: {
         alertMottatt: 'Request received',
         alertVennligstVent: 'Please wait',

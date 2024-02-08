@@ -9,9 +9,17 @@ import { loggStoppsituasjon } from '../../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        heading: 'Beklager, teknisk feil',
         feilISystemene: 'På grunn av feil i systemene våre kan du ikke registrere deg akkurat nå.',
         provIgjen: 'Vennligst prøv igjen litt senere.',
         kontaktBrukerstotte: 'Kontakt teknisk brukerstøtte dersom problemene vedvarer.',
+        lukkKnapp: 'Lukk',
+    },
+    nn: {
+        heading: 'Vi beklagar, men det har oppstått ein teknisk feil ',
+        feilISystemene: 'Grunna feil i systema våre kan du ikkje registrere deg akkurat no.',
+        provIgjen: 'Prøv igjen litt seinare.',
+        kontaktBrukerstotte: 'Kontakt teknisk brukarstøtte dersom problema varer ved.',
         lukkKnapp: 'Lukk',
     },
 };
@@ -28,7 +36,7 @@ const FeilmeldingGenerell = () => {
     return (
         <>
             <Heading size="medium" spacing level="1">
-                Beklager, teknisk feil
+                {tekst('heading')}
             </Heading>
             <Alert variant={'error'}>
                 <BodyLong spacing>{tekst('feilISystemene')}</BodyLong>
