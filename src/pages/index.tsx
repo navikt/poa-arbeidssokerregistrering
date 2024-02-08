@@ -35,6 +35,12 @@ const TEKSTER: Tekster<string> = {
         elektroniskId: 'Du må ha elektronisk ID for å registrere deg',
         elektroniskIdInfo: 'For å registrere deg hos NAV må du logge inn med BankID, Buypass eller Commfides.',
     },
+    en: {
+        tittel: 'Register as a Job Seeker',
+        startRegistrering: 'Start registration',
+        elektroniskId: 'You must have an electronic ID to register',
+        elektroniskIdInfo: 'To register with NAV, you must log in using BankID, Buypass or Commfides.',
+    },
 };
 
 const Home: NextPage<{ toggles: any }> = ({ toggles }) => {

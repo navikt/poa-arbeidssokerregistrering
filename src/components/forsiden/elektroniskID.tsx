@@ -34,6 +34,17 @@ const TEKSTER: Tekster<string> = {
             'For å finne ditt lokale NAV-kontor legg du inn postnummer, poststad eller kommunenamn i søkjefeltet.',
         navKontoretSok: 'Søk etter NAV-kontor',
     },
+    en: {
+        tittel: "Don't have an electronic ID?",
+        skaffDegTittel: 'How to get an electronic ID',
+        skaffDegBody: 'Use ID-porten to obtain an electronic ID. You can choose between BankID, Buypass or Commfides.',
+        navKontoretTittel: 'Register with a NAV office',
+        navKontoretBody1:
+            'If you cannot obtain an electronic ID, you must go to your NAV office in person. You will get help there to register so you can begin reporting to NAV using the Employment Status Form via MinID.',
+        navKontoretBody2:
+            'You can find your NAV office by searching the postal code or the name of your city or municipality in the search field.',
+        navKontoretSok: 'Search for your NAV office',
+    },
 };
 
 const ElektroniskID = () => {

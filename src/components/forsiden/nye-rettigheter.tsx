@@ -60,6 +60,31 @@ const TEKSTER: Tekster<string> = {
             'Dersom det skjer endringar i livet ditt som påverkar statusen din som arbeidssøkjar, må du ta kontakt med NAV. Vi gjer då ei ny vurdering av behovet ditt.',
         dineOpplysninger: 'Kva opplysningar hentar vi inn, og kva bruker vi dei til?',
     },
+    en: {
+        tittel: 'Your Rights ',
+        startRegistrering: 'Start registration',
+        elektroniskId: 'You must have an electronic ID to register',
+        elektroniskIdInfo: 'To register with NAV, you must log in using BankID, Buypass or Commfides.',
+        duHarRettTil: 'You have the right to register as a jobseeker with NAV if you meet the conditions stipulated in',
+        aml10: 'Section 10 of the Labour Market Act',
+        duHarKravPaa:
+            'You are entitled to have NAV assess your need for guidance with the aim of returning to work. You can read more about this in',
+        nav14a: 'Section 14a of the NAV Act',
+        lovdata: 'online at lovdata.no',
+        ytelser: 'You can apply for unemployment benefits or other benefits once you have registered as a jobseeker.',
+        etterRegistrering: 'What happens after you register?',
+        brukAvOpplysninger:
+            'After signing up, the information you provide about your education, life situation and previous employment will be used to assess what help you can receive from NAV. We will evaluate the information you have given us against the information we have about other jobseekers who are in a similar situation as you. A NAV counsellor will review your situation and come to a decision. You will then be informed of the decision in a letter. The decision explains how NAV assessed your situation within the labour market.',
+        uenigIvurdering:
+            "If you disagree with NAV's assessment, you have the opportunity to respond to us about the matter by logging on to nav.no.",
+        muligePlikter:
+            'Depending on what help and benefits you are entitled to, you may be assigned different duties that NAV expects you to follow up.',
+        meldekort:
+            'During the period you wish to be registered as a jobseeker with NAV, it is important that you regularly submit the Employment Status Form.',
+        endringerIsituasjon:
+            'You must contact NAV if you experience changes in your life that affect your status as a jobseeker. We will then re-assess your needs.',
+        dineOpplysninger: 'What information do we collect, and what is it used for?',
+    },
 };
 
 const NyeRettigheterPanel = () => {
