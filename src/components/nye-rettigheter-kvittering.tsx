@@ -19,6 +19,20 @@ const TEKSTER: Tekster<string> = {
         oppdaterCV: 'Du oppdaterer CVen din.',
         arbeidsmarkedet: 'Holder deg oppdatert på arbeidsmarkedet innenfor ditt felt.',
     },
+    nn: {
+        veienVidere:
+            'Opplysningane du har gitt oss, vil no bli vurderte opp mot opplysningane vi har om andre arbeidssøkjarar som er i omtrent same situasjon som deg. Ein rettleiar vil på grunnlag av dette fatte eit vedtak som blir sendt til deg. Vedtaket seier noko om korleis NAV ser på situasjonen din på arbeidsmarknaden, og kva hjelp du skal få frå NAV.',
+        uenigheter: 'Dersom du er usamd i vurderinga som NAV har gjort, kan du logge på og gi tilbakemelding om dette.',
+        ytelser:
+            'Viss du søkjer om pengestøtte frå NAV, vil du få meir informasjon om kva NAV krev av deg dersom søknaden blir innvilga.',
+        meldekort:
+            'I perioden du ønskjer å vere registrert som arbeidssøkjar hos NAV, er det viktig at du leverer meldekort.',
+        endringer:
+            'Dersom det skjer endringar i livet ditt som påverkar statusen din som arbeidssøkjar, må du ta kontakt med NAV. Vi gjer då ei ny vurdering av behovet ditt.',
+        anbefalinger: 'For at du raskast mogleg skal kome deg tilbake i jobb, anbefaler vi i tillegg at du:',
+        oppdaterCV: 'oppdaterer CV-en din',
+        arbeidsmarkedet: 'held deg oppdatert på arbeidsmarknaden innanfor feltet ditt',
+    },
 };
 
 const NyeRettigheterKvittering = () => {
