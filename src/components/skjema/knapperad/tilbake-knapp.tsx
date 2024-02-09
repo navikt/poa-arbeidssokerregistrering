@@ -10,6 +10,9 @@ const TEKSTER: Tekster<string> = {
     nn: {
         tilbake: 'Tilbake',
     },
+    en: {
+        tilbake: 'Previous',
+    },
 };
 
 export const TilbakeKnapp = (props: { onClick: () => void }) => {

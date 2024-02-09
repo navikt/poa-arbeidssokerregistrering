@@ -26,6 +26,10 @@ const TEKSTER: Tekster<string> = {
         sideTittel: 'Arbeidssøkjarregistrering: Din situasjon som arbeidssøkjar',
         heading: 'Din situasjon som arbeidssøkjar',
     },
+    en: {
+        sideTittel: 'Register as a Job Seeker: Your jobseeker situation',
+        heading: 'Your jobseeker situation',
+    },
 };
 
 const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {

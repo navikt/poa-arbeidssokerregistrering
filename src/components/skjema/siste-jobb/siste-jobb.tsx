@@ -34,6 +34,18 @@ const TEKSTER: Tekster<string> = {
         stilling: 'Stilling',
         endreKnapp: 'Endre',
     },
+    en: {
+        sideTittel: 'Register as a Job Seeker : What was your last job?',
+        tittel: 'What was your last job?',
+        registrert:
+            'We found the following information in the State Register of Employers and Employees (Aa Register) about your last position.',
+        feilOpplysninger: 'If the information is incorrect, you can change it below.',
+        brukesTilTittel: 'What do we use the information about your last position for?',
+        brukesTilInnhold:
+            "We use the information to compile public statistics on the labour market. If the information is incorrect, you can change it. This will give NAV more accurate statistics. Please note that the information is retrieved from the State Register of Employers and Employees (Aa Register). If you change NAV's information, it will only be stored with us. Only employers can change the information in the Aa Register.",
+        stilling: 'Position',
+        endreKnapp: 'Change',
+    },
 };
 
 const annenStilling: SisteJobb = {

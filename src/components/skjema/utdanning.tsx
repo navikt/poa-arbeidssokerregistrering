@@ -19,6 +19,10 @@ const TEKSTER: Tekster<string> = {
         sideTittel: 'Arbeidssøkjarregistrering: Høgaste fullførte utdanning',
         heading: 'Utdanning',
     },
+    en: {
+        sideTittel: 'Register as a Job Seeker : Education',
+        heading: 'Education',
+    },
 };
 
 const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa>) => {

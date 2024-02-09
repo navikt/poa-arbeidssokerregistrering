@@ -33,6 +33,20 @@ const TEKSTER: Tekster<string> = {
         oppdaterCV: 'oppdaterer CV-en din',
         arbeidsmarkedet: 'held deg oppdatert på arbeidsmarknaden innanfor feltet ditt',
     },
+    en: {
+        veienVidere:
+            'We will evaluate the information you have given us against the information we have about other jobseekers who are in a similar situation as you. A NAV counsellor will review your situation and come to a decision. You will then be informed of the decision in a letter. The decision will inform you as to how NAV assesses your situation in the labour market and what help you can receive from NAV.',
+        uenigheter: "If you disagree with NAV's assessment, you can contact us about this online: nav.no.",
+        ytelser:
+            'If you apply for financial support from NAV, you will receive more information about what NAV requires of you if this is granted.',
+        meldekort:
+            'During the period you wish to be registered as a jobseeker with NAV, it is important that you regularly submit the Employment Status Form.',
+        endringer:
+            'You must contact NAV if you experience changes in your life that affect your status as a jobseeker. We will then re-assess your needs.',
+        anbefalinger: 'To get back to work as quickly as possible, we also recommend that:',
+        oppdaterCV: 'You update your CV',
+        arbeidsmarkedet: 'Stay updated on the job market in your profession/field',
+    },
 };
 
 const NyeRettigheterKvittering = () => {

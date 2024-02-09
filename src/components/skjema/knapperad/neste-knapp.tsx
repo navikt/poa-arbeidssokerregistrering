@@ -11,6 +11,9 @@ const TEKSTER: Tekster<string> = {
     nn: {
         neste: 'Neste',
     },
+    en: {
+        neste: 'Next',
+    },
 };
 
 interface NesteProps {

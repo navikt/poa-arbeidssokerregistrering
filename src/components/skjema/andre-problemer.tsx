@@ -30,6 +30,16 @@ const TEKSTER_STANDARD: AndreProblemerTekster = {
         fortellMer:
             'Svarer du ja, kan du utdjupe dette nærmare til ein rettleiar i ein oppfølgingssamtale. Vi kontaktar deg når du har registrert deg.',
     },
+    en: {
+        sideTittel: 'Register as a Job Seeker : Other challenges related to work',
+        andreUtfordringer: 'Other challenges related to work',
+        tittel: 'Do you have other problems applying or being employed?',
+        ingress: 'For example, language, reading or writing skills, or family situation.',
+        JA: 'Yes',
+        NEI: 'No',
+        fortellMer:
+            'If you answer yes, you can tell your NAV counsellor more in a follow-up interview. We will contact you once you have registered.',
+    },
 };
 
 const TEKSTER_SYKMELDT: AndreProblemerTekster = {

@@ -21,6 +21,13 @@ const TEKSTER: Tekster<string> = {
         knappNei: 'Nei',
         ariaLabel: 'Bekreft at du ønskjer å avbryte registreringa',
     },
+    en: {
+        avbryt: 'Cancel registration',
+        erDuSikker: 'Are you sure you want to cancel your registration? ',
+        knappJa: 'Yes',
+        knappNei: 'No',
+        ariaLabel: 'Confirm that you want to cancel your registration',
+    },
 };
 
 const Avbryt = () => {

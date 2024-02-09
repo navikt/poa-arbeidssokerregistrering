@@ -43,6 +43,7 @@ const TEKSTER: Tekster<string> = {
         [SporsmalId.andreForhold + 'radTittel']: 'Andre problemer',
         [SporsmalId.andreForhold + 'radTittel']: 'Andre hensyn',
         fullfoerRegistrering: 'Fullfør registrering som arbeidssøker',
+        endreSvaret: 'Endre svaret',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Stemmer opplysningane',
@@ -63,6 +64,24 @@ const TEKSTER: Tekster<string> = {
         [SporsmalId.andreForhold + 'radTittel']: 'Andre problem',
         [SporsmalId.andreForhold + 'radTittel']: 'Andre omsyn',
         fullfoerRegistrering: 'Fullfør registreringa som arbeidssøkjar',
+    },
+    en: {
+        sideTittel: 'Register as a Job Seeker: Is the information correct?',
+        header: 'Is the information correct?',
+        ingress: 'Here is the information we have registered about you.',
+        ikkeIJobbSisteAaret: `According to the As Register, you have not been employed during the past year. 
+            It is important to complete the registration even if you find errors. You can provide the correct information later to NAV.`,
+        harJobbetSisteAaret: `According to the As Register, you have been employed during the past year. 
+            It is important to complete the registration even if you find errors. You can provide the correct information later to NAV.`,
+        [SporsmalId.dinSituasjon + 'radTittel']: 'Situation',
+        [SporsmalId.sisteJobb + 'radTittel']: 'Last position',
+        [SporsmalId.utdanning + 'radTittel']: 'Highest completed education',
+        [SporsmalId.utdanningGodkjent + 'radTittel']: 'Education approved in Norway',
+        [SporsmalId.utdanningBestatt + 'radTittel']: 'Education completed and passed',
+        [SporsmalId.helseHinder + 'radTittel']: 'Health problems',
+        [SporsmalId.andreForhold + 'radTittel']: 'Other considerations',
+        fullfoerRegistrering: 'Complete jobseeker registration',
+        endreSvaret: 'Change your reply',
     },
 };
 
@@ -249,6 +268,8 @@ interface RadProps {
 }
 
 const Rad = (props: RadProps) => {
+    const sprak = useSprak();
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     return (
         <Table.Row>
             <Table.HeaderCell scope="row">{props.radTittel}</Table.HeaderCell>
@@ -256,10 +277,10 @@ const Rad = (props: RadProps) => {
             <Table.DataCell>
                 <NextLink
                     href={props.url}
-                    aria-label={`Endre svaret på ${props.radTittel.toLowerCase()}`}
+                    aria-label={`${tekst('endreSvaret')}: ${props.radTittel.toLowerCase()}`}
                     className={'navds-link'}
                 >
-                    Endre svaret
+                    {tekst('endreSvaret')}
                 </NextLink>
             </Table.DataCell>
         </Table.Row>
