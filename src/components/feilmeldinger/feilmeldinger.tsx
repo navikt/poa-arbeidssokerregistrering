@@ -22,6 +22,13 @@ const TEKSTER: Tekster<string> = {
         kontaktBrukerstotte: 'Kontakt teknisk brukarstøtte dersom problema varer ved.',
         lukkKnapp: 'Lukk',
     },
+    en: {
+        heading: 'Sorry, technical error',
+        feilISystemene: 'You cannot register right now, due to bugs in our systems.',
+        provIgjen: 'Please try again a little later.',
+        kontaktBrukerstotte: 'Contact technical support if the problems persist.',
+        lukkKnapp: 'Cancel',
+    },
 };
 
 const FeilmeldingGenerell = () => {

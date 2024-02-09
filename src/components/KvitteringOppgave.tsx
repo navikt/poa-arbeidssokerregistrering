@@ -32,16 +32,17 @@ const TEKSTER: Tekster<string> = {
             'Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
     },
     en: {
-        alertMottatt: 'Request received',
+        alertMottatt: 'Enquiry received',
         alertVennligstVent: 'Please wait',
-        alertFeil: "We're having trouble",
+        alertFeil: 'Something went wrong',
         alleredeBedtOmKontakt:
-            'We have received your first message. We will contact you within two working days from the first message. Please make sure your contact details are updated.',
+            'You have already asked us to contact you. We will contact you within two working days counting from the first message. Make sure your contact information is up to date or we will not be able to reach you.',
         klarteIkkeMotta:
-            'We’re having trouble with your request right now. Please try again later. If you are still having problems, you can call us on 55 55 33 33.',
+            'We were unable to accept your enquiry. Please try again later. If you experience this several times, please call us at 55 55 33 33',
         viktig: 'Important:',
         kontakterDegInnen: 'We will contact you before the end of ',
-        kontaktopplysningerOppdatert: 'Please make sure your contact details are updated.',
+        kontaktopplysningerOppdatert:
+            'Make sure your contact information is up to date or we will not be able to reach you.',
     },
 };
 

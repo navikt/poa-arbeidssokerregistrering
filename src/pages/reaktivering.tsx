@@ -28,6 +28,14 @@ const TEKSTER: Tekster<string> = {
         ja: 'Ja, eg ønskjer å vere registrert',
         avbryt: 'Avbryt',
     },
+    en: {
+        tittel: 'You are no longer registered as a jobseeker',
+        maaSokePaaNytt:
+            'If you still wish to receive benefits, you must first confirm that you wish to be registered, then apply again.',
+        vilDuRegistreres: 'Do you want to register as a jobseeker?',
+        ja: 'Yes, I want to be registered',
+        avbryt: 'Cancel',
+    },
 };
 
 const Reaktivering = () => {

@@ -25,10 +25,10 @@ const TEKSTER: Tekster<string> = {
         telefonNummer: '55 55 33 33',
     },
     en: {
-        overskrift: 'We will need to help you through other channels',
-        innledning: 'You will need some assistance to register as a job seeker',
-        sendMelding: 'Send a message to your counselor',
-        ringOss: 'or call',
+        overskrift: 'We need to help you further using other channels',
+        innledning: 'You will need our assistance to register as a jobseeker. ',
+        sendMelding: 'Send a message to your NAV counsellor',
+        ringOss: 'or call us at',
         telefonNummer: '55 55 33 33',
     },
 };

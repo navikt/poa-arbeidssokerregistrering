@@ -30,6 +30,18 @@ const TEKSTER: Tekster<string> = {
         sokDagpenger: 'Søk om dagpengar',
         skalIkkeSoke: 'Skal ikkje søkje no',
     },
+    en: {
+        header: 'You are now registered as a jobseeker',
+        dagpengerTittel: 'Have you applied for unemployment benefits?',
+        permittert:
+            'If you were laid off or unemployed, you must apply for unemployment benefits in a separate application.',
+        tidligstFaaDagpenger:
+            'You can receive unemployment benefits at the earliest from the day you submit the application.',
+        sendeSoknaden:
+            'In order not to lose days of unemployment benefits, you must send the application no later than the same day you want unemployment benefits.',
+        sokDagpenger: 'Apply for unemployment benefits',
+        skalIkkeSoke: 'Not going to apply now',
+    },
 };
 
 const Kvittering = () => {

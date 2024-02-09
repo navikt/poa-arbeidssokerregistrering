@@ -22,11 +22,11 @@ const TEKSTER: Tekster<string> = {
             'Dersom du skal søkje om dagpengar, kan du sende inn søknaden no, og registrere deg som arbeidssøkjar etterpå.',
     },
     en: {
-        heading: 'Maintenance',
-        vedlikehold: 'Due to maintenance you can not register as a jobseeker at the moment.',
-        provIgjen: 'Please try again later.',
+        heading: 'Maintenance in progress',
+        vedlikehold: 'Jobseeker registration is not available due to maintenance.',
+        provIgjen: 'Please try again a little later.',
         dagpenger:
-            'If you are applying for unemployment benefits, you can submit the application now, and register as a jobseeker afterwards.',
+            'If you are going to apply for unemployment benefits, you can submit the application now and register as a jobseeker afterwards.',
     },
 };
 

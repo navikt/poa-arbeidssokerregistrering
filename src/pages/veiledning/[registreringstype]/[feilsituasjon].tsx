@@ -42,6 +42,16 @@ const TEKSTER: Tekster<string> = {
         kontaktKnapp: 'Ta kontakt',
         avbryt: 'Avbryt',
     },
+    en: {
+        heading: 'A counsellor must help you register',
+        utvandretBody1: 'You are registered as an emigrant in our systems.',
+        manglerArbeidstillatelseBody1: 'We are not able to check whether you have an approved residence permit.',
+        body2: 'This means that you cannot register as a jobseeker online.',
+        kontaktOss: 'Contact us and we will help you further.',
+        kontaktOssMedTlfnr: 'Call us by phone (+47 55 55 33 33), and we will help you further.',
+        kontaktKnapp: 'Contact Us',
+        avbryt: 'Cancel',
+    },
 };
 
 const KontaktVeileder = (props: Feilsituasjon) => {

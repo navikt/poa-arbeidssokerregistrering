@@ -39,8 +39,7 @@ const TEKSTER: Tekster<string> = {
             'If you were laid off or unemployed, you must apply for unemployment benefits in a separate application.',
         tidligstFaaDagpenger:
             'You can receive unemployment benefits at the earliest from the day you submit the application.',
-        sendeSoknaden:
-            'In order not to lose days of unemployment benefits, you must send the application no later than the same day you want unemployment benefits.',
+        sendeSoknaden: `In order not to lose days of unemployment benefits, you must send the application no later than the same day you want unemployment benefits.`,
         sokDagpenger: 'Apply for unemployment benefits',
         skalIkkeSoke: 'Not going to apply now',
     },

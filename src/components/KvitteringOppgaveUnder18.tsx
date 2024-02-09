@@ -53,6 +53,27 @@ const TEKSTER: Tekster<string> = {
             'Vi har forsøkt å sende melding til ein rettleiar som kan hjelpe deg vidare, men det gjekk ikkje.',
         proevSenere: 'Prøv å registrere deg igjen seinare. Dersom feilen varer ved,',
     },
+    en: {
+        alertVennligstVent: 'Please wait',
+        alleredeBedtOmKontakt:
+            'You have already asked us to contact you. We will contact you within two working days counting from the first message. Make sure your contact information is up to date or we will not be able to reach you.',
+        kontaktopplysningerOppdatert:
+            'Make sure your contact information is up to date or we will not be able to reach you.',
+        henvendelseMottatt: 'Enquiry received',
+        trengerSamtykke: 'You are under the age of 18, so you need parental consent to register as a jobseeker.',
+        veilederKontakterDeg: 'A NAV counsellor will contact you by the end of ',
+        veilederenHjelperDeg: 'The counsellor will help you further with consent and registration.',
+        lesMerOmSamtykkeIntro: 'Read more about',
+        samtykkeIntroLenkeTekst: 'parental consent online at nav.no',
+        hvisDuIkkeVilRegistreres:
+            'If you do not wish to register as a jobseeker anyway or would rather talk to us in other ways than phone,',
+        taKontaktMedOss: 'please contact us here.',
+        klarteIkkeOppretteHenvendelsen: 'Failed to create the enquiry',
+        duErUnder18: 'You are under the age of 18, so you need parental consent to register as a jobseeker.',
+        viHarForsoektOppretteMelding:
+            'We tried to create a message to your counsellor who can help you further, but it did not work.',
+        proevSenere: 'Try registering again later, but if it continues to fail,',
+    },
 };
 
 export type Opprettelsesfeil = 'finnesAllerede' | 'opprettelseFeilet';

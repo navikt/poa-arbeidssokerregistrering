@@ -28,14 +28,14 @@ const TEKSTER: Tekster<string> = {
         hjelpetekst: 'Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
     },
     en: {
-        tlfHosKRR: 'Phone number registered with the common contact register',
-        kildeKRR: 'Source: The common contact register',
-        tlfHosNAV: 'Phone number registered with NAV',
+        tlfHosKRR: "Telephone number stored in NAV's Contact and Reservation Register",
+        kildeKRR: 'Source: Contact and Reservation Registe',
+        tlfHosNAV: "Telephone number in NAV's archives",
         kildeNAV: 'Source: NAV',
-        endreOpplysninger: 'Change contact details',
+        endreOpplysninger: 'Change information',
         ingenOpplysninger: 'We could not find any contact information!',
         leggInnOpplysninger: 'Enter contact details',
-        hjelpetekst: 'Please make sure your contact details are updated or we will be unable to reach you.',
+        hjelpetekst: 'Make sure your contact information is up to date or we will not be able to reach you.',
     },
 };
 
