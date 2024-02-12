@@ -103,7 +103,7 @@ export const KvitteringOppgaveOpprettet = () => {
                 <BodyLong spacing>{tekst('veilederenHjelperDeg')}</BodyLong>
                 <BodyLong spacing>
                     {tekst('lesMerOmSamtykkeIntro')}{' '}
-                    <Link href="https://www.nav.no/samtykke-oppfolging-unge" onClick={gaarTilNavno}>
+                    <Link href="https://www.nav.no/samtykke-foresatte" onClick={gaarTilNavno}>
                         {tekst('samtykkeIntroLenkeTekst')}
                     </Link>
                     .

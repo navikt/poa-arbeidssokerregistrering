@@ -27,7 +27,7 @@ function Under18() {
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave - under 18' });
         const beskrivelse = `Personen har forsøkt å registrere seg som arbeidssøker, men er sperret fra å gjøre dette da personen er under 18 år.
 For mindreårige arbeidssøkere trengs det samtykke fra begge foresatte for å kunne registrere seg.
-Se "Servicerutine for innhenting av samtykke fra foresatte for unge under 18 år ved registrering som arbeidssøker".
+Se "Samtykke fra foresatte til unge under 18 år - registrering som arbeidssøker, øvrige tiltak og tjenester".
         
 Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell registrering i modia.`;
 
