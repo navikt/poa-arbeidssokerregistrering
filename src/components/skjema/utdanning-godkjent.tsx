@@ -1,5 +1,6 @@
 import { Heading, Panel } from '@navikt/ds-react';
 import Head from 'next/head';
+import { SporsmalId, UtdanningGodkjentValg, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
 
@@ -8,12 +9,27 @@ import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { hentTekst } from '../../model/sporsmal';
 
 import styles from '../../styles/skjema.module.css';
-import { SporsmalId, UtdanningGodkjentValg } from '@navikt/arbeidssokerregisteret-utils';
+
+const TEKSTER: Tekster<string> = {
+    nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Er utdanningen godkjent',
+        heading: 'Utdanning',
+    },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Er utdanninga godkjend',
+        heading: 'Utdanning',
+    },
+    en: {
+        sideTittel: 'Register as a Job Seeker : Education',
+        heading: 'Education',
+    },
+};
 
 const UtdanningGodkjent = (props: SkjemaKomponentProps<UtdanningGodkjentValg>) => {
     const { onChange, valgt, visFeilmelding } = props;
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
+    const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     const lagValg = (valg: UtdanningGodkjentValg) => ({ tekst: tekst(valg), value: valg });
     const valg = [
@@ -25,12 +41,12 @@ const UtdanningGodkjent = (props: SkjemaKomponentProps<UtdanningGodkjentValg>) =
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Er utdanningen godkjent</title>
+                <title>{sideTekst('sideTittel')}</title>
             </Head>
             <Panel className={styles.panel} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
-                        Utdanning
+                        {sideTekst('heading')}
                     </Heading>
                     <RadioGruppe
                         legend={tekst(SporsmalId.utdanningGodkjent)}

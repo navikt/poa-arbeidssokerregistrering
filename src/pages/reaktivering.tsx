@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { BodyLong, Button, GuidePanel, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
-
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+
 import useSprak from '../hooks/useSprak';
+
 import { fetcher as api } from '../lib/api-utils';
 import { loggAktivitet, loggStoppsituasjon, loggFlyt } from '../lib/amplitude';
 import { hentRegistreringFeiletUrl } from '../lib/hent-registrering-feilet-url';
@@ -18,6 +19,22 @@ const TEKSTER: Tekster<string> = {
         vilDuRegistreres: 'Ønsker du å være registrert som arbeidssøker?',
         ja: 'Ja, jeg vil være registrert',
         avbryt: 'Avbryt',
+    },
+    nn: {
+        tittel: 'Du er ikkje lenger registrert som arbeidssøkjar',
+        maaSokePaaNytt:
+            'Dersom du framleis skal få ytingar, må du først stadfeste at du ønskjer å vere registrert, og deretter søkje på nytt.',
+        vilDuRegistreres: 'Ønskjer du å vere registrert som arbeidssøkjar?',
+        ja: 'Ja, eg ønskjer å vere registrert',
+        avbryt: 'Avbryt',
+    },
+    en: {
+        tittel: 'You are no longer registered as a jobseeker',
+        maaSokePaaNytt:
+            'If you still wish to receive benefits, you must first confirm that you wish to be registered, then apply again.',
+        vilDuRegistreres: 'Do you want to register as a jobseeker?',
+        ja: 'Yes, I want to be registered',
+        avbryt: 'Cancel',
     },
 };
 

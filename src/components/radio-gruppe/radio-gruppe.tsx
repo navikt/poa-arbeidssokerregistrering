@@ -1,4 +1,4 @@
-import { Heading, Radio, RadioGroup } from '@navikt/ds-react';
+import { Radio, RadioGroup } from '@navikt/ds-react';
 
 import useSprak from '../../hooks/useSprak';
 

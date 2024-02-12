@@ -1,6 +1,12 @@
 import { Heading, Panel } from '@navikt/ds-react';
 import { preload } from 'swr';
 import Head from 'next/head';
+import {
+    SporsmalId,
+    DinSituasjon as Jobbsituasjon,
+    lagHentTekstForSprak,
+    Tekster,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
 
@@ -10,12 +16,27 @@ import { hentTekst } from '../../model/sporsmal';
 import { fetcher } from '../../lib/api-utils';
 
 import styles from '../../styles/skjema.module.css';
-import { SporsmalId, DinSituasjon as Jobbsituasjon } from '@navikt/arbeidssokerregisteret-utils';
+
+const TEKSTER: Tekster<string> = {
+    nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Din arbeidssøkersituasjon',
+        heading: 'Din arbeidssøkersituasjon',
+    },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Din situasjon som arbeidssøkjar',
+        heading: 'Din situasjon som arbeidssøkjar',
+    },
+    en: {
+        sideTittel: 'Register as a Job Seeker: Your jobseeker situation',
+        heading: 'Your jobseeker situation',
+    },
+};
 
 const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     const { onChange, valgt, visFeilmelding } = props;
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
+    const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     const valg = [
         { tekst: tekst(Jobbsituasjon.MISTET_JOBBEN), value: Jobbsituasjon.MISTET_JOBBEN },
@@ -43,12 +64,12 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Din arbeidssøkersituasjon</title>
+                <title>{sideTekst('sideTittel')}</title>
             </Head>
             <Panel className={styles.panel} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
-                        Din arbeidssøkersituasjon
+                        {sideTekst('heading')}
                     </Heading>
                     <RadioGruppe
                         legend={tekst(SporsmalId.dinSituasjon)}

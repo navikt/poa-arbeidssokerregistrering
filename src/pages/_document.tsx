@@ -1,13 +1,28 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 import {
     DecoratorComponents,
-    fetchDecoratorReact,
     DecoratorEnvProps,
     DecoratorFetchProps,
+    fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { logger } from '@navikt/next-logger';
+import localeTilUrl from '../lib/locale-til-url';
 
 const dekoratorEnv = process.env.DEKORATOR_ENV as Exclude<DecoratorEnvProps['env'], 'localhost'>;
+const availableLanguages = [
+    {
+        locale: 'nb',
+        handleInApp: true,
+    },
+    {
+        locale: 'nn',
+        handleInApp: true,
+    },
+    {
+        locale: 'en',
+        handleInApp: true,
+    },
+] as any;
 
 const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
     env: dekoratorEnv ?? 'prod',
@@ -16,7 +31,7 @@ const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
         context: 'privatperson',
         chatbot: false,
         logoutWarning: true,
-        // availableLanguages,
+        availableLanguages,
     },
 };
 export default class MyDocument extends Document<DecoratorComponents> {
@@ -25,7 +40,11 @@ export default class MyDocument extends Document<DecoratorComponents> {
         const initialProps = await Document.getInitialProps(ctx);
         const Dekorator: DecoratorComponents = await fetchDecoratorReact({
             ...dekoratorProps,
-            //language: locale as any,
+            params: {
+                ...dekoratorProps.params,
+                language: locale as any,
+                redirectToApp: true,
+            },
         }).catch((err) => {
             logger.error(err);
             const empty = () => <></>;

@@ -1,14 +1,17 @@
 import { Button } from '@navikt/ds-react';
-
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+
 import useSprak from '../../../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {
         tilbake: 'Tilbake',
     },
+    nn: {
+        tilbake: 'Tilbake',
+    },
     en: {
-        tilbake: 'Back',
+        tilbake: 'Previous',
     },
 };
 

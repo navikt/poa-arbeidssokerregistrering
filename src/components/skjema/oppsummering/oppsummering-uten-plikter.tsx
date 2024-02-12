@@ -5,10 +5,12 @@ import { logger } from '@navikt/next-logger';
 import NextLink from 'next/link';
 import Head from 'next/head';
 import useSWR from 'swr';
+import { SisteStillingValg, SporsmalId, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+
 import useSprak from '../../../hooks/useSprak';
+
 import { hentTekst } from '../../../model/sporsmal';
 import OppsummeringSvg from './oppsummering-svg';
-import { SisteStillingValg, SporsmalId, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
 import { fetcher as api } from '../../../lib/api-utils';
 import byggFullforRegistreringPayload from '../../../lib/bygg-fullfor-registrering-payload';
@@ -21,6 +23,7 @@ import { OppgaveRegistreringstype } from '../../../model/feilsituasjonTyper';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Gjennomgang av opplysninger',
         header: 'Er opplysningene riktige?',
         ingress: 'Her er opplysningene vi har registrert om deg.',
         ikkeIJobbSisteAaret: `Ifølge Arbeidsgiver- og arbeidstakerregisteret har du ikke vært i jobb i løpet av det siste året. 
@@ -40,6 +43,45 @@ const TEKSTER: Tekster<string> = {
         [SporsmalId.andreForhold + 'radTittel']: 'Andre problemer',
         [SporsmalId.andreForhold + 'radTittel']: 'Andre hensyn',
         fullfoerRegistrering: 'Fullfør registrering som arbeidssøker',
+        endreSvaret: 'Endre svaret',
+    },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Stemmer opplysningane',
+        header: 'Stemmer opplysningane?',
+        ingress: 'Her er opplysningane vi har registrert om deg.',
+        ikkeIJobbSisteAaret: `Ifølgje Arbeidsgivar- og arbeidstakarregisteret har du ikkje vore i jobb i løpet av det siste året. Om dette ikkje stemmer, er det likevel viktig at du fullfører registreringa. Du kan gi rett informasjon til NAV seinare.`,
+        harJobbetSisteAaret:
+            'Ifølgje Arbeidsgivar- og arbeidstakarregisteret har du vore i jobb i løpet av det siste året. Om dette ikkje stemmer, er det likevel viktig at du fullfører registreringa. Du kan gi rett informasjon til NAV seinare.',
+        [SporsmalId.dinSituasjon + 'radTittel']: 'Situasjon',
+        [SporsmalId.sisteJobb + 'radTittel']: 'Siste stilling',
+        [SporsmalId.fremtidigSituasjon + 'radTittel']: 'Fremtidig situasjon',
+        [SporsmalId.tilbakeIArbeid + 'radTittel']: 'Tilbake i jobb før sykmeldt i 52 uker',
+        [SporsmalId.utdanning + 'radTittel']: 'Høgaste fullførte utdanning',
+        [SporsmalId.utdanningGodkjent + 'radTittel']: 'Utdanning godkjent i Norge',
+        [SporsmalId.utdanningBestatt + 'radTittel']: 'Utdanning bestått',
+        [SporsmalId.helseHinder + 'radTittel']: 'Helseproblem',
+        //TODO: Hvilken av andre forhold-tekstene skal vi bruke i oppsummeringen?
+        [SporsmalId.andreForhold + 'radTittel']: 'Andre problem',
+        [SporsmalId.andreForhold + 'radTittel']: 'Andre omsyn',
+        fullfoerRegistrering: 'Fullfør registreringa som arbeidssøkjar',
+    },
+    en: {
+        sideTittel: 'Register as a Job Seeker: Is the information correct?',
+        header: 'Is the information correct?',
+        ingress: 'Here is the information we have registered about you.',
+        ikkeIJobbSisteAaret: `According to the As Register, you have not been employed during the past year. 
+            It is important to complete the registration even if you find errors. You can provide the correct information later to NAV.`,
+        harJobbetSisteAaret: `According to the As Register, you have been employed during the past year. 
+            It is important to complete the registration even if you find errors. You can provide the correct information later to NAV.`,
+        [SporsmalId.dinSituasjon + 'radTittel']: 'Situation',
+        [SporsmalId.sisteJobb + 'radTittel']: 'Last position',
+        [SporsmalId.utdanning + 'radTittel']: 'Highest completed education',
+        [SporsmalId.utdanningGodkjent + 'radTittel']: 'Education approved in Norway',
+        [SporsmalId.utdanningBestatt + 'radTittel']: 'Education completed and passed',
+        [SporsmalId.helseHinder + 'radTittel']: 'Health problems',
+        [SporsmalId.andreForhold + 'radTittel']: 'Other considerations',
+        fullfoerRegistrering: 'Complete jobseeker registration',
+        endreSvaret: 'Change your reply',
     },
 };
 
@@ -163,7 +205,7 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Gjennomgang av opplysninger</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Heading size={'medium'} level="1" spacing>
                 {tekst('header')}
@@ -226,6 +268,8 @@ interface RadProps {
 }
 
 const Rad = (props: RadProps) => {
+    const sprak = useSprak();
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     return (
         <Table.Row>
             <Table.HeaderCell scope="row">{props.radTittel}</Table.HeaderCell>
@@ -233,11 +277,10 @@ const Rad = (props: RadProps) => {
             <Table.DataCell>
                 <NextLink
                     href={props.url}
-                    locale={false}
-                    aria-label={`Endre svaret på ${props.radTittel.toLowerCase()}`}
+                    aria-label={`${tekst('endreSvaret')}: ${props.radTittel.toLowerCase()}`}
                     className={'navds-link'}
                 >
-                    Endre svaret
+                    {tekst('endreSvaret')}
                 </NextLink>
             </Table.DataCell>
         </Table.Row>

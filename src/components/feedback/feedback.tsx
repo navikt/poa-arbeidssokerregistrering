@@ -17,7 +17,7 @@ const TEKSTER: Tekster<string> = {
         vetIkke: 'Vet ikke',
     },
     en: {
-        varDetteNyttig: 'Was this information useful?',
+        varDetteNyttig: 'Was this helpful reading? ',
         ja: 'Yes',
         nei: 'No',
         hvorforNei: 'Why did you answer No?',
@@ -25,7 +25,7 @@ const TEKSTER: Tekster<string> = {
         forstodIkke: 'I did not understand it',
         uviktig: 'Felt unimportant',
         andreGrunner: 'Other reasons',
-        vetIkke: 'Uncertain',
+        vetIkke: "Don't know ",
     },
 };
 

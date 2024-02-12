@@ -1,11 +1,11 @@
 import React from 'react';
 import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { loggAktivitet, loggFlyt } from '../lib/amplitude';
 import { Config } from '../model/config';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
@@ -21,6 +21,27 @@ const TEKSTER: Tekster<string> = {
             'For å ikke tape dager med dagpenger må du sende søknaden senest samme dag som du ønsker dagpenger fra.',
         sokDagpenger: 'Søk dagpenger',
         skalIkkeSoke: 'Skal ikke søke nå',
+    },
+    nn: {
+        header: 'Du er no registrert som arbeidssøkjar',
+        dagpengerTittel: 'Har du søkt om dagpengar?',
+        permittert: 'Viss du er permittert eller arbeidsledig, må du søkje om dagpengar i ein eigen søknad.',
+        tidligstFaaDagpenger: 'Du kan få dagpengar tidlegast frå den dagen du sender inn søknaden.',
+        sendeSoknaden:
+            'For å unngå å tape dagar med dagpengar er det viktig at du sender søknaden seinast same dag som du ønskjer dagpengar frå.',
+        sokDagpenger: 'Søk om dagpengar',
+        skalIkkeSoke: 'Skal ikkje søkje no',
+    },
+    en: {
+        header: 'You are now registered as a jobseeker',
+        dagpengerTittel: 'Have you applied for unemployment benefits?',
+        permittert:
+            'If you were laid off or unemployed, you must apply for unemployment benefits in a separate application.',
+        tidligstFaaDagpenger:
+            'You can receive unemployment benefits at the earliest from the day you submit the application.',
+        sendeSoknaden: `In order not to lose days of unemployment benefits, you must send the application no later than the same day you want unemployment benefits.`,
+        sokDagpenger: 'Apply for unemployment benefits',
+        skalIkkeSoke: 'Not going to apply now',
     },
 };
 

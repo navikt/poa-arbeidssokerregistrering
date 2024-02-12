@@ -1,10 +1,14 @@
 import { Button } from '@navikt/ds-react';
-import { useCallback } from 'react';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+
+import { useCallback } from 'react';
 import useSprak from '../../../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        neste: 'Neste',
+    },
+    nn: {
         neste: 'Neste',
     },
     en: {

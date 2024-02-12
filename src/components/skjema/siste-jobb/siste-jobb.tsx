@@ -13,6 +13,7 @@ import styles from '../../../styles/skjema.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Hva er din siste jobb?',
         tittel: 'Hva er din siste jobb?',
         registrert: 'Følgende informasjon er registrert i Aa-registeret om din siste stilling.',
         feilOpplysninger: 'Hvis opplysningen er feil, kan du endre under.',
@@ -20,6 +21,30 @@ const TEKSTER: Tekster<string> = {
         brukesTilInnhold:
             'Vi bruker opplysningene til å lage offentlig statistikk om arbeidsmarkedet. Hvis opplysningene er feil, kan du endre dem. Da får NAV riktigere statistikk. Vær oppmerksom på at opplysningene er hentet fra Arbeidsgiver- og arbeidstakerregisteret (Aa-registeret). Endrer du opplysninger hos NAV, blir de bare lagret hos oss. I Aa-registeret er det kun arbeidsgivere som kan endre.',
         stilling: 'Stilling',
+        endreKnapp: 'Endre',
+    },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Kva var den siste jobben din?',
+        tittel: 'Kva var den siste jobben din?',
+        registrert: 'Følgjande informasjon er registrert i Aa-registeret om den siste stillinga di.',
+        feilOpplysninger: 'Dersom informasjonen er feil, kan du gjere endringar under.',
+        brukesTilTittel: 'Kva bruker vi informasjonen om den siste stillinga di til?',
+        brukesTilInnhold:
+            'Vi bruker opplysningane til å lage offentleg statistikk om arbeidsmarknaden. Dersom opplysningane er feil, kan du endre dei. Dette bidrar til at NAV får rettare statistikk. Ver merksam på at opplysningane er henta frå Arbeidsgivar- og arbeidstakarregisteret (Aa-registeret). Dersom du endrar opplysningar hos NAV, blir dei berre lagra hos oss. Det er berre arbeidsgivarar som kan gjere endringar i Aa-registeret.',
+        stilling: 'Stilling',
+        endreKnapp: 'Endre',
+    },
+    en: {
+        sideTittel: 'Register as a Job Seeker : What was your last job?',
+        tittel: 'What was your last job?',
+        registrert:
+            'We found the following information in the State Register of Employers and Employees (Aa Register) about your last position.',
+        feilOpplysninger: 'If the information is incorrect, you can change it below.',
+        brukesTilTittel: 'What do we use the information about your last position for?',
+        brukesTilInnhold:
+            "We use the information to compile public statistics on the labour market. If the information is incorrect, you can change it. This will give NAV more accurate statistics. Please note that the information is retrieved from the State Register of Employers and Employees (Aa Register). If you change NAV's information, it will only be stored with us. Only employers can change the information in the Aa Register.",
+        stilling: 'Position',
+        endreKnapp: 'Change',
     },
 };
 
@@ -62,7 +87,7 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Hva er din siste jobb?</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Panel className={`${styles.panel} mb-6`} border={true}>
                 <div>
@@ -89,7 +114,7 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
                                         className="ml-4"
                                         onClick={() => settVisStillingsSok(true)}
                                     >
-                                        Endre
+                                        {tekst('endreKnapp')}
                                     </Button>
                                 </div>
                             )}

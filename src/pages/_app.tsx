@@ -15,6 +15,7 @@ import { initFaro } from '../faro/initFaro';
 
 import styles from '../styles/app.module.css';
 import '../styles/globals.css';
+import { loggAktivitet } from '../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -28,7 +29,10 @@ const TEKSTER: Tekster<string> = {
 };
 
 function MyApp({ Component, pageProps, router }: AppProps) {
-    onLanguageSelect(({ locale }) => router.push(router.asPath, router.asPath, { locale }));
+    onLanguageSelect(async ({ locale }) => {
+        loggAktivitet({ aktivitet: 'Bytter språk', locale });
+        return router.push(router.asPath, router.asPath, { locale });
+    });
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
 
     useEffect(() => {

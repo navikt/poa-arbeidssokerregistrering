@@ -11,6 +11,8 @@ import styles from '../../styles/skjema.module.css';
 
 const TEKSTER_STANDARD: AndreProblemerTekster = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid',
+        andreUtfordringer: 'Andre utfordringer knyttet til arbeid',
         tittel: 'Har du andre problemer med å søke eller være i jobb?',
         ingress: 'For eksempel språk, lesing og skriving eller familiesituasjon.',
         JA: 'Ja',
@@ -18,10 +20,32 @@ const TEKSTER_STANDARD: AndreProblemerTekster = {
         fortellMer:
             'Svarer du ja, kan du fortelle mer til en veileder i en oppfølgingssamtale. Vi kontakter deg når du har registrert deg.',
     },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Andre utfordringar knytt til arbeid',
+        andreUtfordringer: 'Andre utfordringar knytt til arbeid',
+        tittel: 'Har du andre problem med å søkje eller vere i jobb?',
+        ingress: 'Dette kan til dømes vere vanskar knytt til språk, lesing og skriving eller familiesituasjon',
+        JA: 'Ja',
+        NEI: 'Nei',
+        fortellMer:
+            'Svarer du ja, kan du utdjupe dette nærmare til ein rettleiar i ein oppfølgingssamtale. Vi kontaktar deg når du har registrert deg.',
+    },
+    en: {
+        sideTittel: 'Register as a Job Seeker : Other challenges related to work',
+        andreUtfordringer: 'Other challenges related to work',
+        tittel: 'Do you have other problems applying or being employed?',
+        ingress: 'For example, language, reading or writing skills, or family situation.',
+        JA: 'Yes',
+        NEI: 'No',
+        fortellMer:
+            'If you answer yes, you can tell your NAV counsellor more in a follow-up interview. We will contact you once you have registered.',
+    },
 };
 
 const TEKSTER_SYKMELDT: AndreProblemerTekster = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid',
+        andreUtfordringer: 'Andre utfordringer knyttet til arbeid',
         tittel: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
         ingress: 'For eksempel språk, lesing og skriving eller familiesituasjon',
         JA: 'Ja',
@@ -31,7 +55,7 @@ const TEKSTER_SYKMELDT: AndreProblemerTekster = {
 };
 
 export type AndreProblemerTekster = TeksterMedDefinerteNokler<
-    'tittel' | 'ingress' | 'JA' | 'NEI' | 'fortellMer',
+    'sideTittel' | 'andreUtfordringer' | 'tittel' | 'ingress' | 'JA' | 'NEI' | 'fortellMer',
     string
 >;
 
@@ -48,12 +72,12 @@ const AndreProblemer = (props: AndreProblemerProps) => {
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Panel className={`${styles.panel} mb-6`} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
-                        Andre utfordringer knyttet til arbeid
+                        {tekst('andreUtfordringer')}
                     </Heading>
                     <RadioGruppe
                         legend={tekst('tittel')}

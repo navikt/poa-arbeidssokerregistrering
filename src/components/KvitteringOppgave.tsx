@@ -18,18 +18,31 @@ const TEKSTER: Tekster<string> = {
         kontakterDegInnen: 'Vi kontakter deg innen utgangen av ',
         kontaktopplysningerOppdatert: 'Pass på at kontaktopplysningene dine er oppdatert, ellers kan vi ikke nå deg.',
     },
-    en: {
-        alertMottatt: 'Request received',
-        alertVennligstVent: 'Please wait',
-        alertFeil: "We're having trouble",
+    nn: {
+        alertMottatt: 'Førespurnad motteken',
+        alertVennligstVent: 'Vent litt',
+        alertFeil: 'Noko gjekk gale',
         alleredeBedtOmKontakt:
-            'We have received your first message. We will contact you within two working days from the first message. Please make sure your contact details are updated.',
+            'Du har allereie spurt oss om å kontakte deg. Vi tek kontakt i løpet av to arbeidsdagar rekna frå første melding. Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
         klarteIkkeMotta:
-            'We’re having trouble with your request right now. Please try again later. If you are still having problems, you can call us on 55 55 33 33.',
+            'Vi klarte ikkje å ta imot førespurnaden din. Prøv igjen seinare. Viss det same skjer gong på gong, kan du ringje oss på 55 55 33 33.',
+        viktig: 'Viktig:',
+        kontakterDegInnen: 'Vi tek kontakt innen utgangen av ',
+        kontaktopplysningerOppdatert:
+            'Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
+    },
+    en: {
+        alertMottatt: 'Enquiry received',
+        alertVennligstVent: 'Please wait',
+        alertFeil: 'Something went wrong',
+        alleredeBedtOmKontakt:
+            'You have already asked us to contact you. We will contact you within two working days counting from the first message. Make sure your contact information is up to date or we will not be able to reach you.',
+        klarteIkkeMotta:
+            'We were unable to accept your enquiry. Please try again later. If you experience this several times, please call us at 55 55 33 33',
         viktig: 'Important:',
         kontakterDegInnen: 'We will contact you before the end of ',
-        kontaktopplysningerOppdatert: 'Please make sure your contact details are updated.',
-        //TODO: Oversette alle tekster
+        kontaktopplysningerOppdatert:
+            'Make sure your contact information is up to date or we will not be able to reach you.',
     },
 };
 

@@ -11,11 +11,31 @@ import styles from '../../styles/skjema.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        sideTittel: 'Arbeidssøkerregistrering: Helse',
+        heading: 'Helse',
         tittel: 'Har du helseproblemer som hindrer deg i å søke eller være i jobb?',
         JA: 'Ja',
         NEI: 'Nei',
         fortellMer:
             'Svarer du ja, kan du fortelle mer til en veileder i en oppfølgingssamtale. Vi kontakter deg når du har registrert deg.',
+    },
+    nn: {
+        sideTittel: 'Arbeidssøkjarregistrering: Helse',
+        heading: 'Helse',
+        tittel: 'Har du helseproblem som hindrar deg i å søkje eller vere i jobb?',
+        JA: 'Ja',
+        NEI: 'Nei',
+        fortellMer:
+            'Svarer du ja, kan du utdjupe dette nærmare til ein rettleiar i ein oppfølgingssamtale. Vi kontaktar deg når du har registrert deg.',
+    },
+    en: {
+        sideTittel: 'Register as a Job Seeker : Health',
+        heading: 'Health',
+        tittel: 'Do you have health problems that prevent you from applying or staying in a job?',
+        JA: 'Yes',
+        NEI: 'No',
+        fortellMer:
+            'If you answer yes, you can tell your NAV counsellor more in a follow-up interview. We will contact you once you have registered.',
     },
 };
 
@@ -29,12 +49,12 @@ const Helseproblemer = (props: SkjemaKomponentProps<JaEllerNei>) => {
     return (
         <>
             <Head>
-                <title>Arbeidssøkerregistrering: Helse</title>
+                <title>{tekst('sideTittel')}</title>
             </Head>
             <Panel className={`${styles.panel} mb-6`} border={true}>
                 <form>
                     <Heading size="medium" spacing level="1">
-                        Helse
+                        {tekst('heading')}
                     </Heading>
                     <RadioGruppe
                         legend={tekst('tittel')}

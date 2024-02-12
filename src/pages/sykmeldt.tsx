@@ -2,10 +2,10 @@ import { BodyLong, Button, GuidePanel, Heading, Label, Link } from '@navikt/ds-r
 import NextLink from 'next/link';
 import { nanoid } from 'nanoid';
 import { GetServerSidePropsContext, NextApiRequest } from 'next';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
 
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import VeiledningSvg from '../components/veiledningSvg';
 import { SkjemaSide } from '../model/skjema';
 import { Kontaktinformasjon } from '../model/kontaktinformasjon';

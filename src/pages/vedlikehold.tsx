@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { Alert, BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+
+import useSprak from '../hooks/useSprak';
 
 import { loggStoppsituasjon } from '../lib/amplitude';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import useSprak from '../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -13,12 +14,19 @@ const TEKSTER: Tekster<string> = {
         dagpenger:
             'Hvis du skal søke om dagpenger kan du sende inn søknaden nå, og registrere deg som arbeidssøker etterpå.',
     },
-    en: {
-        heading: 'Maintenance',
-        vedlikehold: 'Due to maintenance you can not register as a jobseeker at the moment.',
-        provIgjen: 'Please try again later.',
+    nn: {
+        heading: 'Det blir utført vedlikehald',
+        vedlikehold: 'Arbeidssøkjarregistrering er ikkje tilgjengeleg grunna vedlikehald.',
+        provIgjen: 'Prøv igjen litt seinare.',
         dagpenger:
-            'If you are applying for unemployment benefits, you can submit the application now, and register as a jobseeker afterwards.',
+            'Dersom du skal søkje om dagpengar, kan du sende inn søknaden no, og registrere deg som arbeidssøkjar etterpå.',
+    },
+    en: {
+        heading: 'Maintenance in progress',
+        vedlikehold: 'Jobseeker registration is not available due to maintenance.',
+        provIgjen: 'Please try again a little later.',
+        dagpenger:
+            'If you are going to apply for unemployment benefits, you can submit the application now and register as a jobseeker afterwards.',
     },
 };
 
