@@ -105,13 +105,10 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
             settVisFeilmelding(false);
             onSubmit();
 
-            const response: FullforRegistreringResponse = await api(
-                `api/fullforregistrering${props.side === 'sykmeldt' ? 'sykmeldt' : ''}`,
-                {
-                    method: 'post',
-                    body: JSON.stringify(body),
-                },
-            );
+            const response: FullforRegistreringResponse = await api('api/fullforregistrering', {
+                method: 'post',
+                body: JSON.stringify(body),
+            });
 
             const feiltype = response.type;
 

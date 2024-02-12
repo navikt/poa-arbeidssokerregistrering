@@ -58,8 +58,6 @@ spec:
       value: http://veilarbregistrering/veilarbregistrering/api/startregistrering/
     - name: FULLFOR_REGISTRERING_URL
       value: http://veilarbregistrering/veilarbregistrering/api/fullfoerordinaerregistrering/
-    - name: FULLFOR_REGISTRERING_SYKMELDT_URL
-      value: http://veilarbregistrering/veilarbregistrering/api/fullfoersykmeldtregistrering/
     - name: REAKTIVERING_URL
       value: http://veilarbregistrering/veilarbregistrering/api/fullfoerreaktivering/
     - name: OPPRETT_OPPGAVE_URL

@@ -2,11 +2,9 @@ import { SkjemaState } from '../model/skjema';
 import { Reducer } from 'react';
 import {
     DinSituasjon,
-    FremtidigSituasjon,
     JaEllerNei,
     SisteStillingValg,
     SporsmalId,
-    TilbakeIArbeid,
     UtdanningGodkjentValg,
     Utdanningsnivaa,
     SisteJobb,
@@ -22,8 +20,6 @@ export type SkjemaAction =
     | { type: SporsmalId.andreForhold; value: JaEllerNei }
     | { type: SporsmalId.sisteJobb; value: SisteJobb }
     | { type: SporsmalId.sisteStilling; value: SisteStillingValg }
-    | { type: SporsmalId.fremtidigSituasjon; value: FremtidigSituasjon }
-    | { type: SporsmalId.tilbakeIArbeid; value: TilbakeIArbeid }
     | { type: 'SenderSkjema' };
 
 export function skjemaReducer(state: SkjemaState, action: SkjemaAction): SkjemaState {
@@ -68,15 +64,6 @@ export function skjemaReducer(state: SkjemaState, action: SkjemaAction): SkjemaS
             return {
                 ...state,
                 andreForhold: action.value,
-            };
-        }
-        case SporsmalId.fremtidigSituasjon: {
-            return oppdaterFremtidigSituasjon(state, action.value);
-        }
-        case SporsmalId.tilbakeIArbeid: {
-            return {
-                ...state,
-                tilbakeIArbeid: action.value,
             };
         }
     }
@@ -142,30 +129,5 @@ export const oppdaterUtdanning = (skjemaState: SkjemaState, utdanning: Utdanning
     return {
         ...skjemaState,
         utdanning: utdanning,
-    };
-};
-
-const oppdaterFremtidigSituasjon = (state: SkjemaState, valg: FremtidigSituasjon) => {
-    if (valg === FremtidigSituasjon.INGEN_PASSER) {
-        return {
-            fremtidigSituasjon: valg,
-        };
-    }
-
-    if ([FremtidigSituasjon.SAMME_ARBEIDSGIVER_NY_STILLING, FremtidigSituasjon.SAMME_ARBEIDSGIVER].includes(valg)) {
-        return {
-            ...state,
-            fremtidigSituasjon: valg,
-            utdanning: undefined,
-            utdanningGodkjent: undefined,
-            utdanningBestatt: undefined,
-            andreProblemer: undefined,
-        };
-    }
-
-    return {
-        ...state,
-        fremtidigSituasjon: valg,
-        tilbakeIArbeid: undefined,
     };
 };

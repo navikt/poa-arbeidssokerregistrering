@@ -31,11 +31,6 @@ function DemoPanel({ brukerMock }: Props) {
                                 </NextLink>
                             </p>
                             <p>
-                                <NextLink href={`/sykmeldt/`} passHref>
-                                    <Button variant="secondary">Sykmeldt registrering</Button>
-                                </NextLink>
-                            </p>
-                            <p>
                                 <NextLink href={`/mer-oppfolging/`} passHref>
                                     <Button variant="secondary">Mer sykmeldt oppfølging</Button>
                                 </NextLink>

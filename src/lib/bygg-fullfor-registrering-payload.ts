@@ -26,7 +26,7 @@ type Payload = {
 };
 
 function byggFullforRegistreringPayload(skjemaState: SkjemaState, side: Side = 'standard') {
-    const initialStandardState: SkjemaState = {
+    const initialState: SkjemaState = {
         dinSituasjon: undefined,
         utdanning: Utdanningsnivaa.INGEN_SVAR,
         utdanningGodkjent: UtdanningGodkjentValg.INGEN_SVAR,
@@ -35,18 +35,6 @@ function byggFullforRegistreringPayload(skjemaState: SkjemaState, side: Side = '
         sisteStilling: SisteStillingValg.INGEN_SVAR,
         helseHinder: JaEllerNei.INGEN_SVAR,
     };
-
-    const initialSykmeldtState = {
-        utdanning: Utdanningsnivaa.INGEN_SVAR,
-        utdanningGodkjent: UtdanningGodkjentValg.INGEN_SVAR,
-        utdanningBestatt: JaEllerNei.INGEN_SVAR,
-        andreForhold: JaEllerNei.INGEN_SVAR,
-        sisteStilling: SisteStillingValg.INGEN_SVAR,
-        fremtidigSituasjon: undefined,
-        tilbakeIArbeid: undefined,
-    };
-
-    const initialState = side === 'standard' ? initialStandardState : initialSykmeldtState;
 
     const harAldriJobbet =
         skjemaState.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB ||
@@ -58,7 +46,7 @@ function byggFullforRegistreringPayload(skjemaState: SkjemaState, side: Side = '
 
     let payload = (Object.keys(initialState) as Array<keyof Omit<SkjemaState, 'startTid'>>).reduce(
         (resultat: Payload, key) => {
-            const svar = skjemaState[key] || initialStandardState[key];
+            const svar = skjemaState[key] || initialState[key];
 
             resultat.besvarelse[key] = svar;
             if (svar) {

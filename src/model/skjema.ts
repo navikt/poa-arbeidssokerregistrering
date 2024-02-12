@@ -1,10 +1,8 @@
 import {
     DinSituasjon,
-    FremtidigSituasjon,
     JaEllerNei,
     SisteStillingValg,
     SporsmalId,
-    TilbakeIArbeid,
     UtdanningGodkjentValg,
     Utdanningsnivaa,
     SisteJobb,
@@ -20,9 +18,6 @@ export enum SkjemaSide {
     AndreProblemer = '6',
     Oppsummering = '8',
     OppsummeringUtenPlikter = '8',
-    SykmeldtFremtidigSituasjon = '9',
-    TilbakeTilJobb = '10',
-    SkalTilbakeTilJobb = '11',
     FullforRegistrering = '12',
 }
 
@@ -47,16 +42,6 @@ export type StandardSkjemaSideUtenPlikter =
     | SkjemaSide.AndreProblemer
     | SkjemaSide.OppsummeringUtenPlikter;
 
-export type SykmeldtSkjemaSide =
-    | SkjemaSide.SykmeldtFremtidigSituasjon
-    | SkjemaSide.Utdanning
-    | SkjemaSide.GodkjentUtdanning
-    | SkjemaSide.BestaattUtdanning
-    | SkjemaSide.AndreProblemer
-    | SkjemaSide.Oppsummering
-    | SkjemaSide.TilbakeTilJobb
-    | SkjemaSide.SkalTilbakeTilJobb;
-
 export type Navigering<T extends SkjemaSide> = {
     neste?: T;
     forrige?: T;
@@ -74,8 +59,6 @@ export interface SkjemaState {
     [SporsmalId.sisteStilling]?: SisteStillingValg;
     [SporsmalId.sisteJobb]?: SisteJobb;
     [SporsmalId.helseHinder]?: JaEllerNei;
-    [SporsmalId.fremtidigSituasjon]?: FremtidigSituasjon;
-    [SporsmalId.tilbakeIArbeid]?: TilbakeIArbeid;
     startTid?: number;
 }
 
@@ -88,8 +71,6 @@ const skjemasider = {
     [SporsmalId.utdanningGodkjent]: SkjemaSide.GodkjentUtdanning,
     [SporsmalId.andreForhold]: SkjemaSide.AndreProblemer,
     [SporsmalId.helseHinder]: SkjemaSide.Helseproblemer,
-    [SporsmalId.tilbakeIArbeid]: SkjemaSide.TilbakeTilJobb,
-    [SporsmalId.fremtidigSituasjon]: SkjemaSide.SykmeldtFremtidigSituasjon,
 };
 
 export const hentSkjemaside = (sporsmalId: SporsmalId) => skjemasider[sporsmalId];
@@ -104,4 +85,4 @@ export function visSisteStilling(skjemaState: SkjemaState) {
         : false;
 }
 
-export type Side = 'standard' | 'sykmeldt';
+export type Side = 'standard';

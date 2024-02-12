@@ -9,7 +9,7 @@ import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 import styles from '../../styles/skjema.module.css';
 
-const TEKSTER_STANDARD: AndreProblemerTekster = {
+const TEKSTER: AndreProblemerTekster = {
     nb: {
         sideTittel: 'Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid',
         andreUtfordringer: 'Andre utfordringer knyttet til arbeid',
@@ -42,27 +42,14 @@ const TEKSTER_STANDARD: AndreProblemerTekster = {
     },
 };
 
-const TEKSTER_SYKMELDT: AndreProblemerTekster = {
-    nb: {
-        sideTittel: 'Arbeidssøkerregistrering: Andre utfordringer knyttet til arbeid',
-        andreUtfordringer: 'Andre utfordringer knyttet til arbeid',
-        tittel: 'Er det noe annet enn helsen din som NAV bør ta hensyn til?',
-        ingress: 'For eksempel språk, lesing og skriving eller familiesituasjon',
-        JA: 'Ja',
-        NEI: 'Nei',
-        fortellMer: 'Svarer du ja, kan du fortelle mer til NAV-veilederen som tar kontakt med deg.',
-    },
-};
-
 export type AndreProblemerTekster = TeksterMedDefinerteNokler<
     'sideTittel' | 'andreUtfordringer' | 'tittel' | 'ingress' | 'JA' | 'NEI' | 'fortellMer',
     string
 >;
 
-type AndreProblemerProps = SkjemaKomponentProps<JaEllerNei> & { skjematype: 'standard' | 'sykmeldt' };
+type AndreProblemerProps = SkjemaKomponentProps<JaEllerNei> & { skjematype: 'standard' };
 
 const AndreProblemer = (props: AndreProblemerProps) => {
-    const TEKSTER = props.skjematype === 'standard' ? TEKSTER_STANDARD : TEKSTER_SYKMELDT;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const { onChange, valgt, visFeilmelding } = props;
 

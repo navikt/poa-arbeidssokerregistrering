@@ -16,16 +16,6 @@ describe('bygg-fullfor-registrering-payload', () => {
             expect(sisteStilling).toBe(aldriJobbet);
         });
 
-        it('har ikke sisteStilling for sykmeldt-side', () => {
-            const resultat = byggFullforRegistreringPayload(
-                {
-                    sisteStilling: SisteStillingValg.HAR_IKKE_HATT_JOBB,
-                },
-                'sykmeldt',
-            );
-            expect(Object.keys(resultat)).not.toContain('sisteStilling');
-        });
-
         it('returnerer "Ingen yrkeserfaring" når sisteStilling er HAR_IKKE_HATT_JOBB', () => {
             const { teksterForBesvarelse } = byggFullforRegistreringPayload({
                 sisteStilling: SisteStillingValg.HAR_IKKE_HATT_JOBB,

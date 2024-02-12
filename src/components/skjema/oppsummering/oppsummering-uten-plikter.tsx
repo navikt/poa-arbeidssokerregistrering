@@ -33,8 +33,6 @@ const TEKSTER: Tekster<string> = {
             'Hvis det er feil, er det likevel viktig at du fullfører registreringen. Du kan gi riktig informasjon senere til NAV.',
         [SporsmalId.dinSituasjon + 'radTittel']: 'Situasjon',
         [SporsmalId.sisteJobb + 'radTittel']: 'Siste stilling',
-        [SporsmalId.fremtidigSituasjon + 'radTittel']: 'Fremtidig situasjon',
-        [SporsmalId.tilbakeIArbeid + 'radTittel']: 'Tilbake i jobb før sykmeldt i 52 uker',
         [SporsmalId.utdanning + 'radTittel']: 'Høyeste fullførte utdanning',
         [SporsmalId.utdanningGodkjent + 'radTittel']: 'Utdanning godkjent i Norge',
         [SporsmalId.utdanningBestatt + 'radTittel']: 'Utdanning bestått',
@@ -54,8 +52,6 @@ const TEKSTER: Tekster<string> = {
             'Ifølgje Arbeidsgivar- og arbeidstakarregisteret har du vore i jobb i løpet av det siste året. Om dette ikkje stemmer, er det likevel viktig at du fullfører registreringa. Du kan gi rett informasjon til NAV seinare.',
         [SporsmalId.dinSituasjon + 'radTittel']: 'Situasjon',
         [SporsmalId.sisteJobb + 'radTittel']: 'Siste stilling',
-        [SporsmalId.fremtidigSituasjon + 'radTittel']: 'Fremtidig situasjon',
-        [SporsmalId.tilbakeIArbeid + 'radTittel']: 'Tilbake i jobb før sykmeldt i 52 uker',
         [SporsmalId.utdanning + 'radTittel']: 'Høgaste fullførte utdanning',
         [SporsmalId.utdanningGodkjent + 'radTittel']: 'Utdanning godkjent i Norge',
         [SporsmalId.utdanningBestatt + 'radTittel']: 'Utdanning bestått',
@@ -114,7 +110,7 @@ interface FullforKnappProps extends FullforProps {
 
 interface OppsummeringProps {
     skjemaState: SkjemaState;
-    skjemaPrefix: '/skjema/' | '/sykmeldt/' | '/opplysninger/';
+    skjemaPrefix: '/skjema/' | '/opplysninger/';
     onSubmit(): void;
 }
 

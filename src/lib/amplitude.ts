@@ -25,7 +25,7 @@ type EventData =
     | FeedbackData
     | FlytData;
 
-type BesvarelseData = { skjematype: 'standard' | 'sykmeldt'; sporsmalId: SporsmalId; svar: any };
+type BesvarelseData = { skjematype: 'standard'; sporsmalId: SporsmalId; svar: any };
 
 type StoppsituasjonData = { situasjon: string; aarsak?: ErrorTypes };
 
@@ -45,7 +45,6 @@ type AktivitetData =
     | { aktivitet: 'Avbryter registreringen' }
     | { aktivitet: 'Arbeidssøkeren reaktiverer seg' }
     | { aktivitet: 'Arbeidssøkeren avslår reaktivering' }
-    | { aktivitet: 'Fortsetter til sykmeldtregistrering' }
     | { aktivitet: 'Oppretter kontakt meg oppgave' }
     | { aktivitet: 'Oppretter kontakt meg oppgave - under 18' }
     | { aktivitet: 'Avbryter kontakt meg' }
