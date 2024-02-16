@@ -73,7 +73,7 @@ spec:
     - name: ARBEIDSSOKER_PERIODER_URL
       value: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
     - name: OPPGAVE_API_URL
-      value: https://www.nav.no/aia-backend/oppgave
+      value: http://aia-backend/aia-backend/oppgave
     - name: NEXT_PUBLIC_ASSET_PREFIX
       value: https://cdn.nav.no/paw/arbeidssokerregistrering
     - name: AAREG_REST_API
@@ -96,7 +96,6 @@ spec:
   accessPolicy:
     outbound:
       external:
-        - host: www.nav.no
         - host: arbeidsplassen.nav.no
         - host: paw-unleash-api.nav.cloud.nais.io
         - host: aareg-services.prod-fss-pub.nais.io
