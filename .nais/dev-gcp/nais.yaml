@@ -73,7 +73,7 @@ spec:
     - name: ARBEIDSSOKER_PERIODER_URL
       value: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
     - name: OPPGAVE_API_URL
-      value: http://aia-backend/oppgave
+      value: http://aia-backend/aia-backend/oppgave
     - name: NEXT_PUBLIC_ASSET_PREFIX
       value: https://cdn.nav.no/paw/arbeidssokerregistrering
     - name: AAREG_REST_API
