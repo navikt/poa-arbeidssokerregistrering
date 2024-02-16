@@ -96,6 +96,7 @@ spec:
   accessPolicy:
     outbound:
       external:
+        - host: www.nav.no
         - host: arbeidsplassen.nav.no
         - host: paw-unleash-api.nav.cloud.nais.io
         - host: aareg-services.prod-fss-pub.nais.io
