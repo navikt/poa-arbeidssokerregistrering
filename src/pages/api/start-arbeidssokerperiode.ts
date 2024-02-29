@@ -22,12 +22,16 @@ const apiHandler: NextApiHandler = async (req, res) => {
                 identitetsnummer: fnr,
             }),
             headers: brukerMock ? getHeaders('token', callId) : getHeaders(await getInngangClientId(req), callId),
-        }).then((apiResponse) => {
+        }).then(async (apiResponse) => {
             if (!apiResponse.ok) {
                 logger.error(`apiResponse ikke ok, callId - ${callId}`);
                 const contentType = apiResponse.headers.get('content-type');
                 if (contentType && contentType.includes('application/json')) {
-                    return apiResponse.json();
+                    const data = await apiResponse.json();
+                    return {
+                        ...data,
+                        status: apiResponse.status,
+                    };
                 } else {
                     const error = new Error(apiResponse.statusText) as ApiError;
                     error.status = apiResponse.status;
@@ -39,7 +43,12 @@ const apiHandler: NextApiHandler = async (req, res) => {
         });
 
         logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
-        res.json(respons);
+
+        if (respons.status && respons.status !== 200) {
+            res.status(respons.status).json(respons);
+        } else {
+            res.json(respons);
+        }
     } catch (error) {
         logger.error(`Kall mot ${url} (callId: ${callId}) feilet. Feilmelding: ${error}`);
         res.status((error as ApiError).status || 500).end(`Noe gikk galt (callId: ${callId})`);
