@@ -72,6 +72,7 @@ const StartNyInngang = () => {
 
         if (error) {
             console.error('Feil fra nytt inggangs-api:', error);
+            router.push('/feil/');
         }
     }, [data, isLoading, router, error]);
 
