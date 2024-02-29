@@ -47,6 +47,7 @@ const getTokenDings = async (): Promise<Auth> => {
 
 export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
 export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
+export const INNGANG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-inngang`;
 
 const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
 
@@ -69,6 +70,10 @@ export const getVeilarbregistreringToken = async (req: NextApiRequest) => {
 
 export const getAaregToken = async (req: NextApiRequest) => {
     return getTokenXToken(req, AAREG_CLIENT_ID);
+};
+
+export const getInngangClientId = async (req: NextApiRequest) => {
+    return getTokenXToken(req, INNGANG_CLIENT_ID);
 };
 
 const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
