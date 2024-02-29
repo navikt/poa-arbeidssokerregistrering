@@ -8,6 +8,19 @@ export const mockToggles = {
     version: 1,
     features: [
         {
+            name: 'arbeidssokerregistrering.bruk-ny-inngang',
+            type: 'release',
+            enabled: false,
+            stale: false,
+            strategies: [
+                {
+                    name: 'default',
+                    parameters: {},
+                },
+            ],
+            variants: [],
+        },
+        {
             name: 'arbeidssokerregistrering.fjern-plikter',
             type: 'release',
             enabled: true,

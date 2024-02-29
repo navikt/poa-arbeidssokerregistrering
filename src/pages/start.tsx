@@ -56,6 +56,28 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
     }
 }
 
+const StartNyInngang = () => {
+    const { data, error, isLoading } = useSWR('api/start-arbeidssokerperiode', fetcher);
+    const router = useRouter();
+
+    useEffect(() => {
+        if (isLoading) {
+            return;
+        }
+
+        if (data) {
+            router.push(`/skjema/${SkjemaSide.DinSituasjon}`);
+            return;
+        }
+
+        if (error) {
+            console.error('Feil fra nytt inggangs-api:', error);
+        }
+    }, [data, isLoading, router, error]);
+
+    return null;
+};
+
 const Start = () => {
     const { dittNavUrl, loginUrl, aarsTall } = useConfig() as Config;
     const { data, error } = useSWR('api/startregistrering', fetcher);
@@ -64,9 +86,14 @@ const Start = () => {
     const { toggles } = useFeatureToggles();
     const sperrUnder18 = toggles['arbeidssokerregistrering.bruk-under-18-sperre'] && aarsTall > 2023;
     const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
+    const brukNyInngang = toggles['arbeidssokerregistrering.bruk-ny-inngang'];
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
+            return;
+        }
+
+        if (brukNyInngang) {
             return;
         }
 
@@ -111,7 +138,7 @@ const Start = () => {
             data.registreringType = RegistreringType.REGISTRERING;
         }
         router.push(hentNesteSideUrl(data, dittNavUrl));
-    }, [data, router, dittNavUrl, perioder, e, sperrUnder18, fjernPlikter]);
+    }, [data, router, dittNavUrl, perioder, e, sperrUnder18, fjernPlikter, brukNyInngang]);
 
     useEffect(() => {
         if (error) {
@@ -122,6 +149,7 @@ const Start = () => {
     return (
         <div style={{ textAlign: 'center' }}>
             <Loader variant="neutral" size="2xlarge" title="venter..." />
+            {brukNyInngang && <StartNyInngang />}
         </div>
     );
 };
