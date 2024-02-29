@@ -16,7 +16,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
         const fnr = result.payload.pid as string;
 
         logger.info(`Starter kall callId: ${callId} mot ${url}`);
-        const respons = fetch(url, {
+        const respons = await fetch(url, {
             method: 'PUT',
             body: JSON.stringify({
                 identitetsnummer: fnr,
