@@ -57,7 +57,12 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
 }
 
 const StartNyInngang = () => {
-    const { data, error, isLoading } = useSWR('api/start-arbeidssokerperiode', fetcher);
+    const { enableMock } = useConfig() as Config;
+    const brukerMock = enableMock === 'enabled';
+    const startArbeidssokerPeriodeUrl = brukerMock
+        ? 'api/mocks/start-arbeidssokerperiode'
+        : 'api/start-arbeidssokerperiode';
+    const { data, error, isLoading } = useSWR(startArbeidssokerPeriodeUrl, fetcher);
     const router = useRouter();
 
     useEffect(() => {
