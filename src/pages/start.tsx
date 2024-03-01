@@ -81,7 +81,11 @@ const StartNyInngang = () => {
         }
     }, [data, isLoading, router, error]);
 
-    return null;
+    return (
+        <div style={{ textAlign: 'center' }}>
+            <Loader variant="neutral" size="2xlarge" title="venter..." />
+        </div>
+    );
 };
 
 const Start = () => {
