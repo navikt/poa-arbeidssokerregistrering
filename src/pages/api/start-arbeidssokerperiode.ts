@@ -8,7 +8,7 @@ import { verifyToken } from '../../auth/token-validation';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-const url = `${process.env.INNGANG_API_URL}/api/v1/arbeidssoker/perioder`;
+const url = `${process.env.INNGANG_API_URL}/api/v1/arbeidssoker/periode`;
 
 const apiHandler: NextApiHandler = async (req, res) => {
     const callId = nanoid();
@@ -22,7 +22,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
             method: 'PUT',
             body: JSON.stringify({
                 identitetsnummer: fnr,
-                registreringForhaandsGodkjentAvAnsatt: false,
+                periodeTilstand: 'STARTET',
             }),
             headers: brukerMock ? getHeaders('token', callId) : getHeaders(await getInngangClientId(req), callId),
         }).then(async (apiResponse) => {
