@@ -1,13 +1,15 @@
+import { decodeJwt } from 'jose';
 import { NextApiHandler } from 'next';
+import { logger } from '@navikt/next-logger';
+import { nanoid } from 'nanoid';
+
 import { ApiError, getHeaders, getInngangClientId, getTokenFromRequest } from '../../lib/next-api-handler';
 import { verifyToken } from '../../auth/token-validation';
-import { decodeJwt } from 'jose';
-import { nanoid } from 'nanoid';
-import { logger } from '@navikt/next-logger';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 const url = `${process.env.INNGANG_API_URL}/api/v1/arbeidssoker/perioder/kan-starte`;
+
 const apiHandler: NextApiHandler = async (req, res) => {
     const callId = nanoid();
     try {
@@ -54,4 +56,5 @@ const apiHandler: NextApiHandler = async (req, res) => {
         res.status((error as ApiError).status || 500).end(`Noe gikk galt (callId: ${callId})`);
     }
 };
+
 export default withAuthenticatedApi(apiHandler);

@@ -71,7 +71,7 @@ const StartNyInngang = () => {
         }
 
         if (error) {
-            console.error('Feil fra nytt inggangs-api:', error);
+            console.error('Feil fra nytt inngangs-api:', error);
             router.push('/feil/');
         }
     }, [data, isLoading, router, error]);
@@ -87,14 +87,9 @@ const Start = () => {
     const { toggles } = useFeatureToggles();
     const sperrUnder18 = toggles['arbeidssokerregistrering.bruk-under-18-sperre'] && aarsTall > 2023;
     const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
-    const brukNyInngang = toggles['arbeidssokerregistrering.bruk-ny-inngang'];
 
     useEffect(() => {
         if (!data || !dittNavUrl || (!perioder && !e)) {
-            return;
-        }
-
-        if (brukNyInngang) {
             return;
         }
 
@@ -139,7 +134,7 @@ const Start = () => {
             data.registreringType = RegistreringType.REGISTRERING;
         }
         router.push(hentNesteSideUrl(data, dittNavUrl));
-    }, [data, router, dittNavUrl, perioder, e, sperrUnder18, fjernPlikter, brukNyInngang]);
+    }, [data, router, dittNavUrl, perioder, e, sperrUnder18, fjernPlikter]);
 
     useEffect(() => {
         if (error) {
@@ -150,10 +145,17 @@ const Start = () => {
     return (
         <div style={{ textAlign: 'center' }}>
             <Loader variant="neutral" size="2xlarge" title="venter..." />
-            {brukNyInngang && <StartNyInngang />}
         </div>
     );
 };
 
+const VelgInngang = () => {
+    const { toggles } = useFeatureToggles();
+    const brukNyInngang = toggles['arbeidssokerregistrering.bruk-ny-inngang'];
+
+    return brukNyInngang ? <StartNyInngang /> : <Start />;
+};
+
 export const getServerSideProps = withAuthenticatedPage();
-export default Start;
+
+export default VelgInngang;
