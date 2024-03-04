@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, NextApiResponse } from 'next';
-import { validateIdportenToken } from '@navikt/next-auth-wonderwall';
+import { validateIdportenToken } from '@navikt/oasis';
 import { logger } from '@navikt/next-logger';
 import localeTilUrl from '../lib/locale-til-url';
 
@@ -36,12 +36,11 @@ export function withAuthenticatedPage(handler: PageHandler = async () => ({ prop
         }
 
         const validationResult = await validateIdportenToken(bearerToken);
-        if (validationResult !== 'valid') {
+        if (!validationResult.ok) {
             logger.error(
-                new Error(
-                    `Invalid JWT token found (cause: ${validationResult.errorType} ${validationResult.message}, redirecting to login.`,
-                    { cause: validationResult.error },
-                ),
+                new Error(`Invalid JWT token found (cause: ${validationResult.errorType}) redirecting to login.`, {
+                    cause: validationResult.error,
+                }),
             );
             return {
                 redirect: {
@@ -63,9 +62,9 @@ export function withAuthenticatedApi(handler: ApiHandler): ApiHandler {
 
         const bearerToken: string | null | undefined = req.headers['authorization'];
         const validatedToken = bearerToken ? await validateIdportenToken(bearerToken) : null;
-        if (!bearerToken || validatedToken !== 'valid') {
-            if (validatedToken && validatedToken !== 'valid') {
-                logger.error(`Invalid JWT token found (cause: ${validatedToken.message} for API ${req.url}`);
+        if (!bearerToken || !validatedToken?.ok) {
+            if (validatedToken && !validatedToken.ok) {
+                logger.error(`Invalid JWT token found (cause: ${validatedToken.errorType} for API ${req.url}`);
             }
 
             res.status(401).json({ message: 'Access denied' });
