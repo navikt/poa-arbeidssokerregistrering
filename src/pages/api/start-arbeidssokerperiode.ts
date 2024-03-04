@@ -53,7 +53,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
         if (respons?.status && respons?.status !== 200) {
             res.status(respons.status).json(respons);
         } else {
-            res.json(respons);
+            res.json(respons ?? {});
         }
     } catch (error) {
         logger.error(`Kall mot ${url} (callId: ${callId}) feilet. Feilmelding: ${error}`);
