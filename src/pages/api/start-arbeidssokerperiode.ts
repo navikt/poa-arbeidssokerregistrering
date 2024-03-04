@@ -26,10 +26,11 @@ const apiHandler: NextApiHandler = async (req, res) => {
             }),
             headers: brukerMock ? getHeaders('token', callId) : getHeaders(await getInngangClientId(req), callId),
         }).then(async (apiResponse) => {
+            const contentType = apiResponse.headers.get('content-type');
+            const isJsonResponse = contentType && contentType.includes('application/json');
             if (!apiResponse.ok) {
                 logger.error(`apiResponse ikke ok, callId - ${callId}`);
-                const contentType = apiResponse.headers.get('content-type');
-                if (contentType && contentType.includes('application/json')) {
+                if (isJsonResponse) {
                     const data = await apiResponse.json();
                     return {
                         ...data,
@@ -42,7 +43,9 @@ const apiHandler: NextApiHandler = async (req, res) => {
                 }
             }
 
-            return apiResponse.json();
+            if (isJsonResponse) {
+                return apiResponse.json();
+            }
         });
 
         logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
