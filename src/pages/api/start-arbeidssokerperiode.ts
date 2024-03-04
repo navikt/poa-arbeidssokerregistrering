@@ -42,7 +42,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
                     throw error;
                 }
             }
-
+            logger.debug(`Kall callId: ${callId} ferdig med status: ${apiResponse.status}`);
             if (isJsonResponse) {
                 return apiResponse.json();
             }
@@ -50,7 +50,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
 
         logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
 
-        if (respons.status && respons.status !== 200) {
+        if (respons?.status && respons?.status !== 200) {
             res.status(respons.status).json(respons);
         } else {
             res.json(respons);
