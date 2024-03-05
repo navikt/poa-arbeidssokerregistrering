@@ -53,12 +53,10 @@ const apiHandler: NextApiHandler = async (req, res) => {
         });
 
         logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
-        const contentType = respons.headers.get('content-type');
-        const isJsonResponse = contentType && contentType.includes('application/json');
 
         if (respons?.status === 204) {
             res.status(204).end();
-        } else if (respons?.status && isJsonResponse) {
+        } else if (respons?.status && respons?.status !== 200) {
             res.status(200).json(respons);
         } else {
             res.json(respons ?? {});
