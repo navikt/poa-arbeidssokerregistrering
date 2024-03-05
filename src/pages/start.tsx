@@ -79,7 +79,7 @@ const StartNyInngang = () => {
         }
 
         if (error) {
-            console.error('Feil fra nytt inngangs-api:', error);
+            console.error('Feil fra start periode:', error);
             router.push('/stoppet/');
         }
     }, [data, isLoading, router, error]);
