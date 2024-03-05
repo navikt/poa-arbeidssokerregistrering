@@ -35,6 +35,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
                     return {
                         ...data,
                         status: apiResponse.status,
+                        kunneIkkeStartePeriode: true,
                     };
                 } else {
                     const error = new Error(apiResponse.statusText) as ApiError;
@@ -57,7 +58,7 @@ const apiHandler: NextApiHandler = async (req, res) => {
         if (respons?.status === 204) {
             res.status(204).end();
         } else if (respons?.status && respons?.status !== 200) {
-            res.status(respons.status).json(respons);
+            res.status(200).json(respons);
         } else {
             res.json(respons ?? {});
         }

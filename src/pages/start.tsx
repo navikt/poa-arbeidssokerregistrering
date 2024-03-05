@@ -76,13 +76,17 @@ const StartNyInngang = () => {
         }
 
         if (data) {
+            if (data.kunneIkkeStartePeriode) {
+                setFeilmelding(data);
+                return;
+            }
             router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
             return;
         }
 
         if (error) {
             console.error('Feil fra start periode:', error);
-            setFeilmelding(error);
+            router.push('/feil');
         }
     }, [data, isLoading, router, error]);
 
