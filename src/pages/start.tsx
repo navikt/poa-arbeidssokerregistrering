@@ -57,13 +57,16 @@ function hentNesteSideUrl(data: any, dittNavUrl: string) {
 }
 
 const StartNyInngang = () => {
+    const router = useRouter();
     const { enableMock } = useConfig() as Config;
+    const { toggles } = useFeatureToggles();
     const brukerMock = enableMock === 'enabled';
     const startArbeidssokerPeriodeUrl = brukerMock
         ? 'api/mocks/start-arbeidssokerperiode'
         : 'api/start-arbeidssokerperiode';
+    const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
     const { data, error, isLoading } = useSWR(startArbeidssokerPeriodeUrl, fetcher);
-    const router = useRouter();
+    const registreringsSkjema = fjernPlikter ? 'opplysninger' : 'skjema';
 
     useEffect(() => {
         if (isLoading) {
@@ -71,7 +74,7 @@ const StartNyInngang = () => {
         }
 
         if (data) {
-            router.push(`/skjema/${SkjemaSide.DinSituasjon}`);
+            router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
             return;
         }
 
