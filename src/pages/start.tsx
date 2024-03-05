@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '@navikt/ds-react';
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
@@ -15,6 +15,7 @@ import { withAuthenticatedPage } from '../auth/withAuthentication';
 import beregnBrukergruppe from '../lib/beregn-brukergruppe';
 import { loggFlyt } from '../lib/amplitude';
 import harAktivArbeidssokerperiode from '../lib/har-aktiv-arbeidssoker-periode';
+import KanIkkeStartePeriode from '../components/feilmeldinger/kan-ikke-starte-periode';
 
 const isBrowser = () => typeof window !== 'undefined';
 
@@ -60,6 +61,7 @@ const StartNyInngang = () => {
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
     const { toggles } = useFeatureToggles();
+    const [feilmelding, setFeilmelding] = useState<boolean | any>(false);
     const brukerMock = enableMock === 'enabled';
     const startArbeidssokerPeriodeUrl = brukerMock
         ? 'api/mocks/start-arbeidssokerperiode'
@@ -80,14 +82,19 @@ const StartNyInngang = () => {
 
         if (error) {
             console.error('Feil fra start periode:', error);
-            router.push('/stoppet/');
+            setFeilmelding(error);
         }
     }, [data, isLoading, router, error]);
 
     return (
-        <div style={{ textAlign: 'center' }}>
-            <Loader variant="neutral" size="2xlarge" title="venter..." />
-        </div>
+        <>
+            {isLoading && (
+                <div style={{ textAlign: 'center' }}>
+                    <Loader variant="neutral" size="2xlarge" title="Forsøker å starte registrering..." />
+                </div>
+            )}
+            {feilmelding && <KanIkkeStartePeriode feilmelding={feilmelding} />}
+        </>
     );
 };
 
