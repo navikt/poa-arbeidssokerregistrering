@@ -8,7 +8,7 @@ import { verifyToken } from '../../auth/token-validation';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-const url = `${process.env.INNGANG_API_URL}/api/v1/arbeidssoker/periode/kanStartePeriode`;
+const url = `${process.env.INNGANG_API_URL}/api/v1/arbeidssoker/kanStartePeriode`;
 
 const apiHandler: NextApiHandler = async (req, res) => {
     const callId = nanoid();
