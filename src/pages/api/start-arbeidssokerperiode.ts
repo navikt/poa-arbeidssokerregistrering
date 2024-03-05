@@ -29,13 +29,12 @@ const apiHandler: NextApiHandler = async (req, res) => {
             const contentType = apiResponse.headers.get('content-type');
             const isJsonResponse = contentType && contentType.includes('application/json');
             if (!apiResponse.ok) {
-                logger.error(`apiResponse ikke ok, callId - ${callId}`);
+                logger.warn(`apiResponse ikke ok (${apiResponse.status}), callId - ${callId}`);
                 if (isJsonResponse) {
                     const data = await apiResponse.json();
                     return {
                         ...data,
                         status: apiResponse.status,
-                        kunneIkkeStartePeriode: true,
                     };
                 } else {
                     const error = new Error(apiResponse.statusText) as ApiError;
@@ -53,12 +52,12 @@ const apiHandler: NextApiHandler = async (req, res) => {
             }
         });
 
-        logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
+        logger.info(`Kall callId: ${callId} mot ${url} er ferdig (${respons?.status || 200})`);
 
         if (respons?.status === 204) {
             res.status(204).end();
         } else if (respons?.status && respons?.status !== 200) {
-            res.status(200).json(respons);
+            res.status(respons.status).json(respons);
         } else {
             res.json(respons ?? {});
         }

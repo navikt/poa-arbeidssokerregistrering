@@ -67,7 +67,7 @@ const StartNyInngang = () => {
         ? 'api/mocks/start-arbeidssokerperiode'
         : 'api/start-arbeidssokerperiode';
     const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
-    const { data, error, isLoading } = useSWR(startArbeidssokerPeriodeUrl, fetcher);
+    const { data, error, isLoading } = useSWRImmutable(startArbeidssokerPeriodeUrl, fetcher, { errorRetryCount: 0 });
     const registreringsSkjema = fjernPlikter ? 'opplysninger' : 'skjema';
 
     useEffect(() => {
@@ -76,17 +76,13 @@ const StartNyInngang = () => {
         }
 
         if (data) {
-            if (data.kunneIkkeStartePeriode) {
-                setFeilmelding(data);
-                return;
-            }
             router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
             return;
         }
 
         if (error) {
-            console.error('Feil fra start periode:', error);
-            router.push('/feil');
+            console.error(`Feil fra start periode (${error.status}): `, error.data);
+            setFeilmelding(error);
         }
     }, [data, isLoading, router, error]);
 
@@ -97,7 +93,7 @@ const StartNyInngang = () => {
                     <Loader variant="neutral" size="2xlarge" title="Forsøker å starte registrering..." />
                 </div>
             )}
-            {feilmelding && <KanIkkeStartePeriode feilmelding={feilmelding} />}
+            {feilmelding && <KanIkkeStartePeriode feilmelding={feilmelding.data} />}
         </>
     );
 };

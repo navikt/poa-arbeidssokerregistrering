@@ -3,12 +3,18 @@ import getConfig from 'next/config';
 const { basePath } = getConfig().publicRuntimeConfig;
 
 const getUrl = (path: string) => `${basePath}/${path}`;
-
+export type FetchError = Error & {
+    status?: number;
+    data?: any;
+};
 export const fetcher = async (path: string, opts?: RequestInit & { onError?: (response: any) => void }) => {
     const response = await fetch(getUrl(path), {
         ...opts,
         credentials: 'include',
     });
+
+    const contentType = response.headers.get('Content-Type');
+    const isJsonResponse = contentType && /application\/json/.test(contentType);
 
     if (!response.ok) {
         if (response.status === 401) {
@@ -16,11 +22,14 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
         } else if (typeof opts?.onError === 'function') {
             return opts.onError(response);
         }
-        throw new Error(response.statusText);
+
+        const error: FetchError = new Error(response.statusText);
+        error.status = response.status;
+        error.data = isJsonResponse ? await response.json() : undefined;
+        throw error;
     }
 
-    const contentType = response.headers.get('Content-Type');
-    if (contentType && /application\/json/.test(contentType)) {
+    if (isJsonResponse) {
         return await response.json();
     }
 };
