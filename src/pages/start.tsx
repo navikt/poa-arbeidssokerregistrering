@@ -80,7 +80,7 @@ const StartNyInngang = () => {
 
         if (error) {
             console.error('Feil fra nytt inngangs-api:', error);
-            router.push('/feil/');
+            router.push('/stoppet/');
         }
     }, [data, isLoading, router, error]);
 
