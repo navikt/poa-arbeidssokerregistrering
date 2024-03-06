@@ -16,6 +16,7 @@ import beregnBrukergruppe from '../lib/beregn-brukergruppe';
 import { loggFlyt } from '../lib/amplitude';
 import harAktivArbeidssokerperiode from '../lib/har-aktiv-arbeidssoker-periode';
 import KanIkkeStartePeriode from '../components/feilmeldinger/kan-ikke-starte-periode';
+import { FeilmeldingVedStartAvArbeidssoekerperiode } from '../model/feilsituasjonTyper';
 
 const isBrowser = () => typeof window !== 'undefined';
 
@@ -61,7 +62,7 @@ const StartNyInngang = () => {
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
     const { toggles } = useFeatureToggles();
-    const [feilmelding, setFeilmelding] = useState<boolean | any>(false);
+    const [feilmelding, setFeilmelding] = useState<undefined | FeilmeldingVedStartAvArbeidssoekerperiode>(undefined);
     const brukerMock = enableMock === 'enabled';
     const startArbeidssokerPeriodeUrl = brukerMock
         ? 'api/mocks/start-arbeidssokerperiode'
@@ -82,7 +83,7 @@ const StartNyInngang = () => {
 
         if (error) {
             console.error(`Feil fra start periode (${error.status}): `, error.data);
-            setFeilmelding(error);
+            setFeilmelding(error.data as FeilmeldingVedStartAvArbeidssoekerperiode);
         }
     }, [data, isLoading, router, error]);
 
@@ -93,7 +94,7 @@ const StartNyInngang = () => {
                     <Loader variant="neutral" size="2xlarge" title="Forsøker å starte registrering..." />
                 </div>
             )}
-            {feilmelding && <KanIkkeStartePeriode feilmelding={feilmelding.data} />}
+            {feilmelding && <KanIkkeStartePeriode feilmelding={feilmelding} />}
         </>
     );
 };
