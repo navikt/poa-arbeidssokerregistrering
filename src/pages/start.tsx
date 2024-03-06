@@ -72,12 +72,12 @@ const StartNyInngang = () => {
     const registreringsSkjema = fjernPlikter ? 'opplysninger' : 'skjema';
 
     useEffect(() => {
+        console.log('data', data);
         if (isLoading) {
             return;
         }
 
         if (data) {
-            console.log(data);
             router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
             return;
         }
