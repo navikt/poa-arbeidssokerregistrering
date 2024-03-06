@@ -72,20 +72,17 @@ const StartNyInngang = () => {
     const registreringsSkjema = fjernPlikter ? 'opplysninger' : 'skjema';
 
     useEffect(() => {
-        console.log('data', data);
         if (isLoading) {
-            return;
-        }
-
-        if (data) {
-            router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
             return;
         }
 
         if (error) {
             console.error(`Feil fra start periode (${error.status}): `, error.data);
             setFeilmelding(error.data as FeilmeldingVedStartAvArbeidssoekerperiode);
+            return;
         }
+
+        router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
     }, [data, isLoading, router, error]);
 
     return (
