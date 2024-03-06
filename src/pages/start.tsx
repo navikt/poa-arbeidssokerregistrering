@@ -77,6 +77,7 @@ const StartNyInngang = () => {
         }
 
         if (data) {
+            console.log(data);
             router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
             return;
         }
