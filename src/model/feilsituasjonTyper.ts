@@ -8,24 +8,26 @@ export enum OppgaveRegistreringstype {
     REAKTIVERING = 'reaktivering',
 }
 
-type FeilKode =
-    | 'UKJENT_FEIL'
-    | 'UVENTET_FEIL_MOT_EKSTERN_TJENESTE'
-    | 'FEIL_VED_LESING_AV_FORESPORSEL'
-    | 'AVVIST'
-    | 'IKKE_TILGANG';
+export enum FeilKoderVedStartAvArbeidssoekerperiode {
+    'UKJENT_FEIL' = 'UKJENT_FEIL',
+    'UVENTET_FEIL_MOT_EKSTERN_TJENESTE' = 'UVENTET_FEIL_MOT_EKSTERN_TJENESTE',
+    'FEIL_VED_LESING_AV_FORESPORSEL' = 'FEIL_VED_LESING_AV_FORESPORSEL',
+    'AVVIST' = 'AVVIST',
+    'IKKE_TILGANG' = 'IKKE_TILGANG',
+}
 
-type Regler =
-    | 'UKJENT_REGEL'
-    | 'IKKE_FUNNET'
-    | 'SAVNET'
-    | 'DOED'
-    | 'ENDRE_FOR_ANNEN_BRUKER'
-    | 'ANSATT_IKKE_TILGANG_TIL_BRUKER'
-    | 'IKKE_TILGANG'
-    | 'UNDER_18_AAR'
-    | 'IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN'
-    | 'UKJENT_ALDER';
+export enum ReglerForStartAvArbeidssoekerperiode {
+    'UKJENT_REGEL' = 'UKJENT_REGEL',
+    'IKKE_FUNNET' = 'IKKE_FUNNET',
+    'SAVNET' = 'SAVNET',
+    'DOED' = 'DOED',
+    'ENDRE_FOR_ANNEN_BRUKER' = 'ENDRE_FOR_ANNEN_BRUKER',
+    'ANSATT_IKKE_TILGANG_TIL_BRUKER' = 'ANSATT_IKKE_TILGANG_TIL_BRUKER',
+    'IKKE_TILGANG' = 'IKKE_TILGANG',
+    'UNDER_18_AAR' = 'UNDER_18_AAR',
+    'IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN' = 'IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN',
+    'UKJENT_ALDER' = 'UKJENT_ALDER',
+}
 
 type Detaljer =
     | 'FORHAANDSGODKJENT_AV_ANSATT'
@@ -62,12 +64,12 @@ type Detaljer =
 
 export type AarsakTilAvvisning = {
     beskrivelse: string;
-    regel: Regler;
+    regel: ReglerForStartAvArbeidssoekerperiode;
     detaljer: Detaljer[];
 };
 
 export type FeilmeldingVedStartAvArbeidssoekerperiode = {
     melding: string;
-    feilKode: FeilKode;
+    feilKode: FeilKoderVedStartAvArbeidssoekerperiode;
     aarsakTilAvvisning?: AarsakTilAvvisning;
 };
