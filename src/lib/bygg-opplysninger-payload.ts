@@ -93,18 +93,20 @@ function mapJobbsituasjon(skjema: SkjemaState): Payload['jobbsituasjon'] {
 }
 function byggOpplysningerPayload(skjemaState: SkjemaState) {
     return {
-        utdanning: mapUtdanning(skjemaState),
-        helse: skjemaState['helseHinder']
-            ? {
-                  helsetilstandHindrerArbeid: skjemaState['helseHinder'],
-              }
-            : undefined,
-        jobbsituasjon: mapJobbsituasjon(skjemaState),
-        annet: skjemaState['andreForhold']
-            ? {
-                  andreForholdHindrerArbeid: skjemaState['andreForhold'],
-              }
-            : undefined,
+        opplysningerOmArbeidssoeker: {
+            utdanning: mapUtdanning(skjemaState),
+            helse: skjemaState['helseHinder']
+                ? {
+                      helsetilstandHindrerArbeid: skjemaState['helseHinder'],
+                  }
+                : undefined,
+            jobbsituasjon: mapJobbsituasjon(skjemaState),
+            annet: skjemaState['andreForhold']
+                ? {
+                      andreForholdHindrerArbeid: skjemaState['andreForhold'],
+                  }
+                : undefined,
+        },
     };
 }
 

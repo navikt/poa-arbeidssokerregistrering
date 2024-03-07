@@ -15,7 +15,7 @@ describe('bygg-opplysninger-payload', () => {
                 [SporsmalId.utdanning]: Utdanningsnivaa.HOYERE_UTDANNING_1_TIL_4,
                 [SporsmalId.utdanningBestatt]: JaEllerNei.JA,
                 [SporsmalId.utdanningGodkjent]: UtdanningGodkjentValg.VET_IKKE,
-            });
+            }).opplysningerOmArbeidssoeker;
             expect(result.utdanning).toEqual({
                 nus: '6',
                 bestatt: 'JA',
@@ -27,13 +27,13 @@ describe('bygg-opplysninger-payload', () => {
                 [SporsmalId.utdanning]: Utdanningsnivaa.INGEN_UTDANNING,
                 [SporsmalId.utdanningBestatt]: JaEllerNei.JA,
                 [SporsmalId.utdanningGodkjent]: UtdanningGodkjentValg.VET_IKKE,
-            });
+            }).opplysningerOmArbeidssoeker;
             expect(result.utdanning).toEqual({
                 nus: '0',
             });
         });
         test('defaulter til nus-kode ingen svar', () => {
-            const result = byggOpplysningerPayload({});
+            const result = byggOpplysningerPayload({}).opplysningerOmArbeidssoeker;
             expect(result.utdanning).toEqual({
                 nus: '9',
             });
@@ -44,7 +44,7 @@ describe('bygg-opplysninger-payload', () => {
         test('dropper detaljer ved HAR_IKKE_HATT_JOBB', () => {
             const result = byggOpplysningerPayload({
                 [SporsmalId.dinSituasjon]: DinSituasjon.ALDRI_HATT_JOBB,
-            });
+            }).opplysningerOmArbeidssoeker;
             expect(result.jobbsituasjon).toEqual({
                 beskrivelser: [{ beskrivelse: 'ALDRI_HATT_JOBB' }],
             });
@@ -53,7 +53,7 @@ describe('bygg-opplysninger-payload', () => {
             const result = byggOpplysningerPayload({
                 [SporsmalId.dinSituasjon]: DinSituasjon.AKKURAT_FULLFORT_UTDANNING,
                 [SporsmalId.sisteStilling]: SisteStillingValg.HAR_IKKE_HATT_JOBB,
-            });
+            }).opplysningerOmArbeidssoeker;
             expect(result.jobbsituasjon).toEqual({
                 beskrivelser: [{ beskrivelse: 'AKKURAT_FULLFORT_UTDANNING' }],
             });
@@ -66,7 +66,7 @@ describe('bygg-opplysninger-payload', () => {
                     label: 'Bartender',
                     konseptId: 0,
                 },
-            });
+            }).opplysningerOmArbeidssoeker;
             expect(result.jobbsituasjon).toEqual({
                 beskrivelser: [
                     {
@@ -90,7 +90,7 @@ describe('bygg-opplysninger-payload', () => {
             [SporsmalId.dinSituasjon]: DinSituasjon.ALDRI_HATT_JOBB,
         });
 
-        expect(result).toEqual({
+        expect(result.opplysningerOmArbeidssoeker).toEqual({
             utdanning: {
                 nus: '0',
             },
