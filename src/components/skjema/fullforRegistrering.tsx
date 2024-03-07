@@ -21,6 +21,8 @@ import PlikterSvg from '../forsiden/plikter-svg';
 import { Config } from '../../model/config';
 import { hentRegistreringFeiletUrl } from '../../lib/hent-registrering-feilet-url';
 import { OppgaveRegistreringstype } from '../../model/feilsituasjonTyper';
+import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
+import FullforRegistreringKnappNyInngang from './fullfor-registrering-knapp-ny-inngang';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -49,7 +51,7 @@ const TEKSTER: Tekster<string> = {
             'Det er viktig at du holder CV-en din oppdatert slik at NAV kan bistå deg med å komme i arbeid. ',
         lestOgForstaatt: 'Jeg har lest og forstått kravene',
         lestKravFeilmelding: 'Du må huke av at du har lest og forstått kravene for å kunne fullføre registreringen.',
-        fullfor: 'Fullfør',
+        fullfoerRegistrering: 'Fullfør',
     },
 };
 
@@ -171,7 +173,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
             )}
             <div style={{ textAlign: 'center' }}>
                 <Button onClick={validerOgFullfor} loading={senderSkjema} disabled={senderSkjema}>
-                    {tekst('fullfor')}
+                    {tekst('fullfoerRegistrering')}
                 </Button>
             </div>
         </>
@@ -183,6 +185,9 @@ const FullforRegistrering = (props: FullforProps) => {
     const [lestKravChecked, setLestKravChecked] = useState<boolean>(false);
     const [visFeilmeldingLestKrav, settVisFeilmeldingLestKrav] = useState<boolean>(false);
     const { skjemaState, onSubmit, side } = props;
+
+    const { toggles } = useFeatureToggles();
+    const brukNyInngang = toggles['arbeidssokerregistrering.bruk-ny-inngang'];
 
     const onValiderSkjema = () => {
         if (!lestKravChecked) {
@@ -257,12 +262,21 @@ const FullforRegistrering = (props: FullforProps) => {
                     </div>
                 )}
 
-                <FullforRegistreringKnapp
-                    skjemaState={skjemaState}
-                    side={side}
-                    onSubmit={onSubmit}
-                    onValiderSkjema={onValiderSkjema}
-                />
+                {brukNyInngang ? (
+                    <FullforRegistreringKnappNyInngang
+                        skjemaState={skjemaState}
+                        onSubmit={onSubmit}
+                        onValiderSkjema={onValiderSkjema}
+                        tekst={tekst}
+                    />
+                ) : (
+                    <FullforRegistreringKnapp
+                        skjemaState={skjemaState}
+                        side={side}
+                        onSubmit={onSubmit}
+                        onValiderSkjema={onValiderSkjema}
+                    />
+                )}
             </div>
         </>
     );

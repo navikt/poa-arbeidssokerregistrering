@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react';
-import { GuidePanel, Heading, Ingress, Table, Button } from '@navikt/ds-react';
+import { Button, GuidePanel, Heading, Ingress, Table } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 import { logger } from '@navikt/next-logger';
 import NextLink from 'next/link';
 import Head from 'next/head';
 import useSWR from 'swr';
-import { SisteStillingValg, SporsmalId, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, SisteStillingValg, SporsmalId, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
 
@@ -20,6 +20,8 @@ import hentKvitteringsUrl from '../../../lib/hent-kvitterings-url';
 import { loggAktivitet, loggFlyt } from '../../../lib/amplitude';
 import { hentRegistreringFeiletUrl } from '../../../lib/hent-registrering-feilet-url';
 import { OppgaveRegistreringstype } from '../../../model/feilsituasjonTyper';
+import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
+import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -192,6 +194,9 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { data: startRegistreringData, error } = useSWR('/api/startregistrering', api);
 
+    const { toggles } = useFeatureToggles();
+    const brukNyInngang = toggles['arbeidssokerregistrering.bruk-ny-inngang'];
+
     const { skjemaState, skjemaPrefix, onSubmit } = props;
 
     const onValiderSkjema = () => {
@@ -246,11 +251,20 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
                 </Table>
             </GuidePanel>
             <div className="mt-12">
-                <FullforRegistreringKnapp
-                    skjemaState={skjemaState}
-                    onSubmit={onSubmit}
-                    onValiderSkjema={onValiderSkjema}
-                />
+                {brukNyInngang ? (
+                    <FullforRegistreringKnappNyInngang
+                        skjemaState={skjemaState}
+                        onSubmit={onSubmit}
+                        onValiderSkjema={onValiderSkjema}
+                        tekst={tekst}
+                    />
+                ) : (
+                    <FullforRegistreringKnapp
+                        skjemaState={skjemaState}
+                        onSubmit={onSubmit}
+                        onValiderSkjema={onValiderSkjema}
+                    />
+                )}
             </div>
         </>
     );
