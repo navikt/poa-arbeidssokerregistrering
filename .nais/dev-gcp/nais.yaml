@@ -84,6 +84,8 @@ spec:
       value: aareg-services-nais-q1
     - name: INNGANG_API_URL
       value: http://paw-arbeidssokerregisteret-api-inngang
+    - name: OPPDATER_OPPLYSNINGER_URL
+      value: http://paw-arbeidssokerregisteret-api-inngang
   envFrom:
     - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
