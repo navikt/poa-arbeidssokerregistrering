@@ -28,7 +28,7 @@ const lagArbeidssokerApiKall: LagArbeidssokerApiKall = (url, opts) => async (req
         };
 
         const respons = await fetch(url, {
-            method: 'PUT',
+            method: opts.method,
             body: JSON.stringify({
                 identitetsnummer: fnr,
                 ...body,

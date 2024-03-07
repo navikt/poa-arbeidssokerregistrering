@@ -8,7 +8,7 @@ import useSprak from '../../hooks/useSprak';
 import { useConfig } from '../../contexts/config-context';
 import { useFeatureToggles } from '../../contexts/featuretoggle-context';
 
-import { lagHentTekstForSprak, Tekster, DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import { DinSituasjon, lagHentTekstForSprak, SporsmalId, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Side, SkjemaState } from '../../model/skjema';
 import { fetcher as api } from '../../lib/api-utils';
 import byggFullforRegistreringPayload from '../../lib/bygg-fullfor-registrering-payload';
@@ -21,7 +21,6 @@ import PlikterSvg from '../forsiden/plikter-svg';
 import { Config } from '../../model/config';
 import { hentRegistreringFeiletUrl } from '../../lib/hent-registrering-feilet-url';
 import { OppgaveRegistreringstype } from '../../model/feilsituasjonTyper';
-import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
 import FullforRegistreringKnappNyInngang from './fullfor-registrering-knapp-ny-inngang';
 
 const TEKSTER: Tekster<string> = {
