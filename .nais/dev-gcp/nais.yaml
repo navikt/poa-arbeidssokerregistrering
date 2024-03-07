@@ -20,6 +20,10 @@ spec:
     cpuThresholdPercentage: 50
   prometheus:
     enabled: false
+  observability:
+    autoInstrumentation:
+      enabled: true
+      runtime: node
   resources:
     limits:
       cpu: "200m"
