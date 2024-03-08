@@ -22,17 +22,19 @@ const lagArbeidssokerApiKall: LagArbeidssokerApiKall = (url, opts) => async (req
 
         logger.info(`Starter kall callId: ${callId} mot ${url}`);
 
+        let requestBody;
+        try {
+            requestBody = req.body ? JSON.parse(req.body) : {};
+        } catch (e) {
+            logger.warn({ e, x_callId: callId, msg: 'Feil ved json-parsing av innkommende request' });
+            requestBody = {};
+        }
+
         const body = {
             ...(opts.body ?? {}),
-            ...(req.body ?? {}),
+            ...requestBody,
         };
 
-        logger.info(
-            `callId ${callId} payload: ${JSON.stringify({
-                identitetsnummer: fnr,
-                ...body,
-            })}`,
-        );
         const respons = await fetch(url, {
             method: opts.method,
             body: JSON.stringify({
