@@ -45,6 +45,9 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
             const response: FullforRegistreringResponse = await api(fullfoerRegostreringUrl, {
                 method: 'post',
                 body: JSON.stringify(body),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
             });
             console.log('response ->', response);
             return router.push(hentKvitteringsUrl());

@@ -20,19 +20,9 @@ const lagArbeidssokerApiKall: LagArbeidssokerApiKall = (url, opts) => async (req
         const result = await verifyToken(token, decodeJwt(token));
         const fnr = result.payload.pid as string;
 
-        logger.info(`Starter kall callId: ${callId} mot ${url}`);
-
-        let requestBody;
-        try {
-            requestBody = req.body ? JSON.parse(req.body) : {};
-        } catch (e) {
-            logger.warn({ e, x_callId: callId, msg: 'Feil ved json-parsing av innkommende request' });
-            requestBody = {};
-        }
-
         const body = {
             ...(opts.body ?? {}),
-            ...requestBody,
+            ...(req.body ?? {}),
         };
 
         const respons = await fetch(url, {
