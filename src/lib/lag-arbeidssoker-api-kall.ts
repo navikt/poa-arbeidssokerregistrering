@@ -22,7 +22,7 @@ const lagArbeidssokerApiKall: LagArbeidssokerApiKall = (url, opts) => async (req
 
         const body = {
             ...(opts.body ?? {}),
-            ...(req.body ?? {}),
+            ...(req.body ?? {}), // OBS: krever at innkommende request har satt Content-type: application/json
         };
 
         const respons = await fetch(url, {
