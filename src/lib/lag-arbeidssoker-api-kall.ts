@@ -27,6 +27,12 @@ const lagArbeidssokerApiKall: LagArbeidssokerApiKall = (url, opts) => async (req
             ...(req.body ?? {}),
         };
 
+        logger.info(
+            `callId ${callId} payload: ${JSON.stringify({
+                identitetsnummer: fnr,
+                ...body,
+            })}`,
+        );
         const respons = await fetch(url, {
             method: opts.method,
             body: JSON.stringify({
