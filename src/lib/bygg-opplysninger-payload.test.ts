@@ -18,7 +18,7 @@ describe('bygg-opplysninger-payload', () => {
             }).opplysningerOmArbeidssoeker;
             expect(result.utdanning).toEqual({
                 nus: '6',
-                bestatt: 'JA',
+                bestaatt: 'JA',
                 godkjent: 'VET_IKKE',
             });
         });

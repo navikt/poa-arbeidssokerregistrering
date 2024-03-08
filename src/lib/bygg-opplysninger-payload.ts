@@ -23,7 +23,7 @@ export enum NUS {
 type Payload = {
     utdanning: {
         nus: NUS;
-        bestatt?: JaEllerNei;
+        bestaatt?: JaEllerNei;
         godkjent?: UtdanningGodkjentValg;
     };
     helse: {
@@ -67,7 +67,7 @@ function mapUtdanning(skjema: SkjemaState): Payload['utdanning'] {
 
     return {
         nus,
-        bestatt: skjema[SporsmalId.utdanningBestatt],
+        bestaatt: skjema[SporsmalId.utdanningBestatt],
         godkjent: skjema[SporsmalId.utdanningGodkjent],
     };
 }
