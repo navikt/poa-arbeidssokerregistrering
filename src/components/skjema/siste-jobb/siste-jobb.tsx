@@ -54,7 +54,9 @@ const annenStilling: SisteJobb = {
     styrk08: '-1',
 };
 
-const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Element; visSisteJobb: boolean }) => {
+const SisteJobbSkjema = (
+    props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Element; visSisteJobb: boolean },
+) => {
     const { onChange, visSisteJobb } = props;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const [visStillingsSok, settVisStillingsSok] = useState<boolean>(false);
@@ -130,4 +132,4 @@ const SisteJobb = (props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Ele
     );
 };
 
-export default SisteJobb;
+export default SisteJobbSkjema;
