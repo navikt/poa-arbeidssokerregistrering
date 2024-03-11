@@ -58,6 +58,7 @@ describe('bygg-opplysninger-payload', () => {
                 beskrivelser: [{ beskrivelse: 'AKKURAT_FULLFORT_UTDANNING' }],
             });
         });
+
         test('legger med styrk-kode i detaljer', () => {
             const result = byggOpplysningerPayload({
                 [SporsmalId.dinSituasjon]: DinSituasjon.HAR_SAGT_OPP,
@@ -79,6 +80,29 @@ describe('bygg-opplysninger-payload', () => {
                 ],
             });
         });
+
+        test('erstatter styrk-kode -1 med 00', () => {
+            const result = byggOpplysningerPayload({
+                [SporsmalId.dinSituasjon]: DinSituasjon.HAR_SAGT_OPP,
+                [SporsmalId.sisteJobb]: {
+                    styrk08: '-1',
+                    label: 'Uoppgitt',
+                    konseptId: 0,
+                },
+            }).opplysningerOmArbeidssoeker;
+            expect(result.jobbsituasjon).toEqual({
+                beskrivelser: [
+                    {
+                        beskrivelse: 'HAR_SAGT_OPP',
+                        detaljer: {
+                            stilling: 'Uoppgitt',
+                            stilling_styrk08: '00',
+                        },
+                    },
+                ],
+            });
+        });
+
         test('mapper om MISTET_JOBBEN', () => {
             const result = byggOpplysningerPayload({
                 [SporsmalId.dinSituasjon]: DinSituasjon.MISTET_JOBBEN,

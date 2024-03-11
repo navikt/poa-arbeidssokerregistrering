@@ -105,6 +105,7 @@ function mapDinSituasjonTilBeskrivelse(sitasjon: DinSituasjon): JobbsituasjonBes
     }
 }
 
+// For å støtte kompatibilitet med veilarbregistrering bytter vi i en periode styrk08 -1 til 00 (uoppgitt)
 function mapJobbsituasjon(skjema: SkjemaState): Payload['jobbsituasjon'] {
     const harAldriJobbet =
         skjema.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB ||
@@ -118,7 +119,7 @@ function mapJobbsituasjon(skjema: SkjemaState): Payload['jobbsituasjon'] {
                     ? undefined
                     : {
                           stilling: skjema[SporsmalId.sisteJobb]?.label,
-                          stilling_styrk08: skjema[SporsmalId.sisteJobb]?.styrk08,
+                          stilling_styrk08: skjema[SporsmalId.sisteJobb]?.styrk08.replace('-1', '00'),
                       },
             },
         ],
