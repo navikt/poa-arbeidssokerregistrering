@@ -60,7 +60,7 @@ describe('bygg-opplysninger-payload', () => {
         });
         test('legger med styrk-kode i detaljer', () => {
             const result = byggOpplysningerPayload({
-                [SporsmalId.dinSituasjon]: DinSituasjon.VIL_FORTSETTE_I_JOBB,
+                [SporsmalId.dinSituasjon]: DinSituasjon.HAR_SAGT_OPP,
                 [SporsmalId.sisteJobb]: {
                     styrk08: '42',
                     label: 'Bartender',
@@ -70,7 +70,7 @@ describe('bygg-opplysninger-payload', () => {
             expect(result.jobbsituasjon).toEqual({
                 beskrivelser: [
                     {
-                        beskrivelse: 'VIL_FORTSETTE_I_JOBB',
+                        beskrivelse: 'HAR_SAGT_OPP',
                         detaljer: {
                             stilling: 'Bartender',
                             stilling_styrk08: '42',
@@ -78,6 +78,36 @@ describe('bygg-opplysninger-payload', () => {
                     },
                 ],
             });
+        });
+        test('mapper om MISTET_JOBBEN', () => {
+            const result = byggOpplysningerPayload({
+                [SporsmalId.dinSituasjon]: DinSituasjon.MISTET_JOBBEN,
+            }).opplysningerOmArbeidssoeker;
+            expect(result.jobbsituasjon.beskrivelser[0].beskrivelse).toEqual('HAR_BLITT_SAGT_OPP');
+        });
+        test('mapper om JOBB_OVER_2_AAR', () => {
+            const result = byggOpplysningerPayload({
+                [SporsmalId.dinSituasjon]: DinSituasjon.JOBB_OVER_2_AAR,
+            }).opplysningerOmArbeidssoeker;
+            expect(result.jobbsituasjon.beskrivelser[0].beskrivelse).toEqual('IKKE_VAERT_I_JOBB_SISTE_2_AAR');
+        });
+        test('mapper om VIL_FORTSETTE_I_JOBB', () => {
+            const result = byggOpplysningerPayload({
+                [SporsmalId.dinSituasjon]: DinSituasjon.VIL_FORTSETTE_I_JOBB,
+            }).opplysningerOmArbeidssoeker;
+            expect(result.jobbsituasjon.beskrivelser[0].beskrivelse).toEqual('ANNET');
+        });
+        test('mapper om INGEN_SVAR', () => {
+            const result = byggOpplysningerPayload({
+                [SporsmalId.dinSituasjon]: DinSituasjon.INGEN_SVAR,
+            }).opplysningerOmArbeidssoeker;
+            expect(result.jobbsituasjon.beskrivelser[0].beskrivelse).toEqual('UDEFINERT');
+        });
+        test('mapper om INGEN_VERDI', () => {
+            const result = byggOpplysningerPayload({
+                [SporsmalId.dinSituasjon]: DinSituasjon.INGEN_VERDI,
+            }).opplysningerOmArbeidssoeker;
+            expect(result.jobbsituasjon.beskrivelser[0].beskrivelse).toEqual('UDEFINERT');
         });
     });
 

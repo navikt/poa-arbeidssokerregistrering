@@ -20,6 +20,23 @@ export enum NUS {
     INGEN_SVAR = '9',
 }
 
+export type JobbsituasjonBeskrivelse =
+    | 'UKJENT_VERDI'
+    | 'UDEFINERT'
+    | 'HAR_SAGT_OPP'
+    | 'HAR_BLITT_SAGT_OPP'
+    | 'ER_PERMITTERT'
+    | 'ALDRI_HATT_JOBB'
+    | 'IKKE_VAERT_I_JOBB_SISTE_2_AAR'
+    | 'AKKURAT_FULLFORT_UTDANNING'
+    | 'VIL_BYTTE_JOBB'
+    | 'USIKKER_JOBBSITUASJON'
+    | 'MIDLERTIDIG_JOBB'
+    | 'DELTIDSJOBB_VIL_MER'
+    | 'NY_JOBB'
+    | 'KONKURS'
+    | 'ANNET';
+
 type Payload = {
     utdanning: {
         nus: NUS;
@@ -30,7 +47,7 @@ type Payload = {
         helsetilstandHindrerArbeid: JaEllerNei;
     };
     jobbsituasjon: {
-        beskrivelser: [{ beskrivelse: DinSituasjon; detaljer?: any }];
+        beskrivelser: [{ beskrivelse: JobbsituasjonBeskrivelse; detaljer?: any }];
     };
     annet: {
         andreForholdHindrerArbeid: JaEllerNei;
@@ -72,6 +89,22 @@ function mapUtdanning(skjema: SkjemaState): Payload['utdanning'] {
     };
 }
 
+function mapDinSituasjonTilBeskrivelse(sitasjon: DinSituasjon): JobbsituasjonBeskrivelse {
+    switch (sitasjon) {
+        case DinSituasjon.MISTET_JOBBEN:
+            return 'HAR_BLITT_SAGT_OPP';
+        case DinSituasjon.JOBB_OVER_2_AAR:
+            return 'IKKE_VAERT_I_JOBB_SISTE_2_AAR';
+        case DinSituasjon.VIL_FORTSETTE_I_JOBB:
+            return 'ANNET';
+        case DinSituasjon.INGEN_SVAR:
+        case DinSituasjon.INGEN_VERDI:
+            return 'UDEFINERT';
+        default:
+            return sitasjon;
+    }
+}
+
 function mapJobbsituasjon(skjema: SkjemaState): Payload['jobbsituasjon'] {
     const harAldriJobbet =
         skjema.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB ||
@@ -80,7 +113,7 @@ function mapJobbsituasjon(skjema: SkjemaState): Payload['jobbsituasjon'] {
     return {
         beskrivelser: [
             {
-                beskrivelse: skjema[SporsmalId.dinSituasjon]!,
+                beskrivelse: mapDinSituasjonTilBeskrivelse(skjema[SporsmalId.dinSituasjon]!),
                 detaljer: harAldriJobbet
                     ? undefined
                     : {
