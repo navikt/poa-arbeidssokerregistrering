@@ -67,11 +67,13 @@ jobs:
           NEXT_PUBLIC_ASSET_PREFIX: https://cdn.nav.no/paw/arbeidssokerregistrering
 
       - name: Upload static files to NAV CDN
-        uses: navikt/frontend/actions/cdn-upload/v1@main
+        uses: nais/deploy/actions/cdn-upload/v2@master
         with:
-          cdn-team-name: paw
+          team: paw
           source: ./.next/static
           destination: arbeidssokerregistrering/_next
+          identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
+          project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
       - name: Push docker image to GAR
         uses: nais/docker-build-push@v0
