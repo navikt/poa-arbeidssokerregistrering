@@ -11,25 +11,15 @@ import { withAuthenticatedPage } from '../../auth/withAuthentication';
 
 const TEKSTER: Tekster<string> = {
     nb: {
-        overskrift: 'Vi finner ikke de nødvendige opplysningene',
-        innledning: 'For at du skal få registrert deg som arbeidssøker må vi hjelpe deg videre.',
-        sendMelding: 'Send melding til veilederen din',
-        ringOss: 'eller ring oss på',
-        telefonNummer: '55 55 33 33',
-    },
-    nn: {
-        overskrift: 'Vi må hjelpe deg vidare i andre kanalar',
-        innledning: 'For at du skal få registrert deg som arbeidssøkjar, må vi hjelpe deg vidare.',
-        sendMelding: 'Send melding til rettleiaren din',
-        ringOss: 'eller ring oss på',
-        telefonNummer: '55 55 33 33',
-    },
-    en: {
-        overskrift: 'We need to help you further using other channels',
-        innledning: 'You will need our assistance to register as a jobseeker. ',
-        sendMelding: 'Send a message to your NAV counsellor',
-        ringOss: 'or call us at',
-        telefonNummer: '55 55 33 33',
+        overskrift: 'Vi kan dessverre ikke registrere deg som arbeidssøker',
+        innledning:
+            'De opplysningene vi henter om deg fra folkeregisteret oppfyller ikke kravene til at du kan registrere deg som arbeidssøker.',
+        folkeregisteretKontakt: 'Du kan kontakte folkeregisteret for å gjøre endringer i opplysningene dine',
+        folkeregisteretLenke: 'https://www.skatteetaten.no/person/folkeregister/endre/',
+        folkeregisteretLenkeTekst: 'på nettsiden deres.',
+        vilDuHaHjelp: 'Vil du at vi skal hjelpe deg videre kan du',
+        kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
+        kontaktOssLenkeTekst: 'kontakte oss',
     },
 };
 
@@ -49,9 +39,14 @@ function Registerdata() {
             <Heading spacing size="small" level="1">
                 {tekst('overskrift')}
             </Heading>
-            <BodyLong>{tekst('innledning')}</BodyLong>
-            <BodyLong>
-                <Link href={dialogUrl}>{tekst('sendMelding')}</Link> {tekst('ringOss')} <b>{tekst('telefonNummer')}</b>
+            <BodyLong spacing>{tekst('innledning')}</BodyLong>
+            <BodyLong spacing>
+                {tekst('folkeregisteretKontakt')}{' '}
+                <Link href={tekst('folkeregisteretLenke')}>{tekst('folkeregisteretLenkeTekst')}</Link>
+            </BodyLong>
+            <BodyLong spacing>
+                {tekst('vilDuHaHjelp')} <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link>
+                {''}.
             </BodyLong>
         </Alert>
     );

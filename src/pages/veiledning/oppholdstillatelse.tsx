@@ -11,14 +11,13 @@ import { withAuthenticatedPage } from '../../auth/withAuthentication';
 
 const TEKSTER: Tekster<string> = {
     nb: {
-        overskrift: 'Vi får ikke bekreftet at du kan registrere deg',
-        innhold:
-            'Vi kan dessverre ikke registrere deg som arbeidssøker da du i følge våre systemer ikke har bostedsadresse i Norge. Ta kontakt med NAV kontaktsenter på 55 55 33 33 for å få mer informasjon om hva du må gjøre for å kunne registrere deg som arbeidssøker.',
+        overskrift: 'Vi kan dessverre ikke registrere deg som arbeidssøker',
+        innhold: 'Dette er fordi du i følge våre systemer ikke har bostedsadresse i Norge.',
         lesomkrav: 'Du finner mer informasjon om hva som kreves for å registrere deg som arbeidssøker i Norge på',
         workInNorwayLenke: 'https://www.workinnorway.no/no/Forside',
         workInNorwayLenkeTekst: 'sidene til Work in Norway',
         vilDuHaHjelp: 'Vil du at vi skal hjelpe deg videre kan du',
-        kontaktOssLenke: 'https://www.nav.no/kontaktoss',
+        kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
         kontaktOssLenkeTekst: 'kontakte oss',
     },
 };
@@ -40,9 +39,11 @@ function Oppholdstillatelse() {
             <BodyLong spacing>{tekst('innhold')}</BodyLong>
             <BodyLong spacing>
                 {tekst('lesomkrav')} <Link href={tekst('workInNorwayLenke')}>{tekst('workInNorwayLenkeTekst')}</Link>
+                {''}.
             </BodyLong>
             <BodyLong spacing>
                 {tekst('vilDuHaHjelp')} <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link>
+                {''}.
             </BodyLong>
         </Alert>
     );
