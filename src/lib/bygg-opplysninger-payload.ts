@@ -76,7 +76,7 @@ function mapUtdanningsnivaaTilNusKode(utdanning?: Utdanningsnivaa): NUS {
 }
 function mapUtdanning(skjema: SkjemaState): Payload['utdanning'] {
     const nus = mapUtdanningsnivaaTilNusKode(skjema[SporsmalId.utdanning]);
-    if ([NUS.INGEN_SVAR, NUS.INGEN_UTDANNING].includes(nus)) {
+    if ([NUS.INGEN_SVAR, NUS.INGEN_UTDANNING, NUS.GRUNNSKOLE].includes(nus)) {
         return {
             nus,
         };

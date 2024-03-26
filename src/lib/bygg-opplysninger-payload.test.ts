@@ -32,6 +32,16 @@ describe('bygg-opplysninger-payload', () => {
                 nus: '0',
             });
         });
+        test('dropper godkjent og bestatt når grunnskole', () => {
+            const result = byggOpplysningerPayload({
+                [SporsmalId.utdanning]: Utdanningsnivaa.GRUNNSKOLE,
+                [SporsmalId.utdanningBestatt]: JaEllerNei.JA,
+                [SporsmalId.utdanningGodkjent]: UtdanningGodkjentValg.VET_IKKE,
+            }).opplysningerOmArbeidssoeker;
+            expect(result.utdanning).toEqual({
+                nus: '2',
+            });
+        });
         test('defaulter til nus-kode ingen svar', () => {
             const result = byggOpplysningerPayload({}).opplysningerOmArbeidssoeker;
             expect(result.utdanning).toEqual({
