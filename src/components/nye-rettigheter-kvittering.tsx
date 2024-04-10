@@ -53,7 +53,7 @@ const TEKSTER: Tekster<string> = {
 function EkstraPlikter() {
     return (
         <List.Item>
-            Du må fremover gjøre aktiviteter alene, eller i samhandling med NAV, som bidrar til at du kommer i arbeid.
+            Du må fremover gjøre aktiviteter, alene eller sammen med NAV, som bidrar til at du kommer i arbeid.
         </List.Item>
     );
 }
