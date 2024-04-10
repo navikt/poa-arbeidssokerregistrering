@@ -91,8 +91,8 @@ const TEKSTER: Tekster<string> = {
 function EkstraPlikter() {
     return (
         <BodyLong spacing className="max-w-3xl">
-            Registrer deg som arbeidssøker hvis har som mål om å komme i arbeid og vil gjøre aktiviteter alene, eller i
-            samhandling med NAV, som bidrar til dette.
+            Registrer deg som arbeidssøker hvis har som mål å komme i arbeid og vil gjøre aktiviteter, alene eller
+            sammen med NAV, for å oppnå dette.
         </BodyLong>
     );
 }
