@@ -1,6 +1,7 @@
 import { Box, List } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
+import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
@@ -49,12 +50,23 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
+function EkstraPlikter() {
+    return (
+        <List.Item>
+            Du må fremover gjøre aktiviteter alene, eller i samhandling med NAV, som bidrar til at du kommer i arbeid.
+        </List.Item>
+    );
+}
+
 const NyeRettigheterKvittering = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
+    const { toggles } = useFeatureToggles();
+    const ekstraPlikterToggletPaa = toggles['arbeidssokerregistrering.bruk-nye-plikter'];
 
     return (
         <Box padding="6" className="mb-12">
             <List as="ul">
+                {ekstraPlikterToggletPaa && <EkstraPlikter />}
                 <List.Item>{tekst('veienVidere')}</List.Item>
                 <List.Item>{tekst('uenigheter')}</List.Item>
                 <List.Item>{tekst('ytelser')}</List.Item>
