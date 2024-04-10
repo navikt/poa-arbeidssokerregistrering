@@ -2,6 +2,7 @@ import NextLink from 'next/link';
 import { GuidePanel, Heading, Link, BodyShort, BodyLong, Box, List, ReadMore, Button } from '@navikt/ds-react';
 
 import useSprak from '../../hooks/useSprak';
+import { useFeatureToggles } from '../../contexts/featuretoggle-context';
 
 import { loggAktivitet } from '../../lib/amplitude';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
@@ -87,8 +88,19 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
+function EkstraPlikter() {
+    return (
+        <BodyLong spacing className="max-w-3xl">
+            Registrer deg som arbeidssøker hvis har som mål om å komme i arbeid og vil gjøre aktiviteter alene, eller i
+            samhandling med NAV, som bidrar til dette.
+        </BodyLong>
+    );
+}
+
 const NyeRettigheterPanel = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
+    const { toggles } = useFeatureToggles();
+    const ekstraPlikterToggletPaa = toggles['arbeidssokerregistrering.bruk-nye-plikter'];
 
     const logStartHandler = () => {
         loggAktivitet({ aktivitet: 'Går til start registrering' });
@@ -143,7 +155,8 @@ const NyeRettigheterPanel = () => {
                     <DineOpplysninger />
                 </ReadMore>
             </div>
-            <div className="mt-12 flex items-center justify-center">
+            <div className="mt-12 flex flex-col items-center justify-center">
+                {ekstraPlikterToggletPaa && <EkstraPlikter />}
                 <NextLink href="/start" passHref>
                     <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
                 </NextLink>
