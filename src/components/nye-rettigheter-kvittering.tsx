@@ -8,7 +8,7 @@ import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-ut
 const TEKSTER: Tekster<string> = {
     nb: {
         veienVidere:
-            'Vi vurderer nå de opplysningene du har gitt oss opp mot de opplysningene vi har om andre arbeidssøkere i omtrent samme situasjon som deg. På bakgrunn av dette vil en veileder fatte et vedtak som sendes til deg. Vedtaket forteller hvordan NAV vurderer din situasjon i arbeidsmarkedet og hvilken hjelp du skal få fra NAV.',
+            'Vi vurderer nå de opplysningene du har gitt oss opp mot de opplysningene vi har om andre arbeidssøkere i omtrent samme situasjon som deg. På bakgrunn av dette vil en veileder fatte et oppfølgingsvedtak som sendes til deg. Oppfølgingsvedtaket forteller hvordan NAV vurderer din situasjon i arbeidsmarkedet og hvilken hjelp du skal få fra NAV.',
         uenigheter: 'Hvis du er uenig i NAV sin vurdering, kan du gi tilbakemelding om dette på innloggede sider.',
         ytelser:
             'Om du søker pengestøtte fra NAV vil du få mer informasjon om hva NAV krever av deg dersom du får denne innvilget.',
