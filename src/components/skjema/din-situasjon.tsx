@@ -1,4 +1,4 @@
-import { Heading, Panel } from '@navikt/ds-react';
+import { Box, Heading, Panel } from '@navikt/ds-react';
 import { preload } from 'swr';
 import Head from 'next/head';
 import {
@@ -16,6 +16,7 @@ import { hentTekst } from '../../model/sporsmal';
 import { fetcher } from '../../lib/api-utils';
 
 import styles from '../../styles/skjema.module.css';
+import { SkjemaBox } from './skjema-box';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -66,7 +67,7 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
             <Head>
                 <title>{sideTekst('sideTittel')}</title>
             </Head>
-            <Panel className={styles.panel} border={true}>
+            <SkjemaBox>
                 <form>
                     <Heading size="medium" spacing level="1">
                         {sideTekst('heading')}
@@ -79,7 +80,7 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
                         visFeilmelding={visFeilmelding!}
                     />
                 </form>
-            </Panel>
+            </SkjemaBox>
         </>
     );
 };

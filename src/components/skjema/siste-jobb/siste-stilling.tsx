@@ -8,6 +8,7 @@ import { hentTekst } from '../../../model/sporsmal';
 
 import styles from '../../../styles/skjema.module.css';
 import { SisteStillingValg } from '@navikt/arbeidssokerregisteret-utils';
+import { SkjemaBox } from '../skjema-box';
 
 const SisteStilling = (props: SkjemaKomponentProps<SisteStillingValg>) => {
     const { onChange, visFeilmelding } = props;
@@ -19,14 +20,14 @@ const SisteStilling = (props: SkjemaKomponentProps<SisteStillingValg>) => {
     ];
 
     return (
-        <Panel className={`${styles.panel} mb-6`} border={true} style={{ backgroundColor: 'var(--a-gray-100)' }}>
+        <SkjemaBox>
             <RadioGruppe
                 valg={valg}
                 valgt={props.valgt}
                 onSelect={(val) => onChange(val)}
                 visFeilmelding={visFeilmelding}
             />
-        </Panel>
+        </SkjemaBox>
     );
 };
 
