@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import type { NextPage, GetServerSideProps } from 'next';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { BodyLong, Button, Cell, Grid, Heading } from '@navikt/ds-react';
+import { BodyLong, Button, Heading } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
@@ -72,30 +72,25 @@ const Home: NextPage<{ toggles: any }> = ({ toggles }) => {
                 {visRettigheter && <NyeRettigheterPanel />}
                 {visKrav && (
                     <>
-                        <Grid>
-                            <Cell xs={12} md={6}>
-                                <RettigheterPanel />
-                            </Cell>
-                            <Cell xs={12} md={6} className="mb-4">
-                                <PlikterPanel />
-                            </Cell>
-                            <Cell xs={12}>
-                                {visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}
-                            </Cell>
-                            <Cell xs={12} className="text-center p-6">
-                                <Heading size={'medium'} level="3" spacing={true}>
-                                    {tekst('elektroniskId')}
-                                </Heading>
-                                <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>
-                                    {tekst('elektroniskIdInfo')}
-                                </BodyLong>
-                            </Cell>
-                            <Cell xs={12} className={'text-center py-4'}>
-                                <NextLink href="/start" passHref>
-                                    <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
-                                </NextLink>
-                            </Cell>
-                        </Grid>
+                        <RettigheterPanel />
+
+                        <PlikterPanel />
+
+                        {visGammelDineOpplysninger ? <DineOpplysningerGammel /> : <DineOpplysninger />}
+
+                        <div className="text-center p-6">
+                            <Heading size={'medium'} level="3" spacing={true}>
+                                {tekst('elektroniskId')}
+                            </Heading>
+                            <BodyLong style={{ maxWidth: '22em', display: 'inline-block' }}>
+                                {tekst('elektroniskIdInfo')}
+                            </BodyLong>
+                        </div>
+                        <div className={'text-center py-4'}>
+                            <NextLink href="/start" passHref>
+                                <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
+                            </NextLink>
+                        </div>
                         <ElektroniskID />
                     </>
                 )}

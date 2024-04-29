@@ -10,6 +10,7 @@ import StillingsSok from './stillings-sok';
 import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
 import { fetcher } from '../../../lib/api-utils';
 import styles from '../../../styles/skjema.module.css';
+import { SkjemaBox } from '../skjema-box';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -91,7 +92,7 @@ const SisteJobbSkjema = (
             <Head>
                 <title>{tekst('sideTittel')}</title>
             </Head>
-            <Panel className={`${styles.panel} mb-6`} border={true}>
+            <SkjemaBox>
                 <div>
                     <Heading spacing size={'medium'} level="1">
                         {tekst('tittel')}
@@ -103,7 +104,7 @@ const SisteJobbSkjema = (
 
                     {visSisteJobb && (
                         <div className="mb-4">
-                            <Heading spacing size={'small'} level="2">
+                            <Heading spacing size={'small'} level="2" className={'mt-6'}>
                                 {tekst('stilling')}
                             </Heading>
                             {visStillingsSok ? (
@@ -127,7 +128,7 @@ const SisteJobbSkjema = (
                         <div style={{ maxWidth: '34rem' }}>{tekst('brukesTilInnhold')}</div>
                     </ReadMore>
                 </div>
-            </Panel>
+            </SkjemaBox>
         </>
     );
 };

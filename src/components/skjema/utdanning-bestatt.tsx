@@ -9,6 +9,7 @@ import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { hentTekst } from '../../model/sporsmal';
 
 import styles from '../../styles/skjema.module.css';
+import { SkjemaBox } from './skjema-box';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -38,7 +39,7 @@ const BestattUtdanning = (props: SkjemaKomponentProps<JaEllerNei>) => {
             <Head>
                 <title>{sideTekst('sideTittel')}</title>
             </Head>
-            <Panel className={styles.panel} border={true}>
+            <SkjemaBox>
                 <form>
                     <Heading size="medium" spacing level="1">
                         {sideTekst('heading')}
@@ -51,7 +52,7 @@ const BestattUtdanning = (props: SkjemaKomponentProps<JaEllerNei>) => {
                         visFeilmelding={visFeilmelding}
                     />
                 </form>
-            </Panel>
+            </SkjemaBox>
         </>
     );
 };

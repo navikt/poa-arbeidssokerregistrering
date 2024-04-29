@@ -13,6 +13,9 @@ const appSecurityPolicy = {
 };
 
 const nextConfig = {
+    experimental: {
+        optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
+    },
     reactStrictMode: true,
     basePath,
     assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX,

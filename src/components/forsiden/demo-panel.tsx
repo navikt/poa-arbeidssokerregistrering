@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { Button, Heading, Panel } from '@navikt/ds-react';
+import { Box, Button, Heading, Panel } from '@navikt/ds-react';
 
 import { SkjemaSide } from '../../model/skjema';
 
@@ -14,12 +14,12 @@ function DemoPanel({ brukerMock }: Props) {
     const { visGammelDineOpplysninger } = router.query;
 
     return (
-        <Panel className="text-center" style={{ backgroundColor: 'var(--a-orange-200)' }}>
+        <Box className="text-center" style={{ backgroundColor: 'var(--a-orange-200)' }}>
             <Heading level="2" size="xlarge" className={'mb-6'}>
                 Demovalg
             </Heading>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Panel className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }}>
+                <Box className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }} padding="10">
                     <div className="text-center">
                         <Heading level="3" size="large">
                             Velg side
@@ -112,8 +112,8 @@ function DemoPanel({ brukerMock }: Props) {
                             </p>
                         </div>
                     </div>
-                </Panel>
-                <Panel className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }}>
+                </Box>
+                <Box className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }} padding="10">
                     <Heading level="3" size="large">
                         Velg tekstversjon
                     </Heading>
@@ -127,9 +127,9 @@ function DemoPanel({ brukerMock }: Props) {
                             </Button>
                         </NextLink>
                     </p>
-                </Panel>
+                </Box>
             </div>
-        </Panel>
+        </Box>
     );
 }
 

@@ -69,7 +69,7 @@ const MerOppfolgingSide = () => {
                     {tekst('merVeiledningGaaTil')}
                 </a>
             </GuidePanel>
-            <Panel>
+            <div className={'p-4'}>
                 <Heading level="1" spacing size="medium">
                     {tekst('vilDuRegistreresTittel')}
                 </Heading>
@@ -77,7 +77,7 @@ const MerOppfolgingSide = () => {
                 <Link onClick={() => loggAvbryter()} href="https://www.nav.no/kontaktoss" target="_blank">
                     {tekst('taKontaktMedNAV')}
                 </Link>
-            </Panel>
+            </div>
         </div>
     );
 };
