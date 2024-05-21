@@ -1,4 +1,4 @@
-import { Alert, Heading, Panel } from '@navikt/ds-react';
+import { Alert, Box, Heading, Panel } from '@navikt/ds-react';
 import Head from 'next/head';
 
 import useSprak from '../../hooks/useSprak';
@@ -8,6 +8,7 @@ import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 import styles from '../../styles/skjema.module.css';
+import { SkjemaBox } from './skjema-box';
 
 const TEKSTER: AndreProblemerTekster = {
     nb: {
@@ -61,7 +62,7 @@ const AndreProblemer = (props: AndreProblemerProps) => {
             <Head>
                 <title>{tekst('sideTittel')}</title>
             </Head>
-            <Panel className={`${styles.panel} mb-6`} border={true}>
+            <SkjemaBox>
                 <form>
                     <Heading size="medium" spacing level="1">
                         {tekst('andreUtfordringer')}
@@ -75,8 +76,9 @@ const AndreProblemer = (props: AndreProblemerProps) => {
                         visFeilmelding={visFeilmelding}
                     />
                 </form>
-            </Panel>
-            <Alert variant="info" inline={true}>
+            </SkjemaBox>
+
+            <Alert variant="info" inline={true} className={'mt-6'}>
                 {tekst('fortellMer')}
             </Alert>
         </>

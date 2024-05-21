@@ -8,6 +8,7 @@ import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 import styles from '../../styles/skjema.module.css';
+import { SkjemaBox } from './skjema-box';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -51,7 +52,7 @@ const Helseproblemer = (props: SkjemaKomponentProps<JaEllerNei>) => {
             <Head>
                 <title>{tekst('sideTittel')}</title>
             </Head>
-            <Panel className={`${styles.panel} mb-6`} border={true}>
+            <SkjemaBox>
                 <form>
                     <Heading size="medium" spacing level="1">
                         {tekst('heading')}
@@ -64,8 +65,8 @@ const Helseproblemer = (props: SkjemaKomponentProps<JaEllerNei>) => {
                         visFeilmelding={visFeilmelding}
                     />
                 </form>
-            </Panel>
-            <Alert variant="info" inline={true}>
+            </SkjemaBox>
+            <Alert variant="info" inline={true} className={'mt-6'}>
                 {tekst('fortellMer')}
             </Alert>
         </>

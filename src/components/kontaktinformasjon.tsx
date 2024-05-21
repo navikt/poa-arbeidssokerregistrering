@@ -1,4 +1,4 @@
-import { Alert, Detail, Heading, HelpText, Label, Link, Panel } from '@navikt/ds-react';
+import { Alert, Box, Detail, Heading, HelpText, Label, Link, Panel } from '@navikt/ds-react';
 import useSprak from '../hooks/useSprak';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { Kontaktinformasjon as KontaktInfo } from '../model/kontaktinformasjon';
@@ -75,13 +75,13 @@ const Telefonnummer = (props: { kilde: Kilde; telefonnummer: string }) => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <Panel border className="mb-6">
+        <Box className="mb-6">
             <Heading level="2" size={'small'}>
                 {tekst(`tlfHos${props.kilde}`)}
             </Heading>
             <Label>{props.telefonnummer}</Label>
-            <Detail size={'small'}>{tekst(`kilde${props.kilde}`)}</Detail>
-        </Panel>
+            <Detail>{tekst(`kilde${props.kilde}`)}</Detail>
+        </Box>
     );
 };
 
