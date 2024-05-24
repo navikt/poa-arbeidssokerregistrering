@@ -16,10 +16,11 @@ import { loggAktivitet } from '../lib/amplitude';
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
     aktivSide: any;
+    eksisterendeOpplysninger?: any;
 }
 
 export interface LagSkjemaSideProps {
-    urlPrefix: 'skjema' | 'opplysninger';
+    urlPrefix: 'skjema' | 'opplysninger' | 'oppdater-opplysninger';
     validerSkjemaForSide: (side: SkjemaSide, skjemaState: SkjemaState) => boolean;
     hentKomponentForSide: (
         side: SkjemaSide,
@@ -37,7 +38,7 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
     const { beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = opts;
 
     const SkjemaSideKomponent = (props: SkjemaProps) => {
-        const { aktivSide } = props;
+        const { aktivSide, eksisterendeOpplysninger } = props;
         const router = useRouter();
         const initializer = (skjemaState: SkjemaState) => skjemaState;
         const [erSkjemaSendt, settErSkjemaSendt] = useState<boolean>(false);
@@ -50,7 +51,10 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
 
         const [skjemaState, dispatch] = useReducer<SkjemaReducer, SkjemaState>(
             skjemaReducer,
-            initialArgs(),
+            {
+                ...(eksisterendeOpplysninger ?? {}),
+                ...initialArgs(),
+            },
             initializer,
         );
 
@@ -59,15 +63,16 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
         const { forrige, neste, fremdrift } = beregnNavigering(aktivSide, skjemaState);
 
         useEffect(() => {
+            const url = eksisterendeOpplysninger ? urlPrefix : '/start';
             // valider at forrige side har gyldig state. Hvis ikke starter vi registrering på nytt
             if (forrige) {
                 if (!validerSkjemaForSide(forrige, skjemaState)) {
-                    router.push('/start/');
+                    router.push(url);
                 }
             }
 
             if (fremdrift < 0) {
-                router.push('/start/');
+                router.push(url);
             }
         }, [forrige, router, skjemaState, fremdrift]);
 

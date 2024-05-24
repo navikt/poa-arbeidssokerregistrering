@@ -76,6 +76,10 @@ export const getInngangClientId = async (req: NextApiRequest) => {
     return getTokenXToken(req, INNGANG_CLIENT_ID);
 };
 
+export const getAiaBackendToken = async (req: NextApiRequest) => {
+    return getTokenXToken(req, AIA_BACKEND_CLIENT_ID);
+};
+
 const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
     const tokenSet = await exchangeIDPortenToken(clientId, getTokenFromRequest(req)!);
     return tokenSet.access_token!;

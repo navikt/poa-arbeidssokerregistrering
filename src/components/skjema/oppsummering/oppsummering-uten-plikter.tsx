@@ -22,6 +22,7 @@ import { hentRegistreringFeiletUrl } from '../../../lib/hent-registrering-feilet
 import { OppgaveRegistreringstype } from '../../../model/feilsituasjonTyper';
 import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
+import SvarTabell from './SvarTabell';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -33,17 +34,7 @@ const TEKSTER: Tekster<string> = {
         harJobbetSisteAaret:
             'Ifølge Arbeidsgiver- og arbeidstakerregisteret har du vært i jobb i løpet av det siste året. ' +
             'Hvis det er feil, er det likevel viktig at du fullfører registreringen. Du kan gi riktig informasjon senere til NAV.',
-        [SporsmalId.dinSituasjon + 'radTittel']: 'Situasjon',
-        [SporsmalId.sisteJobb + 'radTittel']: 'Siste stilling',
-        [SporsmalId.utdanning + 'radTittel']: 'Høyeste fullførte utdanning',
-        [SporsmalId.utdanningGodkjent + 'radTittel']: 'Utdanning godkjent i Norge',
-        [SporsmalId.utdanningBestatt + 'radTittel']: 'Utdanning bestått',
-        [SporsmalId.helseHinder + 'radTittel']: 'Helseproblemer',
-        //TODO: Hvilken av andre forhold-tekstene skal vi bruke i oppsummeringen?
-        [SporsmalId.andreForhold + 'radTittel']: 'Andre problemer',
-        [SporsmalId.andreForhold + 'radTittel']: 'Andre hensyn',
         fullfoerRegistrering: 'Fullfør registrering som arbeidssøker',
-        endreSvaret: 'Endre svaret',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Stemmer opplysningane',
@@ -52,15 +43,6 @@ const TEKSTER: Tekster<string> = {
         ikkeIJobbSisteAaret: `Ifølgje Arbeidsgivar- og arbeidstakarregisteret har du ikkje vore i jobb i løpet av det siste året. Om dette ikkje stemmer, er det likevel viktig at du fullfører registreringa. Du kan gi rett informasjon til NAV seinare.`,
         harJobbetSisteAaret:
             'Ifølgje Arbeidsgivar- og arbeidstakarregisteret har du vore i jobb i løpet av det siste året. Om dette ikkje stemmer, er det likevel viktig at du fullfører registreringa. Du kan gi rett informasjon til NAV seinare.',
-        [SporsmalId.dinSituasjon + 'radTittel']: 'Situasjon',
-        [SporsmalId.sisteJobb + 'radTittel']: 'Siste stilling',
-        [SporsmalId.utdanning + 'radTittel']: 'Høgaste fullførte utdanning',
-        [SporsmalId.utdanningGodkjent + 'radTittel']: 'Utdanning godkjent i Norge',
-        [SporsmalId.utdanningBestatt + 'radTittel']: 'Utdanning bestått',
-        [SporsmalId.helseHinder + 'radTittel']: 'Helseproblem',
-        //TODO: Hvilken av andre forhold-tekstene skal vi bruke i oppsummeringen?
-        [SporsmalId.andreForhold + 'radTittel']: 'Andre problem',
-        [SporsmalId.andreForhold + 'radTittel']: 'Andre omsyn',
         fullfoerRegistrering: 'Fullfør registreringa som arbeidssøkjar',
     },
     en: {
@@ -71,15 +53,7 @@ const TEKSTER: Tekster<string> = {
             It is important to complete the registration even if you find errors. You can provide the correct information later to NAV.`,
         harJobbetSisteAaret: `According to the As Register, you have been employed during the past year. 
             It is important to complete the registration even if you find errors. You can provide the correct information later to NAV.`,
-        [SporsmalId.dinSituasjon + 'radTittel']: 'Situation',
-        [SporsmalId.sisteJobb + 'radTittel']: 'Last position',
-        [SporsmalId.utdanning + 'radTittel']: 'Highest completed education',
-        [SporsmalId.utdanningGodkjent + 'radTittel']: 'Education approved in Norway',
-        [SporsmalId.utdanningBestatt + 'radTittel']: 'Education completed and passed',
-        [SporsmalId.helseHinder + 'radTittel']: 'Health problems',
-        [SporsmalId.andreForhold + 'radTittel']: 'Other considerations',
         fullfoerRegistrering: 'Complete jobseeker registration',
-        endreSvaret: 'Change your reply',
     },
 };
 
@@ -112,7 +86,7 @@ interface FullforKnappProps extends FullforProps {
 
 interface OppsummeringProps {
     skjemaState: SkjemaState;
-    skjemaPrefix: '/skjema/' | '/opplysninger/';
+    skjemaPrefix: '/skjema/' | '/opplysninger/' | '/oppdater-opplysninger/';
     onSubmit(): void;
 }
 
@@ -220,35 +194,7 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
                             : tekst('ikkeIJobbSisteAaret')}
                     </p>
                 )}
-                <Table>
-                    <Table.Body>
-                        {Object.entries(skjemaState)
-                            .filter(([sporsmalId]) => {
-                                const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid'];
-
-                                if (skjemaState[SporsmalId.sisteStilling] === SisteStillingValg.HAR_IKKE_HATT_JOBB) {
-                                    filtrerVekkSporsmalId.push(SporsmalId.sisteJobb);
-                                }
-
-                                return !filtrerVekkSporsmalId.includes(sporsmalId);
-                            })
-                            .map(
-                                ([sporsmalId, svar]) =>
-                                    svar && (
-                                        <Rad
-                                            radTittel={tekst(sporsmalId + 'radTittel')}
-                                            svaralternativ={
-                                                sporsmalId === SporsmalId.sisteJobb
-                                                    ? svar.label
-                                                    : hentTekst(sprak, svar)
-                                            }
-                                            url={`${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`}
-                                            key={sporsmalId}
-                                        />
-                                    ),
-                            )}
-                    </Table.Body>
-                </Table>
+                <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
             <div className="mt-12">
                 {brukNyInngang ? (
@@ -267,33 +213,6 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
                 )}
             </div>
         </>
-    );
-};
-
-interface RadProps {
-    radTittel: string;
-    svaralternativ: string;
-    url: string;
-    key: string;
-}
-
-const Rad = (props: RadProps) => {
-    const sprak = useSprak();
-    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    return (
-        <Table.Row>
-            <Table.HeaderCell scope="row">{props.radTittel}</Table.HeaderCell>
-            <Table.DataCell>{props.svaralternativ}</Table.DataCell>
-            <Table.DataCell>
-                <NextLink
-                    href={props.url}
-                    aria-label={`${tekst('endreSvaret')}: ${props.radTittel.toLowerCase()}`}
-                    className={'navds-link'}
-                >
-                    {tekst('endreSvaret')}
-                </NextLink>
-            </Table.DataCell>
-        </Table.Row>
     );
 };
 
