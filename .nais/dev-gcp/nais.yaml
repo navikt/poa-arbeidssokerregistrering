@@ -87,7 +87,7 @@ spec:
     - name: OPPDATER_OPPLYSNINGER_URL
       value: http://paw-arbeidssokerregisteret-api-inngang
     - name: AIA_BACKEND_URL
-      value: http://aia-backend
+      value: http://aia-backend/aia-backend
   envFrom:
     - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:

@@ -14,7 +14,7 @@ const OppdaterOpplysninger = () => {
     const { data, error, isLoading } = useSWRImmutable<{
         periode: ArbeidssokerPeriode;
         opplysninger: OpplysningerOmArbeidssoker;
-    }>(brukerMock ? '/api/mocks/hent-siste-opplysninger' : '/api/hent-siste-opplysninger', fetcher);
+    }>(brukerMock ? 'api/mocks/hent-siste-opplysninger' : 'api/hent-siste-opplysninger', fetcher);
 
     const router = useRouter();
     if (isLoading) {
