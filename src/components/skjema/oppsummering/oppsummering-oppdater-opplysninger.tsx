@@ -1,11 +1,8 @@
 import { SkjemaState } from '../../../model/skjema';
 import useSprak from '../../../hooks/useSprak';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import useSWR from 'swr';
-import { fetcher as api } from '../../../lib/api-utils';
-import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
 import Head from 'next/head';
-import { GuidePanel, Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import OppsummeringSvg from './oppsummering-svg';
 import SvarTabell from './SvarTabell';
 
@@ -53,7 +50,9 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
             <Heading size={'medium'} level="1" spacing>
                 {tekst('header')}
             </Heading>
-            <Ingress className="mb-6">{tekst('ingress')}</Ingress>
+            <BodyLong size={'large'} className="mb-6">
+                {tekst('ingress')}
+            </BodyLong>
             <GuidePanel poster illustration={<OppsummeringSvg />}>
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>

@@ -1,5 +1,5 @@
 import { useCallback, useState } from 'react';
-import { Button, GuidePanel, Heading, Ingress, Table } from '@navikt/ds-react';
+import { BodyLong, Button, GuidePanel, Heading, Ingress, Table } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 import { logger } from '@navikt/next-logger';
 import NextLink from 'next/link';
@@ -185,7 +185,9 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
             <Heading size={'medium'} level="1" spacing>
                 {tekst('header')}
             </Heading>
-            <Ingress className="mb-6">{tekst('ingress')}</Ingress>
+            <BodyLong size={'large'} className="mb-6">
+                {tekst('ingress')}
+            </BodyLong>
             <GuidePanel poster illustration={<OppsummeringSvg />}>
                 {skjemaPrefix === '/opplysninger/' && (
                     <p>

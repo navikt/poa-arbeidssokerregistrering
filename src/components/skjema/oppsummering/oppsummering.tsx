@@ -1,4 +1,4 @@
-import { GuidePanel, Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, GuidePanel, Heading, Ingress } from '@navikt/ds-react';
 import Head from 'next/head';
 import useSWR from 'swr';
 import OppsummeringSvg from './oppsummering-svg';
@@ -38,7 +38,9 @@ const Oppsummering = ({ skjemaState, skjemaPrefix }: OppsummeringProps) => {
             <Heading size={'medium'} level="1" spacing>
                 {tekst('header')}
             </Heading>
-            <Ingress className="mb-6">{tekst('ingress')}</Ingress>
+            <BodyLong size={'large'} className="mb-6">
+                {tekst('ingress')}
+            </BodyLong>
             <GuidePanel poster illustration={<OppsummeringSvg />}>
                 {skjemaPrefix === '/skjema/' && (
                     <p>
