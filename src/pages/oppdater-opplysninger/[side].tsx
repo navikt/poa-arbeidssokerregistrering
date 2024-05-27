@@ -9,7 +9,6 @@ import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
 import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
 import Helseproblemer from '../../components/skjema/helseproblemer';
 import AndreProblemer from '../../components/skjema/andre-problemer';
-import OppsummeringUtenPlikter from '../../components/skjema/oppsummering/oppsummering-uten-plikter';
 import { beregnNavigering } from '../../lib/standard-registrering-uten-plikter-tilstandsmaskin';
 import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
 import { SkjemaAction } from '../../lib/skjema-state';
@@ -26,6 +25,7 @@ import useSWRImmutable from 'swr/immutable';
 import { Loader } from '@navikt/ds-react';
 import { fetcher } from '../../lib/api-utils';
 import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
+import { validerOpplysningerSkjemaForSide } from '../opplysninger/[side]';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -97,35 +97,6 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
     };
 };
 
-const validerSkjemaForSide = (side: SkjemaSide, skjemaState: SkjemaState) => {
-    const hentVerdi = () => {
-        switch (side) {
-            case SkjemaSide.DinSituasjon:
-                return skjemaState.dinSituasjon;
-            case SkjemaSide.SisteJobb: {
-                if (visSisteStilling(skjemaState)) {
-                    return skjemaState.sisteStilling && skjemaState.sisteStilling !== SisteStillingValg.INGEN_SVAR;
-                }
-                return skjemaState.sisteJobb;
-            }
-            case SkjemaSide.Utdanning:
-                return skjemaState.utdanning;
-            case SkjemaSide.GodkjentUtdanning:
-                return skjemaState.utdanningGodkjent;
-            case SkjemaSide.BestaattUtdanning:
-                return skjemaState.utdanningBestatt;
-            case SkjemaSide.Helseproblemer:
-                return skjemaState.helseHinder;
-            case SkjemaSide.AndreProblemer:
-                return skjemaState.andreForhold;
-            case SkjemaSide.OppsummeringUtenPlikter:
-                return skjemaState.andreForhold;
-        }
-    };
-
-    return Boolean(hentVerdi());
-};
-
 const hentKomponentForSkjemaSide = (side: SkjemaSide, siderMap: SiderMap) =>
     siderMap[side] || siderMap[SkjemaSide.DinSituasjon];
 
@@ -146,6 +117,7 @@ export const getServerSideProps = withAuthenticatedPage(async (context) => {
         },
     };
 });
+
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 
 const Side = (props: SkjemaProps) => {
@@ -160,7 +132,7 @@ const Side = (props: SkjemaProps) => {
 
     const Skjema = skjemaSideFactory({
         urlPrefix: 'oppdater-opplysninger',
-        validerSkjemaForSide,
+        validerSkjemaForSide: validerOpplysningerSkjemaForSide,
         beregnNavigering,
         hentKomponentForSide: (side, skjemaState, dispatch, visFeilmelding) => {
             return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));

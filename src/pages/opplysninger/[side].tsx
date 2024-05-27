@@ -88,7 +88,7 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
     };
 };
 
-const validerSkjemaForSide = (side: SkjemaSide, skjemaState: SkjemaState) => {
+export const validerOpplysningerSkjemaForSide = (side: SkjemaSide, skjemaState: SkjemaState) => {
     const hentVerdi = () => {
         switch (side) {
             case SkjemaSide.DinSituasjon:
@@ -109,10 +109,8 @@ const validerSkjemaForSide = (side: SkjemaSide, skjemaState: SkjemaState) => {
                 return skjemaState.helseHinder;
             case SkjemaSide.AndreProblemer:
                 return skjemaState.andreForhold;
-            case SkjemaSide.Oppsummering:
+            case SkjemaSide.OppsummeringUtenPlikter:
                 return skjemaState.andreForhold;
-            case SkjemaSide.FullforRegistrering:
-                return true;
         }
     };
 
@@ -133,7 +131,7 @@ const loggOgDispatch = (dispatch: Dispatch<SkjemaAction>) => {
 
 const Skjema = skjemaSideFactory({
     urlPrefix: 'opplysninger',
-    validerSkjemaForSide,
+    validerSkjemaForSide: validerOpplysningerSkjemaForSide,
     beregnNavigering,
     hentKomponentForSide: (side, skjemaState, dispatch, visFeilmelding) => {
         return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
