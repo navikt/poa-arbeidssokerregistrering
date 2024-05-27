@@ -26,6 +26,7 @@ const OppdaterOpplysninger = () => {
     }
 
     if (!data) {
+        router.push('/start');
         return;
     }
 
