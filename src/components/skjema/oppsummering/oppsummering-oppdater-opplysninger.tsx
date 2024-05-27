@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import OppsummeringSvg from './oppsummering-svg';
 import SvarTabell from './SvarTabell';
-import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
 import OppdaterOpplysningerKnapp from '../oppdater-opplysninger-knapp';
 
 const TEKSTER: Tekster<string> = {
@@ -13,13 +12,13 @@ const TEKSTER: Tekster<string> = {
         sideTittel: 'Arbeidssøkerregistrering: Oppdater opplysninger',
         header: 'Oppdater opplysninger',
         ingress: 'Her er opplysningene vi har registrert om deg.',
-        fullfoerRegistrering: 'Endre opplysninger',
+        fullfoerRegistrering: 'Oppdater opplysninger',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Oppdater opplysningar',
         header: 'Oppdater opplysningar?',
         ingress: 'Her er opplysningane vi har registrert om deg.',
-        fullfoerRegistrering: 'Endre opplysningar',
+        fullfoerRegistrering: 'Oppdater opplysningar',
     },
     en: {
         sideTittel: 'Register as a Job Seeker: Is the information correct?',
