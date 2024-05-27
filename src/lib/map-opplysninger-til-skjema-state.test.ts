@@ -24,7 +24,7 @@ describe('mapOpplysningerTilSkjemaState', () => {
         const result = mapOpplysningerTilSkjemaState({
             utdanning: {
                 nus: '6',
-                bestaatt: 'JA' as any,
+                bestaatt: 'JA',
                 godkjent: UtdanningGodkjentValg.VET_IKKE,
             },
         } as any);
@@ -36,14 +36,39 @@ describe('mapOpplysningerTilSkjemaState', () => {
         });
     });
 
-    // test('mapper din situasjon', () => {
-    //     const result = mapOpplysningerTilSkjemaState({
-    //         jobbsituasjon: [{
-    //             beskrivelse: 'VIL_BYTTE_JOBB',
-    //             detaljer: {styrk08 : '1234', stilling: 'Test'}
-    //         }
-    //         ]
-    //
-    //     }
-    // },
+    test('mapper din situasjon', () => {
+        const result = mapOpplysningerTilSkjemaState({
+            jobbsituasjon: [
+                {
+                    beskrivelse: 'VIL_BYTTE_JOBB',
+                    detaljer: {
+                        stilling_styrk08: '1234',
+                        stilling: 'Test',
+                    },
+                },
+            ],
+        } as any);
+
+        expect(result.dinSituasjon).toEqual('VIL_BYTTE_JOBB');
+    });
+
+    test('mapper sisteJobb', () => {
+        const result = mapOpplysningerTilSkjemaState({
+            jobbsituasjon: [
+                {
+                    beskrivelse: 'VIL_BYTTE_JOBB',
+                    detaljer: {
+                        stilling_styrk08: '1234',
+                        stilling: 'Test',
+                    },
+                },
+            ],
+        } as any);
+
+        expect(result.sisteJobb).toMatchObject({
+            label: 'Test',
+            styrk08: '1234',
+            konseptId: '-1',
+        });
+    });
 });

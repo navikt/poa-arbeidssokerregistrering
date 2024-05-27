@@ -26,6 +26,7 @@ import { Loader } from '@navikt/ds-react';
 import { fetcher } from '../../lib/api-utils';
 import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
 import { validerOpplysningerSkjemaForSide } from '../opplysninger/[side]';
+import mapOpplysningerTilSkjemaState from '../../lib/map-opplysninger-til-skjema-state';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -142,15 +143,7 @@ const Side = (props: SkjemaProps) => {
     return (
         <Skjema
             aktivSide={props.aktivSide}
-            eksisterendeOpplysninger={{
-                dinSituasjon: 'MISTET_JOBBEN',
-                sisteJobb: { konseptId: 318414, label: 'Abonnementsjef tidsskrift', styrk08: '1221' },
-                utdanning: 'HOYERE_UTDANNING_1_TIL_4',
-                utdanningGodkjent: 'JA',
-                utdanningBestatt: 'JA',
-                helseHinder: 'NEI',
-                andreForhold: 'NEI',
-            }}
+            eksisterendeOpplysninger={mapOpplysningerTilSkjemaState(data?.opplysninger!)}
         />
     );
 };
