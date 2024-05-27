@@ -64,11 +64,9 @@ const StartNyInngang = () => {
     const { toggles } = useFeatureToggles();
     const [feilmelding, setFeilmelding] = useState<undefined | FeilmeldingVedStartAvArbeidssoekerperiode>(undefined);
     const brukerMock = enableMock === 'enabled';
-    const startArbeidssokerPeriodeUrl = brukerMock
-        ? 'api/mocks/start-arbeidssokerperiode'
-        : 'api/start-arbeidssokerperiode';
+    const kanStartePeriodeUrl = brukerMock ? 'api/mocks/kan-starte-periode' : 'api/kan-starte-periode';
     const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
-    const { data, error, isLoading } = useSWRImmutable(startArbeidssokerPeriodeUrl, fetcher, { errorRetryCount: 0 });
+    const { data, error, isLoading } = useSWRImmutable(kanStartePeriodeUrl, fetcher, { errorRetryCount: 0 });
     const registreringsSkjema = fjernPlikter ? 'opplysninger' : 'skjema';
 
     useEffect(() => {
@@ -77,7 +75,7 @@ const StartNyInngang = () => {
         }
 
         if (error) {
-            console.error(`Feil fra start periode (${error.status}): `, error.data);
+            console.error(`Feil fra kan starte periode (${error.status}): `, error.data);
             setFeilmelding(error.data as FeilmeldingVedStartAvArbeidssoekerperiode);
             return;
         }
