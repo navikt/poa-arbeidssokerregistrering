@@ -14,7 +14,7 @@ describe('mapOpplysningerTilSkjemaState', () => {
     test('mapper helse', () => {
         const result = mapOpplysningerTilSkjemaState({
             helse: {
-                helseTilstandHindrerArbeid: 'JA',
+                helsetilstandHindrerArbeid: 'JA',
             },
         } as any);
         expect(result.helseHinder).toEqual('JA');
