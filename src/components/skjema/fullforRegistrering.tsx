@@ -267,6 +267,7 @@ const FullforRegistrering = (props: FullforProps) => {
                         onSubmit={onSubmit}
                         onValiderSkjema={onValiderSkjema}
                         tekst={tekst}
+                        startNyPeriode={true}
                     />
                 ) : (
                     <FullforRegistreringKnapp

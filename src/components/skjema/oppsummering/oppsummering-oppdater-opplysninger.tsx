@@ -5,6 +5,7 @@ import Head from 'next/head';
 import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import OppsummeringSvg from './oppsummering-svg';
 import SvarTabell from './SvarTabell';
+import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -34,13 +35,13 @@ interface Props {
 }
 
 const OppsummeringOppdaterOpplysninger = (props: Props) => {
-    const { skjemaState, skjemaPrefix } = props;
+    const { skjemaState, skjemaPrefix, onSubmit } = props;
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
-    // const onValiderSkjema = () => {
-    //     return true;
-    // };
+    const onValiderSkjema = () => {
+        return true;
+    };
 
     return (
         <>
@@ -56,7 +57,15 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
             <GuidePanel poster illustration={<OppsummeringSvg />}>
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
-            <div className="mt-12">Knapp</div>
+            <div className="mt-12">
+                <FullforRegistreringKnappNyInngang
+                    skjemaState={skjemaState}
+                    onSubmit={onSubmit}
+                    onValiderSkjema={onValiderSkjema}
+                    tekst={tekst}
+                    startNyPeriode={false}
+                />
+            </div>
         </>
     );
 };

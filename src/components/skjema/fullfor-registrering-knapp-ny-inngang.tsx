@@ -1,34 +1,32 @@
-import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-import useSprak from '../../hooks/useSprak';
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useConfig } from '../../contexts/config-context';
 import { Config } from '../../model/config';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
-import { FullforRegistreringResponse } from '../../model/registrering';
-import { fetcher, fetcher as api } from '../../lib/api-utils';
+import { fetcher as api } from '../../lib/api-utils';
 import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
 import { logger } from '@navikt/next-logger';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
 import { Button } from '@navikt/ds-react';
-import { Side, SkjemaState } from '../../model/skjema';
-import useSWRImmutable from 'swr/immutable';
+import { SkjemaState } from '../../model/skjema';
 
 interface FullforKnappProps {
     skjemaState: SkjemaState;
     onSubmit(): void;
     onValiderSkjema(): boolean;
     tekst(s: string): string;
+    startNyPeriode: boolean;
 }
+
 const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
-    const { tekst } = props;
+    const { tekst, startNyPeriode } = props;
     const [senderSkjema, settSenderSkjema] = useState<boolean>(false);
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
     const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;
-    const fullfoerRegostreringUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
+    const fullfoerRegistreringUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
     const startArbeidssokerPeriodeUrl = brukerMock
         ? 'api/mocks/start-arbeidssokerperiode'
         : 'api/start-arbeidssokerperiode';
@@ -39,8 +37,6 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
         }
     };
 
-    //const { data, error, isLoading } = useSWRImmutable(startArbeidssokerPeriodeUrl, fetcher, { errorRetryCount: 0 });
-
     const fullforRegistrering = useCallback(async () => {
         try {
             const body = byggOpplysningerPayload(skjemaState);
@@ -48,23 +44,24 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
             settVisFeilmelding(false);
             onSubmit();
 
-            const responseStartet = await api(startArbeidssokerPeriodeUrl, {
-                method: 'PUT',
-                body: null,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+            if (startNyPeriode) {
+                await api(startArbeidssokerPeriodeUrl, {
+                    method: 'PUT',
+                    body: null,
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
+            }
 
-            console.log('responseStartet ->', responseStartet);
-            const response: FullforRegistreringResponse = await api(fullfoerRegostreringUrl, {
+            await api(fullfoerRegistreringUrl, {
                 method: 'post',
                 body: JSON.stringify(body),
                 headers: {
                     'Content-Type': 'application/json',
                 },
             });
-            console.log('response ->', response);
+
             return router.push(hentKvitteringsUrl());
         } catch (e) {
             settVisFeilmelding(true);
@@ -74,7 +71,7 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
         } finally {
             settSenderSkjema(false);
         }
-    }, [onSubmit, router, skjemaState, fullfoerRegostreringUrl]);
+    }, [onSubmit, router, skjemaState, fullfoerRegistreringUrl]);
 
     return (
         <>

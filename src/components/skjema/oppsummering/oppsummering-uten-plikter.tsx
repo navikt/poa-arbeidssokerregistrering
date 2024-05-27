@@ -1,17 +1,14 @@
 import { useCallback, useState } from 'react';
-import { BodyLong, Button, GuidePanel, Heading, Ingress, Table } from '@navikt/ds-react';
+import { BodyLong, Button, GuidePanel, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 import { logger } from '@navikt/next-logger';
-import NextLink from 'next/link';
 import Head from 'next/head';
 import useSWR from 'swr';
-import { lagHentTekstForSprak, SisteStillingValg, SporsmalId, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
-
-import { hentTekst } from '../../../model/sporsmal';
 import OppsummeringSvg from './oppsummering-svg';
-import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
+import { SkjemaState } from '../../../model/skjema';
 import { fetcher as api } from '../../../lib/api-utils';
 import byggFullforRegistreringPayload from '../../../lib/bygg-fullfor-registrering-payload';
 import { FeilmeldingGenerell } from '../../feilmeldinger/feilmeldinger';
@@ -205,6 +202,7 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
                         onSubmit={onSubmit}
                         onValiderSkjema={onValiderSkjema}
                         tekst={tekst}
+                        startNyPeriode={true}
                     />
                 ) : (
                     <FullforRegistreringKnapp

@@ -1,4 +1,4 @@
-import { BodyLong, GuidePanel, Heading, Ingress } from '@navikt/ds-react';
+import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import Head from 'next/head';
 import useSWR from 'swr';
 import OppsummeringSvg from './oppsummering-svg';
