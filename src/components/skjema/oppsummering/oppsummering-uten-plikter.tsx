@@ -202,7 +202,6 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
                         onSubmit={onSubmit}
                         onValiderSkjema={onValiderSkjema}
                         tekst={tekst}
-                        startNyPeriode={true}
                     />
                 ) : (
                     <FullforRegistreringKnapp

@@ -6,6 +6,7 @@ import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import OppsummeringSvg from './oppsummering-svg';
 import SvarTabell from './SvarTabell';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
+import OppdaterOpplysningerKnapp from '../oppdater-opplysninger-knapp';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -58,12 +59,11 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
             <div className="mt-12">
-                <FullforRegistreringKnappNyInngang
+                <OppdaterOpplysningerKnapp
                     skjemaState={skjemaState}
                     onSubmit={onSubmit}
                     onValiderSkjema={onValiderSkjema}
                     tekst={tekst}
-                    startNyPeriode={false}
                 />
             </div>
         </>

@@ -4,54 +4,42 @@ import { useConfig } from '../../contexts/config-context';
 import { Config } from '../../model/config';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
 import { fetcher as api } from '../../lib/api-utils';
-import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
 import { logger } from '@navikt/next-logger';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
 import { Button } from '@navikt/ds-react';
 import { SkjemaState } from '../../model/skjema';
 
-interface FullforKnappProps {
+interface OppdaterOpplysningerKnappProps {
     skjemaState: SkjemaState;
     onSubmit(): void;
     onValiderSkjema(): boolean;
     tekst(s: string): string;
 }
 
-const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
+const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
     const { tekst } = props;
     const [senderSkjema, settSenderSkjema] = useState<boolean>(false);
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
-    const { enableMock } = useConfig() as Config;
+    const { enableMock, dittNavUrl } = useConfig() as Config;
     const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;
-    const fullfoerRegistreringUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
-    const startArbeidssokerPeriodeUrl = brukerMock
-        ? 'api/mocks/start-arbeidssokerperiode'
-        : 'api/start-arbeidssokerperiode';
+    const oppdaterOpplysningerUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
 
     const validerOgFullfor = () => {
         if (onValiderSkjema()) {
-            return fullforRegistrering();
+            return oppdaterOpplysninger();
         }
     };
 
-    const fullforRegistrering = useCallback(async () => {
+    const oppdaterOpplysninger = useCallback(async () => {
         try {
             const body = byggOpplysningerPayload(skjemaState);
             settSenderSkjema(true);
             settVisFeilmelding(false);
             onSubmit();
 
-            await api(startArbeidssokerPeriodeUrl, {
-                method: 'PUT',
-                body: null,
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-
-            await api(fullfoerRegistreringUrl, {
+            await api(oppdaterOpplysningerUrl, {
                 method: 'post',
                 body: JSON.stringify(body),
                 headers: {
@@ -59,16 +47,16 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
                 },
             });
 
-            return router.push(hentKvitteringsUrl());
+            return router.push(dittNavUrl);
         } catch (e) {
             settVisFeilmelding(true);
-            logger.error(e, `Registreringfeilet`);
+            logger.error(e, `Oppdatering av opplysninger feilet`);
             console.error(e);
             return router.push('/feil/');
         } finally {
             settSenderSkjema(false);
         }
-    }, [onSubmit, router, skjemaState, fullfoerRegistreringUrl]);
+    }, [onSubmit, router, skjemaState, oppdaterOpplysningerUrl]);
 
     return (
         <>
@@ -86,4 +74,4 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     );
 };
 
-export default FullforRegistreringKnappNyInngang;
+export default OppdaterOpplysningerKnapp;
