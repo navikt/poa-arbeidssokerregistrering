@@ -12,7 +12,7 @@ import { withAuthenticatedPage } from '../../auth/withAuthentication';
 const TEKSTER: Tekster<string> = {
     nb: {
         overskrift: 'Vi kan dessverre ikke registrere deg som arbeidssøker',
-        innhold: 'Dette er fordi du i følge våre systemer ikke har bostedsadresse i Norge.',
+        innhold: 'Dette er fordi du i følge våre systemer ikke er bosatt i Norge i henhold til folkeregisterloven.',
         lesomkrav: 'Du finner mer informasjon om hva som kreves for å registrere deg som arbeidssøker i Norge på',
         workInNorwayLenke: 'https://www.workinnorway.no/no/Forside',
         workInNorwayLenkeTekst: 'sidene til Work in Norway',
