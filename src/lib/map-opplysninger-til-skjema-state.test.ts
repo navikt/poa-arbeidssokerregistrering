@@ -1,5 +1,7 @@
 import mapOpplysningerTilSkjemaState from './map-opplysninger-til-skjema-state';
-import { SporsmalId, UtdanningGodkjentValg } from '@navikt/arbeidssokerregisteret-utils';
+import { SisteStillingValg, SporsmalId, UtdanningGodkjentValg } from '@navikt/arbeidssokerregisteret-utils';
+import { map } from 'lodash';
+import DinSituasjon from '../components/skjema/din-situasjon';
 
 describe('mapOpplysningerTilSkjemaState', () => {
     test('mapper annet til andreForhold', () => {
@@ -49,9 +51,70 @@ describe('mapOpplysningerTilSkjemaState', () => {
             ],
         } as any);
 
-        expect(result.dinSituasjon).toEqual('VIL_BYTTE_JOBB');
+        expect(result).toMatchObject({
+            [SporsmalId.dinSituasjon]: 'VIL_BYTTE_JOBB',
+            [SporsmalId.sisteStilling]: SisteStillingValg.INGEN_SVAR,
+        });
     });
 
+    describe('sisteStilling', () => {
+        test('mapper HAR_IKKE_HATT_JOBB for USIKKER_JOBBSITUASJON', () => {
+            const result = mapOpplysningerTilSkjemaState({
+                jobbsituasjon: [
+                    {
+                        beskrivelse: 'USIKKER_JOBBSITUASJON',
+                        detaljer: {},
+                    },
+                ],
+            } as any);
+            expect(result).toMatchObject({
+                [SporsmalId.dinSituasjon]: 'USIKKER_JOBBSITUASJON',
+                [SporsmalId.sisteStilling]: SisteStillingValg.HAR_IKKE_HATT_JOBB,
+            });
+        });
+        test('mapper HAR_IKKE_HATT_JOBB for IKKE_VAERT_I_JOBB_SISTE_2_AAR', () => {
+            const result = mapOpplysningerTilSkjemaState({
+                jobbsituasjon: [
+                    {
+                        beskrivelse: 'IKKE_VAERT_I_JOBB_SISTE_2_AAR',
+                        detaljer: {},
+                    },
+                ],
+            } as any);
+            expect(result).toMatchObject({
+                [SporsmalId.dinSituasjon]: 'JOBB_OVER_2_AAR',
+                [SporsmalId.sisteStilling]: SisteStillingValg.HAR_IKKE_HATT_JOBB,
+            });
+        });
+        test('mapper HAR_IKKE_HATT_JOBB for AKKURAT_FULLFORT_UTDANNING', () => {
+            const result = mapOpplysningerTilSkjemaState({
+                jobbsituasjon: [
+                    {
+                        beskrivelse: 'AKKURAT_FULLFORT_UTDANNING',
+                        detaljer: {},
+                    },
+                ],
+            } as any);
+            expect(result).toMatchObject({
+                [SporsmalId.dinSituasjon]: 'AKKURAT_FULLFORT_UTDANNING',
+                [SporsmalId.sisteStilling]: SisteStillingValg.HAR_IKKE_HATT_JOBB,
+            });
+        });
+        test('mapper HAR_HATT_JOBB for USIKKER_JOBBSITUASJON', () => {
+            const result = mapOpplysningerTilSkjemaState({
+                jobbsituasjon: [
+                    {
+                        beskrivelse: 'USIKKER_JOBBSITUASJON',
+                        detaljer: { stilling: 'Trailersjåfør', stilling_styrk08: '42' },
+                    },
+                ],
+            } as any);
+            expect(result).toMatchObject({
+                [SporsmalId.dinSituasjon]: 'USIKKER_JOBBSITUASJON',
+                [SporsmalId.sisteStilling]: SisteStillingValg.HAR_HATT_JOBB,
+            });
+        });
+    });
     test('mapper sisteJobb', () => {
         const result = mapOpplysningerTilSkjemaState({
             jobbsituasjon: [
