@@ -1,4 +1,4 @@
-import { Dispatch, useEffect, useReducer, useRef, useState } from 'react';
+import { Dispatch } from 'react';
 
 import { withAuthenticatedPage } from '../../auth/withAuthentication';
 
@@ -11,15 +11,10 @@ import Helseproblemer from '../../components/skjema/helseproblemer';
 import AndreProblemer from '../../components/skjema/andre-problemer';
 import { beregnNavigering } from '../../lib/standard-registrering-uten-plikter-tilstandsmaskin';
 import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
-import { SkjemaAction, skjemaReducer, SkjemaReducer } from '../../lib/skjema-state';
+import { SkjemaAction } from '../../lib/skjema-state';
 import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
-import skjemaSideFactory, {
-    LagSkjemaSideProps,
-    SiderMap,
-    SkjemaProps,
-    SkjemaSideKomponent,
-} from '../../components/skjema-side-factory';
-import { loggAktivitet, loggBesvarelse } from '../../lib/amplitude';
+import { SiderMap, SkjemaProps, SkjemaSideKomponent } from '../../components/skjema-side-factory';
+import { loggBesvarelse } from '../../lib/amplitude';
 import {
     ArbeidssokerPeriode,
     OpplysningerOmArbeidssoker,
@@ -32,12 +27,6 @@ import { fetcher } from '../../lib/api-utils';
 import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
 import { validerOpplysningerSkjemaForSide } from '../opplysninger/[side]';
 import mapOpplysningerTilSkjemaState from '../../lib/map-opplysninger-til-skjema-state';
-import { useRouter } from 'next/router';
-import styles from '../../styles/skjema.module.css';
-import ProgressBar from '../../components/progress-bar/progress-bar';
-import TilbakeKnapp from '../../components/skjema/tilbake-knapp';
-import { Knapperad } from '../../components/skjema/knapperad/knapperad';
-import Avbryt from '../../components/skjema/avbryt-lenke';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {

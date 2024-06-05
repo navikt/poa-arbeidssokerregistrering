@@ -134,4 +134,19 @@ describe('mapOpplysningerTilSkjemaState', () => {
             konseptId: '-1',
         });
     });
+    test('defaulter sisteJobb til "Annen stilling"', () => {
+        const result = mapOpplysningerTilSkjemaState({
+            jobbsituasjon: [
+                {
+                    beskrivelse: 'AKKURAT_FULLFORT_UTDANNING',
+                    detaljer: {},
+                },
+            ],
+        } as any);
+        expect(result.sisteJobb).toMatchObject({
+            label: 'Annen stilling',
+            styrk08: '-1',
+            konseptId: '-1',
+        });
+    });
 });

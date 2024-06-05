@@ -33,8 +33,8 @@ const mapJobbsituasjon = (opplysninger: OpplysningerOmArbeidssoker) => {
     return {
         [SporsmalId.dinSituasjon]: dinSituasjon,
         [SporsmalId.sisteJobb]: {
-            label: jobbsituasjon?.detaljer.stilling,
-            styrk08: jobbsituasjon?.detaljer.stilling_styrk08,
+            label: jobbsituasjon?.detaljer.stilling ?? 'Annen stilling',
+            styrk08: jobbsituasjon?.detaljer.stilling_styrk08 ?? '-1',
             konseptId: '-1', // TODO? => Mister denne, men trenger vi den?
         },
         [SporsmalId.sisteStilling]: mapSisteStilling(dinSituasjon, jobbsituasjon?.detaljer),

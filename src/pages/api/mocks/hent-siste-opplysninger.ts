@@ -37,12 +37,16 @@ const hentSisteOpplysninger = (req: NextApiRequest, res: NextApiResponse): void 
                 andreForholdHindrerArbeid: 'NEI',
             },
             jobbsituasjon: [
+                // {
+                //     beskrivelse: 'HAR_SAGT_OPP',
+                //     detaljer: {
+                //         stilling_styrk08: '7213',
+                //         stilling: 'Bilskadereparatør',
+                //     },
+                // },
                 {
-                    beskrivelse: 'HAR_SAGT_OPP',
-                    detaljer: {
-                        stilling_styrk08: '7213',
-                        stilling: 'Bilskadereparatør',
-                    },
+                    beskrivelse: 'USIKKER_JOBBSITUASJON',
+                    detaljer: {},
                 },
             ],
         },
