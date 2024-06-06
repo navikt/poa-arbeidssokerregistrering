@@ -3,7 +3,7 @@ import { BodyLong, Button, GuidePanel, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/router';
 import { logger } from '@navikt/next-logger';
 import Head from 'next/head';
-import useSWR from 'swr';
+// import useSWR from 'swr';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
@@ -17,7 +17,6 @@ import hentKvitteringsUrl from '../../../lib/hent-kvitterings-url';
 import { loggAktivitet, loggFlyt } from '../../../lib/amplitude';
 import { hentRegistreringFeiletUrl } from '../../../lib/hent-registrering-feilet-url';
 import { OppgaveRegistreringstype } from '../../../model/feilsituasjonTyper';
-import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
 import SvarTabell from './SvarTabell';
 
@@ -163,10 +162,7 @@ export const FullforRegistreringKnapp = (props: FullforKnappProps) => {
 const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const { data: startRegistreringData, error } = useSWR('/api/startregistrering', api);
-
-    const { toggles } = useFeatureToggles();
-    const brukNyInngang = toggles['arbeidssokerregistrering.bruk-ny-inngang'];
+    // const { data: startRegistreringData, error } = useSWR('/api/startregistrering', api);
 
     const { skjemaState, skjemaPrefix, onSubmit } = props;
 
@@ -196,20 +192,12 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
             <div className="mt-12">
-                {brukNyInngang ? (
-                    <FullforRegistreringKnappNyInngang
-                        skjemaState={skjemaState}
-                        onSubmit={onSubmit}
-                        onValiderSkjema={onValiderSkjema}
-                        tekst={tekst}
-                    />
-                ) : (
-                    <FullforRegistreringKnapp
-                        skjemaState={skjemaState}
-                        onSubmit={onSubmit}
-                        onValiderSkjema={onValiderSkjema}
-                    />
-                )}
+                <FullforRegistreringKnappNyInngang
+                    skjemaState={skjemaState}
+                    onSubmit={onSubmit}
+                    onValiderSkjema={onValiderSkjema}
+                    tekst={tekst}
+                />
             </div>
         </>
     );
