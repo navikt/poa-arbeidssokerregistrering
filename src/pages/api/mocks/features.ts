@@ -8,6 +8,19 @@ export const mockToggles = {
     version: 1,
     features: [
         {
+            name: 'arbeidssoekerregistrering.vedlikehold',
+            type: 'release',
+            enabled: false,
+            stale: false,
+            strategies: [
+                {
+                    name: 'default',
+                    parameters: {},
+                },
+            ],
+            variants: [],
+        },
+        {
             name: 'arbeidssokerregistrering.bruk-nye-plikter',
             type: 'release',
             enabled: true,
