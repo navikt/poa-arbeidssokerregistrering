@@ -139,16 +139,18 @@ describe('Standard registrering uten plikter tilstandsmaskin', () => {
             expect(neste).toBe(SkjemaSide.AndreProblemer);
         });
 
-        it('returnerer Utdanning som forrige når ingen utdanning', () => {
-            const { forrige } = beregnNavigering(SkjemaSide.Helseproblemer, {
-                utdanning: Utdanningsnivaa.INGEN_UTDANNING,
+        it('returnerer Utdanning som forrige når [ingen utdanning, grunnskole]', () => {
+            [Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].forEach((utdanning) => {
+                const { forrige } = beregnNavigering(SkjemaSide.Helseproblemer, {
+                    utdanning,
+                });
+                expect(forrige).toBe(SkjemaSide.Utdanning);
             });
-            expect(forrige).toBe(SkjemaSide.Utdanning);
         });
 
         it('returnerer BestattUtdanning som forrige når man har utdanning', () => {
             const { forrige } = beregnNavigering(SkjemaSide.Helseproblemer, {
-                utdanning: Utdanningsnivaa.GRUNNSKOLE,
+                utdanning: Utdanningsnivaa.VIDEREGAENDE_FAGBREV_SVENNEBREV,
             });
             expect(forrige).toBe(SkjemaSide.BestaattUtdanning);
         });

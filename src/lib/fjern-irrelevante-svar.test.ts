@@ -68,24 +68,27 @@ describe('Oppdatering av skjemastate', () => {
         expect(oppdatertState.utdanningBestatt).toBeUndefined();
         expect(oppdatertState.utdanningGodkjent).toBeUndefined();
     });
-    test('setter godkjentUtdanning og bestaattUtdanning til undefined hvis man endrer utdanning til INGEN', () => {
+    test('setter godkjentUtdanning og bestaattUtdanning til undefined hvis man endrer utdanning til [INGEN, GRUNNSKOLE]', () => {
         const state: SkjemaState = {
             utdanning: Utdanningsnivaa.HOYERE_UTDANNING_5_ELLER_MER,
             utdanningGodkjent: UtdanningGodkjentValg.JA,
             utdanningBestatt: JaEllerNei.JA,
         };
-        const oppdatertState = oppdaterUtdanning(state, Utdanningsnivaa.INGEN_UTDANNING);
 
-        expect(oppdatertState.utdanningBestatt).toBe(undefined);
-        expect(oppdatertState.utdanningGodkjent).toBe(undefined);
+        [Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].forEach((utdanning) => {
+            const oppdatertState = oppdaterUtdanning(state, utdanning);
+
+            expect(oppdatertState.utdanningBestatt).toBe(undefined);
+            expect(oppdatertState.utdanningGodkjent).toBe(undefined);
+        });
     });
-    test('lar godkjentUtdanning og bestaattUtdanning bli stående hvis utdanning endres til annet enn INGEN', () => {
+    test('lar godkjentUtdanning og bestaattUtdanning bli stående hvis utdanning endres til annet enn [INGEN, GRUNNSKOLE]', () => {
         const state: SkjemaState = {
             utdanning: Utdanningsnivaa.HOYERE_UTDANNING_5_ELLER_MER,
             utdanningGodkjent: UtdanningGodkjentValg.JA,
             utdanningBestatt: JaEllerNei.JA,
         };
-        const oppdatertState = oppdaterUtdanning(state, Utdanningsnivaa.GRUNNSKOLE);
+        const oppdatertState = oppdaterUtdanning(state, Utdanningsnivaa.HOYERE_UTDANNING_1_TIL_4);
 
         expect(oppdatertState.utdanningGodkjent).toEqual(UtdanningGodkjentValg.JA);
         expect(oppdatertState.utdanningBestatt).toEqual(JaEllerNei.JA);

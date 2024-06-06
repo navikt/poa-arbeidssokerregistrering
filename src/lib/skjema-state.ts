@@ -118,16 +118,16 @@ const oppdaterSisteStilling = (skjemaState: SkjemaState, sisteStilling: SisteSti
 };
 
 export const oppdaterUtdanning = (skjemaState: SkjemaState, utdanning: Utdanningsnivaa) => {
-    if (utdanning === Utdanningsnivaa.INGEN_UTDANNING) {
+    if ([Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].includes(utdanning)) {
         return {
             ...skjemaState,
-            utdanning: utdanning,
+            utdanning,
             utdanningGodkjent: undefined,
             utdanningBestatt: undefined,
         };
     }
     return {
         ...skjemaState,
-        utdanning: utdanning,
+        utdanning,
     };
 };

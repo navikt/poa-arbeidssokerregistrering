@@ -39,10 +39,9 @@ const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUten
     },
     [SkjemaSide.Utdanning]: (skjemaState: SkjemaState) => {
         return {
-            neste:
-                skjemaState.utdanning === Utdanningsnivaa.INGEN_UTDANNING
-                    ? SkjemaSide.Helseproblemer
-                    : SkjemaSide.GodkjentUtdanning,
+            neste: [Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].includes(skjemaState.utdanning!)
+                ? SkjemaSide.Helseproblemer
+                : SkjemaSide.GodkjentUtdanning,
             forrige:
                 skjemaState.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB
                     ? SkjemaSide.DinSituasjon
@@ -69,7 +68,7 @@ const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUten
             if (skjemaState.dinSituasjon === DinSituasjon.VIL_FORTSETTE_I_JOBB) {
                 return SkjemaSide.SisteJobb;
             }
-            return skjemaState.utdanning === Utdanningsnivaa.INGEN_UTDANNING
+            return [Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].includes(skjemaState.utdanning!)
                 ? SkjemaSide.Utdanning
                 : SkjemaSide.BestaattUtdanning;
         };
