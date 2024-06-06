@@ -5,7 +5,8 @@ import { useFeatureToggles } from '../contexts/featuretoggle-context';
 function RedirectTilVedlikehold() {
     const router = useRouter();
     const { toggles } = useFeatureToggles();
-    const erVedlikehold = toggles['arbeidssokerregistrering.nedetid'];
+    const erVedlikehold =
+        toggles['arbeidssokerregistrering.nedetid'] || toggles['arbeidssoekerregistrering.vedlikehold'];
 
     if (erVedlikehold) {
         router.push('/vedlikehold');
