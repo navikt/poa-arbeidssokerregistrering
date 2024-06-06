@@ -186,13 +186,13 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
                 {tekst('ingress')}
             </BodyLong>
             <GuidePanel poster illustration={<OppsummeringSvg />}>
-                {skjemaPrefix === '/opplysninger/' && (
+                {/* {skjemaPrefix === '/opplysninger/' && (
                     <p>
                         {startRegistreringData && startRegistreringData.jobbetSeksAvTolvSisteManeder
                             ? tekst('harJobbetSisteAaret')
                             : tekst('ikkeIJobbSisteAaret')}
                     </p>
-                )}
+                )}*/}
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
             <div className="mt-12">
