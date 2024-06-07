@@ -47,19 +47,6 @@ export const mockToggles = {
             variants: [],
         },
         {
-            name: 'arbeidssokerregistrering.fjern-plikter',
-            type: 'release',
-            enabled: true,
-            stale: false,
-            strategies: [
-                {
-                    name: 'default',
-                    parameters: {},
-                },
-            ],
-            variants: [],
-        },
-        {
             name: 'arbeidssokerregistrering.fss.ny-ingress',
             type: 'release',
             enabled: false,

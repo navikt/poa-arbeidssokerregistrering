@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import useSWRImmutable from 'swr/immutable';
 
 import { useConfig } from '../contexts/config-context';
-import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
 import { SkjemaSide } from '../model/skjema';
 import { fetcher } from '../lib/api-utils';
@@ -16,13 +15,10 @@ import { FeilmeldingVedStartAvArbeidssoekerperiode } from '../model/feilsituasjo
 const StartNyInngang = () => {
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
-    const { toggles } = useFeatureToggles();
     const [feilmelding, setFeilmelding] = useState<undefined | FeilmeldingVedStartAvArbeidssoekerperiode>(undefined);
     const brukerMock = enableMock === 'enabled';
     const kanStartePeriodeUrl = brukerMock ? 'api/mocks/kan-starte-periode' : 'api/kan-starte-periode';
-    const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
     const { data, error, isLoading } = useSWRImmutable(kanStartePeriodeUrl, fetcher, { errorRetryCount: 0 });
-    const registreringsSkjema = fjernPlikter ? 'opplysninger' : 'skjema';
 
     useEffect(() => {
         if (isLoading) {
@@ -35,7 +31,7 @@ const StartNyInngang = () => {
             return;
         }
 
-        router.push(`/${registreringsSkjema}/${SkjemaSide.DinSituasjon}`);
+        router.push(`/opplysninger/${SkjemaSide.DinSituasjon}`);
     }, [data, isLoading, router, error]);
 
     return (

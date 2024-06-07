@@ -4,7 +4,6 @@ import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-ut
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
-import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
 import { loggAktivitet, loggFlyt } from '../lib/amplitude';
 import { Config } from '../model/config';
@@ -48,8 +47,6 @@ const TEKSTER: Tekster<string> = {
 const Kvittering = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const { toggles } = useFeatureToggles();
-    const fjernPlikter = toggles['arbeidssokerregistrering.fjern-plikter'];
 
     React.useEffect(() => {
         loggAktivitet({
@@ -65,11 +62,7 @@ const Kvittering = () => {
             <Heading level="1" size={'large'}>
                 {tekst('header')}
             </Heading>
-            {fjernPlikter && (
-                <div>
-                    <NyeRettigheterKvittering />
-                </div>
-            )}
+            <NyeRettigheterKvittering />
             <div className="flex flex-col items-center justify-center flex-wrap">
                 <GuidePanel poster>
                     <Heading level={'2'} size={'medium'} className={'mb-6'}>
