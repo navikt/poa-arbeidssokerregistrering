@@ -5,7 +5,6 @@ export enum Feiltype {
 
 export enum OppgaveRegistreringstype {
     REGISTRERING = 'registrering',
-    REAKTIVERING = 'reaktivering',
 }
 
 export enum FeilKoderVedStartAvArbeidssoekerperiode {

@@ -58,8 +58,6 @@ spec:
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/startregistrering
     - name: FULLFOR_REGISTRERING_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/fullforregistrering
-    - name: REAKTIVERING_URL
-      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/reaktivering
     - name: SISTEARBEIDSFORHOLD_FRA_AAREG_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/arbeidsforhold-fra-aareg
     - name: OPPRETT_OPPGAVE_URL
