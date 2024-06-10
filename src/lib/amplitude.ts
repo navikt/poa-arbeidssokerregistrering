@@ -43,8 +43,6 @@ type AktivitetData =
     | { aktivitet: 'Start registrering' }
     | { aktivitet: 'Går til start registrering' }
     | { aktivitet: 'Avbryter registreringen' }
-    | { aktivitet: 'Arbeidssøkeren reaktiverer seg' }
-    | { aktivitet: 'Arbeidssøkeren avslår reaktivering' }
     | { aktivitet: 'Oppretter kontakt meg oppgave' }
     | { aktivitet: 'Oppretter kontakt meg oppgave - under 18' }
     | { aktivitet: 'Avbryter kontakt meg' }

@@ -26,20 +26,20 @@ Dette kan skyldes at personen ligger inne i Arena med IARBS (systemproblem) elle
 Kan filtreres på `aarsak`
 
 `Starter registrering`
-Arbeidssøkeren er logget inn og skal starte på registreringsskjemaet eller har fått tilbud om reaktivering
+Arbeidssøkeren er logget inn og skal starte på registreringsskjemaet
 
 `Sender inn skjema for registrering`
-Registreringsskjemaet sendes inn eller prosessen med å reaktivere seg starter
+Registreringsskjemaet sendes inn
 
 `Avbryter registreringen`
-Arbeidssøkeren avbryter registreringen før fullføring via avbryt knappen i skjema eller ved å velge avbryt på reaktiveringssiden
+Arbeidssøkeren avbryter registreringen før fullføring via avbryt knappen i skjema
 
 `Får ikke fullført registreringen`
-Tekniske feil eller andre NAV-interne årsaker gjør at arbeidssøkeren ikke får registrert seg eller gjennomført reaktivering.
+Tekniske feil eller andre NAV-interne årsaker gjør at arbeidssøkeren ikke får registrert seg.
 Kan grupperes på `aarsak` for å se hvilken feiltype som var grunnen til at registreringen feilet.
 
 `Registrering fullført`
-Arbeidssøkeren er registrert eller reaktivert.
+Arbeidssøkeren er registrert.
 Vil logges når kvitteringen vises eller når arbeidssøkeren videresendes til AiA
 
 ## Stoppsituasjoner
@@ -54,10 +54,6 @@ På situasjonen `Arbeidssøkeren må reaktivere seg` kan du også gruppere på `
 `Arbeidssøkeren må reaktivere seg`
 Arbeidssøkeren har falt ut av NAV-systemet og det har gått kortere tid enn 28 dager siden det skjedde.
 Her er det mulig å gruppere på `brukergruppe` for å se hvilken status arbeidssøkeren hadde før hen falt ut.
-
-`Arbeidssøkeren får ikke reaktivert seg`
-Arbeidssøkeren har satt igang reaktivering, men får en feilmelding tilbake.
-Her er det mulig å grupper på `aarsak` for å se hvilken feil baksystemet gir
 
 `Arbeidssøkeren mangler arbeidstillatelse eller er utvandret`
 Denne kan skyldes at NAV ikke har oppdaterte opplysninger om arbeidssøkeren i vår systemer.
@@ -94,17 +90,15 @@ I noen tilfeller finnes også informasjon om `tidBruktForAaFullforeSkjema` eller
 
 ### aktiviteter.aktivitet
 
--   `Viser kvittering` - Har gjennomført en av registreringene eller reaktivering og ser kvitteringssiden
--   `Går til dagpenger fra kvittering` - Går til dagpengesiden fra fullført ordinær registrering eller reaktivering
--   `Velger å ikke gå til dagpenger fra kvittering` - Går til minside fra fullført ordinær registrering eller reaktivering
+-   `Viser kvittering` - Har gjennomført en av registreringene og ser kvitteringssiden
+-   `Går til dagpenger fra kvittering` - Går til dagpengesiden fra fullført ordinær registrering
+-   `Velger å ikke gå til dagpenger fra kvittering` - Går til minside fra fullført ordinær registrering
 -   `Velger å lese mer om økonomisk støtte` - Går til minside fra sykmeldt registrering men signaliserer at de vil lese om øknomisk støtte
 -   `Velger å ikke søke om økonomisk støtte` - Går til minside fra sykmeldt registrering men signaliserer at de IKKE vil lese om øknomisk støtte
 -   `Utfylling av skjema fullført` - Skjema for registrering er fullført og sendes inn
 -   `Start registrering` - Trigges av skjema-side-factory
 -   `Går til start registrering` - Trykker på start registreringsknappen på forsiden
 -   `Avbryter registreringen` - Trykker på avbryt knappen i avbryt registrering modalen
--   `Arbeidssøkeren reaktiverer seg` - Starter reaktivering etter at knappen for start reaktivering er trykket
--   `Arbeidssøkeren avslår reaktivering` - Trykker på avbryt-knappen på siden som gir tilbud om reaktivering
 -   `Fortsetter til sykmeldtregistrering` - Trykker på fortsett-knappen på mellomsiden for sykmeldt-registreringen
 -   `Oppretter kontakt meg oppgave` - Trykker på Ta kontakt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret
 -   `Avbryter kontakt meg` - Trykker på Avbryt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret

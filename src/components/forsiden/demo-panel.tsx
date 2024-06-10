@@ -92,24 +92,6 @@ function DemoPanel({ brukerMock }: Props) {
                                     <Button variant="secondary">Feil</Button>
                                 </NextLink>
                             </p>
-                            <Heading level="4" size="medium">
-                                Reaktivering
-                            </Heading>
-                            <p>
-                                <NextLink href="/reaktivering" passHref>
-                                    <Button variant="secondary">Reaktivering</Button>
-                                </NextLink>
-                            </p>
-                            <p>
-                                <NextLink href="/veiledning/reaktivering/utvandret/" passHref>
-                                    <Button variant="secondary">Utvandret Reaktivering</Button>
-                                </NextLink>
-                            </p>
-                            <p>
-                                <NextLink href="/kvittering-reaktivering/" passHref>
-                                    <Button variant="secondary">Kvittering Reaktivering</Button>
-                                </NextLink>
-                            </p>
                         </div>
                     </div>
                 </Box>

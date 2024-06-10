@@ -34,45 +34,6 @@ export const mockToggles = {
             variants: [],
         },
         {
-            name: 'arbeidssokerregistrering.bruk-ny-inngang',
-            type: 'release',
-            enabled: true,
-            stale: false,
-            strategies: [
-                {
-                    name: 'default',
-                    parameters: {},
-                },
-            ],
-            variants: [],
-        },
-        {
-            name: 'arbeidssokerregistrering.fjern-plikter',
-            type: 'release',
-            enabled: true,
-            stale: false,
-            strategies: [
-                {
-                    name: 'default',
-                    parameters: {},
-                },
-            ],
-            variants: [],
-        },
-        {
-            name: 'arbeidssokerregistrering.fss.ny-ingress',
-            type: 'release',
-            enabled: false,
-            stale: false,
-            strategies: [
-                {
-                    name: 'default',
-                    parameters: {},
-                },
-            ],
-            variants: [],
-        },
-        {
             name: 'arbeidssokerregistrering.bruk-direkte-kobling-mot-aareg',
             type: 'release',
             enabled: false,
@@ -87,19 +48,6 @@ export const mockToggles = {
         },
         {
             name: 'arbeidssokerregistrering.bruk-under-18-sperre',
-            type: 'release',
-            enabled: false,
-            stale: false,
-            strategies: [
-                {
-                    name: 'default',
-                    parameters: {},
-                },
-            ],
-            variants: [],
-        },
-        {
-            name: 'arbeidssokerregistrering.eksperimenter.videresend-til-aia',
             type: 'release',
             enabled: false,
             stale: false,
