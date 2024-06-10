@@ -14,13 +14,15 @@ const OPPLYSNINGER_URL = `${process.env.AIA_BACKEND_URL}/arbeidssokerregisteret/
 
 const fetcher = async (url: string, token: string) => {
     const callId = nanoid();
+    logger.info(`Starter kall mot ${url}, callId - ${callId}`);
     return fetch(url, {
         headers: getHeaders(token, callId),
     }).then((response) => {
         if (!response.ok) {
-            logger.warn(`Respons fra ${url} ikke ok (${response.status}), callId - ${callId}`);
+            logger.error(`Respons fra ${url} ikke ok (${response.status}), callId - ${callId}`);
             throw new Error(response.statusText);
         }
+        logger.info(`Kall mot ${url}, callId - ${callId}, ferdig`);
         return response.json();
     });
 };
