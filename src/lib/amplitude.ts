@@ -5,6 +5,7 @@ import { RegistreringType } from '../model/registrering';
 import { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 
 const isBrowser = () => typeof window !== 'undefined';
+const isDevelopment = () => isBrowser() && /^http:\/\/localhost/.test(window.location.href);
 
 const config = {
     saveEvents: false,
@@ -88,7 +89,7 @@ type AmplitudeParams = { apiKey: string; apiEndpoint: string };
 type AmplitudeInitFunction = (params: AmplitudeParams) => void;
 
 export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint }) => {
-    if (isBrowser()) {
+    if (isBrowser() && !isDevelopment()) {
         await amplitude.init(apiKey, undefined, { ...config, serverUrl: apiEndpoint });
         logAmplitudeEvent('sidevisning', {
             sidetittel: document.title,
@@ -98,7 +99,7 @@ export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint
 
 export function logAmplitudeEvent(eventName: string, data: EventData) {
     const eventData = data || {};
-    if (isBrowser()) {
+    if (isBrowser() && !isDevelopment()) {
         const brukergruppe = window.sessionStorage.getItem('beregnetBrukergruppe') || 'Ikke tilgjengelig';
         const registreringstype = window.sessionStorage.getItem('registreringType') || 'Ikke tilgjengelig';
         amplitude.logEvent(eventName, { ...eventData, brukergruppe, registreringstype });
