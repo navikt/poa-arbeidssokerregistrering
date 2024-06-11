@@ -71,8 +71,6 @@ spec:
       value: http://veilarbregistrering/veilarbregistrering/api/profilering/
     - name: UNLEASH_SERVER_API_URL
       value: https://paw-unleash-api.nav.cloud.nais.io/api
-    - name: ARBEIDSSOKER_PERIODER_URL
-      value: http://veilarbregistrering/veilarbregistrering/api/arbeidssoker/perioder/niva3
     - name: OPPGAVE_API_URL
       value: http://aia-backend/aia-backend/oppgave
     - name: NEXT_PUBLIC_ASSET_PREFIX
