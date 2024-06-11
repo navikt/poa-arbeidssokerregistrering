@@ -36,19 +36,9 @@ function DemoPanel({ brukerMock }: Props) {
                                 </NextLink>
                             </p>
 
-                            <p>
-                                <NextLink href="/veiledning/registrering/utvandret/" passHref>
-                                    <Button variant="secondary">Utvandret</Button>
-                                </NextLink>
-                            </p>
                             <Heading level="4" size="medium">
                                 Stoppsituasjoner
                             </Heading>
-                            <p>
-                                <NextLink href="/veiledning/registrering/mangler-arbeidstillatelse/" passHref>
-                                    <Button variant="secondary">Mangler arbeidstillatelse</Button>
-                                </NextLink>
-                            </p>
                             <p>
                                 <NextLink href="/veiledning/oppholdstillatelse/" passHref>
                                     <Button variant="secondary">NY - Ikke bosatt etter folkeregisteret</Button>

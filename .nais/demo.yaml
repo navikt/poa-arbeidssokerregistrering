@@ -60,8 +60,6 @@ spec:
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/fullforregistrering
     - name: SISTEARBEIDSFORHOLD_FRA_AAREG_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/arbeidsforhold-fra-aareg
-    - name: OPPRETT_OPPGAVE_URL
-      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/oppgave
     - name: KONTAKTINFORMASJON_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/kontaktinformasjon
     - name: FEATURE_TOGGLE_URL
