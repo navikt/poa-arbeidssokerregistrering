@@ -35,7 +35,7 @@ async function createClientAssertion(options: TokenDingsOptions): Promise<string
             nbf: now,
         },
         key.toPEM(true),
-        { algorithm: 'RS256' }
+        { algorithm: 'RS256' },
     );
 }
 
@@ -52,7 +52,7 @@ const createTokenDings = async (options: TokenDingsOptions): Promise<Auth> => {
             const clientAssertion = await createClientAssertion(options);
 
             try {
-                return tokenXClient.grant({
+                return await tokenXClient.grant({
                     grant_type: 'urn:ietf:params:oauth:grant-type:token-exchange',
                     audience: targetApp,
                     client_assertion: clientAssertion,
