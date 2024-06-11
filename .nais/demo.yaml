@@ -56,8 +56,6 @@ spec:
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
     - name: START_REGISTRERING_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/startregistrering
-    - name: FULLFOR_REGISTRERING_URL
-      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/fullforregistrering
     - name: SISTEARBEIDSFORHOLD_FRA_AAREG_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/arbeidsforhold-fra-aareg
     - name: KONTAKTINFORMASJON_URL
