@@ -7,6 +7,7 @@ import {
 } from '@navikt/nav-dekoratoren-moduler/ssr';
 import { logger } from '@navikt/next-logger';
 import localeTilUrl from '../lib/locale-til-url';
+import getConfig from 'next/config';
 
 const dekoratorEnv = process.env.DEKORATOR_ENV as Exclude<DecoratorEnvProps['env'], 'localhost'>;
 const availableLanguages = [
@@ -65,11 +66,12 @@ export default class MyDocument extends Document<DecoratorComponents> {
 
     render(): JSX.Element {
         const { Styles, Scripts, Header, Footer, locale } = this.props;
+        const { basePath } = getConfig().publicRuntimeConfig;
         return (
             <Html lang={locale ?? 'nb'}>
                 <Head>
                     <Styles />
-                    <link rel="icon" href="/favicon.ico" />
+                    <link rel="icon" href={`${basePath}/favicon.ico`} />
                 </Head>
                 <body>
                     <Scripts />
