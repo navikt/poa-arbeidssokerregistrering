@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import { getAiaBackendToken, getHeaders } from '../../lib/next-api-handler';
+import { getHeaders, getOppslagApiToken } from '../../lib/next-api-handler';
 import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
 import {
@@ -9,8 +9,8 @@ import {
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-const PERIODER_URL = `${process.env.AIA_BACKEND_URL}/arbeidssokerregisteret/v1/arbeidssoekerperioder`;
-const OPPLYSNINGER_URL = `${process.env.AIA_BACKEND_URL}/arbeidssokerregisteret/v1/opplysninger-om-arbeidssoeker`;
+const PERIODER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL}/api/v1/arbeidssoekerperioder`;
+const OPPLYSNINGER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL}/api/v1/opplysninger-om-arbeidssoeker`;
 
 const fetcher = async (url: string, token: string) => {
     const callId = nanoid();
@@ -29,7 +29,7 @@ const fetcher = async (url: string, token: string) => {
 
 const hentSisteOpplysningerHandler: NextApiHandler = async (req, res) => {
     try {
-        const aiaBackendToken = brukerMock ? 'token' : await getAiaBackendToken(req);
+        const aiaBackendToken = brukerMock ? 'token' : await getOppslagApiToken(req);
         const periode = hentSisteArbeidssokerPeriode(await fetcher(PERIODER_URL, aiaBackendToken));
 
         if (!periode?.periodeId) {

@@ -48,6 +48,7 @@ const getTokenDings = async (): Promise<Auth> => {
 export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
 export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
 export const INNGANG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-inngang`;
+export const OPPSLAG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-oppslag`;
 
 const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
 
@@ -64,10 +65,6 @@ export const getTokenFromRequest = (req: NextApiRequest) => {
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 
-export const getVeilarbregistreringToken = async (req: NextApiRequest) => {
-    return getTokenXToken(req, VEILARBREGISTRERING_CLIENT_ID);
-};
-
 export const getAaregToken = async (req: NextApiRequest) => {
     return getTokenXToken(req, AAREG_CLIENT_ID);
 };
@@ -76,8 +73,8 @@ export const getInngangClientId = async (req: NextApiRequest) => {
     return getTokenXToken(req, INNGANG_CLIENT_ID);
 };
 
-export const getAiaBackendToken = async (req: NextApiRequest) => {
-    return getTokenXToken(req, AIA_BACKEND_CLIENT_ID);
+export const getOppslagApiToken = async (req: NextApiRequest) => {
+    return getTokenXToken(req, OPPSLAG_CLIENT_ID);
 };
 
 const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
