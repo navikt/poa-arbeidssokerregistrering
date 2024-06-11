@@ -29,15 +29,15 @@ const fetcher = async (url: string, token: string) => {
 
 const hentSisteOpplysningerHandler: NextApiHandler = async (req, res) => {
     try {
-        const aiaBackendToken = brukerMock ? 'token' : await getOppslagApiToken(req);
-        const periode = hentSisteArbeidssokerPeriode(await fetcher(PERIODER_URL, aiaBackendToken));
+        const oppslagApiToken = brukerMock ? 'token' : await getOppslagApiToken(req);
+        const periode = hentSisteArbeidssokerPeriode(await fetcher(PERIODER_URL, oppslagApiToken));
 
         if (!periode?.periodeId) {
             return res.status(204).end();
         }
 
         const opplysninger = hentSisteOpplysningerOmArbeidssoker(
-            await fetcher(`${OPPLYSNINGER_URL}/${periode.periodeId}`, aiaBackendToken),
+            await fetcher(`${OPPLYSNINGER_URL}/${periode.periodeId}`, oppslagApiToken),
         );
 
         return res.json({

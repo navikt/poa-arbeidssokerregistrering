@@ -48,11 +48,16 @@ const getTokenDings = async (): Promise<Auth> => {
 export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
 export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
 export const INNGANG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-inngang`;
-export const OPPSLAG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-oppslag`;
+export const OPPSLAG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssoekerregisteret-api-oppslag`;
 
 const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
 
-type ClientIds = typeof VEILARBREGISTRERING_CLIENT_ID | typeof AIA_BACKEND_CLIENT_ID | typeof AAREG_CLIENT_ID;
+type ClientIds =
+    | typeof VEILARBREGISTRERING_CLIENT_ID
+    | typeof AIA_BACKEND_CLIENT_ID
+    | typeof AAREG_CLIENT_ID
+    | typeof INNGANG_CLIENT_ID
+    | typeof OPPSLAG_CLIENT_ID;
 
 const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<TokenSet> => {
     return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, clientId);
