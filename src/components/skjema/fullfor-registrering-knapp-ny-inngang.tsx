@@ -9,6 +9,7 @@ import { logger } from '@navikt/next-logger';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
 import { Button } from '@navikt/ds-react';
 import { SkjemaState } from '../../model/skjema';
+import { loggAktivitet, loggFlyt } from '../../lib/amplitude';
 
 interface FullforKnappProps {
     skjemaState: SkjemaState;
@@ -16,6 +17,14 @@ interface FullforKnappProps {
     onValiderSkjema(): boolean;
     tekst(s: string): string;
 }
+
+const beregnTidBrukt = (skjemaState: SkjemaState) => {
+    if (!skjemaState.startTid) {
+        return;
+    }
+
+    return (Date.now() - skjemaState.startTid) / 1000;
+};
 
 const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     const { tekst } = props;
@@ -58,6 +67,13 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
                     'Content-Type': 'application/json',
                 },
             });
+
+            loggAktivitet({
+                aktivitet: 'Utfylling av skjema fullført',
+                tidBruktForAaFullforeSkjema: beregnTidBrukt(skjemaState),
+            });
+
+            loggFlyt({ hendelse: 'Sender inn skjema for registrering' });
 
             return router.push(hentKvitteringsUrl());
         } catch (e) {
