@@ -7,8 +7,4 @@ Det er i hovedsak tre ulike brukerflyter gjennom løsningen.
 
 ## Standard registrering
 
-## Sykmeldt med arbeidsgiver
-
-## Sykmeldt uten arbeidsgiver
-
 ## Mangler oppholdstillatelse/utvandret/død

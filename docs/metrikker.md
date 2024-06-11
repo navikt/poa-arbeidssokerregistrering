@@ -93,8 +93,6 @@ I noen tilfeller finnes også informasjon om `tidBruktForAaFullforeSkjema` eller
 -   `Viser kvittering` - Har gjennomført en av registreringene og ser kvitteringssiden
 -   `Går til dagpenger fra kvittering` - Går til dagpengesiden fra fullført ordinær registrering
 -   `Velger å ikke gå til dagpenger fra kvittering` - Går til minside fra fullført ordinær registrering
--   `Velger å lese mer om økonomisk støtte` - Går til minside fra sykmeldt registrering men signaliserer at de vil lese om øknomisk støtte
--   `Velger å ikke søke om økonomisk støtte` - Går til minside fra sykmeldt registrering men signaliserer at de IKKE vil lese om øknomisk støtte
 -   `Utfylling av skjema fullført` - Skjema for registrering er fullført og sendes inn
 -   `Start registrering` - Trigges av skjema-side-factory
 -   `Går til start registrering` - Trykker på start registreringsknappen på forsiden

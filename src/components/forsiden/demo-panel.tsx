@@ -26,13 +26,8 @@ function DemoPanel({ brukerMock }: Props) {
                         </Heading>
                         <div className="text-center">
                             <p>
-                                <NextLink href={`/skjema/${SkjemaSide.DinSituasjon}`} passHref>
+                                <NextLink href={`/opplysninger/${SkjemaSide.DinSituasjon}`} passHref>
                                     <Button>Standard registrering</Button>
-                                </NextLink>
-                            </p>
-                            <p>
-                                <NextLink href={`/mer-oppfolging/`} passHref>
-                                    <Button variant="secondary">Mer sykmeldt oppfølging</Button>
                                 </NextLink>
                             </p>
                             <p>
