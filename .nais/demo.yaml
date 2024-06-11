@@ -68,8 +68,6 @@ spec:
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/features
     - name: NODE_ENV
       value: development
-    - name: HENT_PROFILERING_URL
-      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/profilering
   ingresses:
     - https://arbeid.ekstern.dev.nav.no/arbeid/registrering
   accessPolicy:
