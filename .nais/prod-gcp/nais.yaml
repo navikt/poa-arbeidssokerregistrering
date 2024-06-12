@@ -79,8 +79,8 @@ spec:
       value: http://paw-arbeidssokerregisteret-api-inngang
     - name: OPPDATER_OPPLYSNINGER_URL
       value: http://paw-arbeidssokerregisteret-api-inngang
-    - name: AIA_BACKEND_URL
-      value: http://aia-backend/aia-backend
+    - name: ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL
+      value: http://paw-arbeidssoekerregisteret-api-oppslag
   envFrom:
      - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
@@ -100,6 +100,7 @@ spec:
         - host: aareg-services.prod-fss-pub.nais.io
       rules:
         - application: paw-arbeidssokerregisteret-api-inngang
+        - application: paw-arbeidssoekerregisteret-api-oppslag
         - application: veilarbregistrering
         - application: aia-backend
         - application: nav-dekoratoren
