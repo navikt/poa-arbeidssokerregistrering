@@ -12,11 +12,6 @@ const TEKSTER: Tekster<string> = {
     nb: {
         header: 'Er opplysningene riktige?',
         ingress: 'Her er opplysningene vi har registrert om deg.',
-        ikkeIJobbSisteAaret: `Ifølge Arbeidsgiver- og arbeidstakerregisteret har du ikke vært i jobb i løpet av det siste året. 
-             Hvis det er feil, er det likevel viktig at du fullfører registreringen. Du kan gi riktig informasjon senere til NAV.`,
-        harJobbetSisteAaret:
-            'Ifølge Arbeidsgiver- og arbeidstakerregisteret har du vært i jobb i løpet av det siste året. ' +
-            'Hvis det er feil, er det likevel viktig at du fullfører registreringen. Du kan gi riktig informasjon senere til NAV.',
     },
 };
 
@@ -28,7 +23,6 @@ interface OppsummeringProps {
 const Oppsummering = ({ skjemaState, skjemaPrefix }: OppsummeringProps) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const { data: startRegistreringData, error } = useSWR('/api/startregistrering', fetcher);
 
     return (
         <>
@@ -42,13 +36,6 @@ const Oppsummering = ({ skjemaState, skjemaPrefix }: OppsummeringProps) => {
                 {tekst('ingress')}
             </BodyLong>
             <GuidePanel poster illustration={<OppsummeringSvg />}>
-                {skjemaPrefix === '/skjema/' && (
-                    <p>
-                        {startRegistreringData && startRegistreringData.jobbetSeksAvTolvSisteManeder
-                            ? tekst('harJobbetSisteAaret')
-                            : tekst('ikkeIJobbSisteAaret')}
-                    </p>
-                )}
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
         </>

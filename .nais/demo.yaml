@@ -54,8 +54,6 @@ spec:
       value: https://demo.ekstern.dev.nav.no/syk/meroppfolging/reg/0
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
-    - name: START_REGISTRERING_URL
-      value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/startregistrering
     - name: SISTEARBEIDSFORHOLD_FRA_AAREG_URL
       value: https://arbeid.ekstern.dev.nav.no/arbeid/registrering/api/mocks/arbeidsforhold-fra-aareg
     - name: KONTAKTINFORMASJON_URL
