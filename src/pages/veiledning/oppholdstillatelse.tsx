@@ -5,20 +5,18 @@ import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-ut
 import useSprak from '../../hooks/useSprak';
 
 import { loggStoppsituasjon } from '../../lib/amplitude';
-import { useConfig } from '../../contexts/config-context';
-import { Config } from '../../model/config';
 import { withAuthenticatedPage } from '../../auth/withAuthentication';
 
 const TEKSTER: Tekster<string> = {
     nb: {
         overskrift: 'Vi kan dessverre ikke registrere deg som arbeidssøker',
         innhold: 'Dette er fordi du i følge våre systemer ikke er bosatt i Norge i henhold til folkeregisterloven.',
-        lesomkrav: 'Du finner mer informasjon om hva som kreves for å registrere deg som arbeidssøker i Norge på',
-        workInNorwayLenke: 'https://www.workinnorway.no/no/Forside',
-        workInNorwayLenkeTekst: 'sidene til Work in Norway',
-        vilDuHaHjelp: 'Vil du at vi skal hjelpe deg videre kan du',
+        folkeregisteretTekst: 'hvis du mener dette er feil eller har behov for å oppdatere opplysningene dine',
+        folkeregisteretLenke: 'https://www.skatteetaten.no/person/folkeregister/endre/opplysninger-om-identiteten-din/',
+        folkeregisteretLenkeTekst: 'Ta kontakt med folkeregisteret',
+        kontaktOssTekst: 'hvis du ønsker at vi skal hjelpe deg.',
         kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
-        kontaktOssLenkeTekst: 'kontakte oss',
+        kontaktOssLenkeTekst: 'Ta kontakt med NAV',
     },
 };
 
@@ -38,12 +36,12 @@ function Oppholdstillatelse() {
             </Heading>
             <BodyLong spacing>{tekst('innhold')}</BodyLong>
             <BodyLong spacing>
-                {tekst('lesomkrav')} <Link href={tekst('workInNorwayLenke')}>{tekst('workInNorwayLenkeTekst')}</Link>
-                {''}.
+                <Link href={tekst('folkeregisteretLenke')}>{tekst('folkeregisteretLenkeTekst')}</Link>{' '}
+                {tekst('folkeregisteretTekst')} .
             </BodyLong>
             <BodyLong spacing>
-                {tekst('vilDuHaHjelp')} <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link>
-                {''}.
+                <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link> {tekst('kontaktOssTekst')}{' '}
+                .
             </BodyLong>
         </Alert>
     );
