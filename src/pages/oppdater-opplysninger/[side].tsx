@@ -17,6 +17,7 @@ import { SiderMap, SkjemaProps, SkjemaSideKomponent } from '../../components/skj
 import { loggBesvarelse } from '../../lib/amplitude';
 import {
     ArbeidssokerPeriode,
+    mapOpplysningerTilSkjemaState,
     OpplysningerOmArbeidssoker,
     SisteStillingValg,
     SporsmalId,
@@ -26,7 +27,6 @@ import { Loader } from '@navikt/ds-react';
 import { fetcher } from '../../lib/api-utils';
 import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
 import { validerOpplysningerSkjemaForSide } from '../opplysninger/[side]';
-import mapOpplysningerTilSkjemaState from '../../lib/map-opplysninger-til-skjema-state';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
