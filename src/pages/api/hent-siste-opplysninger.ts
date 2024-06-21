@@ -44,8 +44,8 @@ const hentSisteOpplysningerHandler: NextApiHandler = async (req, res) => {
             periode,
             opplysninger,
         });
-    } catch (err) {
-        logger.error(`Feil i /api/hent-siste-opplysninger`, err);
+    } catch (err: any) {
+        logger.error({ err }, 'Feil i /api/hent-siste-opplysninger');
         res.status(500).end();
     }
 };
