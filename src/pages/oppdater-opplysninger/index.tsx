@@ -34,7 +34,7 @@ const OppdaterOpplysninger = () => {
 
     if (periode.avsluttet !== null) {
         console.info('Avsluttet periode!', periode);
-        router.push('/start');
+        return router.push('/start');
     }
 
     if (opplysninger.opplysningerOmArbeidssoekerId) {
