@@ -68,7 +68,7 @@
         "typescript": "5.4.2"
     },
     "engines": {
-        "node": ">=20.12.0"
+        "node": ">=20.15.0"
     },
     "prettier": {
         "printWidth": 120,
