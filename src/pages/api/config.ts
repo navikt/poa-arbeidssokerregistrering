@@ -13,7 +13,6 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         dialogUrl: process.env.NEXT_PUBLIC_DIALOG_URL!,
         enableMock: process.env.NEXT_PUBLIC_ENABLE_MOCK!,
         loginUrl: `${process.env.NEXT_PUBLIC_SELF_URL}/oauth2/login?redirect=${process.env.NEXT_PUBLIC_START_URL}`,
-        merOppfolgingUrl: process.env.NEXT_PUBLIC_MER_OPPFOLGING_URL!,
         aarsTall: new Date().getFullYear(),
     } as Config);
 }

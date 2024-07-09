@@ -97,7 +97,6 @@ I noen tilfeller finnes også informasjon om `tidBruktForAaFullforeSkjema` eller
 -   `Start registrering` - Trigges av skjema-side-factory
 -   `Går til start registrering` - Trykker på start registreringsknappen på forsiden
 -   `Avbryter registreringen` - Trykker på avbryt knappen i avbryt registrering modalen
--   `Fortsetter til sykmeldtregistrering` - Trykker på fortsett-knappen på mellomsiden for sykmeldt-registreringen
 -   `Oppretter kontakt meg oppgave` - Trykker på Ta kontakt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret
 -   `Avbryter kontakt meg` - Trykker på Avbryt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret
 -   `Endrer foreslått stilling` - Endrer foreslått stilling i registreringsskjemaet
