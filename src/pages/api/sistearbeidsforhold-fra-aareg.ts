@@ -60,6 +60,7 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
         const { styrk } = hentSisteArbeidsForhold(await hentFraAareg(req, callId));
 
         if (!styrk) {
+            logger.info(`Ingen styrk-kode å slå opp [callId: ${callId}]`);
             return res.status(204).end();
         }
 
