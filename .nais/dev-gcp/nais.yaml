@@ -57,8 +57,6 @@ spec:
       value: https://www.ekstern.dev.nav.no/syk/meroppfolging/reg/0
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
-    - name: KONTAKTINFORMASJON_URL
-      value: http://veilarbregistrering/veilarbregistrering/api/person/kontaktinfo
     - name: NODE_ENV
       value: test
     - name: UNLEASH_SERVER_API_URL
