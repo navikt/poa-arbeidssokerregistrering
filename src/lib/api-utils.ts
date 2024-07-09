@@ -22,7 +22,6 @@ export const fetcher = async (path: string, opts?: RequestInit & { onError?: (re
         } else if (typeof opts?.onError === 'function') {
             return opts.onError(response);
         }
-
         const error: FetchError = new Error(response.statusText);
         error.status = response.status;
         error.data = isJsonResponse ? await response.json() : undefined;

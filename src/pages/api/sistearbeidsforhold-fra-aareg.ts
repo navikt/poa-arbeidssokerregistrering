@@ -28,9 +28,13 @@ const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
     };
 };
 async function hentFraAareg(req: NextApiRequest, callId: string) {
-    const token = getTokenFromRequest(req)!;
-    const result = await verifyToken(token, decodeJwt(token));
-    const fnr = result.payload.pid as string;
+    let fnr = '1234';
+
+    if (!brukerMock) {
+        const token = getTokenFromRequest(req)!;
+        const result = await verifyToken(token, decodeJwt(token));
+        fnr = result.payload.pid as string;
+    }
 
     const payload = {
         arbeidstakerId: fnr,
@@ -38,6 +42,7 @@ async function hentFraAareg(req: NextApiRequest, callId: string) {
     };
 
     logger.info(`Starter kall callId: ${callId} mot ${url}`);
+
     const arbeidsforholdoversikt = await fetch(url, {
         method: 'POST',
         headers: await getAaregHeaders(req, callId),
