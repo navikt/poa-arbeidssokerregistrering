@@ -1,13 +1,8 @@
-import { Alert, BodyShort, Heading, Link } from '@navikt/ds-react';
-import { ExternalLinkIcon, PhoneIcon } from '@navikt/aksel-icons';
-import useSWR from 'swr';
+import { Alert, Link } from '@navikt/ds-react';
+import { ExternalLinkIcon } from '@navikt/aksel-icons';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
-
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { Kontaktinformasjon as KontaktInfo } from '../model/kontaktinformasjon';
-import { fetcher } from '../lib/api-utils';
-import { loggAktivitet } from '../lib/amplitude';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -37,51 +32,16 @@ const TEKSTER: Tekster<string> = {
 };
 
 export const Kontaktinformasjon = () => {
-    const { data } = useSWR<KontaktInfo>('api/kontaktinformasjon/', fetcher);
-    const tlfKrr = data?.telefonnummerHosKrr;
-    const tlfNav = data?.telefonnummerHosNav;
-    const sprak = useSprak();
-    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-
-    const gaarTilEndreOpplysninger = () => {
-        loggAktivitet({ aktivitet: 'Går til endre personopplysninger', komponent: 'kontaktinformasjonUnder18' });
-    };
-
-    if (tlfKrr || tlfNav) {
-        return (
-            <>
-                {tlfNav && <Telefonnummer kilde="NAV" telefonnummer={tlfNav} />}
-                {tlfKrr && <Telefonnummer kilde="KRR" telefonnummer={tlfKrr} />}
-                <EndreOpplysningerLink tekst={tekst('endreOpplysninger')} />
-            </>
-        );
-    } else
-        return (
-            <>
-                <Alert variant="error" inline className="mb-6">
-                    {tekst('ingenOpplysninger')}
-                </Alert>
-                <EndreOpplysningerLink tekst={tekst('leggInnOpplysninger')} />
-            </>
-        );
-};
-
-type Kilde = 'KRR' | 'NAV';
-
-const Telefonnummer = (props: { kilde: Kilde; telefonnummer: string }) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <div className="mb-6">
-            <Heading level="2" size="xsmall">
-                {tekst(`tlfHos${props.kilde}`)}
-            </Heading>
-            <BodyShort size="large" className="flex">
-                <PhoneIcon />
-                <span className="ml-1">{props.telefonnummer}</span>
-            </BodyShort>
-        </div>
+        <>
+            <Alert variant="info" inline className="mb-6">
+                {tekst('hjelpetekst')}
+            </Alert>
+            <EndreOpplysningerLink tekst={tekst('leggInnOpplysninger')} />
+        </>
     );
 };
 
