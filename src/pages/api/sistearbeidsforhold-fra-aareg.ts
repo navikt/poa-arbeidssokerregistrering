@@ -63,13 +63,16 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
             return res.status(204).end();
         }
 
-        logger.info(`Slår opp styrk-kode [callId: ${callId}`);
+        logger.info(`Slår opp styrk-kode [callId: ${callId}]`);
+
         const { konseptMedStyrk08List } = await fetch(
             `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
             {
                 headers: getHeaders('token', callId),
             },
         ).then((res) => res.json());
+
+        logger.info(`Oppslag mot styrk-kode ferdig [callId: ${callId}]`);
 
         res.json(konseptMedStyrk08List[0]);
     } catch (e) {
