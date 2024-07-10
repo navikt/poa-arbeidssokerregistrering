@@ -1,14 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { nanoid } from 'nanoid';
 import { decodeJwt } from 'jose';
+import { logger } from '@navikt/next-logger';
 
 import { getAaregToken, getHeaders, getTokenFromRequest } from '../../lib/next-api-handler';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { verifyToken } from '../../auth/token-validation';
-import { logger } from '@navikt/next-logger';
 import { hentSisteArbeidsForhold } from '../../lib/hent-siste-arbeidsforhold';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
+
 const url = brukerMock
     ? `${process.env.SISTEARBEIDSFORHOLD_FRA_AAREG_URL}`
     : `${process.env.AAREG_REST_API}/v2/arbeidstaker/arbeidsforholdoversikt`;
@@ -17,25 +18,35 @@ const getAaregHeaders = async (req: NextApiRequest, callId: string) => {
     if (brukerMock) {
         return {
             ...getHeaders('token', callId),
-            'Nav-Personident': '123456789',
         };
     }
 
     const headers = getHeaders(await getAaregToken(req), callId);
 
-    const token = getTokenFromRequest(req)!;
-    const result = await verifyToken(token, decodeJwt(token));
-    const fnr = result.payload.pid as string;
-
     return {
         ...headers,
-        'Nav-Personident': fnr,
     };
 };
 async function hentFraAareg(req: NextApiRequest, callId: string) {
+    let fnr = '1234';
+
+    if (!brukerMock) {
+        const token = getTokenFromRequest(req)!;
+        const result = await verifyToken(token, decodeJwt(token));
+        fnr = result.payload.pid as string;
+    }
+
+    const payload = {
+        arbeidstakerId: fnr,
+        arbeidsforholdstatuser: ['AKTIV', 'AVSLUTTET'],
+    };
+
     logger.info(`Starter kall callId: ${callId} mot ${url}`);
-    const arbeidsforholdoversikt = await fetch(`${url}?arbeidsforholdstatus=AKTIV,AVSLUTTET`, {
+
+    const arbeidsforholdoversikt = await fetch(url, {
+        method: 'POST',
         headers: await getAaregHeaders(req, callId),
+        body: JSON.stringify(payload),
     }).then(async (res) => {
         if (!res.ok) {
             logger.error(`Respons fra aareg ikke OK - [callId: ${callId}] ${res.status} ${res.statusText}`);
@@ -54,10 +65,12 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
         const { styrk } = hentSisteArbeidsForhold(await hentFraAareg(req, callId));
 
         if (!styrk) {
+            logger.info(`Ingen styrk-kode å slå opp [callId: ${callId}]`);
             return res.status(204).end();
         }
 
-        logger.debug(`Slår opp styrk-kode [callId: ${callId}`);
+        logger.info(`Slår opp styrk-kode [callId: ${callId}]`);
+
         const { konseptMedStyrk08List } = await fetch(
             `${process.env.PAM_JANZZ_URL}/kryssklassifiserMedKonsept?kodeForOversetting=${styrk}`,
             {
@@ -65,9 +78,11 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
             },
         ).then((res) => res.json());
 
+        logger.info(`Oppslag mot styrk-kode ferdig [callId: ${callId}]`);
+
         res.json(konseptMedStyrk08List[0]);
     } catch (e) {
-        logger.error(`Feil ved henting av siste arbeidsforhold fra aareg [callId: ${callId}]`, e);
+        logger.error(`Feil ved oppslag av styrk mot PAM_JANZZ [callId: ${callId}]`, e);
         res.status(500).end(`${e}`);
     }
 };

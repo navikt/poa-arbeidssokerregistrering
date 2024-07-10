@@ -50,8 +50,6 @@ spec:
       value: https://www.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.nav.no/arbeid/dialog
-    - name: NEXT_PUBLIC_MER_OPPFOLGING_URL
-      value: https://demo.ekstern.dev.nav.no/syk/meroppfolging/reg/0
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
     - name: SISTEARBEIDSFORHOLD_FRA_AAREG_URL

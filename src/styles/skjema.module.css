@@ -7,14 +7,6 @@
     max-width: 896px;
 }
 
-.merOppfolging {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
-    max-width: 896px;
-}
-
 .panel {
     background-color: var(--a-gray-50);
     width: 100%;

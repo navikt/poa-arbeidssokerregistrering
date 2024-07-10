@@ -109,9 +109,6 @@ export const KvitteringOppgaveOpprettet = () => {
                     .
                 </BodyLong>
             </Alert>
-            <BodyLong className="mb-6">
-                <strong>{tekst('kontaktopplysningerOppdatert')}</strong>
-            </BodyLong>
             <div className="mb-8">
                 <Kontaktinformasjon />
             </div>

@@ -1,6 +1,5 @@
 import { useCallback, useState, useEffect } from 'react';
 import { Loader } from '@navikt/ds-react';
-import { preload } from 'swr';
 
 import { useConfig } from '../../contexts/config-context';
 
@@ -12,7 +11,7 @@ import {
     KvitteringOppgaveOpprettet,
     Opprettelsesfeil,
 } from '../../components/KvitteringOppgaveUnder18';
-import { fetcher, fetcher as api } from '../../lib/api-utils';
+import { fetcher as api } from '../../lib/api-utils';
 import { withAuthenticatedPage } from '../../auth/withAuthentication';
 
 function Under18() {
@@ -20,7 +19,6 @@ function Under18() {
     const [oppretterOppgave, settOppretterOppgave] = useState<boolean>(false);
     const [feil, settFeil] = useState<Opprettelsesfeil | undefined>();
     const { enableMock } = useConfig() as Config;
-    preload('api/kontaktinformasjon/', fetcher);
 
     const opprettOppgave = useCallback(async (brukerMock: boolean) => {
         const oppgaveUrl = brukerMock ? 'api/mocks/oppgave-under-18' : 'api/oppgave-under-18';
@@ -67,4 +65,5 @@ Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell
 }
 
 export const getServerSideProps = withAuthenticatedPage();
+
 export default Under18;

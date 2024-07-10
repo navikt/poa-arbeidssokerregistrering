@@ -53,12 +53,8 @@ spec:
       value: https://arbeid.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.dev.nav.no/arbeid/dialog
-    - name: NEXT_PUBLIC_MER_OPPFOLGING_URL
-      value: https://www.ekstern.dev.nav.no/syk/meroppfolging/reg/0
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
-    - name: KONTAKTINFORMASJON_URL
-      value: http://veilarbregistrering/veilarbregistrering/api/person/kontaktinfo
     - name: NODE_ENV
       value: test
     - name: UNLEASH_SERVER_API_URL

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { Heading } from '@navikt/ds-react';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
 
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import RedirectTilVedlikehold from '../components/redirect-til-vedlikehold';
 import DemoPanel from '../components/forsiden/demo-panel';
 import { Config } from '../model/config';
