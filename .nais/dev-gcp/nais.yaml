@@ -50,7 +50,7 @@ spec:
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: https://www.intern.dev.nav.no/minside
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
-      value: https://arbeid.dev.nav.no/dagpenger/dialog/soknad
+      value: https://arbeid.intern.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.dev.nav.no/arbeid/dialog
     - name: PAM_JANZZ_URL
