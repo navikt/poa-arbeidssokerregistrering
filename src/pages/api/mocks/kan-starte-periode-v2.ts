@@ -7,13 +7,15 @@ const kanStartePeriode = (req: NextApiRequest, res: NextApiResponse): void => {
 const periodeData = {
     melding: 'Er under 18 år',
     feilKode: 'AVVIST',
-    aarasakTilAvvisning: [
-        {
-            beskrivelse: 'Er under 18 år',
-            kode: 51,
-            detaljer: ['ER_UNDER_18_AAR'],
-        },
-    ],
+    aarasakTilAvvisning: {
+        regler: [
+            {
+                id: '51',
+                beskrivelse: 'Er under 18 år',
+            },
+        ],
+        detaljer: ['ER_UNDER_18_AAR'],
+    },
     status: 403,
 };
 
