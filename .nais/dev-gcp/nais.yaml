@@ -79,6 +79,7 @@ spec:
     - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
     - https://arbeid.intern.dev.nav.no/arbeid/registrering
+    - https://arbeid.ansatt.dev.nav.no/arbeid/registrering
   idporten:
     enabled: true
     sidecar:
