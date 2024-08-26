@@ -62,7 +62,6 @@ spec:
       value: development
   ingresses:
     - https://arbeid.ekstern.dev.nav.no/arbeid/registrering
-    - https://arbeid.ansatt.dev.nav.no/arbeid/registrering
   accessPolicy:
     outbound:
       rules:
