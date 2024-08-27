@@ -1,13 +1,16 @@
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
+import { Button } from '@navikt/ds-react';
+import { logger } from '@navikt/next-logger';
+
 import { useConfig } from '../../contexts/config-context';
+import { useFeatureToggles } from '../../contexts/featuretoggle-context';
+
 import { Config } from '../../model/config';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
 import { fetcher as api } from '../../lib/api-utils';
 import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
-import { logger } from '@navikt/next-logger';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
-import { Button } from '@navikt/ds-react';
 import { SkjemaState } from '../../model/skjema';
 import { loggAktivitet, loggFlyt } from '../../lib/amplitude';
 
@@ -32,12 +35,13 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
+    const { toggles } = useFeatureToggles();
+    const brukV2InngangsAPI = toggles['arbeidssoekerregistrering.bruk-v2-inngang'];
+    const startPeriodeVersjon = brukV2InngangsAPI ? 'start-arbeidssokerperiode-v2' : 'start-arbeidssokerperiode';
     const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;
     const fullfoerRegistreringUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
-    const startArbeidssokerPeriodeUrl = brukerMock
-        ? 'api/mocks/start-arbeidssokerperiode'
-        : 'api/start-arbeidssokerperiode';
+    const startArbeidssokerPeriodeUrl = brukerMock ? `api/mocks/${startPeriodeVersjon}` : `api/${startPeriodeVersjon}`;
 
     const validerOgFullfor = () => {
         if (onValiderSkjema()) {

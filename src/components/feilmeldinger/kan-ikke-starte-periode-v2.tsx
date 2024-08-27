@@ -1,19 +1,21 @@
 import { useRouter } from 'next/router';
 
 import {
-    FeilmeldingVedStartAvArbeidssoekerperiode,
+    FeilmeldingVedStartAvArbeidssoekerperiodeV2,
     FeilKoderVedStartAvArbeidssoekerperiode,
     ReglerForStartAvArbeidssoekerperiode,
 } from '../../model/feilsituasjonTyper';
 
-function KanIkkeStartePeriode(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiode }) {
+function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
     const { feilmelding } = props;
     const Router = useRouter();
     if (!feilmelding) return null;
     const { feilKode, aarsakTilAvvisning } = feilmelding;
-    const { regel } = aarsakTilAvvisning || {};
+    const { regler } = aarsakTilAvvisning || {};
 
-    const erUnder18 = regel === ReglerForStartAvArbeidssoekerperiode.UNDER_18_AAR;
+    const aarsaker = regler ? regler.map((regel) => regel.id) : [];
+
+    const erUnder18 = aarsaker.includes(ReglerForStartAvArbeidssoekerperiode.UNDER_18_AAR);
 
     const tekniskFeil =
         [
@@ -23,10 +25,10 @@ function KanIkkeStartePeriode(props: { feilmelding?: FeilmeldingVedStartAvArbeid
             FeilKoderVedStartAvArbeidssoekerperiode.IKKE_TILGANG,
         ].includes(feilKode) ||
         (feilKode === FeilKoderVedStartAvArbeidssoekerperiode.AVVIST &&
-            regel === ReglerForStartAvArbeidssoekerperiode.UKJENT_REGEL);
+            aarsaker.includes(ReglerForStartAvArbeidssoekerperiode.UKJENT_REGEL));
     const manglendeOppholdstillatelse =
         feilKode === FeilKoderVedStartAvArbeidssoekerperiode.AVVIST &&
-        regel === ReglerForStartAvArbeidssoekerperiode.IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN;
+        aarsaker.includes(ReglerForStartAvArbeidssoekerperiode.IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN);
 
     if (erUnder18) {
         Router.push('/veiledning/under-18/');
@@ -41,4 +43,4 @@ function KanIkkeStartePeriode(props: { feilmelding?: FeilmeldingVedStartAvArbeid
     return null;
 }
 
-export default KanIkkeStartePeriode;
+export default KanIkkeStartePeriodeV2;
