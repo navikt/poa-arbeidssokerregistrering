@@ -28,6 +28,11 @@ export enum ReglerForStartAvArbeidssoekerperiode {
     'UKJENT_ALDER' = 'UKJENT_ALDER',
 }
 
+type ReglerV2 = {
+    id: ReglerForStartAvArbeidssoekerperiode;
+    beskrivelse: string;
+};
+
 type Detaljer =
     | 'FORHAANDSGODKJENT_AV_ANSATT'
     | 'SAMME_SOM_INNLOGGET_BRUKER'
@@ -67,8 +72,20 @@ export type AarsakTilAvvisning = {
     detaljer: Detaljer[];
 };
 
+export type AarsakTilAvvisningV2 = {
+    beskrivelse: string;
+    regler: ReglerV2[];
+    detaljer: Detaljer[];
+};
+
 export type FeilmeldingVedStartAvArbeidssoekerperiode = {
     melding: string;
     feilKode: FeilKoderVedStartAvArbeidssoekerperiode;
     aarsakTilAvvisning?: AarsakTilAvvisning;
+};
+
+export type FeilmeldingVedStartAvArbeidssoekerperiodeV2 = {
+    melding: string;
+    feilKode: FeilKoderVedStartAvArbeidssoekerperiode;
+    aarsakTilAvvisning?: AarsakTilAvvisningV2;
 };

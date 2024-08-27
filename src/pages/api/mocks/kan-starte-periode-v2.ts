@@ -10,7 +10,7 @@ const periodeData = {
     aarasakTilAvvisning: {
         regler: [
             {
-                id: '51',
+                id: 'ER_UNDER_18_AAR',
                 beskrivelse: 'Er under 18 år',
             },
         ],
