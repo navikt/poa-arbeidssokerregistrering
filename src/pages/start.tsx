@@ -11,7 +11,11 @@ import { fetcher } from '../lib/api-utils';
 import { Config } from '../model/config';
 import { withAuthenticatedPage } from '../auth/withAuthentication';
 import KanIkkeStartePeriode from '../components/feilmeldinger/kan-ikke-starte-periode';
-import { FeilmeldingVedStartAvArbeidssoekerperiode } from '../model/feilsituasjonTyper';
+import KanIkkeStartePeriodeV2 from '../components/feilmeldinger/kan-ikke-starte-periode-v2';
+import {
+    FeilmeldingVedStartAvArbeidssoekerperiode,
+    FeilmeldingVedStartAvArbeidssoekerperiodeV2,
+} from '../model/feilsituasjonTyper';
 
 const StartNyInngang = () => {
     const router = useRouter();
@@ -45,7 +49,12 @@ const StartNyInngang = () => {
                     <Loader variant="neutral" size="2xlarge" title="Forsøker å starte registrering..." />
                 </div>
             )}
-            {feilmelding && <KanIkkeStartePeriode feilmelding={feilmelding} />}
+            {feilmelding &&
+                (brukV2InngangsAPI ? (
+                    <KanIkkeStartePeriodeV2 feilmelding={feilmelding as FeilmeldingVedStartAvArbeidssoekerperiodeV2} />
+                ) : (
+                    <KanIkkeStartePeriode feilmelding={feilmelding} />
+                ))}
         </>
     );
 };

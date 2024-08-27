@@ -6,7 +6,7 @@ import {
     ReglerForStartAvArbeidssoekerperiode,
 } from '../../model/feilsituasjonTyper';
 
-function KanIkkeStartePeriode(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
+function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
     const { feilmelding } = props;
     const Router = useRouter();
     if (!feilmelding) return null;
@@ -43,4 +43,4 @@ function KanIkkeStartePeriode(props: { feilmelding?: FeilmeldingVedStartAvArbeid
     return null;
 }
 
-export default KanIkkeStartePeriode;
+export default KanIkkeStartePeriodeV2;
