@@ -68,7 +68,7 @@ export async function getServerSideProps() {
         if (aktiveFeatures['arbeidssoekerregistrering.redirect-forside']) {
             return {
                 redirect: {
-                    permanent: true,
+                    permanent: false,
                     destination: process.env.FORSIDE_URL,
                 },
             };
