@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import useSWRImmutable from 'swr/immutable';
 
 import { useConfig } from '../contexts/config-context';
+import { useFeatureToggles } from '../contexts/featuretoggle-context';
 
 import { SkjemaSide } from '../model/skjema';
 import { fetcher } from '../lib/api-utils';
@@ -15,9 +16,12 @@ import { FeilmeldingVedStartAvArbeidssoekerperiode } from '../model/feilsituasjo
 const StartNyInngang = () => {
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
+    const { toggles } = useFeatureToggles();
     const [feilmelding, setFeilmelding] = useState<undefined | FeilmeldingVedStartAvArbeidssoekerperiode>(undefined);
     const brukerMock = enableMock === 'enabled';
-    const kanStartePeriodeUrl = brukerMock ? 'api/mocks/kan-starte-periode' : 'api/kan-starte-periode';
+    const brukV2InngangsAPI = toggles['arbeidssoekerregistrering.bruk-v2-inngang'];
+    const kanStartePeriodeVersjon = brukV2InngangsAPI ? 'kan-starte-periode-v2' : 'kan-starte-periode';
+    const kanStartePeriodeUrl = brukerMock ? `api/mocks/${kanStartePeriodeVersjon}` : `api/${kanStartePeriodeVersjon}`;
     const { data, error, isLoading } = useSWRImmutable(kanStartePeriodeUrl, fetcher, { errorRetryCount: 0 });
 
     useEffect(() => {
