@@ -10,6 +10,9 @@ import DemoPanel from '../components/forsiden/demo-panel';
 import { Config } from '../model/config';
 import { loggAktivitet } from '../lib/amplitude';
 import NyeRettigheterPanel from '../components/forsiden/nye-rettigheter';
+import { hentFeatures } from './api/features';
+import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
+import { logger } from '@navikt/next-logger';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -56,3 +59,23 @@ const Home = () => {
 };
 
 export default Home;
+
+export async function getServerSideProps() {
+    try {
+        const { features } = await hentFeatures();
+        const aktiveFeatures = tilAktiveFeatures(features);
+
+        if (aktiveFeatures['arbeidssokerregistrering.redirect-forside']) {
+            return {
+                redirect: {
+                    permanent: true,
+                    destination: process.env.FORSIDE_URL,
+                },
+            };
+        }
+    } catch (err) {
+        logger.error(`Feil ved server-side henting av feature toggles: ${err}`);
+    }
+
+    return { props: {} };
+}
