@@ -65,7 +65,7 @@ export async function getServerSideProps() {
         const { features } = await hentFeatures();
         const aktiveFeatures = tilAktiveFeatures(features);
 
-        if (aktiveFeatures['arbeidssokerregistrering.redirect-forside']) {
+        if (aktiveFeatures['arbeidssoekerregistrering.redirect-forside']) {
             return {
                 redirect: {
                     permanent: true,

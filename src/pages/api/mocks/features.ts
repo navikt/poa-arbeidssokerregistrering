@@ -8,7 +8,7 @@ export const mockToggles = {
     version: 1,
     features: [
         {
-            name: 'arbeidssokerregistrering.redirect-forside',
+            name: 'arbeidssoekerregistrering.redirect-forside',
             type: 'release',
             enabled: false,
             stale: false,
