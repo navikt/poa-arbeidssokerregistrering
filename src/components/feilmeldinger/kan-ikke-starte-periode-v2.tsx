@@ -26,6 +26,7 @@ function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbe
         ].includes(feilKode) ||
         (feilKode === FeilKoderVedStartAvArbeidssoekerperiode.AVVIST &&
             aarsaker.includes(ReglerForStartAvArbeidssoekerperiode.UKJENT_REGEL));
+
     const manglendeOppholdstillatelse =
         feilKode === FeilKoderVedStartAvArbeidssoekerperiode.AVVIST &&
         aarsaker.includes(ReglerForStartAvArbeidssoekerperiode.IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN);
