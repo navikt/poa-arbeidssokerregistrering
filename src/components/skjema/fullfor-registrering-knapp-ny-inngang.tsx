@@ -4,7 +4,6 @@ import { Button } from '@navikt/ds-react';
 import { logger } from '@navikt/next-logger';
 
 import { useConfig } from '../../contexts/config-context';
-import { useFeatureToggles } from '../../contexts/featuretoggle-context';
 
 import { Config } from '../../model/config';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
@@ -35,9 +34,7 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
-    const { toggles } = useFeatureToggles();
-    const brukV2InngangsAPI = toggles['arbeidssoekerregistrering.bruk-v2-inngang'];
-    const startPeriodeVersjon = brukV2InngangsAPI ? 'start-arbeidssokerperiode-v2' : 'start-arbeidssokerperiode';
+    const startPeriodeVersjon = 'start-arbeidssokerperiode-v2';
     const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;
     const fullfoerRegistreringUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
