@@ -10,6 +10,7 @@ import localeTilUrl from '../lib/locale-til-url';
 import getConfig from 'next/config';
 
 const dekoratorEnv = process.env.DEKORATOR_ENV as Exclude<DecoratorEnvProps['env'], 'localhost'>;
+
 const availableLanguages = [
     {
         locale: 'nb',
@@ -35,6 +36,7 @@ const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
         availableLanguages,
     },
 };
+
 export default class MyDocument extends Document<DecoratorComponents> {
     static async getInitialProps(ctx: DocumentContext) {
         const { locale } = ctx;

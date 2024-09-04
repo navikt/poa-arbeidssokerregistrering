@@ -13,6 +13,7 @@ import NyeRettigheterPanel from '../components/forsiden/nye-rettigheter';
 import { hentFeatures } from './api/features';
 import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
 import { logger } from '@navikt/next-logger';
+import DemoLabel from '../components/demo-label';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -47,6 +48,7 @@ const Home = () => {
     return (
         <>
             <RedirectTilVedlikehold />
+            <DemoLabel brukerMock={brukerMock} />
             <div className="maxWidth flex items-center justify-center flex-wrap">
                 <Heading className="mb-8" size="xlarge" level="1">
                     {tekst('tittel')}
