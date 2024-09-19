@@ -55,6 +55,8 @@ spec:
       value: https://www.dev.nav.no/arbeid/dialog
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
+    - name: PAM_ONTOLOGI_URL
+      value: https://pam-ontologi.intern.nav.no/rest/
     - name: NODE_ENV
       value: test
     - name: UNLEASH_SERVER_API_URL
