@@ -26,7 +26,7 @@ const StillingsSok = (props: StillingsSokProps) => {
             const url = `${basePath}/api/yrke-med-styrk-v2/?yrke=${value}`;
             const response = await fetch(url);
             const json = await response.json();
-            const typeaheadYrkeList = json.typeaheadYrkeList;
+            const typeaheadYrkeList = json;
             typeaheadYrkeList.push(annenStilling);
             setResultat(typeaheadYrkeList || [annenStilling]);
         }, 200),

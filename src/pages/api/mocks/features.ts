@@ -10,7 +10,7 @@ export const mockToggles = {
         {
             name: 'arbeidssokerregistrering.bruk-pam-ontologi',
             type: 'release',
-            enabled: true,
+            enabled: false,
             stale: false,
             strategies: [
                 {
