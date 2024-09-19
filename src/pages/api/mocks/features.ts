@@ -8,6 +8,19 @@ export const mockToggles = {
     version: 1,
     features: [
         {
+            name: 'arbeidssokerregistrering.bruk-pam-ontologi',
+            type: 'release',
+            enabled: true,
+            stale: false,
+            strategies: [
+                {
+                    name: 'default',
+                    parameters: {},
+                },
+            ],
+            variants: [],
+        },
+        {
             name: 'arbeidssoekerregistrering.redirect-forside',
             type: 'release',
             enabled: false,

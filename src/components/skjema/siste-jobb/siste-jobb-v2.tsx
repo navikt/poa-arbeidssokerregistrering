@@ -4,11 +4,9 @@ import useSWR from 'swr';
 import Head from 'next/head';
 
 import useSprak from '../../../hooks/useSprak';
-import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
 
 import { lagHentTekstForSprak, Tekster, SisteJobb } from '@navikt/arbeidssokerregisteret-utils';
-import StillingsSok from './stillings-sok';
-import StillingsSokV2 from './stillings-sok-v2';
+import StillingsSok from './stillings-sok-v2';
 import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
 import { fetcher } from '../../../lib/api-utils';
 import { SkjemaBox } from '../skjema-box';
@@ -59,8 +57,6 @@ const annenStilling: SisteJobb = {
 const SisteJobbSkjema = (
     props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Element; visSisteJobb: boolean },
 ) => {
-    const { toggles } = useFeatureToggles();
-    const brukPamOntologi = Boolean(toggles['arbeidssokerregistrering.bruk-pam-ontologi']);
     const { onChange, visSisteJobb } = props;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const [visStillingsSok, settVisStillingsSok] = useState<boolean>(false);
@@ -71,9 +67,7 @@ const SisteJobbSkjema = (
         settVisStillingsSok(false);
     };
 
-    const sisteArbeidsforholdUrl = brukPamOntologi
-        ? 'api/sistearbeidsforhold-fra-aareg/'
-        : 'api/sistearbeidsforhold-fra-aareg/';
+    const sisteArbeidsforholdUrl = 'api/sistearbeidsforhold-fra-aareg-v2/';
     const { data: sisteArbeidsforhold, error, isLoading } = useSWR(sisteArbeidsforholdUrl, fetcher);
 
     useEffect(() => {
@@ -91,53 +85,6 @@ const SisteJobbSkjema = (
             onChange(annenStilling);
         }
     }, [error, onChange, props.valgt]);
-
-    if (brukPamOntologi) {
-        return (
-            <>
-                <Head>
-                    <title>{tekst('sideTittel')}</title>
-                </Head>
-                <SkjemaBox>
-                    <div>
-                        <Heading spacing size={'medium'} level="1">
-                            {tekst('tittel')}
-                        </Heading>
-                        <BodyLong>{tekst('registrert')}</BodyLong>
-                        <BodyLong className="mb-6">{tekst('feilOpplysninger')}</BodyLong>
-
-                        {props.children}
-
-                        {visSisteJobb && (
-                            <div className="mb-4">
-                                <Heading spacing size={'small'} level="2" className={'mt-6'}>
-                                    {tekst('stilling')}
-                                </Heading>
-                                {visStillingsSok ? (
-                                    <StillingsSokV2 onClose={onCloseStillingssok} />
-                                ) : (
-                                    <div>
-                                        {props.valgt?.label}
-                                        <Button
-                                            variant="tertiary"
-                                            className="ml-4"
-                                            onClick={() => settVisStillingsSok(true)}
-                                        >
-                                            {tekst('endreKnapp')}
-                                        </Button>
-                                    </div>
-                                )}
-                            </div>
-                        )}
-
-                        <ReadMore header={tekst('brukesTilTittel')}>
-                            <div style={{ maxWidth: '34rem' }}>{tekst('brukesTilInnhold')}</div>
-                        </ReadMore>
-                    </div>
-                </SkjemaBox>
-            </>
-        );
-    }
 
     return (
         <>
