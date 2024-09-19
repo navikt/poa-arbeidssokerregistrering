@@ -8,6 +8,19 @@ export const mockToggles = {
     version: 1,
     features: [
         {
+            name: 'arbeidssokerregistrering.bruk-ny-du-kan-ikke-registrere-deg-selv-melding',
+            type: 'release',
+            enabled: false,
+            stale: false,
+            strategies: [
+                {
+                    name: 'default',
+                    parameters: {},
+                },
+            ],
+            variants: [],
+        },
+        {
             name: 'arbeidssokerregistrering.bruk-pam-ontologi',
             type: 'release',
             enabled: false,
