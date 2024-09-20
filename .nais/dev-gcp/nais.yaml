@@ -95,6 +95,7 @@ spec:
     outbound:
       external:
         - host: arbeidsplassen.nav.no
+        - host: pam-ontologi.intern.nav.no
         - host: paw-unleash-api.nav.cloud.nais.io
         - host: aareg-services-q1.dev-fss-pub.nais.io
       rules:
