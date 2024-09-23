@@ -11,14 +11,14 @@ import { withAuthenticatedPage } from '../../auth/withAuthentication';
 const TEKSTER: Tekster<string> = {
     nb: {
         overskrift: 'Vi kan dessverre ikke registrere deg som arbeidssøker',
-        overskriftNy: 'Du kan dessverre ikke registrere deg som arbeidssøker selv',
+        overskriftNy: 'Du må registreres som arbeidssøker av en veileder',
         innhold: 'Dette er fordi du i følge våre systemer ikke er bosatt i Norge i henhold til folkeregisterloven.',
-        innholdNy: 'Dette er fordi vi ikke kan kontrollere registeropplysningene om deg automatisk.',
+        innholdNy: 'Noen av opplysningene vi har hentet om deg fra ulike registere må kontrolleres manuelt.',
         folkeregisteretTekst: 'hvis du mener dette er feil eller har behov for å oppdatere opplysningene dine',
         folkeregisteretLenke: 'https://www.skatteetaten.no/person/folkeregister/endre/opplysninger-om-identiteten-din/',
         folkeregisteretLenkeTekst: 'Ta kontakt med folkeregisteret',
         kontaktOssTekst: 'hvis du ønsker at vi skal hjelpe deg.',
-        kontaktOssTekstNy: 'så kan vi hjelpe deg med registreringen',
+        kontaktOssTekstNy: 'for å bli registrert som arbeidssøker',
         kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
         kontaktOssLenkeTekst: 'Ta kontakt med NAV',
     },
@@ -41,7 +41,7 @@ function DuKanIkkeRegistrereDegSelv() {
             <BodyLong spacing>{tekst('innholdNy')}</BodyLong>
             <BodyLong spacing>
                 <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link>{' '}
-                {tekst('kontaktOssTekstNy')} .
+                {tekst('kontaktOssTekstNy')}.
             </BodyLong>
         </Alert>
     );
@@ -67,8 +67,7 @@ function ViIkkeRegistrereDeg() {
                 {tekst('folkeregisteretTekst')} .
             </BodyLong>
             <BodyLong spacing>
-                <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link> {tekst('kontaktOssTekst')}{' '}
-                .
+                <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link> {tekst('kontaktOssTekst')}.
             </BodyLong>
         </Alert>
     );
