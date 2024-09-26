@@ -1,12 +1,14 @@
 import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
+
 import {
-    DecoratorComponents,
+    fetchDecoratorReact,
     DecoratorEnvProps,
     DecoratorFetchProps,
-    fetchDecoratorReact,
+    DecoratorComponentsReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
+
 import { logger } from '@navikt/next-logger';
-import localeTilUrl from '../lib/locale-til-url';
+
 import getConfig from 'next/config';
 
 const dekoratorEnv = process.env.DEKORATOR_ENV as Exclude<DecoratorEnvProps['env'], 'localhost'>;
@@ -37,11 +39,11 @@ const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
     },
 };
 
-export default class MyDocument extends Document<DecoratorComponents> {
+export default class MyDocument extends Document<DecoratorComponentsReact> {
     static async getInitialProps(ctx: DocumentContext) {
         const { locale } = ctx;
         const initialProps = await Document.getInitialProps(ctx);
-        const Dekorator: DecoratorComponents = await fetchDecoratorReact({
+        const Decorator: DecoratorComponentsReact = await fetchDecoratorReact({
             ...dekoratorProps,
             params: {
                 ...dekoratorProps.params,
@@ -52,34 +54,33 @@ export default class MyDocument extends Document<DecoratorComponents> {
             logger.error(err);
             const empty = () => <></>;
             return {
+                HeadAssets: empty,
                 Footer: empty,
                 Header: empty,
                 Scripts: empty,
-                Styles: empty,
             };
         });
 
         return {
             ...initialProps,
-            ...Dekorator,
+            ...Decorator,
             locale,
         };
     }
 
-    render(): JSX.Element {
-        const { Styles, Scripts, Header, Footer, locale } = this.props;
+    render() {
+        const { HeadAssets, Header, Footer, Scripts, locale } = this.props;
         const { basePath } = getConfig().publicRuntimeConfig;
         return (
             <Html lang={locale ?? 'nb'}>
                 <Head>
-                    <Styles />
-                    <link rel="icon" href={`${basePath}/favicon.ico`} />
+                    <HeadAssets />
                 </Head>
                 <body>
-                    <Scripts />
                     <Header />
                     <Main />
                     <Footer />
+                    <Scripts />
                     <NextScript />
                 </body>
             </Html>

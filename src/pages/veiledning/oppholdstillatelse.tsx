@@ -13,7 +13,7 @@ const TEKSTER: Tekster<string> = {
         overskrift: 'Vi kan dessverre ikke registrere deg som arbeidssøker',
         overskriftNy: 'Du må registreres som arbeidssøker av en veileder',
         innhold: 'Dette er fordi du i følge våre systemer ikke er bosatt i Norge i henhold til folkeregisterloven.',
-        innholdNy: 'Noen av opplysningene vi har hentet om deg fra ulike registere må kontrolleres manuelt.',
+        innholdNy: 'Noen av opplysningene vi har hentet om deg må kontrolleres manuelt.',
         folkeregisteretTekst: 'hvis du mener dette er feil eller har behov for å oppdatere opplysningene dine',
         folkeregisteretLenke: 'https://www.skatteetaten.no/person/folkeregister/endre/opplysninger-om-identiteten-din/',
         folkeregisteretLenkeTekst: 'Ta kontakt med folkeregisteret',

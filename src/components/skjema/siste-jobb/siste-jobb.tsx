@@ -72,8 +72,9 @@ const SisteJobbSkjema = (
     };
 
     const sisteArbeidsforholdUrl = brukPamOntologi
-        ? 'api/sistearbeidsforhold-fra-aareg/'
+        ? 'api/sistearbeidsforhold-fra-aareg-v2/'
         : 'api/sistearbeidsforhold-fra-aareg/';
+
     const { data: sisteArbeidsforhold, error, isLoading } = useSWR(sisteArbeidsforholdUrl, fetcher);
 
     useEffect(() => {
