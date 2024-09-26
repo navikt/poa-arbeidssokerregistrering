@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { nanoid } from 'nanoid';
+import { logger } from '@navikt/next-logger';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
@@ -14,6 +15,10 @@ async function yrkeMedStyrk(req: NextApiRequest, res: NextApiResponse<string>) {
             'Content-Type': 'application/json',
         },
     });
+    if (!response.ok) {
+        logger.error(`Respons fra PAM_ONTOLOGI typeahead ikke OK - [callId: ${callId}]`);
+        res.status(500);
+    }
     const json = await response.json();
     res.status(200).json(json);
 }
