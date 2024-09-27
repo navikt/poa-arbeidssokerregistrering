@@ -56,7 +56,7 @@ spec:
     - name: PAM_JANZZ_URL
       value: https://arbeidsplassen.nav.no/pam-janzz/rest
     - name: PAM_ONTOLOGI_URL
-      value: https://pam-ontologi.intern.nav.no/rest/
+      value: http://pam-ontologi.teampam/rest/
     - name: NODE_ENV
       value: production
     - name: UNLEASH_SERVER_API_URL
@@ -104,6 +104,8 @@ spec:
         - application: aia-backend
         - application: nav-dekoratoren
           namespace: personbruker
+        - application: pam-ontologi
+          namespace: teampam
         - application: aareg-services-nais
           namespace: arbeidsforhold
           cluster: prod-fss
