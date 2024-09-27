@@ -53,8 +53,6 @@ spec:
       value: https://www.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.nav.no/arbeid/dialog
-    - name: PAM_JANZZ_URL
-      value: https://arbeidsplassen.nav.no/pam-janzz/rest
     - name: PAM_ONTOLOGI_URL
       value: http://pam-ontologi.teampam/rest
     - name: NODE_ENV
@@ -93,8 +91,6 @@ spec:
   accessPolicy:
     outbound:
       external:
-        - host: arbeidsplassen.nav.no
-        - host: pam-ontologi.intern.nav.no
         - host: paw-unleash-api.nav.cloud.nais.io
         - host: aareg-services.prod-fss-pub.nais.io
       rules:
