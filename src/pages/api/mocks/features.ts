@@ -21,19 +21,6 @@ export const mockToggles = {
             variants: [],
         },
         {
-            name: 'arbeidssokerregistrering.bruk-pam-ontologi',
-            type: 'release',
-            enabled: false,
-            stale: false,
-            strategies: [
-                {
-                    name: 'default',
-                    parameters: {},
-                },
-            ],
-            variants: [],
-        },
-        {
             name: 'arbeidssoekerregistrering.redirect-forside',
             type: 'release',
             enabled: false,
