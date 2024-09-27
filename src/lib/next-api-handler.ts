@@ -49,6 +49,7 @@ export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:p
 export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
 export const INNGANG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-inngang`;
 export const OPPSLAG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssoekerregisteret-api-oppslag`;
+export const PAM_ONTOLOGI_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:teampam:pam-ontologi`;
 
 const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
 
@@ -57,7 +58,8 @@ type ClientIds =
     | typeof AIA_BACKEND_CLIENT_ID
     | typeof AAREG_CLIENT_ID
     | typeof INNGANG_CLIENT_ID
-    | typeof OPPSLAG_CLIENT_ID;
+    | typeof OPPSLAG_CLIENT_ID
+    | typeof PAM_ONTOLOGI_CLIENT_ID;
 
 const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<TokenSet> => {
     return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, clientId);
@@ -80,6 +82,10 @@ export const getInngangClientId = async (req: NextApiRequest) => {
 
 export const getOppslagApiToken = async (req: NextApiRequest) => {
     return getTokenXToken(req, OPPSLAG_CLIENT_ID);
+};
+
+export const getPamOntologiToken = async (req: NextApiRequest) => {
+    return getTokenXToken(req, PAM_ONTOLOGI_CLIENT_ID);
 };
 
 const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
