@@ -9,7 +9,6 @@ import {
 } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
-import { useFeatureToggles } from '../../contexts/featuretoggle-context';
 
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
@@ -35,11 +34,9 @@ const TEKSTER: Tekster<string> = {
 
 const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     const { onChange, valgt, visFeilmelding } = props;
-    const { toggles } = useFeatureToggles();
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
     const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const brukPamOntologi = toggles['arbeidssokerregistrering.bruk-pam-ontologi'];
 
     const valg = [
         { tekst: tekst(Jobbsituasjon.MISTET_JOBBEN), value: Jobbsituasjon.MISTET_JOBBEN },
@@ -61,9 +58,8 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     ];
 
     // initialiser / cache data for rask tilgang i <SisteJobb>
-    const sisteArbeidsforholdUrl = brukPamOntologi
-        ? 'api/sistearbeidsforhold-fra-aareg-v2'
-        : 'api/sistearbeidsforhold-fra-aareg';
+    const sisteArbeidsforholdUrl = 'api/sistearbeidsforhold-fra-aareg-v2';
+
     preload(sisteArbeidsforholdUrl, fetcher);
 
     return (
