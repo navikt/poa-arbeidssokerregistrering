@@ -10,7 +10,7 @@ export const mockToggles = {
         {
             name: 'arbeidssokerregistrering.bruk-ny-du-kan-ikke-registrere-deg-selv-melding',
             type: 'release',
-            enabled: false,
+            enabled: true,
             stale: false,
             strategies: [
                 {
