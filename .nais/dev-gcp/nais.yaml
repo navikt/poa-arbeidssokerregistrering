@@ -32,15 +32,15 @@ spec:
       memory: "256Mi"
   env:
     - name: SELF_URL
-      value: https://arbeid.intern.dev.nav.no/arbeid/registrering
+      value: https://www.ansatt.dev.nav.no/arbeid/registrering
     - name: DEKORATOR_URL
       value: https://dekoratoren.ekstern.dev.nav.no/
     - name: DEKORATOR_ENV
       value: dev
     - name: NEXT_PUBLIC_SELF_URL
-      value: https://arbeid.intern.dev.nav.no/arbeid/registrering
+      value: https://www.ansatt.dev.nav.no/arbeid/registrering
     - name: NEXT_PUBLIC_START_URL
-      value: https://arbeid.intern.dev.nav.no/arbeid/registrering/start
+      value: https://www.ansatt.dev.nav.no/arbeid/registrering/start
     - name: NEXT_PUBLIC_AMPLITUDE_API_KEY
       value: 9845ded64c69cd068651cd0d968e0796
     - name: NEXT_PUBLIC_AMPLITUDE_ENDPOINT
@@ -48,7 +48,7 @@ spec:
     - name: NEXT_PUBLIC_ENABLE_MOCK
       value: disabled
     - name: NEXT_PUBLIC_DITTNAV_URL
-      value: https://www.intern.dev.nav.no/minside
+      value: https://www.ansatt.dev.nav.no/minside
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
       value: https://arbeid.intern.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
@@ -80,8 +80,7 @@ spec:
   envFrom:
     - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
-    - https://arbeid.intern.dev.nav.no/arbeid/registrering
-    - https://arbeid.ansatt.dev.nav.no/arbeid/registrering
+    - https://www.ansatt.dev.nav.no/arbeid/registrering
   idporten:
     enabled: true
     sidecar:
