@@ -12,6 +12,7 @@ import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrerin
 import { StandardRegistreringUtenPlikterTilstandsmaskin } from '../lib/standard-registrering-uten-plikter-tilstandsmaskin';
 import ProgressBar from './progress-bar/progress-bar';
 import { loggAktivitet } from '../lib/amplitude';
+import { Link } from '@navikt/ds-react';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -143,7 +144,12 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
             )}
             {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
             {neste && <Knapperad onNeste={validerOgGaaTilNeste} />}
-            <Avbryt />
+            {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
+            {urlPrefix === 'oppdater-opplysninger' && (
+                <div className="text-center py-4">
+                    <Link href={'/minside'}>Avbryt oppdatering</Link>
+                </div>
+            )}
         </div>
     );
 };
