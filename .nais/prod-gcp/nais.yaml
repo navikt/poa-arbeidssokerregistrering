@@ -96,7 +96,6 @@ spec:
       rules:
         - application: paw-arbeidssokerregisteret-api-inngang
         - application: paw-arbeidssoekerregisteret-api-oppslag
-        - application: veilarbregistrering
         - application: aia-backend
         - application: nav-dekoratoren
           namespace: personbruker
