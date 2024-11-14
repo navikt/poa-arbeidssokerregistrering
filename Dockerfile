@@ -1,4 +1,4 @@
-FROM node:20-alpine as runtime
+FROM gcr.io/distroless/nodejs22 as runtime
 
 WORKDIR /app
 
