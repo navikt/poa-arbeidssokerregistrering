@@ -80,7 +80,6 @@ const sisteArbeidsforhold = async (req: NextApiRequest, res: NextApiResponse<any
         ).then((res) => res.json());
 
         logger.info(`Oppslag mot styrk-kode ferdig [callId: ${callId}]`);
-        console.log(konseptMedStyrk08List);
 
         res.json(konseptMedStyrk08List[0]);
     } catch (e) {
