@@ -13,6 +13,8 @@ import { StandardRegistreringUtenPlikterTilstandsmaskin } from '../lib/standard-
 import ProgressBar from './progress-bar/progress-bar';
 import { loggAktivitet } from '../lib/amplitude';
 import { Link } from '@navikt/ds-react';
+import { useConfig } from '../contexts/config-context';
+import { Config } from '../model/config';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -46,6 +48,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
         hentKomponentForSide,
     } = props;
     const router = useRouter();
+    const { dittNavUrl } = useConfig() as Config;
 
     const initializer = (skjemaState: SkjemaState) => {
         return skjemaState;
@@ -147,7 +150,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
             {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
             {urlPrefix === 'oppdater-opplysninger' && (
                 <div className="text-center py-4">
-                    <Link href={'/minside'}>Avbryt oppdatering</Link>
+                    <Link href={dittNavUrl}>Avbryt oppdatering</Link>
                 </div>
             )}
         </div>
