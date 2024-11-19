@@ -47,7 +47,8 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
                 },
             });
 
-            return router.push(dittNavUrl);
+            document.location.href = dittNavUrl;
+            return;
         } catch (e) {
             settVisFeilmelding(true);
             logger.error(e, `Oppdatering av opplysninger feilet`);
