@@ -1,8 +1,7 @@
 import { NextApiHandler, NextApiRequest } from 'next';
 import { nanoid } from 'nanoid';
-import createTokenDings, { Auth } from '../auth/tokenDings';
 import { logger } from '@navikt/next-logger';
-import { TokenSet } from 'openid-client';
+import { requestTokenxOboToken } from '@navikt/oasis';
 
 export const getHeaders = (token: string, callId: string) => {
     return {
@@ -31,20 +30,6 @@ export interface ApiError extends Error {
     status?: number;
 }
 
-let _tokenDings: Auth | undefined;
-const getTokenDings = async (): Promise<Auth> => {
-    if (!_tokenDings) {
-        _tokenDings = await createTokenDings({
-            tokenXWellKnownUrl: process.env.TOKEN_X_WELL_KNOWN_URL!,
-            tokenXClientId: process.env.TOKEN_X_CLIENT_ID!,
-            tokenXTokenEndpoint: process.env.TOKEN_X_TOKEN_ENDPOINT!,
-            tokenXPrivateJwk: process.env.TOKEN_X_PRIVATE_JWK!,
-        });
-    }
-
-    return _tokenDings;
-};
-
 export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
 export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
 export const INNGANG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-inngang`;
@@ -61,8 +46,13 @@ type ClientIds =
     | typeof OPPSLAG_CLIENT_ID
     | typeof PAM_ONTOLOGI_CLIENT_ID;
 
-const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<TokenSet> => {
-    return (await getTokenDings()).exchangeIDPortenToken(idPortenToken, clientId);
+const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<string> => {
+    const result = await requestTokenxOboToken(idPortenToken, clientId);
+    if (!result.ok) {
+        throw result.error;
+    }
+
+    return result.token;
 };
 
 export const getTokenFromRequest = (req: NextApiRequest) => {
@@ -89,8 +79,7 @@ export const getPamOntologiToken = async (req: NextApiRequest) => {
 };
 
 const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
-    const tokenSet = await exchangeIDPortenToken(clientId, getTokenFromRequest(req)!);
-    return tokenSet.access_token!;
+    return await exchangeIDPortenToken(clientId, getTokenFromRequest(req)!);
 };
 
 const lagApiHandlerMedAuthHeaders: (
