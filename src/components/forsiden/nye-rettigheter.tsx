@@ -1,4 +1,4 @@
-import NextLink from 'next/link';
+import { useRouter } from 'next/navigation';
 import { GuidePanel, Heading, Link, BodyShort, BodyLong, Box, List, ReadMore, Button } from '@navikt/ds-react';
 
 import useSprak from '../../hooks/useSprak';
@@ -98,12 +98,14 @@ function EkstraPlikter() {
 }
 
 const NyeRettigheterPanel = () => {
+    const router = useRouter();
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const { toggles } = useFeatureToggles();
     const ekstraPlikterToggletPaa = toggles['arbeidssokerregistrering.bruk-nye-plikter'];
 
     const logStartHandler = () => {
         loggAktivitet({ aktivitet: 'Går til start registrering' });
+        router.push('/start');
     };
 
     return (
@@ -157,9 +159,7 @@ const NyeRettigheterPanel = () => {
             </div>
             <div className="mt-12 flex flex-col items-center justify-center">
                 {ekstraPlikterToggletPaa && <EkstraPlikter />}
-                <NextLink href="/start" passHref>
-                    <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
-                </NextLink>
+                <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
             </div>
             <div className="text-center p-6 mt-6">
                 <Heading size={'medium'} level="3" spacing={true}>
