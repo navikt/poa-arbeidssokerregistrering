@@ -40,7 +40,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     }, []);
 
     return (
-        <main className={styles.main} lang="nb" id="maincontent" role="main" tabIndex={-1}>
+        <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
             <Head>
                 <title>{tekst('metaTittel')}</title>
                 <meta name="description" content={tekst('metaDescription')} />
