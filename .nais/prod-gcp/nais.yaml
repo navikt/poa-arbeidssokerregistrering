@@ -76,7 +76,7 @@ spec:
     - name: ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL
       value: http://paw-arbeidssoekerregisteret-api-oppslag
     - name: FORSIDE_URL
-      value: https://www.nav.no/utkast/registrer-arbeidssoker
+      value: https://www.nav.no/registrer-arbeidssoker
   envFrom:
      - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
