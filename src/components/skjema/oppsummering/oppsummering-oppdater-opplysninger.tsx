@@ -1,8 +1,9 @@
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { BodyLong, GuidePanel, Heading, Alert, Link } from '@navikt/ds-react';
+
+import Head from 'next/head';
 import { SkjemaState } from '../../../model/skjema';
 import useSprak from '../../../hooks/useSprak';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import Head from 'next/head';
-import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import OppsummeringSvg from './oppsummering-svg';
 import SvarTabell from './SvarTabell';
 import OppdaterOpplysningerKnapp from '../oppdater-opplysninger-knapp';
@@ -13,18 +14,24 @@ const TEKSTER: Tekster<string> = {
         header: 'Oppdater opplysninger',
         ingress: 'Her er opplysningene vi har registrert om deg.',
         fullfoerRegistrering: 'Oppdater opplysninger',
+        kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
+        kontaktOssLenkeTekst: 'kontakte oss',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Oppdater opplysningar',
         header: 'Oppdater opplysningar?',
         ingress: 'Her er opplysningane vi har registrert om deg.',
         fullfoerRegistrering: 'Oppdater opplysningar',
+        kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
+        kontaktOssLenkeTekst: 'kontakte oss',
     },
     en: {
         sideTittel: 'Register as a Job Seeker: Is the information correct?',
         header: 'Is the information correct?',
         ingress: 'Here is the information we have registered about you.',
         fullfoerRegistrering: 'Complete jobseeker registration',
+        kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
+        kontaktOssLenkeTekst: 'kontakte oss',
     },
 };
 
@@ -57,6 +64,15 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
             <GuidePanel poster illustration={<OppsummeringSvg />}>
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
+            <Alert variant="info">
+                <Heading level="2" size="small">
+                    Må du fortelle oss om endringene
+                </Heading>
+                <BodyLong spacing>
+                    Hvis endringene er slik at de kan påvirke eventuelle ytelser eller søknader hos Nav må du{' '}
+                    <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link>.
+                </BodyLong>
+            </Alert>
             <div className="mt-12">
                 <OppdaterOpplysningerKnapp
                     skjemaState={skjemaState}
