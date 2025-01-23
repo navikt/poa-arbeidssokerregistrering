@@ -14,24 +14,33 @@ const TEKSTER: Tekster<string> = {
         header: 'Oppdater opplysninger',
         ingress: 'Her er opplysningene vi har registrert om deg.',
         fullfoerRegistrering: 'Oppdater opplysninger',
+        informasjonOmEndringerTittel: 'Må du fortelle oss om endringene?',
+        informasjonOmEndringerTekst:
+            'Hvis endringene er slik at de kan påvirke eventuelle ytelser eller søknader hos Nav må du',
         kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
-        kontaktOssLenkeTekst: 'kontakte oss',
+        kontaktOssLenkeTekst: 'kontakte oss og gi beskjed',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Oppdater opplysningar',
         header: 'Oppdater opplysningar?',
         ingress: 'Her er opplysningane vi har registrert om deg.',
         fullfoerRegistrering: 'Oppdater opplysningar',
+        informasjonOmEndringerTittel: 'Må du fortelle oss om endringene?',
+        informasjonOmEndringerTekst:
+            'Hvis endringene er slik at de kan påvirke eventuelle ytelser eller søknader hos Nav må du',
         kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
-        kontaktOssLenkeTekst: 'kontakte oss',
+        kontaktOssLenkeTekst: 'kontakte oss og gi beskjed',
     },
     en: {
         sideTittel: 'Register as a Job Seeker: Is the information correct?',
         header: 'Is the information correct?',
         ingress: 'Here is the information we have registered about you.',
         fullfoerRegistrering: 'Complete jobseeker registration',
+        informasjonOmEndringerTittel: 'Må du fortelle oss om endringene?',
+        informasjonOmEndringerTekst:
+            'Hvis endringene er slik at de kan påvirke eventuelle ytelser eller søknader hos Nav må du',
         kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
-        kontaktOssLenkeTekst: 'kontakte oss',
+        kontaktOssLenkeTekst: 'kontakte oss  og gi beskjed',
     },
 };
 
@@ -64,9 +73,9 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
             <GuidePanel poster illustration={<OppsummeringSvg />}>
                 <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             </GuidePanel>
-            <Alert variant="info">
+            <Alert variant="info" className="mt-8">
                 <Heading level="2" size="small">
-                    Må du fortelle oss om endringene
+                    {tekst('informasjonOmEndringerTittel')}
                 </Heading>
                 <BodyLong spacing>
                     Hvis endringene er slik at de kan påvirke eventuelle ytelser eller søknader hos Nav må du{' '}
