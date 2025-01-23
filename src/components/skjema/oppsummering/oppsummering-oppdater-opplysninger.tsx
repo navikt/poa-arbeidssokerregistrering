@@ -25,22 +25,22 @@ const TEKSTER: Tekster<string> = {
         header: 'Oppdater opplysningar?',
         ingress: 'Her er opplysningane vi har registrert om deg.',
         fullfoerRegistrering: 'Oppdater opplysningar',
-        informasjonOmEndringerTittel: 'Må du fortelle oss om endringene?',
+        informasjonOmEndringerTittel: 'Må du fortelja oss om endringane?',
         informasjonOmEndringerTekst:
-            'Hvis endringene er slik at de kan påvirke eventuelle ytelser eller søknader hos Nav må du',
+            'Viss endringane er slik at dei kan påverka eventuelle ytingar eller søknader hos Nav',
         kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
-        kontaktOssLenkeTekst: 'kontakte oss og gi beskjed',
+        kontaktOssLenkeTekst: 'må du kontakta oss og gi beskjed',
     },
     en: {
         sideTittel: 'Register as a Job Seeker: Is the information correct?',
         header: 'Is the information correct?',
         ingress: 'Here is the information we have registered about you.',
         fullfoerRegistrering: 'Complete jobseeker registration',
-        informasjonOmEndringerTittel: 'Må du fortelle oss om endringene?',
+        informasjonOmEndringerTittel: 'Do you need to tell us about the changes?',
         informasjonOmEndringerTekst:
-            'Hvis endringene er slik at de kan påvirke eventuelle ytelser eller søknader hos Nav må du',
+            'If the changes are such that they may affect any benefits or applications at Nav, you must',
         kontaktOssLenke: 'https://www.nav.no/kontaktoss#chat-med-oss',
-        kontaktOssLenkeTekst: 'kontakte oss  og gi beskjed',
+        kontaktOssLenkeTekst: 'contact us and let us know',
     },
 };
 
@@ -82,7 +82,7 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
                     <Link href={tekst('kontaktOssLenke')}>{tekst('kontaktOssLenkeTekst')}</Link>.
                 </BodyLong>
             </Alert>
-            <div className="mt-12">
+            <div className="mt-8">
                 <OppdaterOpplysningerKnapp
                     skjemaState={skjemaState}
                     onSubmit={onSubmit}
