@@ -110,11 +110,6 @@ export function loggFlyt(data: FlytData) {
     logAmplitudeEvent('arbeidssokerregistrering.flyt', eventData);
 }
 
-export function loggBesvarelse(data: BesvarelseData) {
-    const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.besvarelser', eventData);
-}
-
 export function loggEksperiment(data: EksperimentData) {
     const eventData = data || {};
     logAmplitudeEvent('arbeidssokerregistrering.eksperimenter', eventData);

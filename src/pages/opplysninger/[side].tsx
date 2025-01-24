@@ -15,7 +15,6 @@ import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
 import { SkjemaAction } from '../../lib/skjema-state';
 import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
 import skjemaSideFactory, { SiderMap } from '../../components/skjema-side-factory';
-import { loggBesvarelse } from '../../lib/amplitude';
 import { SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
@@ -122,9 +121,6 @@ const hentKomponentForSkjemaSide = (side: SkjemaSide, siderMap: SiderMap) =>
 
 const loggOgDispatch = (dispatch: Dispatch<SkjemaAction>) => {
     return (action: SkjemaAction) => {
-        if (action.type !== 'SenderSkjema') {
-            loggBesvarelse({ skjematype: 'standard', sporsmalId: action.type, svar: action.value });
-        }
         return dispatch(action);
     };
 };
