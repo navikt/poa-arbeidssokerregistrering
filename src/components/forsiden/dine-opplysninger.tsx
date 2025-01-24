@@ -3,7 +3,6 @@ import { BodyLong, Heading, Link, ReadMore } from '@navikt/ds-react';
 import useSprak from '../../hooks/useSprak';
 
 import { loggAktivitet } from '../../lib/amplitude';
-import Feedback from '../feedback/feedback';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 const TEKSTER: Tekster<string> = {
@@ -169,7 +168,6 @@ const DineOpplysninger = () => {
                     </Link>{' '}
                     {tekst('navForpliktet')}
                 </BodyLong>
-                <Feedback id={'bistandsbehov'}></Feedback>
             </ReadMore>
             <ReadMore
                 header={tekst('personopplysningerOverskrift')}
@@ -205,7 +203,6 @@ const DineOpplysninger = () => {
                 >
                     {tekst('personopplysningerLenkeTekst')}
                 </Link>
-                <Feedback id={'personopplysninger'}></Feedback>
             </ReadMore>
         </>
     );

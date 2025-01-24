@@ -17,20 +17,11 @@ const config = {
     },
 };
 
-type EventData =
-    | SidevisningData
-    | AktivitetData
-    | StoppsituasjonData
-    | BesvarelseData
-    | EksperimentData
-    | FeedbackData
-    | FlytData;
+type EventData = SidevisningData | AktivitetData | StoppsituasjonData | BesvarelseData | EksperimentData | FlytData;
 
 type BesvarelseData = { skjematype: 'standard'; sporsmalId: SporsmalId; svar: any };
 
 type StoppsituasjonData = { situasjon: string; aarsak?: ErrorTypes };
-
-type FeedbackData = { id: string; feedback: string };
 
 type SidevisningData = { sidetittel: string };
 
@@ -112,11 +103,6 @@ export function loggStoppsituasjon(data: StoppsituasjonData) {
 export function loggAktivitet(data: AktivitetData) {
     const eventData = data || {};
     logAmplitudeEvent('arbeidssokerregistrering.aktiviteter', eventData);
-}
-
-export function loggFeedback(data: FeedbackData) {
-    const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.feedback', eventData);
 }
 
 export function loggFlyt(data: FlytData) {
