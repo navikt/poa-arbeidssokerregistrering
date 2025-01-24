@@ -100,9 +100,7 @@ export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint
 export function logAmplitudeEvent(eventName: string, data: EventData) {
     const eventData = data || {};
     if (isBrowser() && !isDevelopment()) {
-        const brukergruppe = window.sessionStorage.getItem('beregnetBrukergruppe') || 'Ikke tilgjengelig';
-        const registreringstype = window.sessionStorage.getItem('registreringType') || 'Ikke tilgjengelig';
-        amplitude.logEvent(eventName, { ...eventData, brukergruppe, registreringstype });
+        amplitude.logEvent(eventName, { ...eventData });
     }
 }
 
