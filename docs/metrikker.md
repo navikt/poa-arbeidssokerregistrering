@@ -2,8 +2,8 @@
 
 Vi har ulike metrikker for hvordan løsningen brukes av arbeidssøker og rent tekniske metrikker for hvordan løsningen har det i produksjon.
 
--   [Dashboard i Amplitude](https://analytics.amplitude.com/nav/dashboard/jbs02pj) for bruk av løsningen
--   [Dashboard i Grafana](https://grafana.nais.io/d/000000283/nais-app-dashbord?orgId=1&refresh=1m&var-interval=$__auto_interval_interval&var-datasource=prod-gcp&var-team=tbd&var-app=poa-arbeidssokerregistrering&var-namespace=paw&var-docker_image=c6938a0fe9fbc0cd6076ebb2ffa13e1069e6f4ce&var-ingress_url=All) teknisk
+- [Dashboard i Amplitude](https://analytics.amplitude.com/nav/dashboard/jbs02pj) for bruk av løsningen
+- [Dashboard i Grafana](https://grafana.nais.io/d/000000283/nais-app-dashbord?orgId=1&refresh=1m&var-interval=$__auto_interval_interval&var-datasource=prod-gcp&var-team=tbd&var-app=poa-arbeidssokerregistrering&var-namespace=paw&var-docker_image=c6938a0fe9fbc0cd6076ebb2ffa13e1069e6f4ce&var-ingress_url=All) teknisk
 
 # Metrikker i Amplitude
 
@@ -76,12 +76,12 @@ Målinger omkring brukeradferd.
 
 Kan hentes ut ved å sjekke `arbeidssokerregistrering.aktiviteter` og `arbeidssokerregistrering.besvarelser`
 
--   Hvor lang tid bruker man på å fylle ut skjemaet?
--   Hvor mange treffer feilsituasjoner?
--   Hvor mange får registrert seg vellykket?
--   Hva svarer man på du ulike spørsmålene?
--   Hvilken flyt havner brukeren på?
--   Hva gjør de etter registrering?
+- Hvor lang tid bruker man på å fylle ut skjemaet?
+- Hvor mange treffer feilsituasjoner?
+- Hvor mange får registrert seg vellykket?
+- Hva svarer man på du ulike spørsmålene?
+- Hvilken flyt havner brukeren på?
+- Hva gjør de etter registrering?
 
 ### Aktiviteter
 
@@ -90,32 +90,25 @@ I noen tilfeller finnes også informasjon om `tidBruktForAaFullforeSkjema` eller
 
 ### aktiviteter.aktivitet
 
--   `Viser kvittering` - Har gjennomført en av registreringene og ser kvitteringssiden
--   `Går til dagpenger fra kvittering` - Går til dagpengesiden fra fullført ordinær registrering
--   `Velger å ikke gå til dagpenger fra kvittering` - Går til minside fra fullført ordinær registrering
--   `Utfylling av skjema fullført` - Skjema for registrering er fullført og sendes inn
--   `Start registrering` - Trigges av skjema-side-factory
--   `Går til start registrering` - Trykker på start registreringsknappen på forsiden
--   `Avbryter registreringen` - Trykker på avbryt knappen i avbryt registrering modalen
--   `Oppretter kontakt meg oppgave` - Trykker på Ta kontakt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret
--   `Avbryter kontakt meg` - Trykker på Avbryt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret
--   `Endrer foreslått stilling` - Endrer foreslått stilling i registreringsskjemaet
--   `Viser forsiden for arbeidssøkerregistreringen` - Viser forsiden av registreringen
--   `Åpner bistandsbehov` - Åpner ReadMore om hvordan NAV vurderer bistandsbehovet på forsiden
--   `Går til lovdata` - Går til lovdata i ny fane
--   `Går til personvernsiden` - Går til NAVs side om personvern
--   `Åpner personopplysninger` - Åpner ReadMore om personvern på forsiden
+- `Viser kvittering` - Har gjennomført en av registreringene og ser kvitteringssiden
+- `Går til dagpenger fra kvittering` - Går til dagpengesiden fra fullført ordinær registrering
+- `Velger å ikke gå til dagpenger fra kvittering` - Går til minside fra fullført ordinær registrering
+- `Utfylling av skjema fullført` - Skjema for registrering er fullført og sendes inn
+- `Start registrering` - Trigges av skjema-side-factory
+- `Går til start registrering` - Trykker på start registreringsknappen på forsiden
+- `Avbryter registreringen` - Trykker på avbryt knappen i avbryt registrering modalen
+- `Oppretter kontakt meg oppgave` - Trykker på Ta kontakt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret
+- `Avbryter kontakt meg` - Trykker på Avbryt-knappen fra siden man kommer til ved manglende oppholdstillatelse eller utvandret
+- `Endrer foreslått stilling` - Endrer foreslått stilling i registreringsskjemaet
+- `Viser forsiden for arbeidssøkerregistreringen` - Viser forsiden av registreringen
+- `Åpner bistandsbehov` - Åpner ReadMore om hvordan NAV vurderer bistandsbehovet på forsiden
+- `Går til lovdata` - Går til lovdata i ny fane
+- `Går til personvernsiden` - Går til NAVs side om personvern
+- `Åpner personopplysninger` - Åpner ReadMore om personvern på forsiden
 
 ### Besvarelser
 
 Kan hentes ut ved å sjekke `arbeidssokerregistrering.besvarelser` og grupperes på `sporsmalId`
-
-## Feedback
-
-Brukes i forbindelse med feedback-komponenten vår, som lar bruker svare på om innholdet var nyttig eller ikke.
-Inneholder `id` som beskriver hvilket tema tilbakemeldingen gjelder, og `feedback` som inneholder brukerens svar (ja/nei/vet ikke).
-
-Kan hentes ut ved å sjekke `arbeidssokerregistrering.feedback` og grupperes på `id`
 
 ## Eksperimenter
 

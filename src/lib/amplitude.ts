@@ -17,20 +17,11 @@ const config = {
     },
 };
 
-type EventData =
-    | SidevisningData
-    | AktivitetData
-    | StoppsituasjonData
-    | BesvarelseData
-    | EksperimentData
-    | FeedbackData
-    | FlytData;
+type EventData = SidevisningData | AktivitetData | StoppsituasjonData | BesvarelseData | EksperimentData | FlytData;
 
 type BesvarelseData = { skjematype: 'standard'; sporsmalId: SporsmalId; svar: any };
 
 type StoppsituasjonData = { situasjon: string; aarsak?: ErrorTypes };
-
-type FeedbackData = { id: string; feedback: string };
 
 type SidevisningData = { sidetittel: string };
 
@@ -100,9 +91,7 @@ export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint
 export function logAmplitudeEvent(eventName: string, data: EventData) {
     const eventData = data || {};
     if (isBrowser() && !isDevelopment()) {
-        const brukergruppe = window.sessionStorage.getItem('beregnetBrukergruppe') || 'Ikke tilgjengelig';
-        const registreringstype = window.sessionStorage.getItem('registreringType') || 'Ikke tilgjengelig';
-        amplitude.logEvent(eventName, { ...eventData, brukergruppe, registreringstype });
+        amplitude.logEvent(eventName, { ...eventData });
     }
 }
 
@@ -116,19 +105,9 @@ export function loggAktivitet(data: AktivitetData) {
     logAmplitudeEvent('arbeidssokerregistrering.aktiviteter', eventData);
 }
 
-export function loggFeedback(data: FeedbackData) {
-    const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.feedback', eventData);
-}
-
 export function loggFlyt(data: FlytData) {
     const eventData = data || {};
     logAmplitudeEvent('arbeidssokerregistrering.flyt', eventData);
-}
-
-export function loggBesvarelse(data: BesvarelseData) {
-    const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.besvarelser', eventData);
 }
 
 export function loggEksperiment(data: EksperimentData) {
