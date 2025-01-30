@@ -3,6 +3,7 @@ import * as amplitude from '@amplitude/analytics-browser';
 import { ErrorTypes } from '../model/error';
 import { RegistreringType } from '../model/registrering';
 import { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import { getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
 
 const isBrowser = () => typeof window !== 'undefined';
 const isDevelopment = () => isBrowser() && /^http:\/\/localhost/.test(window.location.href);
@@ -79,9 +80,25 @@ type EksperimentData = {
 type AmplitudeParams = { apiKey: string; apiEndpoint: string };
 type AmplitudeInitFunction = (params: AmplitudeParams) => void;
 
-export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint }) => {
-    if (isBrowser() && !isDevelopment()) {
-        await amplitude.init(apiKey, undefined, { ...config, serverUrl: apiEndpoint });
+const isConsentingToAnalytics = () => {
+    const currentConsent = getCurrentConsent() ?? {
+        consent: {
+            analytics: false,
+            surveys: false,
+        },
+        meta: {
+            createdAt: '',
+            updatedAt: '',
+            version: -1,
+        },
+        userActionTaken: false,
+    };
+    return currentConsent.consent.analytics;
+};
+
+export const initAmplitude: AmplitudeInitFunction = ({ apiKey, apiEndpoint }) => {
+    if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
+        amplitude.init(apiKey, undefined, { ...config, serverUrl: apiEndpoint });
         logAmplitudeEvent('sidevisning', {
             sidetittel: document.title,
         });
@@ -90,7 +107,7 @@ export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint
 
 export function logAmplitudeEvent(eventName: string, data: EventData) {
     const eventData = data || {};
-    if (isBrowser() && !isDevelopment()) {
+    if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
         amplitude.logEvent(eventName, { ...eventData });
     }
 }
@@ -108,14 +125,4 @@ export function loggAktivitet(data: AktivitetData) {
 export function loggFlyt(data: FlytData) {
     const eventData = data || {};
     logAmplitudeEvent('arbeidssokerregistrering.flyt', eventData);
-}
-
-export function loggEksperiment(data: EksperimentData) {
-    const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.eksperimenter', eventData);
-}
-
-export function loggSidevisning(data: SidevisningData) {
-    const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.sidevisning', eventData);
 }
