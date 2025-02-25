@@ -3,7 +3,7 @@ import * as amplitude from '@amplitude/analytics-browser';
 import { ErrorTypes } from '../model/error';
 import { RegistreringType } from '../model/registrering';
 import { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
-import { getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
+import { awaitDecoratorData, getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
 
 const isBrowser = () => typeof window !== 'undefined';
 const isDevelopment = () => isBrowser() && /^http:\/\/localhost/.test(window.location.href);
@@ -96,7 +96,8 @@ const isConsentingToAnalytics = () => {
     return currentConsent.consent.analytics;
 };
 
-export const initAmplitude: AmplitudeInitFunction = ({ apiKey, apiEndpoint }) => {
+export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint }) => {
+    await awaitDecoratorData();
     if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
         amplitude.init(apiKey, undefined, { ...config, serverUrl: apiEndpoint });
         logAmplitudeEvent('sidevisning', {
