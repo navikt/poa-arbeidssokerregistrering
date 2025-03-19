@@ -83,23 +83,23 @@ jobs:
           identity_provider: ${{ secrets.NAIS_WORKLOAD_IDENTITY_PROVIDER }}
           project_id: ${{ vars.NAIS_MANAGEMENT_PROJECT_ID }}
 
-  deploy-demo:
-    name: Deploy to demo
-    permissions:
-      contents: "read"
-      id-token: "write"
-    needs: [test, build]
-    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Deploy
-        uses: nais/deploy/actions/deploy@v2
-        env:
-          CLUSTER: dev-gcp
-          RESOURCE: .nais/demo.yaml
-          VAR: image=${{ needs.build.outputs.image }}
+#  deploy-demo:
+#    name: Deploy to demo
+#    permissions:
+#      contents: "read"
+#      id-token: "write"
+#    needs: [test, build]
+#    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/dev')
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#      - name: Deploy
+#        uses: nais/deploy/actions/deploy@v2
+#        env:
+#          CLUSTER: dev-gcp
+#          RESOURCE: .nais/demo.yaml
+#          VAR: image=${{ needs.build.outputs.image }}
 
   deploy-dev:
     name: Deploy to dev
