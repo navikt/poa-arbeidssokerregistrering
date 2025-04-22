@@ -15,8 +15,8 @@
     "dependencies": {
         "@alheimsins/virkedager": "2.2.0",
         "@amplitude/analytics-browser": "2.15.0",
-        "@grafana/faro-web-sdk": "1.17.0",
-        "@grafana/faro-web-tracing": "1.17.0",
+        "@grafana/faro-web-sdk": "1.17.1",
+        "@grafana/faro-web-tracing": "1.17.1",
         "@navikt/aksel-icons": "7.20.0",
         "@navikt/arbeidssokerregisteret-utils": "1.4.0",
         "@navikt/ds-css": "7.20.0",
