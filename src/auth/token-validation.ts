@@ -1,25 +1,25 @@
-import { createRemoteJWKSet, FlattenedJWSInput, JWSHeaderParameters, JWTPayload, jwtVerify, KeyLike } from 'jose';
+import { createRemoteJWKSet, FlattenedJWSInput, JWSHeaderParameters, JWTPayload, jwtVerify } from 'jose';
+import type * as types from 'jose/dist/types/types';
 
-let tokenxJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<KeyLike>;
+let tokenxJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<types.CryptoKey>;
 const getTokenXJwkSet = () => {
     if (!tokenxJWKSet) {
-        tokenxJWKSet = createRemoteJWKSet<KeyLike>(new URL(process.env.TOKEN_X_JWKS_URI!));
+        tokenxJWKSet = createRemoteJWKSet(new URL(process.env.TOKEN_X_JWKS_URI!));
     }
 
     return tokenxJWKSet;
 };
 
-let idPortenJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<KeyLike>;
+let idPortenJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<types.CryptoKey>;
 const getIdPortenJwkSet = () => {
     if (!idPortenJWKSet) {
-        idPortenJWKSet = createRemoteJWKSet<KeyLike>(new URL(process.env.IDPORTEN_JWKS_URI!));
+        idPortenJWKSet = createRemoteJWKSet(new URL(process.env.IDPORTEN_JWKS_URI!));
     }
 
     return idPortenJWKSet;
 };
 
 export type AuthLevel = 'Level3' | 'Level4' | 'idporten-loa-substantial' | 'idporten-loa-high';
-export type ValidatedRequest = Request & { user: { level: AuthLevel; ident: string; fnr: string } };
 
 function isTokenX(decodedToken: JWTPayload) {
     return decodedToken?.iss === process.env.TOKEN_X_ISSUER;

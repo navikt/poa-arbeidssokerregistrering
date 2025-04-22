@@ -28,7 +28,7 @@
         "cookie": "1.0.2",
         "csp-header": "6.1.0",
         "html-react-parser": "5.2.3",
-        "jose": "5.9.6",
+        "jose": "6.0.10",
         "lodash": "4.17.21",
         "nanoid": "5.1.5",
         "next": "15.3.1",
