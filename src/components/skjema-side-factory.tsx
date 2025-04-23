@@ -1,9 +1,9 @@
 import { NextPage } from 'next';
-import { Dispatch, useEffect, useReducer, useRef, useState } from 'react';
+import { Dispatch, JSX, useEffect, useReducer, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 
 import { SkjemaSide, SkjemaState } from '../model/skjema';
-import { SkjemaAction, skjemaReducer, SkjemaReducer } from '../lib/skjema-state';
+import { SkjemaAction, skjemaReducer } from '../lib/skjema-state';
 import styles from '../styles/skjema.module.css';
 import TilbakeKnapp from './skjema/tilbake-knapp';
 import { Knapperad } from './skjema/knapperad/knapperad';
@@ -62,7 +62,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
         });
     }, []);
 
-    const [skjemaState, dispatch] = useReducer<SkjemaReducer, SkjemaState>(
+    const [skjemaState, dispatch] = useReducer(
         skjemaReducer,
         {
             ...(eksisterendeOpplysninger ?? {}),

@@ -1,5 +1,5 @@
 import { BodyLong, Button, Heading, ReadMore } from '@navikt/ds-react';
-import { useEffect, useState } from 'react';
+import { JSX, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Head from 'next/head';
 
