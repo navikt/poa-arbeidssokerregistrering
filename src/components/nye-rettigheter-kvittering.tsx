@@ -1,4 +1,4 @@
-import { Box, List } from '@navikt/ds-react';
+import { Box, Link, List } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 import { useFeatureToggles } from '../contexts/featuretoggle-context';
@@ -12,8 +12,8 @@ const TEKSTER: Tekster<string> = {
         uenigheter: 'Hvis du er uenig i NAV sin vurdering, kan du gi tilbakemelding om dette på innloggede sider.',
         ytelser:
             'Om du søker pengestøtte fra NAV vil du få mer informasjon om hva NAV krever av deg dersom du får denne innvilget.',
-        meldekort:
-            'I perioden du ønsker å være registrert som arbeidssøker hos NAV er det viktig at du leverer meldekort.',
+        meldekort: 'For å være registrert som arbeidssøker hos Nav, må du sende en bekreftelse på dette hver 14. dag.',
+        lesMer: 'Les mer her.',
         endringer:
             'Hvis det skjer endringer i livet ditt som påvirker din status som arbeidssøker må du ta kontakt med NAV. Da gjør vi en ny vurdering av ditt behov.',
         anbefalinger: 'For å komme deg raskest mulig tilbake i jobb anbefaler vi også at:',
@@ -26,8 +26,8 @@ const TEKSTER: Tekster<string> = {
         uenigheter: 'Dersom du er usamd i vurderinga som NAV har gjort, kan du logge på og gi tilbakemelding om dette.',
         ytelser:
             'Viss du søkjer om pengestøtte frå NAV, vil du få meir informasjon om kva NAV krev av deg dersom søknaden blir innvilga.',
-        meldekort:
-            'I perioden du ønskjer å vere registrert som arbeidssøkjar hos NAV, er det viktig at du leverer meldekort.',
+        meldekort: 'For å vere registrert som arbeidssøkjar hos Nav må du sende ei stadfesting på dette kvar 14. dag.',
+        lesMer: 'Les meir her.',
         endringer:
             'Dersom det skjer endringar i livet ditt som påverkar statusen din som arbeidssøkjar, må du ta kontakt med NAV. Vi gjer då ei ny vurdering av behovet ditt.',
         anbefalinger: 'For at du raskast mogleg skal kome deg tilbake i jobb, anbefaler vi i tillegg at du:',
@@ -40,8 +40,8 @@ const TEKSTER: Tekster<string> = {
         uenigheter: "If you disagree with NAV's assessment, you can contact us about this online: nav.no.",
         ytelser:
             'If you apply for financial support from NAV, you will receive more information about what NAV requires of you if this is granted.',
-        meldekort:
-            'During the period you wish to be registered as a jobseeker with NAV, it is important that you regularly submit the Employment Status Form.',
+        meldekort: 'To stay registered as a jobseeker with Nav, you must send a confirmation of this every 14 days.',
+        lesMer: 'Learn more here.',
         endringer:
             'You must contact NAV if you experience changes in your life that affect your status as a jobseeker. We will then re-assess your needs.',
         anbefalinger: 'To get back to work as quickly as possible, we also recommend that:',
@@ -70,7 +70,12 @@ const NyeRettigheterKvittering = () => {
                 <List.Item>{tekst('veienVidere')}</List.Item>
                 <List.Item>{tekst('uenigheter')}</List.Item>
                 <List.Item>{tekst('ytelser')}</List.Item>
-                <List.Item>{tekst('meldekort')}</List.Item>
+                <List.Item>
+                    {tekst('meldekort')}{' '}
+                    <Link href={'https://www.nav.no/bekreft-arbeidssoker'} target={'_blank'}>
+                        {tekst('lesMer')}
+                    </Link>
+                </List.Item>
                 <List.Item>{tekst('endringer')}</List.Item>
             </List>
             <List as="ul" description={tekst('anbefalinger')} className="mt-8">
