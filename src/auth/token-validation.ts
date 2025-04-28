@@ -1,7 +1,6 @@
 import { createRemoteJWKSet, FlattenedJWSInput, JWSHeaderParameters, JWTPayload, jwtVerify } from 'jose';
-import type * as types from 'jose/dist/types/types';
 
-let tokenxJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<types.CryptoKey>;
+let tokenxJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<CryptoKey>;
 const getTokenXJwkSet = () => {
     if (!tokenxJWKSet) {
         tokenxJWKSet = createRemoteJWKSet(new URL(process.env.TOKEN_X_JWKS_URI!));
@@ -10,7 +9,7 @@ const getTokenXJwkSet = () => {
     return tokenxJWKSet;
 };
 
-let idPortenJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<types.CryptoKey>;
+let idPortenJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<CryptoKey>;
 const getIdPortenJwkSet = () => {
     if (!idPortenJWKSet) {
         idPortenJWKSet = createRemoteJWKSet(new URL(process.env.IDPORTEN_JWKS_URI!));
