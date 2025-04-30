@@ -1,12 +1,11 @@
-import { withAuthenticatedPage } from '../auth/withAuthentication';
-import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
-import kvitteringIkonSvg from '../components/kvittering-ikon.svg';
-import Image from 'next/image';
+import useSprak from '../../hooks/useSprak';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-import LenkePanel from '../components/lenke-panel';
-import useSprak from '../hooks/useSprak';
-import { useConfig } from '../contexts/config-context';
-import { Config } from '../model/config';
+import { useConfig } from '../../contexts/config-context';
+import { Config } from '../../model/config';
+import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
+import Image from 'next/image';
+import kvitteringIkonSvg from '../kvittering-ikon.svg';
+import LenkePanel from '../lenke-panel';
 
 const TEKSTER = {
     nb: {
@@ -17,7 +16,7 @@ const TEKSTER = {
         bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker',
         bekreftelseLenkeTittel: 'Bekreft at du vil være registrert som arbeidssøker',
         bekreftelseLenkeBeskrivelse: 'Slik bekrefter du arbeidssøkerperioden din',
-        minSideLenkePostfix: '', // språk postfix
+        minSideLenkePostfix: '',
         minSideLenkeTittel: 'Min side',
         minSideLenkeBeskrivelse: 'Se dine tjenester som arbeidssøker',
         dagpengerLenkeHref: 'https://www.nav.no/dagpenger',
@@ -32,7 +31,7 @@ const TEKSTER = {
         bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker/nn',
         bekreftelseLenkeTittel: 'Bekreft at du vil være registrert som arbeidssøker',
         bekreftelseLenkeBeskrivelse: 'Slik stadfestar du arbeidssøkjarperioden din',
-        minSideLenkePostfix: '/nn', // språk postfix
+        minSideLenkePostfix: '/nn',
         minSideLenkeTittel: 'Mi side',
         minSideLenkeBeskrivelse: 'Sjå dine tenester som arbeidssøkjar',
         dagpengerLenkeHref: 'https://www.nav.no/dagpenger',
@@ -42,14 +41,12 @@ const TEKSTER = {
     en: {
         heading: 'You are registered as a jobseeker',
         body1: 'To stay registered as a jobseeker with Nav, you must send a confirmation of this every 14 days.',
-        body2:
-            '\n' +
-            'Nav will assess the information you have given us against the information we have about other job seekers in a similar situation. Based on this, a counselor will make a follow-up decision that will be sent to you. The decision will explain how Nav assesses your situation in the labor market and what help you can get from Nav.',
+        body2: 'Nav will assess the information you have given us against the information we have about other job seekers in a similar situation. Based on this, a counselor will make a follow-up decision that will be sent to you. The decision will explain how Nav assesses your situation in the labor market and what help you can get from Nav.',
         innholdHeading: 'Content for jobseekers',
         bekreftelseLenkeHref: 'https://www.nav.no/confirm-jobseeker/en',
         bekreftelseLenkeTittel: 'Confirm that you want to be registered as a jobseeker',
         bekreftelseLenkeBeskrivelse: 'How to confirm your status as a jobseeker',
-        minSideLenkePostfix: '/en', // språk postfix
+        minSideLenkePostfix: '/en',
         minSideLenkeTittel: 'My page',
         minSideLenkeBeskrivelse: 'View your services as a job seeker',
         dagpengerLenkeHref: 'https://www.nav.no/dagpenger/en',
@@ -105,5 +102,5 @@ const NyKvittering = () => {
         </div>
     );
 };
-export const getServerSideProps = withAuthenticatedPage();
+
 export default NyKvittering;
