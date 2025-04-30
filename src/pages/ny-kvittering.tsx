@@ -4,6 +4,9 @@ import kvitteringIkonSvg from '../components/kvittering-ikon.svg';
 import Image from 'next/image';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
 import LenkePanel from '../components/lenke-panel';
+import useSprak from '../hooks/useSprak';
+import { useConfig } from '../contexts/config-context';
+import { Config } from '../model/config';
 
 const TEKSTER = {
     nb: {
@@ -11,20 +14,54 @@ const TEKSTER = {
         body1: 'Du må bekrefte at du ønsker å være registrert hver 14. dag.',
         body2: 'Nav vil vurdere de opplysningene du har gitt oss mot opplysningene vi har om andre arbeidssøkere i omtrent samme situasjon. Basert på dette vil en veileder fatte et oppfølgingsvedtak som sendes til deg. Vedtaket forteller hvordan Nav vurderer din situasjon i arbeidsmarkedet og hvilken hjelp du kan få fra Nav.',
         innholdHeading: 'Innhold for deg som er arbeidssøker',
-        bekreftelseLenkeHref: '/bekreftelse',
+        bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker',
         bekreftelseLenkeTittel: 'Bekreft at du vil være registrert som arbeidssøker',
         bekreftelseLenkeBeskrivelse: 'Slik bekrefter du arbeidssøkerperioden din',
-        minSideLenkeHref: '/minside',
+        minSideLenkePostfix: '', // språk postfix
         minSideLenkeTittel: 'Min side',
         minSideLenkeBeskrivelse: 'Se dine tjenester som arbeidssøker',
-        dagpengerLenkeHref: '/dagpenger',
+        dagpengerLenkeHref: 'https://www.nav.no/dagpenger',
         dagpengerLenkeTittel: 'Dagpenger',
         dagpengerLenkeBeskrivelse: 'Dette kan du ha rett til',
+    },
+    nn: {
+        heading: 'Du er registrert som arbeidssøkjar',
+        body1: 'Du må stadfesta at du ønskjer å vera registrert kvar 14. dag.',
+        body2: 'Nav vil vurdera dei opplysningane du har gitt oss mot opplysningane me har om andre arbeidssøkjarar i omtrent same situasjon. Basert på dette vil ein rettleiar gjera eit oppfølgingsvedtak som blir sendt til deg. Vedtaket fortel korleis Nav vurderer din situasjon i arbeidsmarknaden og kva hjelp du kan få frå Nav.',
+        innholdHeading: 'Innhald for deg som er arbeidssøkjar',
+        bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker/nn',
+        bekreftelseLenkeTittel: 'Bekreft at du vil være registrert som arbeidssøker',
+        bekreftelseLenkeBeskrivelse: 'Slik stadfestar du arbeidssøkjarperioden din',
+        minSideLenkePostfix: '/nn', // språk postfix
+        minSideLenkeTittel: 'Mi side',
+        minSideLenkeBeskrivelse: 'Sjå dine tenester som arbeidssøkjar',
+        dagpengerLenkeHref: 'https://www.nav.no/dagpenger',
+        dagpengerLenkeTittel: 'Dagpengar',
+        dagpengerLenkeBeskrivelse: 'Dette kan du ha rett til',
+    },
+    en: {
+        heading: 'You are registered as a jobseeker',
+        body1: 'To stay registered as a jobseeker with Nav, you must send a confirmation of this every 14 days.',
+        body2:
+            '\n' +
+            'Nav will assess the information you have given us against the information we have about other job seekers in a similar situation. Based on this, a counselor will make a follow-up decision that will be sent to you. The decision will explain how Nav assesses your situation in the labor market and what help you can get from Nav.',
+        innholdHeading: 'Content for jobseekers',
+        bekreftelseLenkeHref: 'https://www.nav.no/confirm-jobseeker/en',
+        bekreftelseLenkeTittel: 'Confirm that you want to be registered as a jobseeker',
+        bekreftelseLenkeBeskrivelse: 'How to confirm your status as a jobseeker',
+        minSideLenkePostfix: '/en', // språk postfix
+        minSideLenkeTittel: 'My page',
+        minSideLenkeBeskrivelse: 'View your services as a job seeker',
+        dagpengerLenkeHref: 'https://www.nav.no/dagpenger/en',
+        dagpengerLenkeTittel: 'Unemployment benefit (dagpenger)',
+        dagpengerLenkeBeskrivelse: 'You may be entitled to this',
     },
 };
 
 const NyKvittering = () => {
-    const tekst = lagHentTekstForSprak(TEKSTER, 'nb');
+    const sprak = useSprak();
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { dittNavUrl } = useConfig() as Config;
     return (
         <div className="max-w-4xl">
             <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
@@ -50,7 +87,7 @@ const NyKvittering = () => {
                         </li>
                         <li className={'mb-4'}>
                             <LenkePanel
-                                href={tekst('minSideLenkeHref')}
+                                href={`${dittNavUrl}${tekst('minSideLenkePostfix')}`}
                                 title={tekst('minSideLenkeTittel')}
                                 description={tekst('minSideLenkeBeskrivelse')}
                             />
