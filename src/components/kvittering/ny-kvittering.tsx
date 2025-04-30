@@ -29,7 +29,7 @@ const TEKSTER = {
         body2: 'Nav vil vurdera dei opplysningane du har gitt oss mot opplysningane me har om andre arbeidssøkjarar i omtrent same situasjon. Basert på dette vil ein rettleiar gjera eit oppfølgingsvedtak som blir sendt til deg. Vedtaket fortel korleis Nav vurderer din situasjon i arbeidsmarknaden og kva hjelp du kan få frå Nav.',
         innholdHeading: 'Innhald for deg som er arbeidssøkjar',
         bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker/nn',
-        bekreftelseLenkeTittel: 'Bekreft at du vil være registrert som arbeidssøker',
+        bekreftelseLenkeTittel: 'Stadfest at du vil vera registrert som arbeidssøkjar',
         bekreftelseLenkeBeskrivelse: 'Slik stadfestar du arbeidssøkjarperioden din',
         minSideLenkePostfix: '/nn',
         minSideLenkeTittel: 'Mi side',
