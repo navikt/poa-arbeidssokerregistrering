@@ -4,7 +4,7 @@ import { useConfig } from '../../contexts/config-context';
 import { Config } from '../../model/config';
 import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
 import Image from 'next/image';
-import kvitteringIkonSvg from '../kvittering-ikon.svg';
+import kvitteringIkonSvg from './kvittering-ikon.svg';
 import LenkePanel from '../lenke-panel';
 
 const TEKSTER = {

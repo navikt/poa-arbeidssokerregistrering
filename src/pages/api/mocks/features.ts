@@ -75,7 +75,7 @@ export const mockToggles = {
         {
             name: 'arbeidssokerregistrering.bruk-ny-kvittering',
             type: 'release',
-            enabled: false,
+            enabled: true,
             stale: false,
             strategies: [
                 {
