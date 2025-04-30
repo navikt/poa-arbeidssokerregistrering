@@ -14,7 +14,7 @@ const Kvittering = () => {
     }, []);
 
     const { toggles } = useFeatureToggles();
-    console.log(toggles);
+
     if (toggles['arbeidssokerregistrering.bruk-ny-kvittering']) {
         return <NyKvittering />;
     }
