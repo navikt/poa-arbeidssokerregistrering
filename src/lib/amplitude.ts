@@ -69,7 +69,9 @@ type KvitteringAktivitet =
     | 'Går til dagpenger fra kvittering'
     | 'Velger å ikke gå til dagpenger fra kvittering'
     | 'Velger å lese mer om økonomisk støtte'
-    | 'Velger å ikke søke om økonomisk støtte';
+    | 'Velger å ikke søke om økonomisk støtte'
+    | 'Går til bekreftelse fra kvittering'
+    | 'Går til min side fra kvittering';
 
 type EksperimentData = {
     eksperiment: 'Videresender til AiA';

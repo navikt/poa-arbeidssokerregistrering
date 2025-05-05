@@ -6,12 +6,13 @@ interface Props {
     href: string;
     title: string;
     description: string;
+    onClick?: () => void;
 }
 
 const LenkePanel = (props: Props) => {
-    const { href, title, description } = props;
+    const { href, title, description, onClick } = props;
     return (
-        <a href={href} className={styles.LenkePanel}>
+        <a href={href} className={styles.LenkePanel} onClick={onClick}>
             <div className={styles.LenkePanel__container}>
                 <BodyShort size={'medium'} className={styles.linkText}>
                     {title}

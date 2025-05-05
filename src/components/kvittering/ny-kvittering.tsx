@@ -6,6 +6,7 @@ import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
 import Image from 'next/image';
 import kvitteringIkonSvg from './kvittering-ikon.svg';
 import LenkePanel from '../lenke-panel';
+import { loggAktivitet } from '../../lib/amplitude';
 
 const TEKSTER = {
     nb: {
@@ -80,6 +81,11 @@ const NyKvittering = () => {
                                 href={tekst('bekreftelseLenkeHref')}
                                 title={tekst('bekreftelseLenkeTittel')}
                                 description={tekst('bekreftelseLenkeBeskrivelse')}
+                                onClick={() =>
+                                    loggAktivitet({
+                                        aktivitet: 'Går til bekreftelse fra kvittering',
+                                    })
+                                }
                             />
                         </li>
                         <li className={'mb-4'}>
@@ -87,6 +93,11 @@ const NyKvittering = () => {
                                 href={`${dittNavUrl}${tekst('minSideLenkePostfix')}`}
                                 title={tekst('minSideLenkeTittel')}
                                 description={tekst('minSideLenkeBeskrivelse')}
+                                onClick={() =>
+                                    loggAktivitet({
+                                        aktivitet: 'Går til min side fra kvittering',
+                                    })
+                                }
                             />
                         </li>
                         <li className={'mb-4'}>
@@ -94,6 +105,11 @@ const NyKvittering = () => {
                                 href={tekst('dagpengerLenkeHref')}
                                 title={tekst('dagpengerLenkeTittel')}
                                 description={tekst('dagpengerLenkeBeskrivelse')}
+                                onClick={() =>
+                                    loggAktivitet({
+                                        aktivitet: 'Går til dagpenger fra kvittering',
+                                    })
+                                }
                             />
                         </li>
                     </ul>
