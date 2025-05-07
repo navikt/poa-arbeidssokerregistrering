@@ -31,7 +31,7 @@ const TEKSTER: Tekster<string> = {
 
 interface OppsummeringProps {
     skjemaState: SkjemaState;
-    skjemaPrefix: '/skjema/' | '/opplysninger/' | '/oppdater-opplysninger/';
+    skjemaPrefix: '/opplysninger/' | '/oppdater-opplysninger/';
     onSubmit(): void;
 }
 

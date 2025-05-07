@@ -21,17 +21,6 @@ export enum SkjemaSide {
     FullforRegistrering = '12',
 }
 
-export type StandardSkjemaSide =
-    | SkjemaSide.DinSituasjon
-    | SkjemaSide.SisteJobb
-    | SkjemaSide.Utdanning
-    | SkjemaSide.GodkjentUtdanning
-    | SkjemaSide.BestaattUtdanning
-    | SkjemaSide.Helseproblemer
-    | SkjemaSide.AndreProblemer
-    | SkjemaSide.Oppsummering
-    | SkjemaSide.FullforRegistrering;
-
 export type StandardSkjemaSideUtenPlikter =
     | SkjemaSide.DinSituasjon
     | SkjemaSide.SisteJobb
