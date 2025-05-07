@@ -25,8 +25,6 @@ export type SkjemaSideType =
     | SkjemaSide.DinSituasjon
     | SkjemaSide.SisteJobb
     | SkjemaSide.Utdanning
-    | SkjemaSide.GodkjentUtdanning
-    | SkjemaSide.BestaattUtdanning
     | SkjemaSide.Helseproblemer
     | SkjemaSide.AndreProblemer
     | SkjemaSide.OppsummeringUtenPlikter;

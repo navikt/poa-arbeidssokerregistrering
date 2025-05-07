@@ -16,6 +16,7 @@ import { SkjemaAction } from '../../lib/skjema-state';
 import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
 import skjemaSideFactory, { SiderMap } from '../../components/skjema-side-factory';
 import { SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -46,21 +47,22 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
                 onChange={(value) => dispatch({ type: SporsmalId.utdanning, value: value })}
                 valgt={skjemaState.utdanning}
                 visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.GodkjentUtdanning]: (
-            <UtdanningGodkjent
-                onChange={(value) => dispatch({ type: SporsmalId.utdanningGodkjent, value: value })}
-                valgt={skjemaState.utdanningGodkjent}
-                visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.BestaattUtdanning]: (
-            <BestattUtdanning
-                onChange={(value) => dispatch({ type: SporsmalId.utdanningBestatt, value: value })}
-                valgt={skjemaState.utdanningBestatt}
-                visFeilmelding={visFeilmelding}
-            />
+            >
+                <div className={'my-8'}>
+                    <UtdanningGodkjent
+                        onChange={(value) => dispatch({ type: SporsmalId.utdanningGodkjent, value: value })}
+                        valgt={skjemaState.utdanningGodkjent}
+                        visFeilmelding={visFeilmelding}
+                        visKomponent={visUtdanningsvalg(skjemaState)}
+                    />
+                </div>
+                <BestattUtdanning
+                    onChange={(value) => dispatch({ type: SporsmalId.utdanningBestatt, value: value })}
+                    valgt={skjemaState.utdanningBestatt}
+                    visFeilmelding={visFeilmelding}
+                    visKomponent={visUtdanningsvalg(skjemaState)}
+                />
+            </Utdanning>
         ),
         [SkjemaSide.Helseproblemer]: (
             <Helseproblemer
@@ -99,11 +101,12 @@ export const validerOpplysningerSkjemaForSide = (side: SkjemaSide, skjemaState: 
                 return skjemaState.sisteJobb;
             }
             case SkjemaSide.Utdanning:
-                return skjemaState.utdanning;
-            case SkjemaSide.GodkjentUtdanning:
-                return skjemaState.utdanningGodkjent;
-            case SkjemaSide.BestaattUtdanning:
-                return skjemaState.utdanningBestatt;
+                return (
+                    skjemaState.utdanning &&
+                    (visUtdanningsvalg(skjemaState)
+                        ? skjemaState.utdanningGodkjent && skjemaState[SporsmalId.utdanningBestatt]
+                        : true)
+                );
             case SkjemaSide.Helseproblemer:
                 return skjemaState.helseHinder;
             case SkjemaSide.AndreProblemer:

@@ -26,6 +26,7 @@ import { Loader } from '@navikt/ds-react';
 import { fetcher } from '../../lib/api-utils';
 import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
 import { validerOpplysningerSkjemaForSide } from '../opplysninger/[side]';
+import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -56,21 +57,22 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
                 onChange={(value) => dispatch({ type: SporsmalId.utdanning, value: value })}
                 valgt={skjemaState.utdanning}
                 visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.GodkjentUtdanning]: (
-            <UtdanningGodkjent
-                onChange={(value) => dispatch({ type: SporsmalId.utdanningGodkjent, value: value })}
-                valgt={skjemaState.utdanningGodkjent}
-                visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.BestaattUtdanning]: (
-            <BestattUtdanning
-                onChange={(value) => dispatch({ type: SporsmalId.utdanningBestatt, value: value })}
-                valgt={skjemaState.utdanningBestatt}
-                visFeilmelding={visFeilmelding}
-            />
+            >
+                <div className={'my-8'}>
+                    <UtdanningGodkjent
+                        onChange={(value) => dispatch({ type: SporsmalId.utdanningGodkjent, value: value })}
+                        valgt={skjemaState.utdanningGodkjent}
+                        visFeilmelding={visFeilmelding}
+                        visKomponent={visUtdanningsvalg(skjemaState)}
+                    />
+                </div>
+                <BestattUtdanning
+                    onChange={(value) => dispatch({ type: SporsmalId.utdanningBestatt, value: value })}
+                    valgt={skjemaState.utdanningBestatt}
+                    visFeilmelding={visFeilmelding}
+                    visKomponent={visUtdanningsvalg(skjemaState)}
+                />
+            </Utdanning>
         ),
         [SkjemaSide.Helseproblemer]: (
             <Helseproblemer

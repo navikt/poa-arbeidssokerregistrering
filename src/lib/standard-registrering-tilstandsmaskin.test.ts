@@ -58,15 +58,7 @@ describe('Standard registrering tilstandsmaskin', () => {
         });
     });
     describe('utdanning', () => {
-        it('returnerer GodkjentUtdanning som neste side når har høyere utdanning', () => {
-            const state = beregnNavigering(SkjemaSide.Utdanning, {
-                dinSituasjon: DinSituasjon.MISTET_JOBBEN,
-                sisteJobb: sisteStilling,
-                utdanning: Utdanningsnivaa.HOYERE_UTDANNING_5_ELLER_MER,
-            });
-            expect(state.neste).toBe(SkjemaSide.GodkjentUtdanning);
-        });
-        it('returnerer Helseproblemer som neste side når ingen utdanning', () => {
+        it('returnerer Helseproblemer som neste', () => {
             const state = beregnNavigering(SkjemaSide.Utdanning, {
                 dinSituasjon: DinSituasjon.MISTET_JOBBEN,
                 sisteJobb: sisteStilling,
@@ -99,39 +91,6 @@ describe('Standard registrering tilstandsmaskin', () => {
             expect(state.fremdrift).toBe(3 / 9);
         });
     });
-    describe('GodkjentUtdanning', () => {
-        it('returnerer BestattUtdanning som neste', () => {
-            const { neste } = beregnNavigering(SkjemaSide.GodkjentUtdanning, {});
-            expect(neste).toBe(SkjemaSide.BestaattUtdanning);
-        });
-
-        it('returnerer Utdanning som forrige', () => {
-            const { forrige } = beregnNavigering(SkjemaSide.GodkjentUtdanning, {});
-            expect(forrige).toBe(SkjemaSide.Utdanning);
-        });
-
-        it('returnerer 4/9 i fremdrift', () => {
-            const { fremdrift } = beregnNavigering(SkjemaSide.GodkjentUtdanning, {});
-            expect(fremdrift).toBe(4 / 9);
-        });
-    });
-
-    describe('BestattUtdanning', () => {
-        it('returnerer Helseproblemer som neste', () => {
-            const { neste } = beregnNavigering(SkjemaSide.BestaattUtdanning, {});
-            expect(neste).toBe(SkjemaSide.Helseproblemer);
-        });
-
-        it('returnerer GodkjentUtdanning som forrige', () => {
-            const { forrige } = beregnNavigering(SkjemaSide.BestaattUtdanning, {});
-            expect(forrige).toBe(SkjemaSide.GodkjentUtdanning);
-        });
-
-        it('returnerer 4/9 i fremdrift', () => {
-            const { fremdrift } = beregnNavigering(SkjemaSide.BestaattUtdanning, {});
-            expect(fremdrift).toBe(5 / 9);
-        });
-    });
 
     describe('Helseproblemer', () => {
         it('returnerer AndreProblemer som neste', () => {
@@ -140,7 +99,11 @@ describe('Standard registrering tilstandsmaskin', () => {
         });
 
         it('returnerer Utdanning som forrige når [ingen utdanning, grunnskole]', () => {
-            [Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].forEach((utdanning) => {
+            [
+                Utdanningsnivaa.INGEN_UTDANNING,
+                Utdanningsnivaa.GRUNNSKOLE,
+                Utdanningsnivaa.VIDEREGAENDE_FAGBREV_SVENNEBREV,
+            ].forEach((utdanning) => {
                 const { forrige } = beregnNavigering(SkjemaSide.Helseproblemer, {
                     utdanning,
                 });
@@ -148,12 +111,6 @@ describe('Standard registrering tilstandsmaskin', () => {
             });
         });
 
-        it('returnerer BestattUtdanning som forrige når man har utdanning', () => {
-            const { forrige } = beregnNavigering(SkjemaSide.Helseproblemer, {
-                utdanning: Utdanningsnivaa.VIDEREGAENDE_FAGBREV_SVENNEBREV,
-            });
-            expect(forrige).toBe(SkjemaSide.BestaattUtdanning);
-        });
         it('returnerer SisteJobb som forrige når DinSituasjon er VIL_FORTSETTE_I_JOBB', () => {
             const { forrige } = beregnNavigering(SkjemaSide.Helseproblemer, {
                 dinSituasjon: DinSituasjon.VIL_FORTSETTE_I_JOBB,

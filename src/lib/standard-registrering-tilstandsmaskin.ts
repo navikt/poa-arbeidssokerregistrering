@@ -33,9 +33,7 @@ const TILSTANDER: NavigeringsTilstandsMaskin<SkjemaSideType> = {
     },
     [SkjemaSide.Utdanning]: (skjemaState: SkjemaState) => {
         return {
-            neste: [Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].includes(skjemaState.utdanning!)
-                ? SkjemaSide.Helseproblemer
-                : SkjemaSide.GodkjentUtdanning,
+            neste: SkjemaSide.Helseproblemer,
             forrige:
                 skjemaState.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB
                     ? SkjemaSide.DinSituasjon
@@ -43,28 +41,12 @@ const TILSTANDER: NavigeringsTilstandsMaskin<SkjemaSideType> = {
             fremdrift: 3 / 9,
         };
     },
-    [SkjemaSide.GodkjentUtdanning]: () => {
-        return {
-            neste: SkjemaSide.BestaattUtdanning,
-            forrige: SkjemaSide.Utdanning,
-            fremdrift: 4 / 9,
-        };
-    },
-    [SkjemaSide.BestaattUtdanning]: () => {
-        return {
-            neste: SkjemaSide.Helseproblemer,
-            forrige: SkjemaSide.GodkjentUtdanning,
-            fremdrift: 5 / 9,
-        };
-    },
     [SkjemaSide.Helseproblemer]: (skjemaState: SkjemaState) => {
         const forrige = () => {
             if (skjemaState.dinSituasjon === DinSituasjon.VIL_FORTSETTE_I_JOBB) {
                 return SkjemaSide.SisteJobb;
             }
-            return [Utdanningsnivaa.INGEN_UTDANNING, Utdanningsnivaa.GRUNNSKOLE].includes(skjemaState.utdanning!)
-                ? SkjemaSide.Utdanning
-                : SkjemaSide.BestaattUtdanning;
+            return SkjemaSide.Utdanning;
         };
         return {
             neste: SkjemaSide.AndreProblemer,

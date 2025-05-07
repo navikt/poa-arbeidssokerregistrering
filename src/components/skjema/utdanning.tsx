@@ -26,8 +26,8 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa>) => {
-    const { onChange, valgt, visFeilmelding } = props;
+const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa> & { children?: React.ReactNode }) => {
+    const { onChange, valgt, visFeilmelding, children } = props;
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
     const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
@@ -65,8 +65,9 @@ const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa>) => {
                         valg={valg}
                         onSelect={(val) => onChange(val)}
                         valgt={valgt}
-                        visFeilmelding={visFeilmelding}
+                        visFeilmelding={visFeilmelding && !valgt}
                     />
+                    {children}
                 </form>
             </SkjemaBox>
         </>
