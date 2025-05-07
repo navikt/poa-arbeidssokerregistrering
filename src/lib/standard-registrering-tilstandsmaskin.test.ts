@@ -1,4 +1,4 @@
-import { beregnNavigering } from './standard-registrering-uten-plikter-tilstandsmaskin';
+import { beregnNavigering } from './standard-registrering-tilstandsmaskin';
 import { SkjemaSide } from '../model/skjema';
 import { DinSituasjon, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
@@ -8,7 +8,7 @@ const sisteStilling = {
     konseptId: 45779,
 };
 
-describe('Standard registrering uten plikter tilstandsmaskin', () => {
+describe('Standard registrering tilstandsmaskin', () => {
     describe('din situasjon', () => {
         it('returnerer SisteJobb som neste når mistet jobb', () => {
             const state = beregnNavigering(SkjemaSide.DinSituasjon, {

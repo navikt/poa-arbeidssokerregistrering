@@ -1,13 +1,7 @@
-import {
-    Navigering,
-    NavigeringsTilstandsMaskin,
-    SkjemaSide,
-    SkjemaState,
-    StandardSkjemaSideUtenPlikter,
-} from '../model/skjema';
+import { Navigering, NavigeringsTilstandsMaskin, SkjemaSide, SkjemaState, SkjemaSideType } from '../model/skjema';
 import { DinSituasjon, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
-const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUtenPlikter> = {
+const TILSTANDER: NavigeringsTilstandsMaskin<SkjemaSideType> = {
     [SkjemaSide.DinSituasjon]: (skjemaState: SkjemaState) => {
         if (skjemaState.dinSituasjon === DinSituasjon.ALDRI_HATT_JOBB) {
             return {
@@ -94,14 +88,14 @@ const TILSTANDER_UTEN_PLIKTER: NavigeringsTilstandsMaskin<StandardSkjemaSideUten
     },
 };
 
-export type StandardRegistreringUtenPlikterTilstandsmaskin = (
-    aktivSide: StandardSkjemaSideUtenPlikter,
+export type StandardRegistreringTilstandsmaskin = (
+    aktivSide: SkjemaSideType,
     state: SkjemaState,
-) => Navigering<StandardSkjemaSideUtenPlikter>;
+) => Navigering<SkjemaSideType>;
 
-export const beregnNavigering: StandardRegistreringUtenPlikterTilstandsmaskin = (aktivSide, state) => {
-    if (TILSTANDER_UTEN_PLIKTER[aktivSide]) {
-        return TILSTANDER_UTEN_PLIKTER[aktivSide](state);
+export const beregnNavigering: StandardRegistreringTilstandsmaskin = (aktivSide, state) => {
+    if (TILSTANDER[aktivSide]) {
+        return TILSTANDER[aktivSide](state);
     }
 
     return {

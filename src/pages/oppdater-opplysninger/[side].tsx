@@ -9,7 +9,7 @@ import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
 import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
 import Helseproblemer from '../../components/skjema/helseproblemer';
 import AndreProblemer from '../../components/skjema/andre-problemer';
-import { beregnNavigering } from '../../lib/standard-registrering-uten-plikter-tilstandsmaskin';
+import { beregnNavigering } from '../../lib/standard-registrering-tilstandsmaskin';
 import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
 import { SkjemaAction } from '../../lib/skjema-state';
 import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';

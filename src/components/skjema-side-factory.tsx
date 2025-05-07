@@ -8,7 +8,7 @@ import styles from '../styles/skjema.module.css';
 import TilbakeKnapp from './skjema/tilbake-knapp';
 import { Knapperad } from './skjema/knapperad/knapperad';
 import Avbryt from './skjema/avbryt-lenke';
-import { StandardRegistreringUtenPlikterTilstandsmaskin } from '../lib/standard-registrering-uten-plikter-tilstandsmaskin';
+import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
 import ProgressBar from './progress-bar/progress-bar';
 import { loggAktivitet } from '../lib/amplitude';
 import { Link } from '@navikt/ds-react';
@@ -30,7 +30,7 @@ export interface LagSkjemaSideProps {
         dispatch: Dispatch<SkjemaAction>,
         visFeilmelding: boolean,
     ) => JSX.Element;
-    beregnNavigering: StandardRegistreringUtenPlikterTilstandsmaskin;
+    beregnNavigering: StandardRegistreringTilstandsmaskin;
 }
 
 export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
