@@ -27,6 +27,7 @@ import { fetcher } from '../../lib/api-utils';
 import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
 import { validerOpplysningerSkjemaForSide } from '../opplysninger/[side]';
 import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
+import Hindringer from '../../components/skjema/hindringer';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -74,22 +75,24 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
                 />
             </Utdanning>
         ),
-        [SkjemaSide.Helseproblemer]: (
-            <Helseproblemer
-                onChange={(value) => dispatch({ type: SporsmalId.helseHinder, value: value })}
-                valgt={skjemaState.helseHinder}
-                visFeilmelding={visFeilmelding}
-            />
+        [SkjemaSide.Hindringer]: (
+            <Hindringer>
+                <div className={'my-8'}>
+                    <Helseproblemer
+                        onChange={(value) => dispatch({ type: SporsmalId.helseHinder, value: value })}
+                        valgt={skjemaState.helseHinder}
+                        visFeilmelding={visFeilmelding && !skjemaState.helseHinder}
+                    />
+                </div>
+                <AndreProblemer
+                    onChange={(value) => dispatch({ type: SporsmalId.andreForhold, value: value })}
+                    valgt={skjemaState.andreForhold}
+                    skjematype={'standard'}
+                    visFeilmelding={visFeilmelding && !skjemaState.andreForhold}
+                />
+            </Hindringer>
         ),
-        [SkjemaSide.AndreProblemer]: (
-            <AndreProblemer
-                onChange={(value) => dispatch({ type: SporsmalId.andreForhold, value: value })}
-                valgt={skjemaState.andreForhold}
-                skjematype={'standard'}
-                visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.OppsummeringUtenPlikter]: (
+        [SkjemaSide.Oppsummering]: (
             <OppsummeringOppdaterOpplysninger
                 skjemaState={skjemaState}
                 skjemaPrefix={'/oppdater-opplysninger/'}

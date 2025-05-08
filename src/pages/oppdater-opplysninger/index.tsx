@@ -38,7 +38,7 @@ const OppdaterOpplysninger = () => {
     }
 
     if (opplysninger.opplysningerOmArbeidssoekerId) {
-        router.push(`/oppdater-opplysninger/${SkjemaSide.OppsummeringUtenPlikter}`);
+        router.push(`/oppdater-opplysninger/${SkjemaSide.Oppsummering}`);
     } else {
         // ingen eksisterende opplysninger
         router.push(`/oppdater-opplysninger/${SkjemaSide.DinSituasjon}`);

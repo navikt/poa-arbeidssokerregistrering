@@ -12,22 +12,17 @@ export enum SkjemaSide {
     DinSituasjon = '0',
     SisteJobb = '1',
     Utdanning = '2',
-    GodkjentUtdanning = '3',
-    BestaattUtdanning = '4',
-    Helseproblemer = '5',
-    AndreProblemer = '6',
-    Oppsummering = '8',
-    OppsummeringUtenPlikter = '8',
-    FullforRegistrering = '12',
+    Hindringer = '3',
+    Oppsummering = '4',
+    FullforRegistrering = '5',
 }
 
 export type SkjemaSideType =
     | SkjemaSide.DinSituasjon
     | SkjemaSide.SisteJobb
     | SkjemaSide.Utdanning
-    | SkjemaSide.Helseproblemer
-    | SkjemaSide.AndreProblemer
-    | SkjemaSide.OppsummeringUtenPlikter;
+    | SkjemaSide.Hindringer
+    | SkjemaSide.Oppsummering;
 
 export type Navigering<T extends SkjemaSide> = {
     neste?: T;
@@ -54,10 +49,10 @@ const skjemasider = {
     [SporsmalId.sisteStilling]: SkjemaSide.SisteJobb,
     [SporsmalId.sisteJobb]: SkjemaSide.SisteJobb,
     [SporsmalId.utdanning]: SkjemaSide.Utdanning,
-    [SporsmalId.utdanningBestatt]: SkjemaSide.BestaattUtdanning,
-    [SporsmalId.utdanningGodkjent]: SkjemaSide.GodkjentUtdanning,
-    [SporsmalId.andreForhold]: SkjemaSide.AndreProblemer,
-    [SporsmalId.helseHinder]: SkjemaSide.Helseproblemer,
+    [SporsmalId.utdanningGodkjent]: SkjemaSide.Utdanning,
+    [SporsmalId.utdanningBestatt]: SkjemaSide.Utdanning,
+    [SporsmalId.andreForhold]: SkjemaSide.Hindringer,
+    [SporsmalId.helseHinder]: SkjemaSide.Hindringer,
 };
 
 export const hentSkjemaside = (sporsmalId: SporsmalId) => skjemasider[sporsmalId];
