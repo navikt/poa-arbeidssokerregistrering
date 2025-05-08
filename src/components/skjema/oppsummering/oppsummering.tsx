@@ -35,7 +35,7 @@ interface OppsummeringProps {
     onSubmit(): void;
 }
 
-const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
+const Oppsummering = (props: OppsummeringProps) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
@@ -71,4 +71,4 @@ const OppsummeringUtenPlikter = (props: OppsummeringProps) => {
     );
 };
 
-export default OppsummeringUtenPlikter;
+export default Oppsummering;
