@@ -6,14 +6,16 @@ import { SkjemaSide, SkjemaState } from '../model/skjema';
 import { SkjemaAction, skjemaReducer } from '../lib/skjema-state';
 import styles from '../styles/skjema.module.css';
 import TilbakeKnapp from './skjema/tilbake-knapp';
-import { Knapperad } from './skjema/knapperad/knapperad';
 import Avbryt from './skjema/avbryt-lenke';
 import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
 import { loggAktivitet } from '../lib/amplitude';
-import { Link } from '@navikt/ds-react';
+import { Button, Link } from '@navikt/ds-react';
 import { useConfig } from '../contexts/config-context';
 import { Config } from '../model/config';
 import RegistreringsOversikt from './registrerings-oversikt';
+import { ArrowLeftIcon, ArrowRightIcon, XMarkIcon } from '@navikt/aksel-icons';
+import ForrigeSteg from './skjema/knapperad/forrige-steg';
+import NesteSteg from './skjema/knapperad/neste-steg';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -143,17 +145,17 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                 skjemaState={skjemaState}
                 navigerTilSide={navigerTilSide}
             />
-            {forrigeLenke && (
-                <div className="self-start">
-                    <TilbakeKnapp href={forrigeLenke} />
-                </div>
-            )}
             {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
-            {neste && <Knapperad onNeste={validerOgGaaTilNeste} />}
+            <div className={'flex my-8'}>
+                <ForrigeSteg disabled={!forrigeLenke} onClick={() => navigerTilSide(forrige as SkjemaSide)} />
+                {neste && <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />}
+            </div>
             {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
             {urlPrefix === 'oppdater-opplysninger' && (
                 <div className="text-center py-4">
-                    <Link href={dittNavUrl}>Avbryt oppdatering</Link>
+                    <Link href={dittNavUrl}>
+                        <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
+                    </Link>
                 </div>
             )}
         </div>
