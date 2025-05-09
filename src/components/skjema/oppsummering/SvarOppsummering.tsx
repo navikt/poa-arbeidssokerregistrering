@@ -6,11 +6,17 @@ import useSprak from '../../../hooks/useSprak';
 import { hentTekst } from '../../../model/sporsmal';
 import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
 
-interface RadProps {
-    radTittel: string;
+type Svar = {
+    spoersmal: string;
     svaralternativ: string;
+    key: string;
+};
+
+interface OppsummeringProps {
+    tittel: string;
     url: string;
     key: string;
+    alternativer: Svar[];
 }
 
 const TEKSTER: Tekster<string> = {
@@ -25,6 +31,10 @@ const TEKSTER: Tekster<string> = {
         [SporsmalId.andreForhold + 'radTittel']: 'Andre problemer',
         [SporsmalId.andreForhold + 'radTittel']: 'Andre hensyn',
         endreSvaret: 'Endre svaret',
+        SITUASJON: 'Situasjon',
+        STILLING: 'Siste stilling',
+        UTDANNING: 'Utdanning',
+        HINDRINGER: 'Hindringer',
     },
     nn: {
         [SporsmalId.dinSituasjon + 'radTittel']: 'Situasjon',
@@ -36,6 +46,10 @@ const TEKSTER: Tekster<string> = {
         //TODO: Hvilken av andre forhold-tekstene skal vi bruke i oppsummeringen?
         [SporsmalId.andreForhold + 'radTittel']: 'Andre problem',
         [SporsmalId.andreForhold + 'radTittel']: 'Andre omsyn',
+        SITUASJON: 'Situasjon',
+        STILLING: 'Siste stilling',
+        UTDANNING: 'Utdanning',
+        HINDRINGER: 'Hindringar',
     },
     en: {
         [SporsmalId.dinSituasjon + 'radTittel']: 'Situation',
@@ -46,23 +60,58 @@ const TEKSTER: Tekster<string> = {
         [SporsmalId.helseHinder + 'radTittel']: 'Health problems',
         [SporsmalId.andreForhold + 'radTittel']: 'Other considerations',
         endreSvaret: 'Change your reply',
+        SITUASJON: 'Situation',
+        STILLING: 'Last position',
+        UTDANNING: 'Education',
+        HINDRINGER: 'Challenges',
     },
 };
 
-const Rad = (props: RadProps) => {
+enum TOPLEVEL_VALUES {
+    situasjon = 'SITUASJON',
+    stilling = 'STILLING',
+    utdanning = 'UTDANNING',
+    hindringer = 'HINDRINGER',
+}
+
+const toplevels = {
+    [SporsmalId.dinSituasjon]: TOPLEVEL_VALUES.situasjon,
+    [SporsmalId.sisteJobb]: TOPLEVEL_VALUES.stilling,
+    [SporsmalId.sisteStilling]: TOPLEVEL_VALUES.stilling,
+    [SporsmalId.utdanning]: TOPLEVEL_VALUES.utdanning,
+    [SporsmalId.utdanningGodkjent]: TOPLEVEL_VALUES.utdanning,
+    [SporsmalId.utdanningBestatt]: TOPLEVEL_VALUES.utdanning,
+    [SporsmalId.helseHinder]: TOPLEVEL_VALUES.hindringer,
+    [SporsmalId.andreForhold]: TOPLEVEL_VALUES.hindringer,
+};
+
+interface OppsummeringsInterface {
+    [TOPLEVEL_VALUES.situasjon]?: OppsummeringProps;
+    [TOPLEVEL_VALUES.stilling]?: OppsummeringProps;
+    [TOPLEVEL_VALUES.utdanning]?: OppsummeringProps;
+    [TOPLEVEL_VALUES.hindringer]?: OppsummeringProps;
+}
+
+const hentNivaa = (sporsmalId: SporsmalId) => toplevels[sporsmalId];
+
+const Oppsummeringsboks = (props: OppsummeringProps) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     return (
         <Box className="mb-4">
             <FormSummary>
                 <FormSummary.Header>
-                    <FormSummary.Heading level="2">{props.radTittel}</FormSummary.Heading>
+                    <FormSummary.Heading level="2">{props.tittel}</FormSummary.Heading>
                     <FormSummary.EditLink href={props.url}>{tekst('endreSvaret')}</FormSummary.EditLink>
                 </FormSummary.Header>
-                <FormSummary.Answer className="pl-7 pt-4">
-                    <FormSummary.Label>{props.radTittel}</FormSummary.Label>
-                    <FormSummary.Value>{props.svaralternativ}</FormSummary.Value>
-                </FormSummary.Answer>
+                {props.alternativer.map((alternativ) => {
+                    return (
+                        <FormSummary.Answer className="pl-7 pt-4" key={alternativ.key}>
+                            <FormSummary.Label>{alternativ.spoersmal}</FormSummary.Label>
+                            <FormSummary.Value>{alternativ.svaralternativ}</FormSummary.Value>
+                        </FormSummary.Answer>
+                    );
+                })}
             </FormSummary>
         </Box>
     );
@@ -78,31 +127,43 @@ const SvarTabell = (props: Props) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
+    const oppsummering = Object.entries(skjemaState)
+        .filter(([sporsmalId]) => {
+            const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid'];
+
+            if (skjemaState[SporsmalId.sisteStilling] === SisteStillingValg.HAR_IKKE_HATT_JOBB) {
+                filtrerVekkSporsmalId.push(SporsmalId.sisteJobb);
+            }
+
+            return !filtrerVekkSporsmalId.includes(sporsmalId);
+        })
+        .reduce((oppsummering, [sporsmalId, svar]) => {
+            const nivaa = hentNivaa(sporsmalId as SporsmalId);
+            const denne = oppsummering[nivaa];
+            const alternativ = {
+                spoersmal: tekst(`${sporsmalId}radTittel`),
+                svaralternativ: sporsmalId === SporsmalId.sisteJobb ? svar.label : hentTekst(sprak, svar),
+                key: sporsmalId,
+            };
+            if (denne !== undefined) {
+                denne.alternativer.push(alternativ);
+            } else {
+                oppsummering[nivaa] = {
+                    tittel: tekst(nivaa),
+                    url: `${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`,
+                    key: nivaa,
+                    alternativer: [alternativ],
+                };
+            }
+            return oppsummering;
+        }, {} as OppsummeringsInterface);
+
     return (
         <Box>
-            {Object.entries(skjemaState)
-                .filter(([sporsmalId]) => {
-                    const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid'];
-
-                    if (skjemaState[SporsmalId.sisteStilling] === SisteStillingValg.HAR_IKKE_HATT_JOBB) {
-                        filtrerVekkSporsmalId.push(SporsmalId.sisteJobb);
-                    }
-
-                    return !filtrerVekkSporsmalId.includes(sporsmalId);
-                })
-                .map(
-                    ([sporsmalId, svar]) =>
-                        svar && (
-                            <Rad
-                                radTittel={tekst(sporsmalId + 'radTittel')}
-                                svaralternativ={
-                                    sporsmalId === SporsmalId.sisteJobb ? svar.label : hentTekst(sprak, svar)
-                                }
-                                url={`${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`}
-                                key={sporsmalId}
-                            />
-                        ),
-                )}
+            {Object.values(oppsummering).map((oppfoering) => {
+                const { tittel, url, key, alternativer } = oppfoering as OppsummeringProps;
+                return <Oppsummeringsboks tittel={tittel} url={url} alternativer={alternativer} key={key} />;
+            })}
         </Box>
     );
 };
