@@ -1,12 +1,12 @@
-import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import Head from 'next/head';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
-import OppsummeringSvg from './oppsummering-svg';
+
 import { SkjemaState } from '../../../model/skjema';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
-import SvarTabell from './SvarTabell';
+import SvarTabell from './SvarOppsummering';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -56,9 +56,9 @@ const Oppsummering = (props: OppsummeringProps) => {
             <BodyLong size={'large'} className="mb-6">
                 {tekst('ingress')}
             </BodyLong>
-            <GuidePanel poster illustration={<OppsummeringSvg />}>
-                <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
-            </GuidePanel>
+
+            <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
+
             <div className="mt-12">
                 <FullforRegistreringKnappNyInngang
                     skjemaState={skjemaState}

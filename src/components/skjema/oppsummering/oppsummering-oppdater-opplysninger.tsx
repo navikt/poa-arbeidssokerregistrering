@@ -4,7 +4,7 @@ import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-ut
 import Head from 'next/head';
 import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import OppsummeringSvg from './oppsummering-svg';
-import SvarTabell from './SvarTabell';
+import SvarTabell from './SvarOppsummering';
 import OppdaterOpplysningerKnapp from '../oppdater-opplysninger-knapp';
 
 const TEKSTER: Tekster<string> = {
@@ -54,9 +54,7 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
             <BodyLong size={'large'} className="mb-6">
                 {tekst('ingress')}
             </BodyLong>
-            <GuidePanel poster illustration={<OppsummeringSvg />}>
-                <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
-            </GuidePanel>
+            <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             <div className="mt-12">
                 <OppdaterOpplysningerKnapp
                     skjemaState={skjemaState}
