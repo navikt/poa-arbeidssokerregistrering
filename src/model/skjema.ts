@@ -9,12 +9,12 @@ import {
 } from '@navikt/arbeidssokerregisteret-utils';
 
 export enum SkjemaSide {
-    DinSituasjon = '0',
-    SisteJobb = '1',
-    Utdanning = '2',
-    Hindringer = '3',
-    Oppsummering = '4',
-    FullforRegistrering = '5',
+    DinSituasjon = '1',
+    SisteJobb = '2',
+    Utdanning = '3',
+    Hindringer = '4',
+    Oppsummering = '5',
+    FullforRegistrering = '6',
 }
 
 export type SkjemaSideType =
