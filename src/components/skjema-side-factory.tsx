@@ -9,11 +9,11 @@ import TilbakeKnapp from './skjema/tilbake-knapp';
 import { Knapperad } from './skjema/knapperad/knapperad';
 import Avbryt from './skjema/avbryt-lenke';
 import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
-import ProgressBar from './progress-bar/progress-bar';
 import { loggAktivitet } from '../lib/amplitude';
 import { Link } from '@navikt/ds-react';
 import { useConfig } from '../contexts/config-context';
 import { Config } from '../model/config';
+import RegistreringsOversikt from './registrerings-oversikt';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -135,10 +135,14 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
             inputElement.focus();
         }
     }, [aktivSide]);
-
     return (
         <div ref={skjemaWrapperRef} className={styles.main}>
-            <ProgressBar value={erSkjemaSendt ? 1 : fremdrift} className={'mb-6'} />
+            <RegistreringsOversikt
+                aktivSide={props.aktivSide}
+                validerSkjemaForSide={validerSkjemaForSide}
+                skjemaState={skjemaState}
+                navigerTilSide={navigerTilSide}
+            />
             {forrigeLenke && (
                 <div className="self-start">
                     <TilbakeKnapp href={forrigeLenke} />
