@@ -1,5 +1,5 @@
 import useSprak from '../hooks/useSprak';
-import { FormProgress } from '@navikt/ds-react';
+import { FormProgress, Heading } from '@navikt/ds-react';
 import { SkjemaSide, SkjemaState } from '../model/skjema';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
 
@@ -46,28 +46,37 @@ const RegistreringsOversikt = (props: Props) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { validerSkjemaForSide, aktivSide, skjemaState, navigerTilSide } = props;
+    const heading = steps[aktivSide - 1]?.tittel;
     return (
-        <FormProgress
-            totalSteps={5}
-            activeStep={aktivSide}
-            onStepChange={(step: unknown) => {
-                navigerTilSide(step as SkjemaSide);
-            }}
-        >
-            {steps.map((s) => {
-                const harGyldigTilstand = validerSkjemaForSide(s.side, skjemaState);
-                return (
-                    <FormProgress.Step
-                        key={s.tittel}
-                        href={'#'}
-                        interactive={harGyldigTilstand}
-                        completed={!s.sisteSteg && harGyldigTilstand}
-                    >
-                        {tekst(s.tittel)}
-                    </FormProgress.Step>
-                );
-            })}
-        </FormProgress>
+        <>
+            {heading && (
+                <Heading size={'medium'} level="2" spacing>
+                    {tekst(heading)}
+                </Heading>
+            )}
+            <FormProgress
+                totalSteps={5}
+                activeStep={aktivSide}
+                onStepChange={(step: unknown) => {
+                    navigerTilSide(step as SkjemaSide);
+                }}
+                className={'mb-4'}
+            >
+                {steps.map((s) => {
+                    const harGyldigTilstand = validerSkjemaForSide(s.side, skjemaState);
+                    return (
+                        <FormProgress.Step
+                            key={s.tittel}
+                            href={'#'}
+                            interactive={harGyldigTilstand}
+                            completed={!s.sisteSteg && harGyldigTilstand}
+                        >
+                            {tekst(s.tittel)}
+                        </FormProgress.Step>
+                    );
+                })}
+            </FormProgress>
+        </>
     );
 };
 
