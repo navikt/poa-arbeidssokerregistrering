@@ -1,6 +1,8 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong, Heading, HGrid } from '@navikt/ds-react';
+import Image from 'next/image';
 import Head from 'next/head';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import OppsummeringIkonSvg from './oppsummering-ikon.svg';
 
 import useSprak from '../../../hooks/useSprak';
 
@@ -10,14 +12,14 @@ import SvarTabell from './SvarOppsummering';
 
 const TEKSTER: Tekster<string> = {
     nb: {
-        sideTittel: 'Arbeidssøkerregistrering: Gjennomgang av opplysninger',
-        header: 'Er opplysningene riktige?',
+        sideTittel: 'Arbeidssøkerregistrering: Er alle opplysningene dine riktige?',
+        header: 'Er alle opplysningene dine riktige?',
         ingress: 'Her er opplysningene vi har registrert om deg.',
         fullfoerRegistrering: 'Fullfør registrering som arbeidssøker',
     },
     nn: {
-        sideTittel: 'Arbeidssøkjarregistrering: Stemmer opplysningane',
-        header: 'Stemmer opplysningane?',
+        sideTittel: 'Arbeidssøkjarregistrering: Er alle opplysningane dine rette?',
+        header: 'Er alle opplysningane dine rette?',
         ingress: 'Her er opplysningane vi har registrert om deg.',
         fullfoerRegistrering: 'Fullfør registreringa som arbeidssøkjar',
     },
@@ -50,16 +52,22 @@ const Oppsummering = (props: OppsummeringProps) => {
             <Head>
                 <title>{tekst('sideTittel')}</title>
             </Head>
-            <Heading size={'medium'} level="1" spacing>
-                {tekst('header')}
-            </Heading>
-            <BodyLong size={'large'} className="mb-6">
-                {tekst('ingress')}
-            </BodyLong>
+            <div className="max-w-4xl">
+                <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+                    <div style={{ width: '96px', height: '96px' }}>
+                        <Image src={OppsummeringIkonSvg} alt="ikon" width={96} height={96} />
+                    </div>
+                    <div className="w-full">
+                        <Heading size={'xlarge'} level="1" spacing>
+                            {tekst('header')}
+                        </Heading>
+                        <BodyLong size={'large'} className="mb-6">
+                            {tekst('ingress')}
+                        </BodyLong>
 
-            <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
-
-            <div className="mt-12">
+                        <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
+                    </div>
+                </HGrid>
                 <FullforRegistreringKnappNyInngang
                     skjemaState={skjemaState}
                     onSubmit={onSubmit}
