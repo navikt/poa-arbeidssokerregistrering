@@ -1,4 +1,5 @@
 import { Box, FormSummary } from '@navikt/ds-react';
+import NextLink from 'next/link';
 import { lagHentTekstForSprak, SisteStillingValg, SporsmalId, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
@@ -102,7 +103,15 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2">{props.tittel}</FormSummary.Heading>
-                    <FormSummary.EditLink href={props.url}>{tekst('endreSvaret')}</FormSummary.EditLink>
+                    <FormSummary.EditLink>
+                        <NextLink
+                            href={props.url}
+                            aria-label={`${tekst('endreSvaret')}: ${props.tittel.toLowerCase()}`}
+                            className={'navds-link'}
+                        >
+                            {tekst('endreSvaret')}
+                        </NextLink>
+                    </FormSummary.EditLink>
                 </FormSummary.Header>
                 {props.alternativer.map((alternativ) => {
                     return (
