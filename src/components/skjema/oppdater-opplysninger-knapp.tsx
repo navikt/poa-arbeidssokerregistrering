@@ -7,6 +7,7 @@ import { fetcher as api } from '../../lib/api-utils';
 import { logger } from '@navikt/next-logger';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
 import { Button } from '@navikt/ds-react';
+import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { SkjemaState } from '../../model/skjema';
 
 interface OppdaterOpplysningerKnappProps {
@@ -66,8 +67,14 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
                     <FeilmeldingGenerell />
                 </div>
             )}
-            <div style={{ textAlign: 'center' }}>
-                <Button onClick={validerOgFullfor} loading={senderSkjema} disabled={senderSkjema}>
+            <div style={{ textAlign: 'left' }}>
+                <Button
+                    onClick={validerOgFullfor}
+                    loading={senderSkjema}
+                    disabled={senderSkjema}
+                    icon={<PaperplaneIcon />}
+                    iconPosition="right"
+                >
                     {tekst('fullfoerRegistrering')}
                 </Button>
             </div>
