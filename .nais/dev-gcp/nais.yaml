@@ -10,6 +10,9 @@ spec:
     autoInstrumentation:
       enabled: true
       runtime: nodejs
+    logging:
+      destinations:
+        - id: loki
   image: {{image}}
   port: 3000
   liveness:
