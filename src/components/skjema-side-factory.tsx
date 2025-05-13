@@ -4,18 +4,18 @@ import { useRouter } from 'next/router';
 
 import { SkjemaSide, SkjemaState } from '../model/skjema';
 import { SkjemaAction, skjemaReducer } from '../lib/skjema-state';
-import styles from '../styles/skjema.module.css';
-import TilbakeKnapp from './skjema/tilbake-knapp';
 import Avbryt from './skjema/avbryt-lenke';
 import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
 import { loggAktivitet } from '../lib/amplitude';
-import { Button, Link } from '@navikt/ds-react';
+import { Heading, HGrid, Link } from '@navikt/ds-react';
 import { useConfig } from '../contexts/config-context';
 import { Config } from '../model/config';
 import RegistreringsOversikt from './registrerings-oversikt';
-import { ArrowLeftIcon, ArrowRightIcon, XMarkIcon } from '@navikt/aksel-icons';
+import { XMarkIcon } from '@navikt/aksel-icons';
 import ForrigeSteg from './skjema/knapperad/forrige-steg';
 import NesteSteg from './skjema/knapperad/neste-steg';
+import Image from 'next/image';
+import skjemaIkonSvg from './skjema-ikon.svg';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -137,27 +137,38 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
             inputElement.focus();
         }
     }, [aktivSide]);
+
     return (
-        <div ref={skjemaWrapperRef} className={styles.main}>
-            <RegistreringsOversikt
-                aktivSide={props.aktivSide}
-                validerSkjemaForSide={validerSkjemaForSide}
-                skjemaState={skjemaState}
-                navigerTilSide={navigerTilSide}
-            />
-            {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
-            <div className={'flex my-8'}>
-                <ForrigeSteg disabled={!forrigeLenke} onClick={() => navigerTilSide(forrige as SkjemaSide)} />
-                {neste && <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />}
-            </div>
-            {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
-            {urlPrefix === 'oppdater-opplysninger' && (
-                <div className="text-center py-4">
-                    <Link href={dittNavUrl}>
-                        <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
-                    </Link>
+        <div ref={skjemaWrapperRef} className={'max-w-4xl'}>
+            <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+                <div style={{ width: '96px', height: '96px' }}>
+                    <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
-            )}
+                <div>
+                    <Heading size={'xlarge'} level={'1'} spacing>
+                        Registrer deg som arbeidssøker
+                    </Heading>
+                    <RegistreringsOversikt
+                        aktivSide={props.aktivSide}
+                        validerSkjemaForSide={validerSkjemaForSide}
+                        skjemaState={skjemaState}
+                        navigerTilSide={navigerTilSide}
+                    />
+                    {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
+                    <div className={'flex my-8'}>
+                        <ForrigeSteg disabled={!forrigeLenke} onClick={() => navigerTilSide(forrige as SkjemaSide)} />
+                        {neste && <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />}
+                    </div>
+                    {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
+                    {urlPrefix === 'oppdater-opplysninger' && (
+                        <div className="text-center py-4">
+                            <Link href={dittNavUrl}>
+                                <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
+                            </Link>
+                        </div>
+                    )}
+                </div>
+            </HGrid>
         </div>
     );
 };

@@ -2,7 +2,7 @@ import { BodyLong, Heading, HGrid } from '@navikt/ds-react';
 import Image from 'next/image';
 import Head from 'next/head';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import OppsummeringIkonSvg from './oppsummering-ikon.svg';
+import OppsummeringIkonSvg from '../../skjema-ikon.svg';
 
 import useSprak from '../../../hooks/useSprak';
 

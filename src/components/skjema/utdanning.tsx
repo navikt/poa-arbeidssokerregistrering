@@ -1,14 +1,12 @@
-import { Heading, Panel } from '@navikt/ds-react';
+import { Heading } from '@navikt/ds-react';
 import Head from 'next/head';
-import { SporsmalId, Utdanningsnivaa, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, SporsmalId, Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
 
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { hentTekst } from '../../model/sporsmal';
-
-import styles from '../../styles/skjema.module.css';
 import { SkjemaBox } from './skjema-box';
 
 const TEKSTER: Tekster<string> = {

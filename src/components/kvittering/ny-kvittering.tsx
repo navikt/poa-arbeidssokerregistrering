@@ -7,6 +7,7 @@ import Image from 'next/image';
 import kvitteringIkonSvg from './kvittering-ikon.svg';
 import LenkePanel from '../lenke-panel';
 import { loggAktivitet } from '../../lib/amplitude';
+import Overskrift from '../skjema/overskrift';
 
 const TEKSTER = {
     nb: {
@@ -67,9 +68,7 @@ const NyKvittering = () => {
                     <Image src={kvitteringIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
                 <div>
-                    <Heading size={'xlarge'} level={'1'} spacing>
-                        {tekst('heading')}
-                    </Heading>
+                    <Overskrift />
                     <BodyShort spacing>{tekst('body1')}</BodyShort>
                     <BodyLong spacing>{tekst('body2')}</BodyLong>
                     <Heading spacing size={'small'} level={'3'}>
