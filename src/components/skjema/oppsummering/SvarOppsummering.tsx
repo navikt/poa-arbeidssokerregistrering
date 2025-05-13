@@ -1,6 +1,12 @@
 import { Box, FormSummary } from '@navikt/ds-react';
 import NextLink from 'next/link';
-import { lagHentTekstForSprak, SisteStillingValg, SporsmalId, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import {
+    DinSituasjon,
+    lagHentTekstForSprak,
+    SisteStillingValg,
+    SporsmalId,
+    Tekster,
+} from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
 
@@ -135,12 +141,14 @@ const SvarTabell = (props: Props) => {
     const { skjemaState, skjemaPrefix } = props;
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-
     const oppsummering = Object.entries(skjemaState)
         .filter(([sporsmalId]) => {
             const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid'];
 
-            if (skjemaState[SporsmalId.sisteStilling] === SisteStillingValg.HAR_IKKE_HATT_JOBB) {
+            if (
+                skjemaState[SporsmalId.sisteStilling] === SisteStillingValg.HAR_IKKE_HATT_JOBB ||
+                skjemaState[SporsmalId.dinSituasjon] === DinSituasjon.ALDRI_HATT_JOBB
+            ) {
                 filtrerVekkSporsmalId.push(SporsmalId.sisteJobb);
             }
 
@@ -151,7 +159,7 @@ const SvarTabell = (props: Props) => {
             const denne = oppsummering[nivaa];
             const alternativ = {
                 spoersmal: tekst(`${sporsmalId}radTittel`),
-                svaralternativ: sporsmalId === SporsmalId.sisteJobb ? svar.label : hentTekst(sprak, svar),
+                svaralternativ: sporsmalId === SporsmalId.sisteStilling ? svar.label : hentTekst(sprak, svar),
                 key: sporsmalId,
             };
             if (denne !== undefined) {

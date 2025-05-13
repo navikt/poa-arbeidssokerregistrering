@@ -1,8 +1,6 @@
-import { BodyLong, Heading, HGrid } from '@navikt/ds-react';
-import Image from 'next/image';
+import { BodyLong, Heading } from '@navikt/ds-react';
 import Head from 'next/head';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import OppsummeringIkonSvg from '../../skjema-ikon.svg';
 
 import useSprak from '../../../hooks/useSprak';
 
@@ -52,29 +50,19 @@ const Oppsummering = (props: OppsummeringProps) => {
             <Head>
                 <title>{tekst('sideTittel')}</title>
             </Head>
-            <div className="max-w-4xl">
-                <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
-                    <div style={{ width: '96px', height: '96px' }}>
-                        <Image src={OppsummeringIkonSvg} alt="ikon" width={96} height={96} />
-                    </div>
-                    <div className="w-full">
-                        <Heading size={'xlarge'} level="1" spacing>
-                            {tekst('header')}
-                        </Heading>
-                        <BodyLong size={'large'} className="mb-6">
-                            {tekst('ingress')}
-                        </BodyLong>
-
-                        <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
-                    </div>
-                </HGrid>
-                <FullforRegistreringKnappNyInngang
-                    skjemaState={skjemaState}
-                    onSubmit={onSubmit}
-                    onValiderSkjema={onValiderSkjema}
-                    tekst={tekst}
-                />
-            </div>
+            <Heading size={'large'} level="2" spacing>
+                {tekst('header')}
+            </Heading>
+            <BodyLong size={'large'} className="mb-6">
+                {tekst('ingress')}
+            </BodyLong>
+            <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
+            <FullforRegistreringKnappNyInngang
+                skjemaState={skjemaState}
+                onSubmit={onSubmit}
+                onValiderSkjema={onValiderSkjema}
+                tekst={tekst}
+            />
         </>
     );
 };
