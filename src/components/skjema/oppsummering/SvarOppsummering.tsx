@@ -137,7 +137,7 @@ interface Props {
     skjemaPrefix: '/opplysninger/' | '/oppdater-opplysninger/';
 }
 
-const SvarTabell = (props: Props) => {
+const SvarOppsummering = (props: Props) => {
     const { skjemaState, skjemaPrefix } = props;
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
@@ -185,4 +185,4 @@ const SvarTabell = (props: Props) => {
     );
 };
 
-export default SvarTabell;
+export default SvarOppsummering;
