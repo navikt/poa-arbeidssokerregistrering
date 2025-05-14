@@ -1,4 +1,3 @@
-import { Heading } from '@navikt/ds-react';
 import Head from 'next/head';
 import { lagHentTekstForSprak, SporsmalId, Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
@@ -12,15 +11,12 @@ import { SkjemaBox } from './skjema-box';
 const TEKSTER: Tekster<string> = {
     nb: {
         sideTittel: 'Arbeidssøkerregistrering: Utdanningsnivå',
-        heading: 'Utdanning',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Høgaste fullførte utdanning',
-        heading: 'Utdanning',
     },
     en: {
         sideTittel: 'Register as a Job Seeker : Education',
-        heading: 'Education',
     },
 };
 
@@ -55,9 +51,6 @@ const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa> & { children?: R
             </Head>
             <SkjemaBox>
                 <form>
-                    <Heading size="medium" spacing level="1">
-                        {sideTekst('heading')}
-                    </Heading>
                     <RadioGruppe
                         legend={tekst(SporsmalId.utdanning)}
                         valg={valg}

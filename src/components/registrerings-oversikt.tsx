@@ -5,22 +5,22 @@ import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
 
 const TEKSTER = {
     nb: {
-        dinsituasjon: 'Din situasjon',
-        sistejobb: 'Siste jobb',
+        dinsituasjon: 'Din arbeidssøkersituasjon',
+        sistejobb: 'Hva er din siste jobb?',
         utdanning: 'Utdanning',
         hindringer: 'Hindringer',
         oppsummering: 'Oppsummering',
     },
     nn: {
-        dinsituasjon: 'Din situasjon',
-        sistejobb: 'Siste jobb',
+        dinsituasjon: 'Din situasjon som arbeidssøkjar',
+        sistejobb: 'Kva var den siste jobben din?',
         utdanning: 'Utdanning',
         hindringer: 'Hindringar',
         oppsummering: 'Oppsummering',
     },
     en: {
         dinsituasjon: 'Your jobseeker situation',
-        sistejobb: 'Last job',
+        sistejobb: 'What was your last job?',
         utdanning: 'Education',
         hindringer: 'Impediments',
         oppsummering: 'Summary',
@@ -60,7 +60,7 @@ const RegistreringsOversikt = (props: Props) => {
                 onStepChange={(step: unknown) => {
                     navigerTilSide(step as SkjemaSide);
                 }}
-                className={'mb-4'}
+                className={'mb-8'}
             >
                 {steps.map((s) => {
                     const harGyldigTilstand = validerSkjemaForSide(s.side, skjemaState);

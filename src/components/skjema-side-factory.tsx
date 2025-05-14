@@ -140,11 +140,11 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     return (
         <div ref={skjemaWrapperRef} className={'max-w-4xl'}>
-            <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+            <HGrid columns={{ sm: 1, md: 1, lg: '1fr 11fr', xl: '1fr 11fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
-                <div>
+                <div className={'sm:mt-8'}>
                     <Heading size={'xlarge'} level={'1'} spacing>
                         Registrer deg som arbeidssøker
                     </Heading>
@@ -156,10 +156,15 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                     />
                     {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
                     <div className={'flex my-8'}>
-                        <ForrigeSteg disabled={!forrigeLenke} onClick={() => navigerTilSide(forrige as SkjemaSide)} />
+                        {neste && (
+                            <ForrigeSteg
+                                disabled={!forrigeLenke}
+                                onClick={() => navigerTilSide(forrige as SkjemaSide)}
+                            />
+                        )}
                         {neste && <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />}
                     </div>
-                    {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
+                    {urlPrefix !== 'oppdater-opplysninger' && aktivSide === SkjemaSide.Oppsummering && <Avbryt />}
                     {urlPrefix === 'oppdater-opplysninger' && (
                         <div className="text-center py-4">
                             <Link href={dittNavUrl}>
