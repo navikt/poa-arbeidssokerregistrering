@@ -1,9 +1,9 @@
-import { BodyLong, Heading } from '@navikt/ds-react';
+import { BodyLong } from '@navikt/ds-react';
 import Head from 'next/head';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
 
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { SkjemaState } from '../../../model/skjema';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
 import SvarOppsummering from './SvarOppsummering';
