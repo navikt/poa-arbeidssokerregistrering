@@ -144,7 +144,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
-                <div>
+                <div className={'sm:mt-8'}>
                     <Heading size={'xlarge'} level={'1'} spacing>
                         Registrer deg som arbeidssøker
                     </Heading>
