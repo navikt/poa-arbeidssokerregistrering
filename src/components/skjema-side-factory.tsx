@@ -140,7 +140,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     return (
         <div ref={skjemaWrapperRef} className={'max-w-4xl'}>
-            <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+            <HGrid columns={{ sm: 1, md: 1, lg: '1fr 11fr', xl: '1fr 11fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
