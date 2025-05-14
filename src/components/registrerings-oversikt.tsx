@@ -2,6 +2,7 @@ import useSprak from '../hooks/useSprak';
 import { FormProgress, Heading } from '@navikt/ds-react';
 import { SkjemaSide, SkjemaState } from '../model/skjema';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
+import NextLink from 'next/link';
 
 const TEKSTER = {
     nb: {
@@ -67,7 +68,6 @@ const RegistreringsOversikt = (props: Props) => {
                     return (
                         <FormProgress.Step
                             key={s.tittel}
-                            href={'#'}
                             interactive={harGyldigTilstand}
                             completed={!s.sisteSteg && harGyldigTilstand}
                         >
