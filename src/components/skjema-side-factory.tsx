@@ -164,7 +164,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                         )}
                         {neste && <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />}
                     </div>
-                    {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
+                    {urlPrefix !== 'oppdater-opplysninger' && aktivSide === SkjemaSide.Oppsummering && <Avbryt />}
                     {urlPrefix === 'oppdater-opplysninger' && (
                         <div className="text-center py-4">
                             <Link href={dittNavUrl}>
