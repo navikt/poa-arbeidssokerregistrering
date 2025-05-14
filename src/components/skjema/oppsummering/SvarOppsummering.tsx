@@ -105,7 +105,7 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     return (
-        <Box className="mb-4">
+        <Box className="mb-8">
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2">{props.tittel}</FormSummary.Heading>
@@ -121,10 +121,12 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
                 </FormSummary.Header>
                 {props.alternativer.map((alternativ) => {
                     return (
-                        <FormSummary.Answer className="pl-7 pt-4" key={alternativ.key}>
-                            <FormSummary.Label>{alternativ.spoersmal}</FormSummary.Label>
-                            <FormSummary.Value>{alternativ.svaralternativ}</FormSummary.Value>
-                        </FormSummary.Answer>
+                        alternativ.svaralternativ && (
+                            <FormSummary.Answer className="pl-7 py-4 !mb-0" key={alternativ.key}>
+                                <FormSummary.Label>{alternativ.spoersmal}</FormSummary.Label>
+                                <FormSummary.Value>{alternativ.svaralternativ}</FormSummary.Value>
+                            </FormSummary.Answer>
+                        )
                     );
                 })}
             </FormSummary>
@@ -159,7 +161,7 @@ const SvarOppsummering = (props: Props) => {
             const denne = oppsummering[nivaa];
             const alternativ = {
                 spoersmal: tekst(`${sporsmalId}radTittel`),
-                svaralternativ: sporsmalId === SporsmalId.sisteStilling ? svar.label : hentTekst(sprak, svar),
+                svaralternativ: sporsmalId === SporsmalId.sisteJobb ? svar.label : hentTekst(sprak, svar),
                 key: sporsmalId,
             };
             if (denne !== undefined) {
