@@ -154,18 +154,22 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                         navigerTilSide={navigerTilSide}
                     />
                     {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
-                    <div className={'flex my-4'}>
-                        {neste && (
+                    {neste && (
+                        <div className={'flex my-8'}>
                             <ForrigeSteg
                                 disabled={!forrigeLenke}
                                 onClick={() => navigerTilSide(forrige as SkjemaSide)}
                             />
-                        )}
-                        {neste && <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />}
-                    </div>
-                    {urlPrefix !== 'oppdater-opplysninger' && aktivSide === SkjemaSide.Oppsummering && <Avbryt />}
+                            <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />
+                        </div>
+                    )}
+                    {urlPrefix !== 'oppdater-opplysninger' && aktivSide === SkjemaSide.Oppsummering && (
+                        <div className={'py-8'}>
+                            <Avbryt />
+                        </div>
+                    )}
                     {urlPrefix === 'oppdater-opplysninger' && (
-                        <div className="pb-4">
+                        <div className="my-8">
                             <Link href={dittNavUrl}>
                                 <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
                             </Link>
