@@ -68,7 +68,7 @@ const NyKvittering = () => {
                     <Image src={kvitteringIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
                 <div>
-                    <Overskrift />
+                    <Overskrift erKvittering={true} />
                     <BodyShort spacing>{tekst('body1')}</BodyShort>
                     <BodyLong spacing>{tekst('body2')}</BodyLong>
                     <Heading spacing size={'small'} level={'3'}>
