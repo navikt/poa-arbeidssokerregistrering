@@ -155,7 +155,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                         navigerTilSide={navigerTilSide}
                     />
                     {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
-                    <div className={'flex my-8'}>
+                    <div className={'flex my-4'}>
                         {neste && (
                             <ForrigeSteg
                                 disabled={!forrigeLenke}
@@ -166,7 +166,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                     </div>
                     {urlPrefix !== 'oppdater-opplysninger' && aktivSide === SkjemaSide.Oppsummering && <Avbryt />}
                     {urlPrefix === 'oppdater-opplysninger' && (
-                        <div className="text-center py-4">
+                        <div className="pb-4">
                             <Link href={dittNavUrl}>
                                 <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
                             </Link>
