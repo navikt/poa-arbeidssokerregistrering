@@ -5,7 +5,6 @@ import Head from 'next/head';
 import { lagHentTekstForSprak, SisteJobb, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
-import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
 
 import StillingsSok from './stillings-sok-v2';
 import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
@@ -55,7 +54,6 @@ const annenStilling: SisteJobb = {
 const SisteJobbSkjema = (
     props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Element; visSisteJobb: boolean },
 ) => {
-    const { toggles } = useFeatureToggles();
     const { onChange, visSisteJobb } = props;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const [visStillingsSok, settVisStillingsSok] = useState<boolean>(false);
