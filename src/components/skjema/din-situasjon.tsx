@@ -1,10 +1,9 @@
-import { Heading } from '@navikt/ds-react';
 import { preload } from 'swr';
 import Head from 'next/head';
 import {
-    SporsmalId,
     DinSituasjon as Jobbsituasjon,
     lagHentTekstForSprak,
+    SporsmalId,
     Tekster,
 } from '@navikt/arbeidssokerregisteret-utils';
 
@@ -20,15 +19,12 @@ import { SkjemaBox } from './skjema-box';
 const TEKSTER: Tekster<string> = {
     nb: {
         sideTittel: 'Arbeidssøkerregistrering: Din arbeidssøkersituasjon',
-        heading: 'Din arbeidssøkersituasjon',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Din situasjon som arbeidssøkjar',
-        heading: 'Din situasjon som arbeidssøkjar',
     },
     en: {
         sideTittel: 'Register as a Job Seeker: Your jobseeker situation',
-        heading: 'Your jobseeker situation',
     },
 };
 
@@ -69,9 +65,6 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
             </Head>
             <SkjemaBox>
                 <form>
-                    <Heading size="medium" spacing level="1">
-                        {sideTekst('heading')}
-                    </Heading>
                     <RadioGruppe
                         legend={tekst(SporsmalId.dinSituasjon)}
                         valg={valg}
