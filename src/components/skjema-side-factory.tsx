@@ -156,7 +156,12 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                     />
                     {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
                     <div className={'flex my-8'}>
-                        <ForrigeSteg disabled={!forrigeLenke} onClick={() => navigerTilSide(forrige as SkjemaSide)} />
+                        {neste && (
+                            <ForrigeSteg
+                                disabled={!forrigeLenke}
+                                onClick={() => navigerTilSide(forrige as SkjemaSide)}
+                            />
+                        )}
                         {neste && <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />}
                     </div>
                     {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
