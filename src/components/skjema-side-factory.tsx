@@ -16,6 +16,7 @@ import ForrigeSteg from './skjema/knapperad/forrige-steg';
 import NesteSteg from './skjema/knapperad/neste-steg';
 import Image from 'next/image';
 import skjemaIkonSvg from './skjema-ikon.svg';
+import Overskrift from './skjema/overskrift';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -145,9 +146,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                     <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
                 <div className={'sm:mt-8'}>
-                    <Heading size={'xlarge'} level={'1'} spacing>
-                        Registrer deg som arbeidssøker
-                    </Heading>
+                    <Overskrift erOppdaterOpplysninger={urlPrefix === 'oppdater-opplysninger'} />
                     <RegistreringsOversikt
                         aktivSide={props.aktivSide}
                         validerSkjemaForSide={validerSkjemaForSide}

@@ -4,21 +4,27 @@ import { Heading } from '@navikt/ds-react';
 
 const TEKSTER: Tekster<string> = {
     nb: {
-        tittel: 'Registrer deg som arbeidssøker',
+        registrer: 'Registrer deg som arbeidssøker',
+        oppdater: 'Oppdater opplysninger',
     },
     nn: {
-        tittel: 'Registrer deg som arbeidssøkjar',
+        registrer: 'Registrer deg som arbeidssøkjar',
+        oppdater: 'Oppdater opplysningar',
     },
     en: {
-        tittel: 'Register as a Job Seeker',
+        registrer: 'Register as a Job Seeker',
+        oppdater: 'Update your information',
     },
 };
 
-export default function Overskrift() {
+interface Props {
+    erOppdaterOpplysninger?: boolean;
+}
+export default function Overskrift(props: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     return (
         <Heading size={'xlarge'} level={'1'} spacing>
-            {tekst('tittel')}
+            {tekst(props.erOppdaterOpplysninger ? 'oppdater' : 'registrer')}
         </Heading>
     );
 }
