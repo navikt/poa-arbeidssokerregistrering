@@ -3,6 +3,7 @@ import { FormProgress, Heading } from '@navikt/ds-react';
 import { SkjemaSide, SkjemaState } from '../model/skjema';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
 import NextLink from 'next/link';
+import { loggAktivitet } from '../lib/amplitude';
 
 const TEKSTER = {
     nb: {
@@ -33,6 +34,7 @@ interface Props {
     validerSkjemaForSide: (side: SkjemaSide, skjemaState: SkjemaState) => boolean;
     skjemaState: SkjemaState;
     navigerTilSide: (side: SkjemaSide) => void;
+    skjemaPrefix: string;
 }
 
 const steps = [
@@ -70,6 +72,13 @@ const RegistreringsOversikt = (props: Props) => {
                             key={s.tittel}
                             interactive={harGyldigTilstand}
                             completed={!s.sisteSteg && harGyldigTilstand}
+                            onClick={() => {
+                                loggAktivitet({
+                                    hendelse: 'Trykker på steg i SkjemaVelger',
+                                    steg: s.tittel,
+                                    skjemaPrefix: props.skjemaPrefix,
+                                });
+                            }}
                         >
                             {tekst(s.tittel)}
                         </FormProgress.Step>

@@ -152,6 +152,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                         validerSkjemaForSide={validerSkjemaForSide}
                         skjemaState={skjemaState}
                         navigerTilSide={navigerTilSide}
+                        skjemaPrefix={urlPrefix}
                     />
                     {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
                     {neste && (

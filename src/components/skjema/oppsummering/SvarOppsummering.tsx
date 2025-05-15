@@ -12,6 +12,7 @@ import useSprak from '../../../hooks/useSprak';
 
 import { hentTekst } from '../../../model/sporsmal';
 import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
+import { loggAktivitet } from '../../../lib/amplitude';
 
 type Svar = {
     spoersmal: string;
@@ -109,11 +110,18 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2">{props.tittel}</FormSummary.Heading>
-                    <FormSummary.EditLink>
+                    <FormSummary.EditLink as={'span'}>
                         <NextLink
                             href={props.url}
                             aria-label={`${tekst('endreSvaret')}: ${props.tittel.toLowerCase()}`}
                             className={'navds-link'}
+                            onClick={() => {
+                                loggAktivitet({
+                                    hendelse: 'Trykker på "Endre svar" fra oppsummering',
+                                    steg: props.tittel,
+                                    skjemaPrefix: props.url.split('/')[1],
+                                });
+                            }}
                         >
                             {tekst('endreSvaret')}
                         </NextLink>
