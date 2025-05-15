@@ -6,17 +6,17 @@ const TEKSTER: Tekster<string> = {
     nb: {
         registrer: 'Registrer deg som arbeidssøker',
         kvittering: 'Du er registrert som arbeidssøker',
-        oppdater: 'Oppdater opplysninger',
+        oppdater: 'Oppdater dine opplysninger gitt i arbeidssøkerregistreringen',
     },
     nn: {
         registrer: 'Registrer deg som arbeidssøkjar',
         kvittering: 'Du er registrert som arbeidssøkjar',
-        oppdater: 'Oppdater opplysningar',
+        oppdater: 'Oppdater opplysningane du ga i arbeidssøkjarregistreringa',
     },
     en: {
         registrer: 'Register as a jobseeker',
         kvittering: 'You are registered as a jobseeker',
-        oppdater: 'Update your information',
+        oppdater: 'Update your jobseeker information',
     },
 };
 

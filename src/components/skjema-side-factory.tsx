@@ -7,7 +7,7 @@ import { SkjemaAction, skjemaReducer } from '../lib/skjema-state';
 import Avbryt from './skjema/avbryt-lenke';
 import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
 import { loggAktivitet } from '../lib/amplitude';
-import { Heading, HGrid, Link } from '@navikt/ds-react';
+import { HGrid, Link } from '@navikt/ds-react';
 import { useConfig } from '../contexts/config-context';
 import { Config } from '../model/config';
 import RegistreringsOversikt from './registrerings-oversikt';
@@ -145,7 +145,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
-                <div className={'sm:mt-8'}>
+                <div className={urlPrefix === 'oppdater-opplysninger' ? '' : 'sm:mt-8'}>
                     <Overskrift erOppdaterOpplysninger={urlPrefix === 'oppdater-opplysninger'} />
                     <RegistreringsOversikt
                         aktivSide={props.aktivSide}
