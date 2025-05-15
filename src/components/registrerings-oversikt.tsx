@@ -74,7 +74,7 @@ const RegistreringsOversikt = (props: Props) => {
                             completed={!s.sisteSteg && harGyldigTilstand}
                             onClick={() => {
                                 loggAktivitet({
-                                    hendelse: 'Trykker på steg i SkjemaVelger',
+                                    aktivitet: 'Trykker på steg i SkjemaVelger',
                                     steg: s.tittel,
                                     skjemaPrefix: props.skjemaPrefix,
                                 });

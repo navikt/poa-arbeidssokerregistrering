@@ -50,8 +50,8 @@ type AktivitetData =
     | { aktivitet: 'Går til endre personopplysninger'; komponent?: string }
     | { aktivitet: 'Går til kontakt oss'; komponent?: string }
     | { aktivitet: 'Bytter språk'; locale: string }
-    | { hendelse: 'Trykker på steg i SkjemaVelger'; steg: string; skjemaPrefix: string }
-    | { hendelse: 'Trykker på "Endre svar" fra oppsummering'; steg: string; skjemaPrefix: string };
+    | { aktivitet: 'Trykker på steg i SkjemaVelger'; steg: string; skjemaPrefix: string }
+    | { aktivitet: 'Trykker på "Endre svar" fra oppsummering'; steg: string; skjemaPrefix: string };
 
 type FlytData =
     | {

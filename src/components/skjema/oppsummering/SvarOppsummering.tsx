@@ -117,7 +117,7 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
                             className={'navds-link'}
                             onClick={() => {
                                 loggAktivitet({
-                                    hendelse: 'Trykker på "Endre svar" fra oppsummering',
+                                    aktivitet: 'Trykker på "Endre svar" fra oppsummering',
                                     steg: props.tittel,
                                     skjemaPrefix: props.url.split('/')[1],
                                 });
