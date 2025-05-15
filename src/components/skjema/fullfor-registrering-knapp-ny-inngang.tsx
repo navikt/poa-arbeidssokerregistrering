@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button } from '@navikt/ds-react';
+import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { logger } from '@navikt/next-logger';
 
 import { useConfig } from '../../contexts/config-context';
@@ -94,8 +95,14 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
                     <FeilmeldingGenerell />
                 </div>
             )}
-            <div style={{ textAlign: 'center' }}>
-                <Button onClick={validerOgFullfor} loading={senderSkjema} disabled={senderSkjema}>
+            <div style={{ textAlign: 'left' }}>
+                <Button
+                    onClick={validerOgFullfor}
+                    loading={senderSkjema}
+                    disabled={senderSkjema}
+                    icon={<PaperplaneIcon />}
+                    iconPosition="right"
+                >
                     {tekst('fullfoerRegistrering')}
                 </Button>
             </div>

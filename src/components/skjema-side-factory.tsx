@@ -4,17 +4,19 @@ import { useRouter } from 'next/router';
 
 import { SkjemaSide, SkjemaState } from '../model/skjema';
 import { SkjemaAction, skjemaReducer } from '../lib/skjema-state';
-import styles from '../styles/skjema.module.css';
-import TilbakeKnapp from './skjema/tilbake-knapp';
-import { Knapperad } from './skjema/knapperad/knapperad';
 import Avbryt from './skjema/avbryt-lenke';
 import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
-import { StandardRegistreringUtenPlikterTilstandsmaskin } from '../lib/standard-registrering-uten-plikter-tilstandsmaskin';
-import ProgressBar from './progress-bar/progress-bar';
 import { loggAktivitet } from '../lib/amplitude';
-import { Link } from '@navikt/ds-react';
+import { HGrid, Link } from '@navikt/ds-react';
 import { useConfig } from '../contexts/config-context';
 import { Config } from '../model/config';
+import RegistreringsOversikt from './registrerings-oversikt';
+import { XMarkIcon } from '@navikt/aksel-icons';
+import ForrigeSteg from './skjema/knapperad/forrige-steg';
+import NesteSteg from './skjema/knapperad/neste-steg';
+import Image from 'next/image';
+import skjemaIkonSvg from './skjema-ikon.svg';
+import Overskrift from './skjema/overskrift';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -23,7 +25,7 @@ export interface SkjemaProps {
 }
 
 export interface LagSkjemaSideProps {
-    urlPrefix: 'skjema' | 'opplysninger' | 'oppdater-opplysninger';
+    urlPrefix: 'opplysninger' | 'oppdater-opplysninger';
     validerSkjemaForSide: (side: SkjemaSide, skjemaState: SkjemaState) => boolean;
     hentKomponentForSide: (
         side: SkjemaSide,
@@ -31,7 +33,7 @@ export interface LagSkjemaSideProps {
         dispatch: Dispatch<SkjemaAction>,
         visFeilmelding: boolean,
     ) => JSX.Element;
-    beregnNavigering: StandardRegistreringTilstandsmaskin | StandardRegistreringUtenPlikterTilstandsmaskin;
+    beregnNavigering: StandardRegistreringTilstandsmaskin;
 }
 
 export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
@@ -138,21 +140,44 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     }, [aktivSide]);
 
     return (
-        <div ref={skjemaWrapperRef} className={styles.main}>
-            <ProgressBar value={erSkjemaSendt ? 1 : fremdrift} className={'mb-6'} />
-            {forrigeLenke && (
-                <div className="self-start">
-                    <TilbakeKnapp href={forrigeLenke} />
+        <div ref={skjemaWrapperRef} className={'max-w-4xl'}>
+            <HGrid columns={{ sm: 1, md: 1, lg: '1fr 11fr', xl: '1fr 11fr' }} gap={{ lg: 'space-24' }}>
+                <div style={{ width: '96px', height: '96px' }}>
+                    <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
                 </div>
-            )}
-            {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
-            {neste && <Knapperad onNeste={validerOgGaaTilNeste} />}
-            {urlPrefix !== 'oppdater-opplysninger' && <Avbryt />}
-            {urlPrefix === 'oppdater-opplysninger' && (
-                <div className="text-center py-4">
-                    <Link href={dittNavUrl}>Avbryt oppdatering</Link>
+                <div className={urlPrefix === 'oppdater-opplysninger' ? '' : 'sm:mt-8'}>
+                    <Overskrift erOppdaterOpplysninger={urlPrefix === 'oppdater-opplysninger'} />
+                    <RegistreringsOversikt
+                        aktivSide={props.aktivSide}
+                        validerSkjemaForSide={validerSkjemaForSide}
+                        skjemaState={skjemaState}
+                        navigerTilSide={navigerTilSide}
+                        skjemaPrefix={urlPrefix}
+                    />
+                    {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
+                    {neste && (
+                        <div className={'flex my-8'}>
+                            <ForrigeSteg
+                                disabled={!forrigeLenke}
+                                onClick={() => navigerTilSide(forrige as SkjemaSide)}
+                            />
+                            <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />
+                        </div>
+                    )}
+                    {urlPrefix !== 'oppdater-opplysninger' && aktivSide === SkjemaSide.Oppsummering && (
+                        <div className={'py-8'}>
+                            <Avbryt />
+                        </div>
+                    )}
+                    {urlPrefix === 'oppdater-opplysninger' && (
+                        <div className="my-8">
+                            <Link href={dittNavUrl}>
+                                <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
+                            </Link>
+                        </div>
+                    )}
                 </div>
-            )}
+            </HGrid>
         </div>
     );
 };

@@ -69,7 +69,7 @@ const Rad = (props: RadProps) => {
 };
 interface Props {
     skjemaState: SkjemaState;
-    skjemaPrefix: '/skjema/' | '/opplysninger/' | '/oppdater-opplysninger/';
+    skjemaPrefix: '/opplysninger/' | '/oppdater-opplysninger/';
 }
 
 const SvarTabell = (props: Props) => {

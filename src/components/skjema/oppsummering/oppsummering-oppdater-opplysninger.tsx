@@ -1,10 +1,11 @@
-import { SkjemaState } from '../../../model/skjema';
-import useSprak from '../../../hooks/useSprak';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import Head from 'next/head';
-import { BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
-import OppsummeringSvg from './oppsummering-svg';
-import SvarTabell from './SvarTabell';
+import { BodyLong } from '@navikt/ds-react';
+
+import useSprak from '../../../hooks/useSprak';
+
+import { SkjemaState } from '../../../model/skjema';
+import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import SvarOppsummering from './SvarOppsummering';
 import OppdaterOpplysningerKnapp from '../oppdater-opplysninger-knapp';
 
 const TEKSTER: Tekster<string> = {
@@ -48,23 +49,16 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
             <Head>
                 <title>{tekst('sideTittel')}</title>
             </Head>
-            <Heading size={'medium'} level="1" spacing>
-                {tekst('header')}
-            </Heading>
             <BodyLong size={'large'} className="mb-6">
                 {tekst('ingress')}
             </BodyLong>
-            <GuidePanel poster illustration={<OppsummeringSvg />}>
-                <SvarTabell skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
-            </GuidePanel>
-            <div className="mt-12">
-                <OppdaterOpplysningerKnapp
-                    skjemaState={skjemaState}
-                    onSubmit={onSubmit}
-                    onValiderSkjema={onValiderSkjema}
-                    tekst={tekst}
-                />
-            </div>
+            <SvarOppsummering skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
+            <OppdaterOpplysningerKnapp
+                skjemaState={skjemaState}
+                onSubmit={onSubmit}
+                onValiderSkjema={onValiderSkjema}
+                tekst={tekst}
+            />
         </>
     );
 };

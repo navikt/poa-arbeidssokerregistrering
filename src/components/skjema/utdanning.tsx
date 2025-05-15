@@ -1,33 +1,27 @@
-import { Heading, Panel } from '@navikt/ds-react';
 import Head from 'next/head';
-import { SporsmalId, Utdanningsnivaa, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, SporsmalId, Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
 
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { hentTekst } from '../../model/sporsmal';
-
-import styles from '../../styles/skjema.module.css';
 import { SkjemaBox } from './skjema-box';
 
 const TEKSTER: Tekster<string> = {
     nb: {
         sideTittel: 'Arbeidssøkerregistrering: Utdanningsnivå',
-        heading: 'Utdanning',
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Høgaste fullførte utdanning',
-        heading: 'Utdanning',
     },
     en: {
         sideTittel: 'Register as a Job Seeker : Education',
-        heading: 'Education',
     },
 };
 
-const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa>) => {
-    const { onChange, valgt, visFeilmelding } = props;
+const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa> & { children?: React.ReactNode }) => {
+    const { onChange, valgt, visFeilmelding, children } = props;
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
     const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
@@ -57,16 +51,14 @@ const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa>) => {
             </Head>
             <SkjemaBox>
                 <form>
-                    <Heading size="medium" spacing level="1">
-                        {sideTekst('heading')}
-                    </Heading>
                     <RadioGruppe
                         legend={tekst(SporsmalId.utdanning)}
                         valg={valg}
                         onSelect={(val) => onChange(val)}
                         valgt={valgt}
-                        visFeilmelding={visFeilmelding}
+                        visFeilmelding={visFeilmelding && !valgt}
                     />
+                    {children}
                 </form>
             </SkjemaBox>
         </>

@@ -9,38 +9,20 @@ import {
 } from '@navikt/arbeidssokerregisteret-utils';
 
 export enum SkjemaSide {
-    DinSituasjon = '0',
-    SisteJobb = '1',
-    Utdanning = '2',
-    GodkjentUtdanning = '3',
-    BestaattUtdanning = '4',
-    Helseproblemer = '5',
-    AndreProblemer = '6',
-    Oppsummering = '8',
-    OppsummeringUtenPlikter = '8',
-    FullforRegistrering = '12',
+    DinSituasjon = '1',
+    SisteJobb = '2',
+    Utdanning = '3',
+    Hindringer = '4',
+    Oppsummering = '5',
+    FullforRegistrering = '6',
 }
 
-export type StandardSkjemaSide =
+export type SkjemaSideType =
     | SkjemaSide.DinSituasjon
     | SkjemaSide.SisteJobb
     | SkjemaSide.Utdanning
-    | SkjemaSide.GodkjentUtdanning
-    | SkjemaSide.BestaattUtdanning
-    | SkjemaSide.Helseproblemer
-    | SkjemaSide.AndreProblemer
-    | SkjemaSide.Oppsummering
-    | SkjemaSide.FullforRegistrering;
-
-export type StandardSkjemaSideUtenPlikter =
-    | SkjemaSide.DinSituasjon
-    | SkjemaSide.SisteJobb
-    | SkjemaSide.Utdanning
-    | SkjemaSide.GodkjentUtdanning
-    | SkjemaSide.BestaattUtdanning
-    | SkjemaSide.Helseproblemer
-    | SkjemaSide.AndreProblemer
-    | SkjemaSide.OppsummeringUtenPlikter;
+    | SkjemaSide.Hindringer
+    | SkjemaSide.Oppsummering;
 
 export type Navigering<T extends SkjemaSide> = {
     neste?: T;
@@ -67,10 +49,10 @@ const skjemasider = {
     [SporsmalId.sisteStilling]: SkjemaSide.SisteJobb,
     [SporsmalId.sisteJobb]: SkjemaSide.SisteJobb,
     [SporsmalId.utdanning]: SkjemaSide.Utdanning,
-    [SporsmalId.utdanningBestatt]: SkjemaSide.BestaattUtdanning,
-    [SporsmalId.utdanningGodkjent]: SkjemaSide.GodkjentUtdanning,
-    [SporsmalId.andreForhold]: SkjemaSide.AndreProblemer,
-    [SporsmalId.helseHinder]: SkjemaSide.Helseproblemer,
+    [SporsmalId.utdanningGodkjent]: SkjemaSide.Utdanning,
+    [SporsmalId.utdanningBestatt]: SkjemaSide.Utdanning,
+    [SporsmalId.andreForhold]: SkjemaSide.Hindringer,
+    [SporsmalId.helseHinder]: SkjemaSide.Hindringer,
 };
 
 export const hentSkjemaside = (sporsmalId: SporsmalId) => skjemasider[sporsmalId];

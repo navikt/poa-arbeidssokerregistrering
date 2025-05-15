@@ -1,12 +1,8 @@
-import { Panel } from '@navikt/ds-react';
-
 import useSprak from '../../../hooks/useSprak';
 
 import RadioGruppe from '../../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
 import { hentTekst } from '../../../model/sporsmal';
-
-import styles from '../../../styles/skjema.module.css';
 import { SisteStillingValg } from '@navikt/arbeidssokerregisteret-utils';
 import { SkjemaBox } from '../skjema-box';
 

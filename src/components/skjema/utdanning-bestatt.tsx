@@ -1,6 +1,4 @@
-import { Heading, Panel } from '@navikt/ds-react';
-import Head from 'next/head';
-import { JaEllerNei, SporsmalId, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { JaEllerNei, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
 
@@ -8,52 +6,25 @@ import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { hentTekst } from '../../model/sporsmal';
 
-import styles from '../../styles/skjema.module.css';
-import { SkjemaBox } from './skjema-box';
-
-const TEKSTER: Tekster<string> = {
-    nb: {
-        sideTittel: 'Arbeidssøkerregistrering: Er utdanningen bestått',
-        heading: 'Utdanning',
-    },
-    nn: {
-        sideTittel: 'Arbeidssøkjarregistrering: Er utdanninga bestått',
-        heading: 'Utdanning',
-    },
-    en: {
-        sideTittel: 'Register as a Job Seeker : Education',
-        heading: 'Education',
-    },
-};
-
-const BestattUtdanning = (props: SkjemaKomponentProps<JaEllerNei>) => {
+const BestattUtdanning = (props: SkjemaKomponentProps<JaEllerNei> & { visKomponent: boolean }) => {
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
-    const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const { onChange, valgt, visFeilmelding } = props;
+    const { onChange, valgt, visFeilmelding, visKomponent } = props;
     const lagValg = (valg: JaEllerNei) => ({ tekst: tekst(valg), value: valg });
     const valg = [lagValg(JaEllerNei.JA), lagValg(JaEllerNei.NEI)];
 
+    if (!visKomponent) {
+        return null;
+    }
+
     return (
-        <>
-            <Head>
-                <title>{sideTekst('sideTittel')}</title>
-            </Head>
-            <SkjemaBox>
-                <form>
-                    <Heading size="medium" spacing level="1">
-                        {sideTekst('heading')}
-                    </Heading>
-                    <RadioGruppe
-                        legend={tekst(SporsmalId.utdanningBestatt)}
-                        valg={valg}
-                        onSelect={(val) => onChange(val)}
-                        valgt={valgt}
-                        visFeilmelding={visFeilmelding}
-                    />
-                </form>
-            </SkjemaBox>
-        </>
+        <RadioGruppe
+            legend={tekst(SporsmalId.utdanningBestatt)}
+            valg={valg}
+            onSelect={(val) => onChange(val)}
+            valgt={valgt}
+            visFeilmelding={visFeilmelding}
+        />
     );
 };
 

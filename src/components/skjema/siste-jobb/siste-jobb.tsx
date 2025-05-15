@@ -2,10 +2,9 @@ import { BodyLong, Button, Heading, ReadMore } from '@navikt/ds-react';
 import { JSX, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import Head from 'next/head';
-import { lagHentTekstForSprak, Tekster, SisteJobb } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, SisteJobb, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../../hooks/useSprak';
-import { useFeatureToggles } from '../../../contexts/featuretoggle-context';
 
 import StillingsSok from './stillings-sok-v2';
 import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
@@ -15,7 +14,6 @@ import { SkjemaBox } from '../skjema-box';
 const TEKSTER: Tekster<string> = {
     nb: {
         sideTittel: 'Arbeidssøkerregistrering: Hva er din siste jobb?',
-        tittel: 'Hva er din siste jobb?',
         registrert: 'Følgende informasjon er registrert i Aa-registeret om din siste stilling.',
         feilOpplysninger: 'Hvis opplysningen er feil, kan du endre under.',
         brukesTilTittel: 'Hva bruker vi informasjonen om din siste stilling til?',
@@ -26,7 +24,6 @@ const TEKSTER: Tekster<string> = {
     },
     nn: {
         sideTittel: 'Arbeidssøkjarregistrering: Kva var den siste jobben din?',
-        tittel: 'Kva var den siste jobben din?',
         registrert: 'Følgjande informasjon er registrert i Aa-registeret om den siste stillinga di.',
         feilOpplysninger: 'Dersom informasjonen er feil, kan du gjere endringar under.',
         brukesTilTittel: 'Kva bruker vi informasjonen om den siste stillinga di til?',
@@ -37,7 +34,6 @@ const TEKSTER: Tekster<string> = {
     },
     en: {
         sideTittel: 'Register as a Job Seeker : What was your last job?',
-        tittel: 'What was your last job?',
         registrert:
             'We found the following information in the State Register of Employers and Employees (Aa Register) about your last position.',
         feilOpplysninger: 'If the information is incorrect, you can change it below.',
@@ -58,7 +54,6 @@ const annenStilling: SisteJobb = {
 const SisteJobbSkjema = (
     props: SkjemaKomponentProps<SisteJobb> & { children?: JSX.Element; visSisteJobb: boolean },
 ) => {
-    const { toggles } = useFeatureToggles();
     const { onChange, visSisteJobb } = props;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const [visStillingsSok, settVisStillingsSok] = useState<boolean>(false);
@@ -96,9 +91,6 @@ const SisteJobbSkjema = (
             </Head>
             <SkjemaBox>
                 <div>
-                    <Heading spacing size={'medium'} level="1">
-                        {tekst('tittel')}
-                    </Heading>
                     <BodyLong>{tekst('registrert')}</BodyLong>
                     <BodyLong className="mb-6">{tekst('feilOpplysninger')}</BodyLong>
 

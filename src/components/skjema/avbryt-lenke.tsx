@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
 import { loggAktivitet, loggFlyt } from '../../lib/amplitude';
+import { XMarkIcon } from '@navikt/aksel-icons';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -62,9 +63,9 @@ const Avbryt = () => {
                     </div>
                 </Modal.Body>
             </Modal>
-            <div className="text-center py-4">
+            <div className="pb-4">
                 <Link href="#" onClick={() => setOpen(true)}>
-                    {tekst('avbryt')}
+                    <XMarkIcon title="a11y-title" fontSize="1.5rem" /> {tekst('avbryt')}
                 </Link>
             </div>
         </>

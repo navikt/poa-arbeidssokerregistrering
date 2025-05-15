@@ -9,13 +9,15 @@ import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
 import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
 import Helseproblemer from '../../components/skjema/helseproblemer';
 import AndreProblemer from '../../components/skjema/andre-problemer';
-import OppsummeringUtenPlikter from '../../components/skjema/oppsummering/oppsummering-uten-plikter';
-import { beregnNavigering } from '../../lib/standard-registrering-uten-plikter-tilstandsmaskin';
+import Oppsummering from '../../components/skjema/oppsummering/oppsummering';
+import { beregnNavigering } from '../../lib/standard-registrering-tilstandsmaskin';
 import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
 import { SkjemaAction } from '../../lib/skjema-state';
 import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
 import skjemaSideFactory, { SiderMap } from '../../components/skjema-side-factory';
 import { SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
+import Hindringer from '../../components/skjema/hindringer';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -46,39 +48,42 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
                 onChange={(value) => dispatch({ type: SporsmalId.utdanning, value: value })}
                 valgt={skjemaState.utdanning}
                 visFeilmelding={visFeilmelding}
-            />
+            >
+                <div className={'my-8'}>
+                    <UtdanningGodkjent
+                        onChange={(value) => dispatch({ type: SporsmalId.utdanningGodkjent, value: value })}
+                        valgt={skjemaState.utdanningGodkjent}
+                        visFeilmelding={visFeilmelding}
+                        visKomponent={visUtdanningsvalg(skjemaState)}
+                    />
+                </div>
+                <BestattUtdanning
+                    onChange={(value) => dispatch({ type: SporsmalId.utdanningBestatt, value: value })}
+                    valgt={skjemaState.utdanningBestatt}
+                    visFeilmelding={visFeilmelding}
+                    visKomponent={visUtdanningsvalg(skjemaState)}
+                />
+            </Utdanning>
         ),
-        [SkjemaSide.GodkjentUtdanning]: (
-            <UtdanningGodkjent
-                onChange={(value) => dispatch({ type: SporsmalId.utdanningGodkjent, value: value })}
-                valgt={skjemaState.utdanningGodkjent}
-                visFeilmelding={visFeilmelding}
-            />
+        [SkjemaSide.Hindringer]: (
+            <Hindringer>
+                <div className={'my-8'}>
+                    <Helseproblemer
+                        onChange={(value) => dispatch({ type: SporsmalId.helseHinder, value: value })}
+                        valgt={skjemaState.helseHinder}
+                        visFeilmelding={visFeilmelding && !skjemaState.helseHinder}
+                    />
+                </div>
+                <AndreProblemer
+                    onChange={(value) => dispatch({ type: SporsmalId.andreForhold, value: value })}
+                    valgt={skjemaState.andreForhold}
+                    skjematype={'standard'}
+                    visFeilmelding={visFeilmelding && !skjemaState.andreForhold}
+                />
+            </Hindringer>
         ),
-        [SkjemaSide.BestaattUtdanning]: (
-            <BestattUtdanning
-                onChange={(value) => dispatch({ type: SporsmalId.utdanningBestatt, value: value })}
-                valgt={skjemaState.utdanningBestatt}
-                visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.Helseproblemer]: (
-            <Helseproblemer
-                onChange={(value) => dispatch({ type: SporsmalId.helseHinder, value: value })}
-                valgt={skjemaState.helseHinder}
-                visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.AndreProblemer]: (
-            <AndreProblemer
-                onChange={(value) => dispatch({ type: SporsmalId.andreForhold, value: value })}
-                valgt={skjemaState.andreForhold}
-                skjematype={'standard'}
-                visFeilmelding={visFeilmelding}
-            />
-        ),
-        [SkjemaSide.OppsummeringUtenPlikter]: (
-            <OppsummeringUtenPlikter
+        [SkjemaSide.Oppsummering]: (
+            <Oppsummering
                 skjemaState={skjemaState}
                 skjemaPrefix={'/opplysninger/'}
                 onSubmit={() => dispatch({ type: 'SenderSkjema' })}
@@ -99,16 +104,15 @@ export const validerOpplysningerSkjemaForSide = (side: SkjemaSide, skjemaState: 
                 return skjemaState.sisteJobb;
             }
             case SkjemaSide.Utdanning:
-                return skjemaState.utdanning;
-            case SkjemaSide.GodkjentUtdanning:
-                return skjemaState.utdanningGodkjent;
-            case SkjemaSide.BestaattUtdanning:
-                return skjemaState.utdanningBestatt;
-            case SkjemaSide.Helseproblemer:
-                return skjemaState.helseHinder;
-            case SkjemaSide.AndreProblemer:
-                return skjemaState.andreForhold;
-            case SkjemaSide.OppsummeringUtenPlikter:
+                return (
+                    skjemaState.utdanning &&
+                    (visUtdanningsvalg(skjemaState)
+                        ? skjemaState.utdanningGodkjent && skjemaState[SporsmalId.utdanningBestatt]
+                        : true)
+                );
+            case SkjemaSide.Hindringer:
+                return skjemaState.helseHinder && skjemaState.andreForhold;
+            case SkjemaSide.Oppsummering:
                 return skjemaState.andreForhold;
         }
     };
