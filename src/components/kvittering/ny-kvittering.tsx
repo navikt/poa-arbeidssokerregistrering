@@ -1,15 +1,17 @@
-import useSprak from '../../hooks/useSprak';
-import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-import { useConfig } from '../../contexts/config-context';
-import { Config } from '../../model/config';
-import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
+import React from 'react';
+import Head from 'next/head';
 import Image from 'next/image';
+import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
+import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
+
+import useSprak from '../../hooks/useSprak';
+import { useConfig } from '../../contexts/config-context';
+
+import { Config } from '../../model/config';
 import kvitteringIkonSvg from './kvittering-ikon.svg';
 import LenkePanel from '../lenke-panel';
 import { loggAktivitet } from '../../lib/amplitude';
 import Overskrift from '../skjema/overskrift';
-import React from 'react';
-import Head from 'next/head';
 
 const TEKSTER = {
     nb: {
@@ -24,9 +26,9 @@ const TEKSTER = {
         minSideLenkePostfix: '',
         minSideLenkeTittel: 'Min side',
         minSideLenkeBeskrivelse: 'Oversikt over tjenester og pengestøtte du får fra Nav',
-        dagpengerLenkeHref: 'https://www.nav.no/dagpenger',
-        dagpengerLenkeTittel: 'Dagpenger',
-        dagpengerLenkeBeskrivelse: 'Dette kan du ha rett til',
+        dagpengerLenkePostfix: '',
+        dagpengerLenkeTittel: 'Søknad om dagpenger',
+        dagpengerLenkeBeskrivelse: 'Søk digitalt eller send i posten',
     },
     nn: {
         sideTittel: 'Du er no registrert som arbeidssøkjar',
@@ -40,9 +42,9 @@ const TEKSTER = {
         minSideLenkePostfix: '/nn',
         minSideLenkeTittel: 'Mi side',
         minSideLenkeBeskrivelse: 'Oversikt over tenester og pengestøtte du får frå Nav',
-        dagpengerLenkeHref: 'https://www.nav.no/dagpenger',
-        dagpengerLenkeTittel: 'Dagpengar',
-        dagpengerLenkeBeskrivelse: 'Dette kan du ha rett til',
+        dagpengerLenkePostfix: '/nn',
+        dagpengerLenkeTittel: 'Søknad om dagpengar',
+        dagpengerLenkeBeskrivelse: 'Søk digitalt eller send i posten',
     },
     en: {
         sideTittel: 'You are now registered as a jobseeker',
@@ -56,16 +58,16 @@ const TEKSTER = {
         minSideLenkePostfix: '/en',
         minSideLenkeTittel: 'My page',
         minSideLenkeBeskrivelse: 'View your services as a job seeker',
-        dagpengerLenkeHref: 'https://www.nav.no/dagpenger/en',
-        dagpengerLenkeTittel: 'Unemployment benefit (dagpenger)',
-        dagpengerLenkeBeskrivelse: 'You may be entitled to this',
+        dagpengerLenkePostfix: '/en',
+        dagpengerLenkeTittel: 'Application for unemployment benefit',
+        dagpengerLenkeBeskrivelse: 'Apply digitally or send by post',
     },
 };
 
 const NyKvittering = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const { dittNavUrl } = useConfig() as Config;
+    const { dittNavUrl, dagpengesoknadUrl } = useConfig() as Config;
     return (
         <div className="max-w-4xl">
             <Head>
@@ -109,7 +111,7 @@ const NyKvittering = () => {
                         </li>
                         <li className={'mb-4'}>
                             <LenkePanel
-                                href={tekst('dagpengerLenkeHref')}
+                                href={`${dagpengesoknadUrl}${tekst('dagpengerLenkePostfix')}`}
                                 title={tekst('dagpengerLenkeTittel')}
                                 description={tekst('dagpengerLenkeBeskrivelse')}
                                 onClick={() =>

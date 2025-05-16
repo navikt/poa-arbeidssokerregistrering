@@ -50,7 +50,7 @@ spec:
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: https://www.nav.no/minside
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
-      value: https://www.nav.no/dagpenger/dialog/soknad
+      value: https://www.nav.no/start/soknad-dagpenger
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.nav.no/arbeid/dialog
     - name: PAM_ONTOLOGI_URL
