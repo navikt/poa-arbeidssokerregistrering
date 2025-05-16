@@ -28,7 +28,7 @@ const TEKSTER = {
         minSideLenkeBeskrivelse: 'Oversikt over tjenester og pengestøtte du får fra Nav',
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Søknad om dagpenger',
-        dagpengerLenkeBeskrivelse: 'Søk digitalt eller send i posten',
+        dagpengerLenkeBeskrivelse: 'Søk digitalt',
     },
     nn: {
         sideTittel: 'Du er no registrert som arbeidssøkjar',
@@ -44,7 +44,7 @@ const TEKSTER = {
         minSideLenkeBeskrivelse: 'Oversikt over tenester og pengestøtte du får frå Nav',
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Søknad om dagpengar',
-        dagpengerLenkeBeskrivelse: 'Søk digitalt eller send i posten',
+        dagpengerLenkeBeskrivelse: 'Søk digitalt',
     },
     en: {
         sideTittel: 'You are now registered as a jobseeker',
@@ -60,7 +60,7 @@ const TEKSTER = {
         minSideLenkeBeskrivelse: 'View your services as a job seeker',
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Application for unemployment benefit',
-        dagpengerLenkeBeskrivelse: 'Apply digitally or send by post',
+        dagpengerLenkeBeskrivelse: 'Apply digitally',
     },
 };
 
