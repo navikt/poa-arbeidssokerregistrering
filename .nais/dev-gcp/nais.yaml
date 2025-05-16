@@ -53,7 +53,7 @@ spec:
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: https://www.ansatt.dev.nav.no/minside
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
-      value: https://arbeid.intern.dev.nav.no/dagpenger/dialog/soknad
+      value: https://arbeid.ansatt.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.dev.nav.no/arbeid/dialog
     - name: PAM_ONTOLOGI_URL
