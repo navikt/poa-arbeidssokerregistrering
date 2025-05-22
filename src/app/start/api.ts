@@ -1,4 +1,4 @@
-import { arbeidssokerApiKall } from '../../lib/arbeidssoker-api-kall';
+import { arbeidssokerApiKall } from '@/lib/arbeidssoker-api-kall';
 
 const url = `${process.env.INNGANG_API_URL}/api/v2/arbeidssoker/kanStartePeriode`;
 const brukerMock = process.env.ENABLE_MOCK === 'enabled';

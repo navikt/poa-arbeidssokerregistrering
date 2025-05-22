@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
-import KanIkkeStartePeriodeV2 from '../../components/feilmeldinger/kan-ikke-starte-periode-v2';
-import { SkjemaSide } from '../../model/skjema';
+import KanIkkeStartePeriodeV2 from '@/components/feilmeldinger/kan-ikke-starte-periode-v2';
+import { SkjemaSide } from '@/model/skjema';
 import { Suspense } from 'react';
 import { Loader } from '@navikt/ds-react';
 import { fetchKanStartePeriode } from './api';
