@@ -35,6 +35,7 @@ const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
         context: 'privatperson',
         chatbot: false,
         logoutWarning: true,
+        redirectToApp: true,
         availableLanguages,
     },
 };
