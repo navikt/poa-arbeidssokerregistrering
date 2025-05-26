@@ -1,6 +1,6 @@
-import getConfig from 'next/config';
+import config from '@/config';
 
-const { basePath } = getConfig().publicRuntimeConfig;
+const { basePath } = config;
 
 const getUrl = (path: string) => `${basePath}/${path}`;
 export type FetchError = Error & {

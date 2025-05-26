@@ -1,4 +1,4 @@
-import { Dispatch } from 'react';
+import React, { Dispatch } from 'react';
 
 import { withAuthenticatedPage } from '../../auth/withAuthentication';
 
@@ -135,6 +135,9 @@ const Skjema = skjemaSideFactory({
     beregnNavigering,
     hentKomponentForSide: (side, skjemaState, dispatch, visFeilmelding) => {
         return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
+    },
+    useSkjemaState: () => {
+        return {} as any;
     },
 });
 export const getServerSideProps = withAuthenticatedPage(async (context) => {

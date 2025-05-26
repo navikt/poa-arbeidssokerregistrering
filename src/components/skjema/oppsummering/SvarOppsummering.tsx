@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, FormSummary } from '@navikt/ds-react';
 import NextLink from 'next/link';
 import {
@@ -10,9 +12,9 @@ import {
 
 import useSprak from '../../../hooks/useSprak';
 
-import { hentTekst } from '../../../model/sporsmal';
-import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
-import { loggAktivitet } from '../../../lib/amplitude';
+import { hentTekst } from '@/model/sporsmal';
+import { hentSkjemaside, SkjemaState } from '@/model/skjema';
+import { loggAktivitet } from '@/lib/amplitude';
 
 type Svar = {
     spoersmal: string;

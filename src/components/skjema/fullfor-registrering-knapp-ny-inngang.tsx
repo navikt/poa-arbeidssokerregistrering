@@ -1,18 +1,20 @@
+'use client';
+
 import { useCallback, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { Button } from '@navikt/ds-react';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { logger } from '@navikt/next-logger';
 
-import { useConfig } from '../../contexts/config-context';
+import { useConfig } from '@/contexts/config-context';
 
-import { Config } from '../../model/config';
+import { Config } from '@/model/config';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
 import { fetcher as api } from '../../lib/api-utils';
 import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
-import { SkjemaState } from '../../model/skjema';
-import { loggAktivitet, loggFlyt } from '../../lib/amplitude';
+import { SkjemaState } from '@/model/skjema';
+import { loggAktivitet, loggFlyt } from '@/lib/amplitude';
 
 interface FullforKnappProps {
     skjemaState: SkjemaState;
@@ -35,6 +37,8 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
+    console.log('enableMock?', enableMock);
+    console.log('config', useConfig());
     const startPeriodeVersjon = 'start-arbeidssokerperiode-v2';
     const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;

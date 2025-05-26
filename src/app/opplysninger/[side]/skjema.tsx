@@ -1,33 +1,24 @@
-import { Dispatch } from 'react';
+'use client';
 
-import { withAuthenticatedPage } from '../../auth/withAuthentication';
+import React, { Dispatch } from 'react';
 
-import DinSituasjon from '../../components/skjema/din-situasjon';
-import SisteJobb from '../../components/skjema/siste-jobb/siste-jobb';
-import Utdanning from '../../components/skjema/utdanning';
-import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
-import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
-import Helseproblemer from '../../components/skjema/helseproblemer';
-import AndreProblemer from '../../components/skjema/andre-problemer';
-import { beregnNavigering } from '../../lib/standard-registrering-tilstandsmaskin';
-import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
-import { SkjemaAction } from '../../lib/skjema-state';
-import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
-import { SiderMap, SkjemaProps, SkjemaSideKomponent } from '../../components/skjema-side-factory';
-import {
-    ArbeidssokerPeriode,
-    mapOpplysningerTilSkjemaState,
-    OpplysningerOmArbeidssoker,
-    SisteStillingValg,
-    SporsmalId,
-} from '@navikt/arbeidssokerregisteret-utils';
-import useSWRImmutable from 'swr/immutable';
-import { Loader } from '@navikt/ds-react';
-import { fetcher } from '../../lib/api-utils';
-import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
-import { validerOpplysningerSkjemaForSide } from '../../app/opplysninger/[side]/skjema';
-import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
-import Hindringer from '../../components/skjema/hindringer';
+import DinSituasjon from '@/components/skjema/din-situasjon';
+import SisteJobb from '@/components/skjema/siste-jobb/siste-jobb';
+import Utdanning from '@/components/skjema/utdanning';
+import UtdanningGodkjent from '@/components/skjema/utdanning-godkjent';
+import BestattUtdanning from '@/components/skjema/utdanning-bestatt';
+import Helseproblemer from '@/components/skjema/helseproblemer';
+import AndreProblemer from '@/components/skjema/andre-problemer';
+import Oppsummering from '@/components/skjema/oppsummering/oppsummering';
+import { beregnNavigering } from '@/lib/standard-registrering-tilstandsmaskin';
+import { SkjemaSide, SkjemaState, visSisteStilling } from '@/model/skjema';
+import { SkjemaAction } from '@/lib/skjema-state';
+import SisteStilling from '@/components/skjema/siste-jobb/siste-stilling';
+import skjemaSideFactory, { SiderMap } from '@/components/skjema-side-factory';
+import { SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import visUtdanningsvalg from '@/lib/vis-utdanningsvalg';
+import Hindringer from '@/components/skjema/hindringer';
+import { useSkjemaState } from '../provider';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -93,13 +84,41 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
             </Hindringer>
         ),
         [SkjemaSide.Oppsummering]: (
-            <OppsummeringOppdaterOpplysninger
+            <Oppsummering
                 skjemaState={skjemaState}
-                skjemaPrefix={'/oppdater-opplysninger/'}
+                skjemaPrefix={'/opplysninger/'}
                 onSubmit={() => dispatch({ type: 'SenderSkjema' })}
             />
         ),
     };
+};
+
+export const validerOpplysningerSkjemaForSide = (side: SkjemaSide, skjemaState: SkjemaState) => {
+    const hentVerdi = () => {
+        switch (side) {
+            case SkjemaSide.DinSituasjon:
+                return skjemaState.dinSituasjon;
+            case SkjemaSide.SisteJobb: {
+                if (visSisteStilling(skjemaState)) {
+                    return skjemaState.sisteStilling && skjemaState.sisteStilling !== SisteStillingValg.INGEN_SVAR;
+                }
+                return skjemaState.sisteJobb;
+            }
+            case SkjemaSide.Utdanning:
+                return (
+                    skjemaState.utdanning &&
+                    (visUtdanningsvalg(skjemaState)
+                        ? skjemaState.utdanningGodkjent && skjemaState[SporsmalId.utdanningBestatt]
+                        : true)
+                );
+            case SkjemaSide.Hindringer:
+                return skjemaState.helseHinder && skjemaState.andreForhold;
+            case SkjemaSide.Oppsummering:
+                return skjemaState.andreForhold;
+        }
+    };
+
+    return Boolean(hentVerdi());
 };
 
 const hentKomponentForSkjemaSide = (side: SkjemaSide, siderMap: SiderMap) =>
@@ -111,49 +130,18 @@ const loggOgDispatch = (dispatch: Dispatch<SkjemaAction>) => {
     };
 };
 
-export const getServerSideProps = withAuthenticatedPage(async (context) => {
-    const { side } = context.query;
-    return {
-        props: {
-            aktivSide: side,
-        },
-    };
+const SkjemaKomponent = skjemaSideFactory({
+    urlPrefix: 'opplysninger',
+    validerSkjemaForSide: validerOpplysningerSkjemaForSide,
+    beregnNavigering,
+    hentKomponentForSide: (side, skjemaState, dispatch, visFeilmelding) => {
+        return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
+    },
+    useSkjemaState: useSkjemaState,
 });
 
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-
-const Side = (props: SkjemaProps) => {
-    const { data, isLoading } = useSWRImmutable<{
-        periode: ArbeidssokerPeriode;
-        opplysninger: OpplysningerOmArbeidssoker;
-    }>(brukerMock ? '/api/mocks/hent-siste-opplysninger' : '/api/hent-siste-opplysninger', fetcher);
-
-    if (isLoading) {
-        return <Loader />;
-    }
-
-    const hentKomponentForSide = (
-        side: SkjemaSide,
-        skjemaState: SkjemaState,
-        dispatch: Dispatch<SkjemaAction>,
-        visFeilmelding: boolean,
-    ) => {
-        return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
-    };
-
-    return (
-        <SkjemaSideKomponent
-            beregnNavigering={beregnNavigering}
-            hentKomponentForSide={hentKomponentForSide}
-            validerSkjemaForSide={validerOpplysningerSkjemaForSide}
-            urlPrefix={'oppdater-opplysninger'}
-            aktivSide={props.aktivSide}
-            eksisterendeOpplysninger={mapOpplysningerTilSkjemaState(data?.opplysninger!)}
-            useSkjemaState={() => {
-                return {} as any;
-            }}
-        />
-    );
+const Skjema = (props: any) => {
+    return <SkjemaKomponent aktivSide={props.side} />;
 };
 
-export default Side;
+export default Skjema;

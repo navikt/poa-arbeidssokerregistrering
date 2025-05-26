@@ -1,15 +1,17 @@
-import { NextPage } from 'next';
-import { Dispatch, JSX, useEffect, useReducer, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+'use client';
 
-import { SkjemaSide, SkjemaState } from '../model/skjema';
-import { SkjemaAction, skjemaReducer } from '../lib/skjema-state';
+import { NextPage } from 'next';
+import { Dispatch, JSX, useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+import { SkjemaSide, SkjemaState } from '@/model/skjema';
+import { SkjemaAction } from '@/lib/skjema-state';
 import Avbryt from './skjema/avbryt-lenke';
-import { StandardRegistreringTilstandsmaskin } from '../lib/standard-registrering-tilstandsmaskin';
-import { loggAktivitet } from '../lib/amplitude';
+import { StandardRegistreringTilstandsmaskin } from '@/lib/standard-registrering-tilstandsmaskin';
+import { loggAktivitet } from '@/lib/amplitude';
 import { HGrid, Link } from '@navikt/ds-react';
-import { useConfig } from '../contexts/config-context';
-import { Config } from '../model/config';
+import { useConfig } from '@/contexts/config-context';
+import { Config } from '@/model/config';
 import RegistreringsOversikt from './registrerings-oversikt';
 import { XMarkIcon } from '@navikt/aksel-icons';
 import ForrigeSteg from './skjema/knapperad/forrige-steg';
@@ -34,6 +36,7 @@ export interface LagSkjemaSideProps {
         visFeilmelding: boolean,
     ) => JSX.Element;
     beregnNavigering: StandardRegistreringTilstandsmaskin;
+    useSkjemaState(): { skjemaState: SkjemaState; dispatch: Dispatch<SkjemaAction> };
 }
 
 export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
@@ -48,6 +51,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
         urlPrefix,
         validerSkjemaForSide,
         hentKomponentForSide,
+        useSkjemaState,
     } = props;
     const router = useRouter();
     const { dittNavUrl } = useConfig() as Config;
@@ -64,14 +68,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
         });
     }, []);
 
-    const [skjemaState, dispatch] = useReducer(
-        skjemaReducer,
-        {
-            ...(eksisterendeOpplysninger ?? {}),
-            ...initialArgs(),
-        },
-        initializer,
-    );
+    const { skjemaState, dispatch } = useSkjemaState();
 
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
 
@@ -183,7 +180,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 };
 
 const skjemaSideFactory: SkjemaSideFactory = (opts) => {
-    const { beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = opts;
+    const { beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide, useSkjemaState } = opts;
     return function SkjemaSide(props: SkjemaProps) {
         return (
             <SkjemaSideKomponent
@@ -193,6 +190,7 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
                 hentKomponentForSide={hentKomponentForSide}
                 beregnNavigering={beregnNavigering}
                 eksisterendeOpplysninger={props.eksisterendeOpplysninger}
+                useSkjemaState={useSkjemaState}
             />
         );
     };

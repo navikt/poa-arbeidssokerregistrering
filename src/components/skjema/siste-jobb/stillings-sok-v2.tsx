@@ -1,10 +1,10 @@
 import { useCallback, useState } from 'react';
-import getConfig from 'next/config';
 import { debounce } from 'lodash';
 
-import { loggAktivitet } from '../../../lib/amplitude';
+import { loggAktivitet } from '@/lib/amplitude';
 
 import styles from './autosuggest.module.css';
+import config from '@/config';
 
 const Autosuggest = require('react-autosuggest');
 
@@ -19,7 +19,7 @@ const StillingsSok = (props: StillingsSokProps) => {
     const [resultat, setResultat] = useState([] as any[]);
     const [value, setValue] = useState<string>('');
     const [endret, setEndret] = useState<Boolean>(false);
-    const { basePath } = getConfig().publicRuntimeConfig;
+    const { basePath } = config;
 
     const onSuggestionsFetchRequested = useCallback(
         debounce(async ({ value }: { value: string }) => {
