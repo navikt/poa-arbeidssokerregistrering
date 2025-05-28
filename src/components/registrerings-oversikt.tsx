@@ -1,9 +1,10 @@
+'use client';
+
 import useSprak from '../hooks/useSprak';
 import { FormProgress, Heading } from '@navikt/ds-react';
-import { SkjemaSide, SkjemaState } from '../model/skjema';
+import { SkjemaSide, SkjemaState } from '@/model/skjema';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-import NextLink from 'next/link';
-import { loggAktivitet } from '../lib/amplitude';
+import { loggAktivitet } from '@/lib/amplitude';
 
 const TEKSTER = {
     nb: {

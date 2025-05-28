@@ -3,7 +3,7 @@
 import { ConfigProvider } from '@/contexts/config-context';
 import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
 
-export default function Layout({
+export default function OppdaterOpplysningerLayout({
     children,
 }: Readonly<{
     children: React.ReactNode;

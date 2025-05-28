@@ -1,33 +1,23 @@
+'use client';
+
+import { SkjemaSide, SkjemaState, visSisteStilling } from '@/model/skjema';
 import { Dispatch } from 'react';
-
-import { withAuthenticatedPage } from '../../auth/withAuthentication';
-
-import DinSituasjon from '../../components/skjema/din-situasjon';
-import SisteJobb from '../../components/skjema/siste-jobb/siste-jobb';
-import Utdanning from '../../components/skjema/utdanning';
-import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
-import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
-import Helseproblemer from '../../components/skjema/helseproblemer';
-import AndreProblemer from '../../components/skjema/andre-problemer';
-import { beregnNavigering } from '../../lib/standard-registrering-tilstandsmaskin';
-import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
-import { SkjemaAction } from '../../lib/skjema-state';
-import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
-import { SiderMap, SkjemaProps, SkjemaSideKomponent } from '../../components/skjema-side-factory';
-import {
-    ArbeidssokerPeriode,
-    mapOpplysningerTilSkjemaState,
-    OpplysningerOmArbeidssoker,
-    SisteStillingValg,
-    SporsmalId,
-} from '@navikt/arbeidssokerregisteret-utils';
-import useSWRImmutable from 'swr/immutable';
-import { Loader } from '@navikt/ds-react';
-import { fetcher } from '../../lib/api-utils';
-import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
-import { validerOpplysningerSkjemaForSide } from '../../app/opplysninger/[side]/skjema';
-import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
-import Hindringer from '../../components/skjema/hindringer';
+import { SkjemaAction } from '@/lib/skjema-state';
+import { SiderMap, SkjemaProps, SkjemaSideKomponent } from '@/components/skjema-side-factory';
+import DinSituasjon from '@/components/skjema/din-situasjon';
+import { OpplysningerOmArbeidssoker, SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import SisteJobb from '@/components/skjema/siste-jobb/siste-jobb';
+import SisteStilling from '@/components/skjema/siste-jobb/siste-stilling';
+import Utdanning from '@/components/skjema/utdanning';
+import UtdanningGodkjent from '@/components/skjema/utdanning-godkjent';
+import visUtdanningsvalg from '@/lib/vis-utdanningsvalg';
+import BestattUtdanning from '@/components/skjema/utdanning-bestatt';
+import Hindringer from '@/components/skjema/hindringer';
+import Helseproblemer from '@/components/skjema/helseproblemer';
+import AndreProblemer from '@/components/skjema/andre-problemer';
+import OppsummeringOppdaterOpplysninger from '@/components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
+import { beregnNavigering } from '@/lib/standard-registrering-tilstandsmaskin';
+import { validerOpplysningerSkjemaForSide } from '@/app/opplysninger/[side]/skjema';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -111,27 +101,7 @@ const loggOgDispatch = (dispatch: Dispatch<SkjemaAction>) => {
     };
 };
 
-export const getServerSideProps = withAuthenticatedPage(async (context) => {
-    const { side } = context.query;
-    return {
-        props: {
-            aktivSide: side,
-        },
-    };
-});
-
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-
-const Side = (props: SkjemaProps) => {
-    const { data, isLoading } = useSWRImmutable<{
-        periode: ArbeidssokerPeriode;
-        opplysninger: OpplysningerOmArbeidssoker;
-    }>(brukerMock ? '/api/mocks/hent-siste-opplysninger' : '/api/hent-siste-opplysninger', fetcher);
-
-    if (isLoading) {
-        return <Loader />;
-    }
-
+const Side = (props: SkjemaProps & { opplysninger?: OpplysningerOmArbeidssoker }) => {
     const hentKomponentForSide = (
         side: SkjemaSide,
         skjemaState: SkjemaState,
@@ -148,10 +118,6 @@ const Side = (props: SkjemaProps) => {
             validerSkjemaForSide={validerOpplysningerSkjemaForSide}
             urlPrefix={'oppdater-opplysninger'}
             aktivSide={props.aktivSide}
-            eksisterendeOpplysninger={mapOpplysningerTilSkjemaState(data?.opplysninger!)}
-            useSkjemaState={() => {
-                return {} as any;
-            }}
         />
     );
 };

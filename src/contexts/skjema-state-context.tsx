@@ -17,13 +17,25 @@ const initializer = (skjemaState: SkjemaState) => {
 
 const initialArgs = () => ({ startTid: Date.now() });
 
-function SkjemaStateProvider({ children }: { children: React.ReactNode }) {
-    const [skjemaState, dispatch] = useReducer(skjemaReducer, initialArgs(), initializer);
+function SkjemaStateProvider({
+    children,
+    eksisterendeOpplysninger,
+}: {
+    children: React.ReactNode;
+    eksisterendeOpplysninger?: SkjemaState;
+}) {
+    const [skjemaState, dispatch] = useReducer(
+        skjemaReducer,
+        {
+            ...initialArgs(),
+            ...(eksisterendeOpplysninger ?? {}),
+        },
+        initializer,
+    );
     const contextValue = {
         skjemaState,
         dispatch,
     };
-    console.log('skjemaStateProvider!', skjemaState);
     return <SkjemaStateContext.Provider value={contextValue}>{children}</SkjemaStateContext.Provider>;
 }
 

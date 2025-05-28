@@ -136,9 +136,6 @@ const Skjema = skjemaSideFactory({
     hentKomponentForSide: (side, skjemaState, dispatch, visFeilmelding) => {
         return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
     },
-    useSkjemaState: () => {
-        return {} as any;
-    },
 });
 export const getServerSideProps = withAuthenticatedPage(async (context) => {
     const { side } = context.query;

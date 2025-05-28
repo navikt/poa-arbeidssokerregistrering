@@ -19,6 +19,7 @@ import NesteSteg from './skjema/knapperad/neste-steg';
 import Image from 'next/image';
 import skjemaIkonSvg from './skjema-ikon.svg';
 import Overskrift from './skjema/overskrift';
+import { useSkjemaState } from '@/contexts/skjema-state-context';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -36,30 +37,14 @@ export interface LagSkjemaSideProps {
         visFeilmelding: boolean,
     ) => JSX.Element;
     beregnNavigering: StandardRegistreringTilstandsmaskin;
-    useSkjemaState(): { skjemaState: SkjemaState; dispatch: Dispatch<SkjemaAction> };
 }
 
 export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
 
-const initialArgs = () => ({ startTid: Date.now() });
-
 export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => {
-    const {
-        aktivSide,
-        eksisterendeOpplysninger,
-        beregnNavigering,
-        urlPrefix,
-        validerSkjemaForSide,
-        hentKomponentForSide,
-        useSkjemaState,
-    } = props;
+    const { aktivSide, beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = props;
     const router = useRouter();
     const { dittNavUrl } = useConfig() as Config;
-
-    const initializer = (skjemaState: SkjemaState) => {
-        return skjemaState;
-    };
-
     const [erSkjemaSendt, settErSkjemaSendt] = useState<boolean>(false);
 
     useEffect(() => {
@@ -69,13 +54,12 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     }, []);
 
     const { skjemaState, dispatch } = useSkjemaState();
-
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
 
     const { forrige, neste, fremdrift } = beregnNavigering(aktivSide, skjemaState);
 
     useEffect(() => {
-        const url = eksisterendeOpplysninger ? urlPrefix : '/start';
+        const url = urlPrefix === 'oppdater-opplysninger' ? `/${urlPrefix}` : '/start';
         // valider at forrige side har gyldig state. Hvis ikke starter vi registrering på nytt
         if (forrige) {
             if (!validerSkjemaForSide(forrige, skjemaState)) {
@@ -180,7 +164,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 };
 
 const skjemaSideFactory: SkjemaSideFactory = (opts) => {
-    const { beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide, useSkjemaState } = opts;
+    const { beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = opts;
     return function SkjemaSide(props: SkjemaProps) {
         return (
             <SkjemaSideKomponent
@@ -190,7 +174,6 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
                 hentKomponentForSide={hentKomponentForSide}
                 beregnNavigering={beregnNavigering}
                 eksisterendeOpplysninger={props.eksisterendeOpplysninger}
-                useSkjemaState={useSkjemaState}
             />
         );
     };

@@ -10,6 +10,7 @@ import {
 } from '@navikt/arbeidssokerregisteret-utils';
 
 export type SkjemaAction =
+    | { type: 'InitSkjema'; value: SkjemaState }
     | { type: SporsmalId.dinSituasjon; value: DinSituasjon }
     | { type: SporsmalId.utdanning; value: Utdanningsnivaa }
     | { type: SporsmalId.utdanningGodkjent; value: UtdanningGodkjentValg }
@@ -22,6 +23,9 @@ export type SkjemaAction =
 
 export function skjemaReducer(state: SkjemaState, action: SkjemaAction): SkjemaState {
     switch (action.type) {
+        case 'InitSkjema': {
+            return { ...state, ...action.value };
+        }
         case SporsmalId.dinSituasjon: {
             return oppdaterDinSituasjon(state, action.value);
         }
