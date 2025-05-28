@@ -2,6 +2,7 @@ import { DecoratorEnvProps, DecoratorFetchProps, fetchDecoratorReact } from '@na
 import Script from 'next/script';
 import type { Metadata } from 'next';
 import '../styles/globals.css';
+import styles from '../styles/app.module.css';
 
 export const metadata: Metadata = {
     title: 'ArbeidssøArbeidssøkerregistreringkerregisteret',
@@ -52,7 +53,9 @@ export default async function RootLayout({
             <body>
                 <Decorator.Header />
                 {/*<InitAmplitude apiKey={process.env.AMPLITUDE_API_KEY!} />*/}
-                <main>{children}</main>
+                <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
+                    {children}
+                </main>
                 <Decorator.Footer />
                 <Decorator.Scripts loader={Script} />
             </body>
