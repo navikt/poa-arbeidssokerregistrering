@@ -5,9 +5,10 @@ import { Suspense } from 'react';
 import { Loader } from '@navikt/ds-react';
 import { mapOpplysningerTilSkjemaState } from '@navikt/arbeidssokerregisteret-utils';
 import HydrateSkjemaState from '@/app/oppdater-opplysninger/[side]/wrapper';
+import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 
 async function SkjemaSide({ params }: NextPageProps) {
-    const { side } = await params;
+    const { side, lang } = await params;
     const { data } = await fetchSisteOpplysninger();
     const opplysninger = data?.opplysninger;
     const eksisterendeOpplysninger = opplysninger ? mapOpplysningerTilSkjemaState(opplysninger) : undefined;
@@ -15,6 +16,7 @@ async function SkjemaSide({ params }: NextPageProps) {
     return (
         <>
             <HydrateSkjemaState eksisterendeOpplysninger={eksisterendeOpplysninger} />
+            <SettSprakIDekorator sprak={lang ?? 'nb'} />
             <Skjema aktivSide={side} opplysninger={data?.opplysninger} />
         </>
     );

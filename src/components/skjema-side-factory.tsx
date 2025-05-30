@@ -63,7 +63,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     const { forrige, neste, fremdrift } = beregnNavigering(aktivSide, skjemaState);
 
     useEffect(() => {
-        const url = urlPrefix === 'oppdater-opplysninger' ? `/${urlPrefix}` : `${sprakUrl}/start`;
+        const url = urlPrefix === 'oppdater-opplysninger' ? `${sprakUrl}/${urlPrefix}` : `${sprakUrl}/start`;
         // valider at forrige side har gyldig state. Hvis ikke starter vi registrering på nytt
         if (forrige) {
             if (!validerSkjemaForSide(forrige, skjemaState)) {
