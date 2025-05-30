@@ -91,6 +91,12 @@ spec:
     sidecar:
       enabled: true
       level: Level4
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /arbeid/registrering/api/isalive
+        - /arbeid/registrering/api/isready
+        - /arbeid/registrering/
+
   tokenx:
     enabled: true
   accessPolicy:
