@@ -1,5 +1,6 @@
-import { Side } from '../model/skjema';
+import { Sprak } from '@navikt/arbeidssokerregisteret-utils';
 
-export default function hentKvitteringsUrl(side: Side = 'standard') {
-    return '/kvittering/';
+export default function hentKvitteringsUrl(sprak: Sprak) {
+    const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
+    return `${sprakUrl}/kvittering/`;
 }

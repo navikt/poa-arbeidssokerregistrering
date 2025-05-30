@@ -15,6 +15,7 @@ import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
 import { SkjemaState } from '@/model/skjema';
 import { loggAktivitet, loggFlyt } from '@/lib/amplitude';
+import useSprak from '@/hooks/useSprak';
 
 interface FullforKnappProps {
     skjemaState: SkjemaState;
@@ -37,8 +38,8 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
     const { enableMock } = useConfig() as Config;
-    console.log('enableMock?', enableMock);
-    console.log('config', useConfig());
+    const sprak = useSprak();
+
     const startPeriodeVersjon = 'start-arbeidssokerperiode-v2';
     const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;
@@ -81,7 +82,7 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
 
             loggFlyt({ hendelse: 'Sender inn skjema for registrering' });
 
-            return router.push(hentKvitteringsUrl());
+            return router.push(hentKvitteringsUrl(sprak));
         } catch (e) {
             settVisFeilmelding(true);
             logger.error(e, `Registreringfeilet`);
@@ -90,7 +91,7 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
         } finally {
             settSenderSkjema(false);
         }
-    }, [onSubmit, router, skjemaState, fullfoerRegistreringUrl]);
+    }, [onSubmit, router, skjemaState, fullfoerRegistreringUrl, sprak]);
 
     return (
         <>
