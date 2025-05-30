@@ -59,6 +59,15 @@ const RegistreringsOversikt = (props: Props) => {
                 </Heading>
             )}
             <FormProgress
+                translations={
+                    sprak === 'en'
+                        ? {
+                              step: `Step ${aktivSide} of 5`,
+                              showAllSteps: 'Show all steps',
+                              hideAllSteps: 'Hide all steps',
+                          }
+                        : undefined
+                }
                 totalSteps={5}
                 activeStep={aktivSide}
                 onStepChange={(step: unknown) => {

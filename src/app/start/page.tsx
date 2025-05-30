@@ -4,19 +4,22 @@ import { SkjemaSide } from '@/model/skjema';
 import { Suspense } from 'react';
 import { Loader } from '@navikt/ds-react';
 import { fetchKanStartePeriode } from './api';
+import { NextPageProps } from '@/types/next';
+import { Sprak } from '@navikt/arbeidssokerregisteret-utils';
 
-async function StartPage() {
+async function StartPage({ sprak }: { sprak: Sprak }) {
     const { error, data } = await fetchKanStartePeriode();
-    console.log('I APP ROUTER!!!');
-
+    const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
     if (data) {
-        redirect(`/opplysninger/${SkjemaSide.DinSituasjon}`);
+        redirect(`${sprakUrl}/opplysninger/${SkjemaSide.DinSituasjon}`);
     }
 
     return <>{error && <KanIkkeStartePeriodeV2 feilmelding={error.data} />}</>;
 }
 
-export default async function Start() {
+export default async function Start({ params }: NextPageProps) {
+    const lang = (await params).lang;
+    const sprak = lang ?? 'nb';
     return (
         <Suspense
             fallback={
@@ -25,7 +28,7 @@ export default async function Start() {
                 </div>
             }
         >
-            <StartPage />
+            <StartPage sprak={sprak} />
         </Suspense>
     );
 }

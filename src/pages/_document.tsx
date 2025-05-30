@@ -71,7 +71,6 @@ export default class MyDocument extends Document<DecoratorComponentsReact> {
 
     render() {
         const { HeadAssets, Header, Footer, Scripts, locale } = this.props;
-        const { basePath } = getConfig().publicRuntimeConfig;
         return (
             <Html lang={locale ?? 'nb'}>
                 <Head>

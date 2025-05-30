@@ -1,7 +1,16 @@
-import Skjema from '@/app/opplysninger/[side]/skjema';
-import { NextPageProps } from '@/types/next';
+'use client';
 
-export default async function SkjemaSide({ params }: NextPageProps) {
-    const { side } = await params;
-    return <Skjema side={side} />;
+import Skjema from '@/app/opplysninger/[side]/skjema';
+import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
+import { useParams } from 'next/navigation';
+
+export default function SkjemaSide() {
+    const { side, sprak } = useParams<any>();
+
+    return (
+        <>
+            <SettSprakIDekorator sprak={sprak} />
+            <Skjema side={side} />
+        </>
+    );
 }

@@ -20,6 +20,7 @@ import Image from 'next/image';
 import skjemaIkonSvg from './skjema-ikon.svg';
 import Overskrift from './skjema/overskrift';
 import { useSkjemaState } from '@/contexts/skjema-state-context';
+import useSprak from '@/hooks/useSprak';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
@@ -43,6 +44,9 @@ export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaPro
 
 export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => {
     const { aktivSide, beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = props;
+    const sprak = useSprak();
+    const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
+
     const router = useRouter();
     const { dittNavUrl } = useConfig() as Config;
     const [erSkjemaSendt, settErSkjemaSendt] = useState<boolean>(false);
@@ -59,7 +63,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     const { forrige, neste, fremdrift } = beregnNavigering(aktivSide, skjemaState);
 
     useEffect(() => {
-        const url = urlPrefix === 'oppdater-opplysninger' ? `/${urlPrefix}` : '/start';
+        const url = urlPrefix === 'oppdater-opplysninger' ? `/${urlPrefix}` : `${sprakUrl}/start`;
         // valider at forrige side har gyldig state. Hvis ikke starter vi registrering på nytt
         if (forrige) {
             if (!validerSkjemaForSide(forrige, skjemaState)) {
@@ -73,7 +77,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     }, [forrige, router, skjemaState, fremdrift]);
 
     const navigerTilSide = (side: SkjemaSide) => {
-        return router.push(`/${urlPrefix}/${side}`);
+        return router.push(`${sprakUrl}/${urlPrefix}/${side}`);
     };
 
     const validerOgGaaTilNeste = () => {
@@ -99,7 +103,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
         }
     }, [skjemaState, aktivSide, erSkjemaSendt]);
 
-    const forrigeLenke = forrige ? `/${urlPrefix}/${forrige}/` : undefined;
+    const forrigeLenke = forrige ? `${sprakUrl}/${urlPrefix}/${forrige}/` : undefined;
 
     const dispatcher = (action: SkjemaAction) => {
         if (action.type === 'SenderSkjema') {
