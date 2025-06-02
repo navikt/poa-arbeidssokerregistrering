@@ -3,6 +3,8 @@ import Script from 'next/script';
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 import styles from '../styles/app.module.css';
+import { ConfigProvider } from '@/contexts/config-context';
+import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
 
 export const metadata: Metadata = {
     title: 'ArbeidssøArbeidssøkerregistreringkerregisteret',
@@ -54,7 +56,9 @@ export default async function RootLayout({
                 <Decorator.Header />
                 {/*<InitAmplitude apiKey={process.env.AMPLITUDE_API_KEY!} />*/}
                 <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
-                    {children}
+                    <ConfigProvider>
+                        <SkjemaStateProvider>{children}</SkjemaStateProvider>
+                    </ConfigProvider>
                 </main>
                 <Decorator.Footer />
                 <Decorator.Scripts loader={Script} />
