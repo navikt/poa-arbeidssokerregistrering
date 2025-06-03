@@ -152,6 +152,7 @@ interface Props {
 const SvarOppsummering = (props: Props) => {
     const { skjemaState, skjemaPrefix } = props;
     const sprak = useSprak();
+    const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const oppsummering = Object.entries(skjemaState)
         .filter(([sporsmalId]) => {
@@ -179,7 +180,7 @@ const SvarOppsummering = (props: Props) => {
             } else {
                 oppsummering[nivaa] = {
                     tittel: tekst(nivaa),
-                    url: `${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`,
+                    url: `${sprakUrl}${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`,
                     key: nivaa,
                     alternativer: [alternativ],
                 };
