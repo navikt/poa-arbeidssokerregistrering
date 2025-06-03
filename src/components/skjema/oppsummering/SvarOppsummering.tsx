@@ -155,7 +155,7 @@ const SvarOppsummering = (props: Props) => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const oppsummering = Object.entries(skjemaState)
         .filter(([sporsmalId]) => {
-            const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid'];
+            const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid', 'hasInitialized'];
 
             if (
                 skjemaState[SporsmalId.sisteStilling] === SisteStillingValg.HAR_IKKE_HATT_JOBB ||

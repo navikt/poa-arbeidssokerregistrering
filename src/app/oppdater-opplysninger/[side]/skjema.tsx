@@ -101,7 +101,7 @@ const loggOgDispatch = (dispatch: Dispatch<SkjemaAction>) => {
     };
 };
 
-const Side = (props: SkjemaProps & { opplysninger?: OpplysningerOmArbeidssoker }) => {
+const Side = (props: SkjemaProps) => {
     const hentKomponentForSide = (
         side: SkjemaSide,
         skjemaState: SkjemaState,

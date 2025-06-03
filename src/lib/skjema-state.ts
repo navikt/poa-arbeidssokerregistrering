@@ -1,4 +1,4 @@
-import { SkjemaState } from '../model/skjema';
+import { SkjemaState } from '@/model/skjema';
 import {
     DinSituasjon,
     JaEllerNei,
@@ -24,7 +24,17 @@ export type SkjemaAction =
 export function skjemaReducer(state: SkjemaState, action: SkjemaAction): SkjemaState {
     switch (action.type) {
         case 'InitSkjema': {
-            return { ...state, ...action.value };
+            if (state.hasInitialized) {
+                return state;
+            }
+            console.log('InitSkjema', action.value);
+            return { ...state, ...action.value, hasInitialized: true };
+        }
+        case 'SenderSkjema': {
+            return {
+                ...state,
+                hasInitialized: false,
+            };
         }
         case SporsmalId.dinSituasjon: {
             return oppdaterDinSituasjon(state, action.value);

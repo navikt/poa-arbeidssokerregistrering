@@ -1,4 +1,4 @@
-import { FeilmeldingGenerell } from '../components/feilmeldinger/feilmeldinger';
+import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
 
 const Feil = () => {
     return <FeilmeldingGenerell />;

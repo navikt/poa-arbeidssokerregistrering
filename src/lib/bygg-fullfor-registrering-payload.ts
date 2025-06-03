@@ -8,8 +8,8 @@ import {
     Utdanningsnivaa,
     SisteJobb,
 } from '@navikt/arbeidssokerregisteret-utils';
-import { Side, SkjemaState } from '../model/skjema';
-import { hentTekst } from '../model/sporsmal';
+import { Side, SkjemaState } from '@/model/skjema';
+import { hentTekst } from '@/model/sporsmal';
 
 export const aldriJobbet: SisteJobb = {
     label: 'X',
@@ -44,7 +44,9 @@ function byggFullforRegistreringPayload(skjemaState: SkjemaState, side: Side = '
         return harAldriJobbet ? 'Ingen yrkeserfaring' : skjemaState.sisteJobb?.label || 'Ikke oppgitt';
     };
 
-    let payload = (Object.keys(initialState) as Array<keyof Omit<SkjemaState, 'startTid'>>).reduce(
+    let payload = (
+        Object.keys(initialState) as Array<keyof Omit<Omit<SkjemaState, 'startTid'>, 'hasInitialized'>>
+    ).reduce(
         (resultat: Payload, key) => {
             const svar = skjemaState[key] || initialState[key];
 

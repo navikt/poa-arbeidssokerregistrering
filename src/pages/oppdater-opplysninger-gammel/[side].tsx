@@ -148,7 +148,6 @@ const Side = (props: SkjemaProps) => {
             validerSkjemaForSide={validerOpplysningerSkjemaForSide}
             urlPrefix={'oppdater-opplysninger'}
             aktivSide={props.aktivSide}
-            eksisterendeOpplysninger={mapOpplysningerTilSkjemaState(data?.opplysninger!)}
         />
     );
 };

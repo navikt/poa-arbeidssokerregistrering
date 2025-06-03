@@ -6,7 +6,9 @@ import { useEffect } from 'react';
 export default function HydrateSkjemaState({ eksisterendeOpplysninger }: { eksisterendeOpplysninger?: any }) {
     const { dispatch } = useSkjemaState();
     useEffect(() => {
-        dispatch({ type: 'InitSkjema', value: eksisterendeOpplysninger });
-    }, [dispatch, eksisterendeOpplysninger]);
+        if (eksisterendeOpplysninger) {
+            dispatch({ type: 'InitSkjema', value: eksisterendeOpplysninger });
+        }
+    }, []);
     return null;
 }

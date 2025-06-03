@@ -25,7 +25,6 @@ import useSprak from '@/hooks/useSprak';
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {
     aktivSide: any;
-    eksisterendeOpplysninger?: any;
 }
 
 export interface LagSkjemaSideProps {
@@ -177,7 +176,6 @@ const skjemaSideFactory: SkjemaSideFactory = (opts) => {
                 validerSkjemaForSide={validerSkjemaForSide}
                 hentKomponentForSide={hentKomponentForSide}
                 beregnNavigering={beregnNavigering}
-                eksisterendeOpplysninger={props.eksisterendeOpplysninger}
             />
         );
     };

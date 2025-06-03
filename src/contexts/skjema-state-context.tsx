@@ -11,27 +11,16 @@ interface SkjemaProvider {
 
 const SkjemaStateContext = createContext<SkjemaProvider>({} as any);
 
-const initializer = (skjemaState: SkjemaState) => {
-    return skjemaState;
-};
-
-const initialArgs = () => ({ startTid: Date.now() });
+const getInitialArgs = () => ({ startTid: Date.now(), hasInitialized: false });
 
 function SkjemaStateProvider({
     children,
-    eksisterendeOpplysninger,
+    // eksisterendeOpplysninger,
 }: {
     children: React.ReactNode;
-    eksisterendeOpplysninger?: SkjemaState;
+    // eksisterendeOpplysninger?: SkjemaState;
 }) {
-    const [skjemaState, dispatch] = useReducer(
-        skjemaReducer,
-        {
-            ...initialArgs(),
-            ...(eksisterendeOpplysninger ?? {}),
-        },
-        initializer,
-    );
+    const [skjemaState, dispatch] = useReducer(skjemaReducer, undefined, getInitialArgs);
     const contextValue = {
         skjemaState,
         dispatch,
