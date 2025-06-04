@@ -8,7 +8,7 @@ import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
 import InitAmplitude from '@/components/init-amplitude';
 
 export const metadata: Metadata = {
-    title: 'ArbeidssøArbeidssøkerregistreringkerregisteret',
+    title: 'Arbeidssøkerregistrering',
     description: 'Skjema for arbeidssøkerregistrering',
 };
 
