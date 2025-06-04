@@ -35,6 +35,7 @@ const dekoratorProps: DecoratorEnvProps & DecoratorFetchProps = {
         context: 'privatperson',
         chatbot: false,
         logoutWarning: true,
+        redirectToApp: true,
         availableLanguages,
     },
 };
@@ -70,7 +71,6 @@ export default class MyDocument extends Document<DecoratorComponentsReact> {
 
     render() {
         const { HeadAssets, Header, Footer, Scripts, locale } = this.props;
-        const { basePath } = getConfig().publicRuntimeConfig;
         return (
             <Html lang={locale ?? 'nb'}>
                 <Head>

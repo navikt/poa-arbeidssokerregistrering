@@ -1,3 +1,5 @@
+'use client';
+
 import Head from 'next/head';
 import { lagHentTekstForSprak, SporsmalId, Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 

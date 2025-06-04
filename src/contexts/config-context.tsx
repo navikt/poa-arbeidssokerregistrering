@@ -1,8 +1,10 @@
+'use client';
+
 import { createContext, ReactNode, useContext } from 'react';
 import useSWR from 'swr';
 
-import { fetcher } from '../lib/api-utils';
-import { Config } from '../model/config';
+import { fetcher } from '@/lib/api-utils';
+import { Config } from '@/model/config';
 
 type uninitializedConfig = {};
 

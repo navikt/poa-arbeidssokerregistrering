@@ -31,6 +31,8 @@ spec:
       cpu: "200m"
       memory: "256Mi"
   env:
+    - name: NEXT_PUBLIC_BASE_PATH
+      value: /arbeid/registrering
     - name: SELF_URL
       value: https://www.nav.no/arbeid/registrering
     - name: DEKORATOR_URL

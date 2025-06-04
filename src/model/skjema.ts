@@ -42,6 +42,7 @@ export interface SkjemaState {
     [SporsmalId.sisteJobb]?: SisteJobb;
     [SporsmalId.helseHinder]?: JaEllerNei;
     startTid?: number;
+    hasInitialized?: boolean;
 }
 
 const skjemasider = {

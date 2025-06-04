@@ -25,7 +25,7 @@ import useSWRImmutable from 'swr/immutable';
 import { Loader } from '@navikt/ds-react';
 import { fetcher } from '../../lib/api-utils';
 import OppsummeringOppdaterOpplysninger from '../../components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
-import { validerOpplysningerSkjemaForSide } from '../opplysninger/[side]';
+import { validerOpplysningerSkjemaForSide } from '../../app/opplysninger/[side]/skjema';
 import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
 import Hindringer from '../../components/skjema/hindringer';
 
@@ -148,7 +148,6 @@ const Side = (props: SkjemaProps) => {
             validerSkjemaForSide={validerOpplysningerSkjemaForSide}
             urlPrefix={'oppdater-opplysninger'}
             aktivSide={props.aktivSide}
-            eksisterendeOpplysninger={mapOpplysningerTilSkjemaState(data?.opplysninger!)}
         />
     );
 };

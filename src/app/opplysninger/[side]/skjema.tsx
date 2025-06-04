@@ -1,23 +1,23 @@
-import { Dispatch } from 'react';
+'use client';
 
-import { withAuthenticatedPage } from '../../auth/withAuthentication';
+import React, { Dispatch } from 'react';
 
-import DinSituasjon from '../../components/skjema/din-situasjon';
-import SisteJobb from '../../components/skjema/siste-jobb/siste-jobb';
-import Utdanning from '../../components/skjema/utdanning';
-import UtdanningGodkjent from '../../components/skjema/utdanning-godkjent';
-import BestattUtdanning from '../../components/skjema/utdanning-bestatt';
-import Helseproblemer from '../../components/skjema/helseproblemer';
-import AndreProblemer from '../../components/skjema/andre-problemer';
-import Oppsummering from '../../components/skjema/oppsummering/oppsummering';
-import { beregnNavigering } from '../../lib/standard-registrering-tilstandsmaskin';
-import { SkjemaSide, SkjemaState, visSisteStilling } from '../../model/skjema';
-import { SkjemaAction } from '../../lib/skjema-state';
-import SisteStilling from '../../components/skjema/siste-jobb/siste-stilling';
-import skjemaSideFactory, { SiderMap } from '../../components/skjema-side-factory';
+import DinSituasjon from '@/components/skjema/din-situasjon';
+import SisteJobb from '@/components/skjema/siste-jobb/siste-jobb';
+import Utdanning from '@/components/skjema/utdanning';
+import UtdanningGodkjent from '@/components/skjema/utdanning-godkjent';
+import BestattUtdanning from '@/components/skjema/utdanning-bestatt';
+import Helseproblemer from '@/components/skjema/helseproblemer';
+import AndreProblemer from '@/components/skjema/andre-problemer';
+import Oppsummering from '@/components/skjema/oppsummering/oppsummering';
+import { beregnNavigering } from '@/lib/standard-registrering-tilstandsmaskin';
+import { SkjemaSide, SkjemaState, visSisteStilling } from '@/model/skjema';
+import { SkjemaAction } from '@/lib/skjema-state';
+import SisteStilling from '@/components/skjema/siste-jobb/siste-stilling';
+import skjemaSideFactory, { SiderMap } from '@/components/skjema-side-factory';
 import { SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
-import visUtdanningsvalg from '../../lib/vis-utdanningsvalg';
-import Hindringer from '../../components/skjema/hindringer';
+import visUtdanningsvalg from '@/lib/vis-utdanningsvalg';
+import Hindringer from '@/components/skjema/hindringer';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {
@@ -111,9 +111,8 @@ export const validerOpplysningerSkjemaForSide = (side: SkjemaSide, skjemaState: 
                         : true)
                 );
             case SkjemaSide.Hindringer:
-                return skjemaState.helseHinder && skjemaState.andreForhold;
             case SkjemaSide.Oppsummering:
-                return skjemaState.andreForhold;
+                return skjemaState.helseHinder && skjemaState.andreForhold;
         }
     };
 
@@ -129,7 +128,7 @@ const loggOgDispatch = (dispatch: Dispatch<SkjemaAction>) => {
     };
 };
 
-const Skjema = skjemaSideFactory({
+const SkjemaKomponent = skjemaSideFactory({
     urlPrefix: 'opplysninger',
     validerSkjemaForSide: validerOpplysningerSkjemaForSide,
     beregnNavigering,
@@ -137,12 +136,9 @@ const Skjema = skjemaSideFactory({
         return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
     },
 });
-export const getServerSideProps = withAuthenticatedPage(async (context) => {
-    const { side } = context.query;
-    return {
-        props: {
-            aktivSide: side,
-        },
-    };
-});
+
+const Skjema = (props: any) => {
+    return <SkjemaKomponent aktivSide={props.side} />;
+};
+
 export default Skjema;

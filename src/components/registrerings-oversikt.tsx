@@ -1,9 +1,10 @@
+'use client';
+
 import useSprak from '../hooks/useSprak';
 import { FormProgress, Heading } from '@navikt/ds-react';
-import { SkjemaSide, SkjemaState } from '../model/skjema';
+import { SkjemaSide, SkjemaState } from '@/model/skjema';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-import NextLink from 'next/link';
-import { loggAktivitet } from '../lib/amplitude';
+import { loggAktivitet } from '@/lib/amplitude';
 
 const TEKSTER = {
     nb: {
@@ -58,6 +59,15 @@ const RegistreringsOversikt = (props: Props) => {
                 </Heading>
             )}
             <FormProgress
+                translations={
+                    sprak === 'en'
+                        ? {
+                              step: `Step ${aktivSide} of 5`,
+                              showAllSteps: 'Show all steps',
+                              hideAllSteps: 'Hide all steps',
+                          }
+                        : undefined
+                }
                 totalSteps={5}
                 activeStep={aktivSide}
                 onStepChange={(step: unknown) => {

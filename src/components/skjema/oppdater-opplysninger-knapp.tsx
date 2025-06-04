@@ -1,14 +1,16 @@
+'use client';
+
 import { useCallback, useState } from 'react';
-import { useRouter } from 'next/router';
-import { useConfig } from '../../contexts/config-context';
-import { Config } from '../../model/config';
+import { useRouter } from 'next/navigation';
+import { useConfig } from '@/contexts/config-context';
+import { Config } from '@/model/config';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
 import { fetcher as api } from '../../lib/api-utils';
 import { logger } from '@navikt/next-logger';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
 import { Button } from '@navikt/ds-react';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
-import { SkjemaState } from '../../model/skjema';
+import { SkjemaState } from '@/model/skjema';
 
 interface OppdaterOpplysningerKnappProps {
     skjemaState: SkjemaState;

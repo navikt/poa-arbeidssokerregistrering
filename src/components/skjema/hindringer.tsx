@@ -1,3 +1,5 @@
+'use client';
+
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
 import { ReactNode } from 'react';

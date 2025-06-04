@@ -1,15 +1,14 @@
-import { useRouter } from 'next/router';
-
 import {
     FeilmeldingVedStartAvArbeidssoekerperiodeV2,
     FeilKoderVedStartAvArbeidssoekerperiode,
     ReglerForStartAvArbeidssoekerperiode,
 } from '../../model/feilsituasjonTyper';
+import { redirect } from 'next/navigation';
 
 function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
     const { feilmelding } = props;
-    const Router = useRouter();
     if (!feilmelding) return null;
+
     const { feilKode, aarsakTilAvvisning } = feilmelding;
     const { regler } = aarsakTilAvvisning || {};
 
@@ -32,16 +31,14 @@ function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbe
         aarsaker.includes(ReglerForStartAvArbeidssoekerperiode.IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN);
 
     if (erUnder18) {
-        Router.push('/veiledning/under-18/');
+        redirect('/veiledning/under-18/');
     } else if (tekniskFeil) {
-        Router.push('/veiledning/feil/');
+        redirect('/veiledning/feil/');
     } else if (manglendeOppholdstillatelse) {
-        Router.push('/veiledning/oppholdstillatelse/');
+        redirect('/veiledning/oppholdstillatelse/');
     } else {
-        Router.push('/veiledning/registerdata/');
+        redirect('/veiledning/registerdata/');
     }
-
-    return null;
 }
 
 export default KanIkkeStartePeriodeV2;

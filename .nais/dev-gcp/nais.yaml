@@ -34,6 +34,8 @@ spec:
       cpu: "200m"
       memory: "256Mi"
   env:
+    - name: NEXT_PUBLIC_BASE_PATH
+      value: /arbeid/registrering
     - name: SELF_URL
       value: https://www.ansatt.dev.nav.no/arbeid/registrering
     - name: DEKORATOR_URL
@@ -89,6 +91,12 @@ spec:
     sidecar:
       enabled: true
       level: Level4
+      autoLogin: true
+      autoLoginIgnorePaths:
+        - /arbeid/registrering/api/isalive
+        - /arbeid/registrering/api/isready
+        - /arbeid/registrering/
+
   tokenx:
     enabled: true
   accessPolicy:

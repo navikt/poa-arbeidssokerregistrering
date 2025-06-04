@@ -1,3 +1,5 @@
+'use client';
+
 import { Box, FormSummary } from '@navikt/ds-react';
 import NextLink from 'next/link';
 import {
@@ -10,9 +12,9 @@ import {
 
 import useSprak from '../../../hooks/useSprak';
 
-import { hentTekst } from '../../../model/sporsmal';
-import { hentSkjemaside, SkjemaState } from '../../../model/skjema';
-import { loggAktivitet } from '../../../lib/amplitude';
+import { hentTekst } from '@/model/sporsmal';
+import { hentSkjemaside, SkjemaState } from '@/model/skjema';
+import { loggAktivitet } from '@/lib/amplitude';
 
 type Svar = {
     spoersmal: string;
@@ -150,10 +152,11 @@ interface Props {
 const SvarOppsummering = (props: Props) => {
     const { skjemaState, skjemaPrefix } = props;
     const sprak = useSprak();
+    const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const oppsummering = Object.entries(skjemaState)
         .filter(([sporsmalId]) => {
-            const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid'];
+            const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid', 'hasInitialized'];
 
             if (
                 skjemaState[SporsmalId.sisteStilling] === SisteStillingValg.HAR_IKKE_HATT_JOBB ||
@@ -177,7 +180,7 @@ const SvarOppsummering = (props: Props) => {
             } else {
                 oppsummering[nivaa] = {
                     tittel: tekst(nivaa),
-                    url: `${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`,
+                    url: `${sprakUrl}${skjemaPrefix}${hentSkjemaside(sporsmalId as SporsmalId)}`,
                     key: nivaa,
                     alternativer: [alternativ],
                 };
