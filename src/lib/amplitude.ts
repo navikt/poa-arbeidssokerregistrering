@@ -7,6 +7,7 @@ import { awaitDecoratorData, getCurrentConsent } from '@navikt/nav-dekoratoren-m
 
 const isBrowser = () => typeof window !== 'undefined';
 const isDevelopment = () => isBrowser() && /^http:\/\/localhost/.test(window.location.href);
+const apiEndpoint = 'https://amplitude.nav.no/collect';
 
 const config = {
     saveEvents: false,
@@ -81,7 +82,7 @@ type EksperimentData = {
     situasjon?: DinSituasjon;
 };
 
-type AmplitudeParams = { apiKey: string; apiEndpoint: string };
+type AmplitudeParams = { apiKey: string };
 type AmplitudeInitFunction = (params: AmplitudeParams) => void;
 
 const isConsentingToAnalytics = () => {
@@ -100,7 +101,7 @@ const isConsentingToAnalytics = () => {
     return currentConsent.consent.analytics;
 };
 
-export const initAmplitude: AmplitudeInitFunction = async ({ apiKey, apiEndpoint }) => {
+export const initAmplitude: AmplitudeInitFunction = async ({ apiKey }) => {
     await awaitDecoratorData();
     if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
         amplitude.init(apiKey, undefined, { ...config, serverUrl: apiEndpoint });
