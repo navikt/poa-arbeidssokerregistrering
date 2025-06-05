@@ -1,10 +1,9 @@
-import { useEffect } from 'react';
 import { Alert, BodyLong, GuidePanel, Heading } from '@navikt/ds-react';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 
-import useSprak from '../hooks/useSprak';
-
-import { loggStoppsituasjon } from '../lib/amplitude';
+import LoggVisning from '@/app/vedlikehold/logg-visning';
+import { NextPageProps } from '@/types/next';
+import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -30,17 +29,15 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-function Vedlikehold() {
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
-
-    useEffect(() => {
-        loggStoppsituasjon({
-            situasjon: 'Arbeidssøkeren får ikke registrert seg pga nedetid',
-        });
-    }, []);
+export default async function Vedlikehold({ params }: NextPageProps) {
+    const { lang } = await params;
+    const sprak = lang ?? 'nb';
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
         <>
+            <LoggVisning />
+            <SettSprakIDekorator sprak={sprak} />
             <Heading level="1" size="large" spacing>
                 {tekst('heading')}
             </Heading>
@@ -52,5 +49,3 @@ function Vedlikehold() {
         </>
     );
 }
-
-export default Vedlikehold;
