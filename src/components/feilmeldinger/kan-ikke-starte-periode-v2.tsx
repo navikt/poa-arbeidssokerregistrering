@@ -4,11 +4,11 @@ import {
     ReglerForStartAvArbeidssoekerperiode,
 } from '@/model/feilsituasjonTyper';
 import { redirect } from 'next/navigation';
-import Feil from '@/pages/feil';
+import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
 
 function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
     const { feilmelding } = props;
-    if (!feilmelding) return <Feil />;
+    if (!feilmelding) return <FeilmeldingGenerell />;
 
     const { feilKode, aarsakTilAvvisning } = feilmelding;
     const { regler } = aarsakTilAvvisning || {};
