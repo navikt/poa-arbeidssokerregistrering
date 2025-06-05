@@ -5,7 +5,7 @@ import { stripBearer } from '@navikt/oasis/dist/strip-bearer';
 import { logger } from '@navikt/next-logger';
 import { requestTokenxOboToken } from '@navikt/oasis';
 import { nanoid } from 'nanoid';
-import { verifyToken } from '../auth/token-validation';
+import { verifyToken } from '@/auth/token-validation';
 import { decodeJwt } from 'jose';
 import { ApiError, getHeaders, INNGANG_CLIENT_ID } from './next-api-handler';
 
@@ -43,7 +43,11 @@ export async function arbeidssokerApiKall(url: string) {
             if (!apiResponse.ok) {
                 logger.warn(`apiResponse ikke ok (${apiResponse.status}), callId - ${callId}`);
                 if (isJsonResponse) {
-                    return await apiResponse.json();
+                    const data = await apiResponse.json();
+                    return {
+                        data,
+                        status: apiResponse.status,
+                    };
                 } else {
                     const error = new Error(apiResponse.statusText) as ApiError;
                     error.status = apiResponse.status;
@@ -61,7 +65,14 @@ export async function arbeidssokerApiKall(url: string) {
         });
 
         logger.info(`Kall callId: ${callId} mot ${url} er ferdig (${respons?.status || 200})`);
-        return { data: respons, error: null };
+
+        if (respons?.status === 204) {
+            return { data: {}, error: null };
+        } else if (respons?.status && respons?.status !== 200) {
+            return { data: null, error: respons };
+        } else {
+            return { data: respons ?? {}, error: null };
+        }
     } catch (err) {
         logger.error(`Kall mot ${url} (callId: ${callId}) feilet. Feilmelding: ${err}`);
         return { error: err, data: null };

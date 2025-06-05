@@ -2,12 +2,13 @@ import {
     FeilmeldingVedStartAvArbeidssoekerperiodeV2,
     FeilKoderVedStartAvArbeidssoekerperiode,
     ReglerForStartAvArbeidssoekerperiode,
-} from '../../model/feilsituasjonTyper';
+} from '@/model/feilsituasjonTyper';
 import { redirect } from 'next/navigation';
+import Feil from '@/pages/feil';
 
 function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
     const { feilmelding } = props;
-    if (!feilmelding) return null;
+    if (!feilmelding) return <Feil />;
 
     const { feilKode, aarsakTilAvvisning } = feilmelding;
     const { regler } = aarsakTilAvvisning || {};
@@ -33,7 +34,7 @@ function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbe
     if (erUnder18) {
         redirect('/veiledning/under-18/');
     } else if (tekniskFeil) {
-        redirect('/veiledning/feil/');
+        redirect('/feil/');
     } else if (manglendeOppholdstillatelse) {
         redirect('/veiledning/oppholdstillatelse/');
     } else {
