@@ -6,6 +6,7 @@ import { Loader } from '@navikt/ds-react';
 import { fetchKanStartePeriode } from './api';
 import { NextPageProps } from '@/types/next';
 import { Sprak } from '@navikt/arbeidssokerregisteret-utils';
+import { logger } from '@navikt/next-logger';
 
 async function StartPage({ sprak }: { sprak: Sprak }) {
     const { error, data } = await fetchKanStartePeriode();
@@ -13,7 +14,7 @@ async function StartPage({ sprak }: { sprak: Sprak }) {
     if (data) {
         redirect(`${sprakUrl}/opplysninger/${SkjemaSide.DinSituasjon}`);
     }
-
+    logger.error(error, 'Feil i startPage');
     return <>{error && <KanIkkeStartePeriodeV2 feilmelding={error.data} />}</>;
 }
 
