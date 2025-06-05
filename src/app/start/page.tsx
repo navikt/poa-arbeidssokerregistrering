@@ -14,7 +14,7 @@ async function StartPage({ sprak }: { sprak: Sprak }) {
     if (data) {
         redirect(`${sprakUrl}/opplysninger/${SkjemaSide.DinSituasjon}`);
     }
-    logger.error(error, 'Feil i startPage');
+    logger.warn(error, 'Feil i startPage');
     return <>{error && <KanIkkeStartePeriodeV2 feilmelding={error.data} />}</>;
 }
 
