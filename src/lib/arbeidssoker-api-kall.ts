@@ -45,7 +45,7 @@ export async function arbeidssokerApiKall(url: string) {
                 if (isJsonResponse) {
                     const data = await apiResponse.json();
                     return {
-                        ...data,
+                        data,
                         status: apiResponse.status,
                     };
                 } else {

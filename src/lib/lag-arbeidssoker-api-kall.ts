@@ -40,7 +40,7 @@ const lagArbeidssokerApiKall: LagArbeidssokerApiKall = (url, opts) => async (req
                 if (isJsonResponse) {
                     const data = await apiResponse.json();
                     return {
-                        data,
+                        ...data,
                         status: apiResponse.status,
                     };
                 } else {
