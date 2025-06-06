@@ -1,0 +1,63 @@
+'use client';
+
+import { useCallback, useEffect, useState } from 'react';
+import {
+    KvitteringOppgaveIkkeOpprettet,
+    KvitteringOppgaveOpprettet,
+    Opprettelsesfeil,
+} from '@/components/KvitteringOppgaveUnder18';
+import { useConfig } from '@/contexts/config-context';
+import { Config } from '@/model/config';
+import { loggAktivitet } from '@/lib/amplitude';
+import { fetcher as api } from '@/lib/api-utils';
+import { Loader } from '@navikt/ds-react';
+
+export default function Under18() {
+    const [responseMottatt, settResponseMottatt] = useState<boolean>(false);
+    const [oppretterOppgave, settOppretterOppgave] = useState<boolean>(false);
+    const [feil, settFeil] = useState<Opprettelsesfeil | undefined>();
+    const { enableMock } = useConfig() as Config;
+
+    const opprettOppgave = useCallback(async (brukerMock: boolean) => {
+        const oppgaveUrl = brukerMock ? 'api/mocks/oppgave-under-18' : 'api/oppgave-under-18';
+        loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave - under 18' });
+        const beskrivelse = `Personen har forsøkt å registrere seg som arbeidssøker, men er sperret fra å gjøre dette da personen er under 18 år.
+For mindreårige arbeidssøkere trengs det samtykke fra begge foresatte for å kunne registrere seg.
+Se "Samtykke fra foresatte til unge under 18 år - registrering som arbeidssøker, øvrige tiltak og tjenester".
+        
+Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell registrering i modia.`;
+
+        try {
+            await api(oppgaveUrl, {
+                method: 'post',
+                body: JSON.stringify({ beskrivelse }),
+                onError: (res) => {
+                    if (res.status === 403) {
+                        settFeil('finnesAllerede');
+                    } else {
+                        throw Error(res.statusText);
+                    }
+                },
+            });
+        } catch (e) {
+            settFeil('opprettelseFeilet');
+        }
+        settResponseMottatt(true);
+    }, []);
+
+    useEffect(() => {
+        if (!oppretterOppgave && typeof enableMock !== 'undefined') {
+            settOppretterOppgave(true);
+            opprettOppgave(enableMock === 'enabled');
+        }
+    }, [oppretterOppgave, enableMock]);
+
+    if (responseMottatt) {
+        return feil ? <KvitteringOppgaveIkkeOpprettet feil={feil} /> : <KvitteringOppgaveOpprettet />;
+    } else
+        return (
+            <div>
+                <Loader size="xlarge" />
+            </div>
+        );
+}
