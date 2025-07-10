@@ -1,10 +1,6 @@
 # poa-arbeidssokerregistrering
 
-Arbeidssøkerregistrering
-
-## Demo
-
-[https://arbeid.ekstern.dev.nav.no/arbeid/registrering](https://arbeid.ekstern.dev.nav.no/arbeid/registrering)
+Arbeidssøkerregistrering for personbruker.
 
 # Utvikling
 
@@ -14,17 +10,19 @@ Dersom du ikke kjører i mock-modus må du ha koblet til [naisdevice](https://do
 
 Siden noen av modulene hentes fra GitHubs package registry må du også gjøre litt ekstra konfigurasjon for å kjøre løsningen lokalt.
 
--   Opprett et PAT (github => settings => developer settings => personal access tokens => tokens (classic)) med `read:packages` scope
--   Konfigurer SSO mot NAVIKT for tokenet
--   bruk tokenet som passord ved login `npm login --registry https://npm.pkg.github.com`
+- Opprett et PAT (github => settings => developer settings => personal access tokens => tokens (classic)) med `read:packages` scope
+- Konfigurer SSO mot NAVIKT for tokenet
+- bruk tokenet som passord ved login `npm login --registry https://npm.pkg.github.com`
 
 Deretter fortsette du med
 
--   klon repo
--   innstaller avhengigheter `npm i`
--   kjør tester `npm t`
--   start utviklingsserver `npm run dev`
--   åpne nettleseren på `http://localhost:3000/arbeid/registrering`
+- klon repo
+- innstaller avhengigheter `npm i`
+- kjør tester `npm t`
+- start utviklingsserver `npm run dev`
+- åpne nettleseren på `http://localhost:3000/arbeid/registrering`
+
+Dette er en Next.js løsning som har levd en stund. Den bruker derfor både app og pages.
 
 ## Deploye kun til dev
 
@@ -36,11 +34,13 @@ git checkout -b dev/<navn på branch>
 
 For å teste løsningen i dev bruker du [https://www.ansatt.dev.nav.no/arbeid/registrering](https://www.ansatt.dev.nav.no/arbeid/registrering)
 
+Du oppretter testbrukere du ønsker å registrere i Dolly [https://dolly.ekstern.dev.nav.no/](https://dolly.ekstern.dev.nav.no/)
+
 ## Ekstern dokumentasjon
 
--   [Next.js](https://nextjs.org/)
--   [testing-library](https://testing-library.com/)
--   [Tailwind CSS](https://tailwindcss.com/)
+- [Next.js](https://nextjs.org/)
+- [testing-library](https://testing-library.com/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
 # Henvendelser
 
