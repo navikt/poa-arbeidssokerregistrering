@@ -132,7 +132,7 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
                 {props.alternativer.map((alternativ) => {
                     return (
                         alternativ.svaralternativ && (
-                            <FormSummary.Answer className="pl-7 py-4 !mb-0" key={alternativ.key}>
+                            <FormSummary.Answer className="pl-7 py-4 mb-0!" key={alternativ.key}>
                                 <FormSummary.Label>{alternativ.spoersmal}</FormSummary.Label>
                                 <FormSummary.Value>{alternativ.svaralternativ}</FormSummary.Value>
                             </FormSummary.Answer>
