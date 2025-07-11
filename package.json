@@ -46,7 +46,7 @@
         "@types/jest": "30.0.0",
         "@types/jest-axe": "3.5.9",
         "@types/lodash": "4.17.20",
-        "@types/node": "22.15.21",
+        "@types/node": "24.0.13",
         "@types/react": "19.1.8",
         "autoprefixer": "10.4.21",
         "eslint": "9.30.1",
