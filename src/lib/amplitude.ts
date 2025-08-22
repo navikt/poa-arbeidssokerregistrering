@@ -115,8 +115,8 @@ export async function logAmplitudeEvent(eventName: string, data: EventData) {
     try {
         const eventData = data || {};
         if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
-            const tracker = getAnalyticsInstance('arbeidssokerregistrering');
             amplitude.logEvent(eventName, { ...eventData });
+            const tracker = getAnalyticsInstance('arbeidssokerregistrering');
             await tracker(eventName, eventData);
         }
     } catch (error) {
