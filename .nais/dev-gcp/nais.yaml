@@ -80,6 +80,8 @@ spec:
       value: http://paw-arbeidssokerregisteret-api-inngang
     - name: ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL
       value: http://paw-arbeidssoekerregisteret-api-oppslag
+    - name: OPPSLAG_API_V2_URL
+      value: http://paw-arbeidssoekerregisteret-api-oppslag-v2
     - name: FORSIDE_URL
       value: https://www.nav.no/registrer-arbeidssoker
   envFrom:
@@ -107,6 +109,7 @@ spec:
       rules:
         - application: paw-arbeidssokerregisteret-api-inngang
         - application: paw-arbeidssoekerregisteret-api-oppslag
+        - application: paw-arbeidssoekerregisteret-api-oppslag-v2
         - application: aia-backend
         - application: nav-dekoratoren
           namespace: personbruker
