@@ -1,5 +1,5 @@
 import { NextApiHandler } from 'next';
-import { getHeaders, getOppslagApiToken } from '../../lib/next-api-handler';
+import { getHeaders, getOppslagApiToken, getOppslagApiV2Token } from '../../lib/next-api-handler';
 import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
 import {
@@ -9,8 +9,8 @@ import {
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-const PERIODER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL}/api/v1/arbeidssoekerperioder`;
-const OPPLYSNINGER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL}/api/v1/opplysninger-om-arbeidssoeker`;
+const PERIODER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/arbeidssoekerperioder`;
+const OPPLYSNINGER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/opplysninger-om-arbeidssoeker`;
 
 const fetcher = async (url: string, token: string, callId: string) => {
     logger.info(`Starter kall mot ${url}, callId - ${callId}`);
@@ -30,7 +30,7 @@ const hentSisteOpplysningerHandler: NextApiHandler = async (req, res) => {
     const callId = nanoid();
     try {
         logger.info(`Starter kall /api/hent-siste-opplysninger - callId=${callId}`);
-        const oppslagApiToken = brukerMock ? 'token' : await getOppslagApiToken(req);
+        const oppslagApiToken = brukerMock ? 'token' : await getOppslagApiV2Token(req);
         const periode = hentSisteArbeidssokerPeriode(await fetcher(PERIODER_URL, oppslagApiToken, callId));
 
         if (!periode?.periodeId) {
