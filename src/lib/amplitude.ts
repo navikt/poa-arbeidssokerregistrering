@@ -1,9 +1,9 @@
 import * as amplitude from '@amplitude/analytics-browser';
 
-import { ErrorTypes } from '../model/error';
-import { RegistreringType } from '../model/registrering';
+import { ErrorTypes } from '@/model/error';
+import { RegistreringType } from '@/model/registrering';
 import { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
-import { awaitDecoratorData, getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
+import { awaitDecoratorData, getAnalyticsInstance, getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
 
 const isBrowser = () => typeof window !== 'undefined';
 const isDevelopment = () => isBrowser() && /^http:\/\/localhost/.test(window.location.href);
@@ -111,10 +111,18 @@ export const initAmplitude: AmplitudeInitFunction = async ({ apiKey }) => {
     }
 };
 
-export function logAmplitudeEvent(eventName: string, data: EventData) {
-    const eventData = data || {};
-    if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
-        amplitude.logEvent(eventName, { ...eventData });
+export async function logAmplitudeEvent(eventName: string, data: EventData) {
+    try {
+        const eventData = data || {};
+        if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
+            amplitude.logEvent(eventName, { ...eventData });
+            const tracker = getAnalyticsInstance('arbeidssokerregistrering');
+            await tracker(eventName, eventData);
+        }
+    } catch (error) {
+        if (isBrowser()) {
+            console.warn('Feil ved logging', error);
+        }
     }
 }
 
