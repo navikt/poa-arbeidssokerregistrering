@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { Box, Button, Heading, Panel } from '@navikt/ds-react';
+import { Box, Button, Heading } from '@navikt/ds-react';
 
 import { SkjemaSide } from '../../model/skjema';
 
@@ -24,7 +24,7 @@ function DemoPanel({ brukerMock }: Props) {
                         <Heading level="3" size="large">
                             Velg side
                         </Heading>
-                        <div className="text-center">
+                        <div className="text-center flex flex-col gap-4">
                             <p>
                                 <NextLink href={`/opplysninger/${SkjemaSide.DinSituasjon}`} passHref>
                                     <Button>Standard registrering</Button>
