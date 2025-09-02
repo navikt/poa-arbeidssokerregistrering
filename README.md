@@ -14,7 +14,7 @@ Siden noen av modulene hentes fra GitHubs package registry må du også gjøre l
 - Konfigurer SSO mot NAVIKT for tokenet
 - bruk tokenet som passord ved login `npm login --registry https://npm.pkg.github.com`
 
-Deretter fortsette du med
+Deretter fortsetter du med
 
 - klon repo
 - innstaller avhengigheter `npm i`

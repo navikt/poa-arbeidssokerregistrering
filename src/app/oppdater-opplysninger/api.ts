@@ -1,6 +1,6 @@
 import { headers } from 'next/headers';
 import { requestTokenxOboToken } from '@navikt/oasis';
-import { getHeaders, OPPSLAG_CLIENT_ID } from '@/lib/next-api-handler';
+import { getHeaders, OPPSLAG_CLIENT_ID, OPPSLAG_V2_CLIENT_ID } from '@/lib/next-api-handler';
 import { logger } from '@navikt/next-logger';
 import { stripBearer } from '@navikt/oasis/dist/strip-bearer';
 import {
@@ -13,11 +13,11 @@ import { nanoid } from 'nanoid';
 import { mockApiResponse } from '@/app/oppdater-opplysninger/mock-data';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-const PERIODER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL}/api/v1/arbeidssoekerperioder`;
-const OPPLYSNINGER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL}/api/v1/opplysninger-om-arbeidssoeker`;
+const PERIODER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/arbeidssoekerperioder`;
+const OPPLYSNINGER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/opplysninger-om-arbeidssoeker`;
 
 async function getTokenXToken(idPortenToken: string) {
-    const oboToken = await requestTokenxOboToken(idPortenToken, OPPSLAG_CLIENT_ID);
+    const oboToken = await requestTokenxOboToken(idPortenToken, OPPSLAG_V2_CLIENT_ID);
 
     if (!oboToken.ok) {
         logger.warn(oboToken.error);
