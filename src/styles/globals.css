@@ -3,6 +3,16 @@
 
 @config '../../tailwind.config.ts';
 
+body {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+#__next {
+  flex-grow: 1;
+}
+
 .maxWidth {
   max-width: 1280px;
 }
