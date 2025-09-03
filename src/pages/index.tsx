@@ -14,7 +14,6 @@ import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
 import { logger } from '@navikt/next-logger';
 import { useRouter } from 'next/router';
 
-// Test
 const TEKSTER: Tekster<string> = {
     nb: {
         startRegistrering: 'Start registrering',
