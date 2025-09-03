@@ -64,7 +64,7 @@ const Home = () => {
                     <div>{tekst('informasjon')}</div>
                     <div>
                         {tekst('dolly1')}{' '}
-                        <Link href="https://dolly.ekstern.dev.nav.no/gruppe" target="_blank" rel="noreferrer">
+                        <Link href="https://dolly.ekstern.dev.nav.no" target="_blank" rel="noreferrer">
                             Dolly
                         </Link>{' '}
                         {tekst('dolly2')}
