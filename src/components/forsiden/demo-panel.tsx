@@ -18,7 +18,7 @@ function DemoPanel({ brukerMock }: Props) {
             <Heading level="2" size="xlarge" className={'mb-6'}>
                 Demovalg
             </Heading>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }} className="flex-col sm:flex-row">
                 <Box className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }} padding="10">
                     <div className="text-center">
                         <Heading level="3" size="large">
