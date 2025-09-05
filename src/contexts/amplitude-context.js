@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect } from 'react';
-import { initAmplitude, logAmplitudeEvent } from '../lib/amplitude';
+import { initTracker, trackEvent } from '../lib/tracker';
 import { useConfig } from './config-context';
 
 const AmplitudeContext = createContext();
@@ -9,11 +9,11 @@ function AmplitudeProvider({ children }) {
 
     useEffect(() => {
         if (apiKey && apiEndpoint) {
-            initAmplitude({ apiKey, apiEndpoint });
+            initTracker({ apiKey, apiEndpoint });
         }
     }, [apiKey, apiEndpoint]);
 
-    return <AmplitudeContext.Provider value={{ logAmplitudeEvent }}>{children}</AmplitudeContext.Provider>;
+    return <AmplitudeContext.Provider value={{ logAmplitudeEvent: trackEvent }}>{children}</AmplitudeContext.Provider>;
 }
 
 function useAmplitude() {

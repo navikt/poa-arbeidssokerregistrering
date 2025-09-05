@@ -8,7 +8,7 @@ import { useConfig } from '../contexts/config-context';
 import RedirectTilVedlikehold from '../components/redirect-til-vedlikehold';
 import DemoPanel from '../components/forsiden/demo-panel';
 import { Config } from '../model/config';
-import { loggAktivitet } from '../lib/amplitude';
+import { loggAktivitet } from '../lib/tracker';
 import { hentFeatures } from './api/features';
 import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
 import { logger } from '@navikt/next-logger';

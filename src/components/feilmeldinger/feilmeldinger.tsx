@@ -7,7 +7,7 @@ import useSprak from '../../hooks/useSprak';
 import { useErrorContext } from '@/contexts/error-context';
 
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { loggStoppsituasjon } from '@/lib/amplitude';
+import { loggStoppsituasjon } from '@/lib/tracker';
 
 const TEKSTER: Tekster<string> = {
     nb: {

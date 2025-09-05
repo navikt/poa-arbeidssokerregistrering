@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { loggAktivitet, loggFlyt } from '@/lib/amplitude';
+import { loggAktivitet, loggFlyt } from '@/lib/tracker';
 import NyKvittering from '@/components/kvittering/ny-kvittering';
 import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 import { useParams } from 'next/navigation';

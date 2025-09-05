@@ -8,7 +8,7 @@ import { SkjemaSide, SkjemaState } from '@/model/skjema';
 import { SkjemaAction } from '@/lib/skjema-state';
 import Avbryt from './skjema/avbryt-lenke';
 import { StandardRegistreringTilstandsmaskin } from '@/lib/standard-registrering-tilstandsmaskin';
-import { loggAktivitet } from '@/lib/amplitude';
+import { loggAktivitet } from '@/lib/tracker';
 import { HGrid, Link } from '@navikt/ds-react';
 import { useConfig } from '@/contexts/config-context';
 import { Config } from '@/model/config';

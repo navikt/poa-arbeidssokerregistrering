@@ -10,7 +10,7 @@ import { useConfig } from '../../contexts/config-context';
 import { Config } from '../../model/config';
 import kvitteringIkonSvg from './kvittering-ikon.svg';
 import LenkePanel from '../lenke-panel';
-import { loggAktivitet } from '../../lib/amplitude';
+import { loggAktivitet } from '../../lib/tracker';
 import Overskrift from '../skjema/overskrift';
 
 const TEKSTER = {

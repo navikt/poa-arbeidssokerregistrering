@@ -6,7 +6,7 @@ import useSprak from '../hooks/useSprak';
 
 import { formaterDato } from '../lib/date-utils';
 import { Kontaktinformasjon } from './kontaktinformasjonUnder18';
-import { loggAktivitet } from '../lib/amplitude';
+import { loggAktivitet } from '../lib/tracker';
 
 const TEKSTER: Tekster<string> = {
     nb: {
