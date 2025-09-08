@@ -8,7 +8,7 @@ import {
 } from '@/components/KvitteringOppgaveUnder18';
 import { useConfig } from '@/contexts/config-context';
 import { Config } from '@/model/config';
-import { loggAktivitet } from '@/lib/amplitude';
+import { loggAktivitet } from '@/lib/tracker';
 import { fetcher as api } from '@/lib/api-utils';
 import { Loader } from '@navikt/ds-react';
 

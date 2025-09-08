@@ -15,7 +15,7 @@ import { initFaro } from '../faro/initFaro';
 
 import styles from '../styles/app.module.css';
 import '../styles/globals.css';
-import { loggAktivitet } from '../lib/amplitude';
+import { loggAktivitet } from '../lib/tracker';
 
 const TEKSTER: Tekster<string> = {
     nb: {

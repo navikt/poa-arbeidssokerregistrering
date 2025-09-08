@@ -14,7 +14,7 @@ import useSprak from '../../../hooks/useSprak';
 
 import { hentTekst } from '@/model/sporsmal';
 import { hentSkjemaside, SkjemaState } from '@/model/skjema';
-import { loggAktivitet } from '@/lib/amplitude';
+import { loggAktivitet } from '@/lib/tracker';
 
 type Svar = {
     spoersmal: string;

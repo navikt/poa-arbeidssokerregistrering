@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { loggStoppsituasjon } from '@/lib/amplitude';
+import { loggStoppsituasjon } from '@/lib/tracker';
 
 export default function LoggVisning() {
     useEffect(() => {

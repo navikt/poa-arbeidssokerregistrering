@@ -1,5 +1,3 @@
-import * as amplitude from '@amplitude/analytics-browser';
-
 import { ErrorTypes } from '@/model/error';
 import { RegistreringType } from '@/model/registrering';
 import { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
@@ -7,17 +5,6 @@ import { awaitDecoratorData, getAnalyticsInstance, getCurrentConsent } from '@na
 
 const isBrowser = () => typeof window !== 'undefined';
 const isDevelopment = () => isBrowser() && /^http:\/\/localhost/.test(window.location.href);
-const apiEndpoint = 'https://amplitude.nav.no/collect';
-
-const config = {
-    saveEvents: false,
-    includeUtm: true,
-    includeReferrer: true,
-    defaultTracking: false,
-    trackingOptions: {
-        ipAddress: false,
-    },
-};
 
 type EventData = SidevisningData | AktivitetData | StoppsituasjonData | BesvarelseData | EksperimentData | FlytData;
 
@@ -101,21 +88,19 @@ const isConsentingToAnalytics = () => {
     return currentConsent.consent.analytics;
 };
 
-export const initAmplitude: AmplitudeInitFunction = async ({ apiKey }) => {
+export const initTracker: AmplitudeInitFunction = async ({ apiKey }) => {
     await awaitDecoratorData();
     if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
-        amplitude.init(apiKey, undefined, { ...config, serverUrl: apiEndpoint });
-        logAmplitudeEvent('sidevisning', {
+        trackEvent('sidevisning', {
             sidetittel: document.title,
         });
     }
 };
 
-export async function logAmplitudeEvent(eventName: string, data: EventData) {
+export async function trackEvent(eventName: string, data: EventData) {
     try {
         const eventData = data || {};
         if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
-            amplitude.logEvent(eventName, { ...eventData });
             const tracker = getAnalyticsInstance('arbeidssokerregistrering');
             await tracker(eventName, eventData);
         }
@@ -128,15 +113,15 @@ export async function logAmplitudeEvent(eventName: string, data: EventData) {
 
 export function loggStoppsituasjon(data: StoppsituasjonData) {
     const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.stoppsituasjoner', eventData);
+    trackEvent('arbeidssokerregistrering.stoppsituasjoner', eventData);
 }
 
 export function loggAktivitet(data: AktivitetData) {
     const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.aktiviteter', eventData);
+    trackEvent('arbeidssokerregistrering.aktiviteter', eventData);
 }
 
 export function loggFlyt(data: FlytData) {
     const eventData = data || {};
-    logAmplitudeEvent('arbeidssokerregistrering.flyt', eventData);
+    trackEvent('arbeidssokerregistrering.flyt', eventData);
 }

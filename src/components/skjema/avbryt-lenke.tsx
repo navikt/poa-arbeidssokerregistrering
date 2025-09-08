@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
-import { loggAktivitet, loggFlyt } from '@/lib/amplitude';
+import { loggAktivitet, loggFlyt } from '@/lib/tracker';
 import { XMarkIcon } from '@navikt/aksel-icons';
 
 const TEKSTER: Tekster<string> = {

@@ -5,7 +5,7 @@ import '../styles/globals.css';
 import styles from '../styles/app.module.css';
 import { ConfigProvider } from '@/contexts/config-context';
 import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
-import InitAmplitude from '@/components/init-amplitude';
+import InitTracker from '@/components/init-tracker';
 
 export const metadata: Metadata = {
     title: 'Arbeidssøkerregistrering',
@@ -55,7 +55,7 @@ export default async function RootLayout({
             </head>
             <body>
                 <Decorator.Header />
-                <InitAmplitude apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
+                <InitTracker apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
                 <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
                     <ConfigProvider>
                         <SkjemaStateProvider>{children}</SkjemaStateProvider>

@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { debounce } from 'lodash';
 
-import { loggAktivitet } from '@/lib/amplitude';
+import { loggAktivitet } from '@/lib/tracker';
 
 import styles from './autosuggest.module.css';
 import config from '@/config';

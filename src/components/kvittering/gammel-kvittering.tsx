@@ -1,7 +1,7 @@
 import useSprak from '../../hooks/useSprak';
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import React from 'react';
-import { loggAktivitet } from '../../lib/amplitude';
+import { loggAktivitet } from '../../lib/tracker';
 import { useConfig } from '../../contexts/config-context';
 import { Config } from '../../model/config';
 import { BodyLong, GuidePanel, Heading, Link } from '@navikt/ds-react';
