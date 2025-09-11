@@ -6,6 +6,7 @@ import styles from '../styles/app.module.css';
 import { ConfigProvider } from '@/contexts/config-context';
 import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
 import InitTracker from '@/components/init-tracker';
+import InitFaroKomponent from '@/components/init-faro-komponent';
 
 export const metadata: Metadata = {
     title: 'Arbeidssøkerregistrering',
@@ -56,6 +57,7 @@ export default async function RootLayout({
             <body>
                 <Decorator.Header />
                 <InitTracker apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
+                <InitFaroKomponent />
                 <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
                     <ConfigProvider>
                         <SkjemaStateProvider>{children}</SkjemaStateProvider>

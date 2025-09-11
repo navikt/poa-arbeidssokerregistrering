@@ -2,7 +2,7 @@ import { Faro, initializeFaro } from '@grafana/faro-web-sdk';
 
 const isBrowser = () => typeof window !== 'undefined';
 const isProduction = isBrowser() && window.location.href.includes('www.nav.no');
-const isDevelopment = isBrowser() && window.location.href.includes('intern.dev.nav.no');
+const isDevelopment = isBrowser() && window.location.href.includes('ansatt.dev.nav.no');
 const isDemo = isBrowser() && window.location.href.includes('ekstern.dev.nav.no');
 const isLocal = isBrowser() && window.location.href.includes('localhost');
 
