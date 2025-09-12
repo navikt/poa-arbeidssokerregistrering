@@ -24,7 +24,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
     const [senderSkjema, settSenderSkjema] = useState<boolean>(false);
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
-    const { enableMock, arbeidssoekerregisteretUrl } = useConfig() as Config;
+    const { enableMock, dittNavUrl } = useConfig() as Config;
     const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;
     const oppdaterOpplysningerUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
@@ -50,7 +50,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
                 },
             });
 
-            document.location.href = arbeidssoekerregisteretUrl;
+            document.location.href = dittNavUrl;
             return;
         } catch (e) {
             settVisFeilmelding(true);
@@ -60,7 +60,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
         } finally {
             settSenderSkjema(false);
         }
-    }, [skjemaState, onSubmit, oppdaterOpplysningerUrl, arbeidssoekerregisteretUrl, router]);
+    }, [onSubmit, router, skjemaState, oppdaterOpplysningerUrl]);
 
     return (
         <>
