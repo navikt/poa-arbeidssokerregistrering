@@ -5,6 +5,7 @@ export type Config = {
     amplitudeEndPoint: string;
     featureTogglesUrl: string;
     dittNavUrl: string;
+    arbeidssoekerregisteretUrl: string;
     dagpengesoknadUrl: string;
     dialogUrl: string;
     enableMock: string;

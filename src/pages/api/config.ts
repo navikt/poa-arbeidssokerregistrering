@@ -9,6 +9,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         amplitudeEndPoint: process.env.NEXT_PUBLIC_AMPLITUDE_ENDPOINT!,
         featureTogglesUrl: process.env.NEXT_PUBLIC_FEATURETOGGLES_URL!,
         dittNavUrl: process.env.NEXT_PUBLIC_DITTNAV_URL!,
+        arbeidssoekerregisteretUrl: process.env.NEXT_PUBLIC_ARBEIDSSOEKERREGISTERET_URL!,
         dagpengesoknadUrl: process.env.NEXT_PUBLIC_DAGPENGESOKNAD_URL!,
         dialogUrl: process.env.NEXT_PUBLIC_DIALOG_URL!,
         enableMock: process.env.NEXT_PUBLIC_ENABLE_MOCK!,
