@@ -63,6 +63,12 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     useEffect(() => {
         const url = urlPrefix === 'oppdater-opplysninger' ? `${sprakUrl}/${urlPrefix}` : `${sprakUrl}/start`;
+
+        // forhindre redirect-loop før vi har initialisert state
+        if (urlPrefix === 'oppdater-opplysninger' && !skjemaState.hasInitialized) {
+            return;
+        }
+
         // valider at forrige side har gyldig state. Hvis ikke starter vi registrering på nytt
         if (forrige) {
             if (!validerSkjemaForSide(forrige, skjemaState)) {
