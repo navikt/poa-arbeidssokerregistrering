@@ -51,6 +51,8 @@ spec:
       value: disabled
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: https://www.nav.no/minside
+    - name: NEXT_PUBLIC_ARBEIDSSOEKERREGISTERET_URL
+      value: https://www.nav.no/arbeidssoekerregisteret
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
       value: https://www.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL

@@ -47,7 +47,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
 
     const router = useRouter();
-    const { dittNavUrl } = useConfig() as Config;
+    const { arbeidssoekerregisteretUrl } = useConfig() as Config;
     const [erSkjemaSendt, settErSkjemaSendt] = useState<boolean>(false);
 
     useEffect(() => {
@@ -63,6 +63,12 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     useEffect(() => {
         const url = urlPrefix === 'oppdater-opplysninger' ? `${sprakUrl}/${urlPrefix}` : `${sprakUrl}/start`;
+
+        // forhindre redirect-loop før vi har initialisert state
+        if (urlPrefix === 'oppdater-opplysninger' && !skjemaState.hasInitialized) {
+            return;
+        }
+
         // valider at forrige side har gyldig state. Hvis ikke starter vi registrering på nytt
         if (forrige) {
             if (!validerSkjemaForSide(forrige, skjemaState)) {
@@ -155,7 +161,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                     )}
                     {urlPrefix === 'oppdater-opplysninger' && (
                         <div className="my-8">
-                            <Link href={dittNavUrl}>
+                            <Link href={arbeidssoekerregisteretUrl}>
                                 <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
                             </Link>
                         </div>

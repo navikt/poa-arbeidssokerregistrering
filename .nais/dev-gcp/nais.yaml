@@ -54,6 +54,8 @@ spec:
       value: disabled
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: https://www.ansatt.dev.nav.no/minside
+    - name: NEXT_PUBLIC_ARBEIDSSOEKERREGISTERET_URL
+      value: https://www.ansatt.dev.nav.no/arbeidssoekerregisteret
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
       value: https://arbeid.ansatt.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
