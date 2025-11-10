@@ -11,8 +11,8 @@ import {
 } from '@navikt/arbeidssokerregisteret-utils';
 import { nanoid } from 'nanoid';
 import { mockApiResponse } from '@/app/oppdater-opplysninger/mock-data';
+import { brukerMock } from '@/config/env';
 
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 const PERIODER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/arbeidssoekerperioder`;
 const OPPLYSNINGER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/opplysninger-om-arbeidssoeker`;
 

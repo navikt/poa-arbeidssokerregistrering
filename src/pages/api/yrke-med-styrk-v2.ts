@@ -4,8 +4,6 @@ import { logger } from '@navikt/next-logger';
 
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-
 async function yrkeMedStyrk(req: NextApiRequest, res: NextApiResponse<string>) {
     const callId = nanoid();
     const yrke = req.query.yrke;

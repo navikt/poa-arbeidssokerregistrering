@@ -52,6 +52,8 @@ spec:
       value: https://amplitude.nav.no/collect
     - name: NEXT_PUBLIC_ENABLE_MOCK
       value: disabled
+    - name: ENABLE_MOCK
+      value: disabled
     - name: NEXT_PUBLIC_DITTNAV_URL
       value: https://www.ansatt.dev.nav.no/minside
     - name: NEXT_PUBLIC_ARBEIDSSOEKERREGISTERET_URL
