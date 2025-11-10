@@ -3,8 +3,7 @@ import { logger } from '@navikt/next-logger';
 import { getDefinitions } from '@unleash/nextjs';
 
 import { mockToggles } from './mocks/features';
-
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
+import { brukerMock } from '@/config/env';
 
 export async function hentFeatures() {
     return brukerMock ? mockToggles : await getDefinitions();

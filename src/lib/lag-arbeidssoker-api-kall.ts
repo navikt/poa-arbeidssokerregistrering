@@ -4,8 +4,7 @@ import { verifyToken } from '../auth/token-validation';
 import { decodeJwt } from 'jose';
 import { logger } from '@navikt/next-logger';
 import { NextApiHandler } from 'next';
-
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
+import { brukerMock } from '@/config/env';
 
 type Opts = {
     method: 'PUT' | 'POST' | 'GET' | 'DELETE';
