@@ -2,6 +2,7 @@ import { NextApiHandler, NextApiRequest } from 'next';
 import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
 import { requestTokenxOboToken } from '@navikt/oasis';
+import { brukerMock } from '@/config/env';
 
 export const getHeaders = (token: string, callId: string) => {
     return {
@@ -61,8 +62,6 @@ export const getTokenFromRequest = (req: NextApiRequest) => {
     const bearerToken = req.headers['authorization'];
     return bearerToken?.replace('Bearer ', '');
 };
-
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 
 export const getAaregToken = async (req: NextApiRequest) => {
     return getTokenXToken(req, AAREG_CLIENT_ID);

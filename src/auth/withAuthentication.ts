@@ -2,11 +2,10 @@ import { GetServerSidePropsContext, GetServerSidePropsResult, NextApiRequest, Ne
 import { validateIdportenToken } from '@navikt/oasis';
 import { logger } from '@navikt/next-logger';
 import localeTilUrl from '../lib/locale-til-url';
+import { brukerMock } from '@/config/env';
 
 type PageHandler = (context: GetServerSidePropsContext) => Promise<GetServerSidePropsResult<unknown>>;
 type ApiHandler = (req: NextApiRequest, res: NextApiResponse) => Promise<unknown> | unknown;
-
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 
 /**
  * Used to authenticate Next.JS pages. Assumes application is behind
