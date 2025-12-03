@@ -31,11 +31,11 @@
         "jose": "6.1.1",
         "lodash": "4.17.21",
         "nanoid": "5.1.6",
-        "next": "15.5.5",
+        "next": "15.5.7",
         "pino": "10.1.0",
-        "react": "19.2.0",
+        "react": "19.2.1",
         "react-autosuggest": "10.1.0",
-        "react-dom": "19.2.0",
+        "react-dom": "19.2.1",
         "swr": "2.3.6"
     },
     "devDependencies": {
