@@ -9,7 +9,7 @@
         "test": "npm run lint && jest --watch",
         "test:ci": "npm run lint && jest",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
-        "refresh": "rm -rf node_modules && rm package-lock.json && npm i",
+        "refresh": "rm -rf node_modules && rm package-lock.json && npm i --ignore-scripts",
         "prepare": "husky"
     },
     "dependencies": {
