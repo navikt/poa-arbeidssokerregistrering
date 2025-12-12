@@ -31,7 +31,7 @@
         "jose": "6.1.1",
         "lodash": "4.17.21",
         "nanoid": "5.1.6",
-        "next": "15.5.7",
+        "next": "15.5.9",
         "pino": "10.1.0",
         "react": "19.2.1",
         "react-autosuggest": "10.1.0",
