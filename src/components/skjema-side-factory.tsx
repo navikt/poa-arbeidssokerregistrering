@@ -100,6 +100,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     useEffect(() => {
         if (validerSkjemaForSide(aktivSide, skjemaState)) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             settVisFeilmelding(false);
         }
 

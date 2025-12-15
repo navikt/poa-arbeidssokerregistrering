@@ -31,7 +31,7 @@
         "jose": "6.1.3",
         "lodash": "4.17.21",
         "nanoid": "5.1.6",
-        "next": "15.5.9",
+        "next": "16.0.10",
         "pino": "10.1.0",
         "react": "19.2.3",
         "react-autosuggest": "10.1.0",
@@ -39,7 +39,6 @@
         "swr": "2.3.7"
     },
     "devDependencies": {
-        "@eslint/eslintrc": "3.3.3",
         "@tailwindcss/postcss": "4.1.18",
         "@testing-library/dom": "10.4.1",
         "@testing-library/jest-dom": "6.9.1",
@@ -51,7 +50,7 @@
         "@types/node": "25.0.2",
         "@types/react": "19.2.7",
         "eslint": "9.39.2",
-        "eslint-config-next": "15.5.9",
+        "eslint-config-next": "16.0.10",
         "husky": "9.1.7",
         "jest": "30.2.0",
         "jest-axe": "10.0.0",

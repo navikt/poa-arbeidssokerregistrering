@@ -22,6 +22,7 @@ const StillingsSok = (props: StillingsSokProps) => {
     const { basePath } = config;
 
     const onSuggestionsFetchRequested = useCallback(
+        // eslint-disable-next-line react-hooks/use-memo
         debounce(async ({ value }: { value: string }) => {
             const url = `${basePath}/api/yrke-med-styrk-v2/?yrke=${value}`;
             const response = await fetch(url);
