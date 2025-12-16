@@ -36,7 +36,7 @@
         "react": "19.2.3",
         "react-autosuggest": "10.1.0",
         "react-dom": "19.2.3",
-        "swr": "2.3.7"
+        "swr": "2.3.8"
     },
     "devDependencies": {
         "@tailwindcss/postcss": "4.1.18",
