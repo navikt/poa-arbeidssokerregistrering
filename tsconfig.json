@@ -12,7 +12,7 @@
         "moduleResolution": "bundler",
         "resolveJsonModule": true,
         "isolatedModules": true,
-        "jsx": "preserve",
+        "jsx": "react-jsx",
         "incremental": true,
         "types": ["@testing-library/jest-dom"],
         "plugins": [
@@ -24,6 +24,6 @@
             "@/*": ["./src/*"]
         }
     },
-    "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts"],
+    "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts", ".next/types/**/*.ts", ".next/dev/types/**/*.ts"],
     "exclude": ["node_modules"]
 }
