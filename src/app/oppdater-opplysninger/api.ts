@@ -1,8 +1,7 @@
 import { headers } from 'next/headers';
-import { requestTokenxOboToken } from '@navikt/oasis';
-import { getHeaders, OPPSLAG_CLIENT_ID, OPPSLAG_V2_CLIENT_ID } from '@/lib/next-api-handler';
+import { getToken, requestTokenxOboToken } from '@navikt/oasis';
+import { getHeaders, OPPSLAG_V2_CLIENT_ID } from '@/lib/next-api-handler';
 import { logger } from '@navikt/next-logger';
-import { stripBearer } from '@navikt/oasis/dist/strip-bearer';
 import {
     ArbeidssokerPeriode,
     hentSisteArbeidssokerPeriode,
@@ -56,8 +55,7 @@ export async function fetchSisteOpplysninger(): Promise<{
     const callId = nanoid();
     try {
         logger.info(`Starter kall i /oppdater-opplysninger - callId=${callId}`);
-        const reqHeaders = await headers();
-        const tokenXToken = await getTokenXToken(stripBearer(reqHeaders.get('authorization')!));
+        const tokenXToken = await getTokenXToken(getToken(await headers())!);
         const periode = hentSisteArbeidssokerPeriode(await fetcher(PERIODER_URL, tokenXToken, callId));
 
         if (!periode?.periodeId) {

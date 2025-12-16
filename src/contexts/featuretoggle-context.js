@@ -19,6 +19,7 @@ function FeatureToggleProvider({ children }) {
 
     useEffect(() => {
         if (data) {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             setToggles(tilAktiveFeatures(data));
         }
     }, [data]);

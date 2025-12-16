@@ -47,6 +47,7 @@ Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell
 
     useEffect(() => {
         if (!oppretterOppgave && typeof enableMock !== 'undefined') {
+            // eslint-disable-next-line react-hooks/set-state-in-effect
             settOppretterOppgave(true);
             opprettOppgave(enableMock === 'enabled');
         }
