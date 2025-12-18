@@ -3,7 +3,7 @@ import config from '@/config';
 const { basePath } = config;
 
 const getUrl = (path: string) => `${basePath}/${path}`;
-export type FetchError = Error & {
+type FetchError = Error & {
     status?: number;
     data?: any;
 };

@@ -1,12 +1,3 @@
-export enum Feiltype {
-    UTVANDRET = 'utvandret',
-    MANGLER_ARBEIDSTILLATELSE = 'mangler-arbeidstillatelse',
-}
-
-export enum OppgaveRegistreringstype {
-    REGISTRERING = 'registrering',
-}
-
 export enum FeilKoderVedStartAvArbeidssoekerperiode {
     'UKJENT_FEIL' = 'UKJENT_FEIL',
     'UVENTET_FEIL_MOT_EKSTERN_TJENESTE' = 'UVENTET_FEIL_MOT_EKSTERN_TJENESTE',
@@ -72,22 +63,10 @@ type Detaljer =
     | 'HAR_REGISTRERT_ADRESSE_I_EU_EOES'
     | 'UKJENT_OPPLYSNING';
 
-export type AarsakTilAvvisning = {
-    beskrivelse: string;
-    regel: ReglerForStartAvArbeidssoekerperiode;
-    detaljer: Detaljer[];
-};
-
-export type AarsakTilAvvisningV2 = {
+type AarsakTilAvvisningV2 = {
     beskrivelse: string;
     regler: ReglerV2[];
     detaljer: Detaljer[];
-};
-
-export type FeilmeldingVedStartAvArbeidssoekerperiode = {
-    melding: string;
-    feilKode: FeilKoderVedStartAvArbeidssoekerperiode;
-    aarsakTilAvvisning?: AarsakTilAvvisning;
 };
 
 export type FeilmeldingVedStartAvArbeidssoekerperiodeV2 = {

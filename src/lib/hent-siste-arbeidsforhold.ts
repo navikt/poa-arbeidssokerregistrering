@@ -1,4 +1,4 @@
-export type SisteArbeidsforhold = {
+type SisteArbeidsforhold = {
     styrk: string;
 };
 
