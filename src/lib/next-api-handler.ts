@@ -30,12 +30,11 @@ export interface ApiError extends Error {
     status?: number;
 }
 
-export const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
+const VEILARBREGISTRERING_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:veilarbregistrering`;
+const OPPSLAG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssoekerregisteret-api-oppslag`;
 export const AIA_BACKEND_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:aia-backend`;
 export const INNGANG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssokerregisteret-api-inngang`;
-export const OPPSLAG_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssoekerregisteret-api-oppslag`;
 export const OPPSLAG_V2_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-arbeidssoekerregisteret-api-oppslag-v2`;
-export const PAM_ONTOLOGI_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:teampam:pam-ontologi`;
 
 const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
 
@@ -45,8 +44,7 @@ type ClientIds =
     | typeof AAREG_CLIENT_ID
     | typeof INNGANG_CLIENT_ID
     | typeof OPPSLAG_CLIENT_ID
-    | typeof OPPSLAG_V2_CLIENT_ID
-    | typeof PAM_ONTOLOGI_CLIENT_ID;
+    | typeof OPPSLAG_V2_CLIENT_ID;
 
 const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): Promise<string> => {
     const result = await requestTokenxOboToken(idPortenToken, clientId);
@@ -78,10 +76,6 @@ export const getOppslagApiToken = async (req: NextApiRequest) => {
 
 export const getOppslagApiV2Token = async (req: NextApiRequest) => {
     return getTokenXToken(req, OPPSLAG_V2_CLIENT_ID);
-};
-
-export const getPamOntologiToken = async (req: NextApiRequest) => {
-    return getTokenXToken(req, PAM_ONTOLOGI_CLIENT_ID);
 };
 
 const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {

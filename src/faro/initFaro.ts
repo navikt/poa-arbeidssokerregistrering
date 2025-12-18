@@ -6,7 +6,7 @@ const isDevelopment = isBrowser() && window.location.href.includes('ansatt.dev.n
 const isDemo = isBrowser() && window.location.href.includes('ekstern.dev.nav.no');
 const isLocal = isBrowser() && window.location.href.includes('localhost');
 
-export const getEnvironment = () => {
+const getEnvironment = () => {
     if (isProduction) {
         return 'production';
     }

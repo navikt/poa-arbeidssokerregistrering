@@ -4,8 +4,6 @@ import Head from 'next/head';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
 
 import useSprak from '../hooks/useSprak';
-
-import { AmplitudeProvider } from '../contexts/amplitude-context';
 import { FeatureToggleProvider } from '../contexts/featuretoggle-context';
 import { ErrorProvider } from '../contexts/error-context';
 import { GlobalFeilmelding } from '../components/feilmeldinger/feilmeldinger';
@@ -47,12 +45,10 @@ function MyApp({ Component, pageProps, router }: AppProps) {
             </Head>
             <ConfigProvider>
                 <FeatureToggleProvider>
-                    <AmplitudeProvider>
-                        <ErrorProvider>
-                            <GlobalFeilmelding />
-                            <Component {...pageProps} />
-                        </ErrorProvider>
-                    </AmplitudeProvider>
+                    <ErrorProvider>
+                        <GlobalFeilmelding />
+                        <Component {...pageProps} />
+                    </ErrorProvider>
                 </FeatureToggleProvider>
             </ConfigProvider>
         </main>
