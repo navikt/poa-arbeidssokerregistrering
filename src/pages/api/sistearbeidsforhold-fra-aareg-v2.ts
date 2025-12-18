@@ -7,8 +7,7 @@ import { getAaregToken, getHeaders, getTokenFromRequest } from '../../lib/next-a
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
 import { verifyToken } from '../../auth/token-validation';
 import { hentSisteArbeidsForhold } from '../../lib/hent-siste-arbeidsforhold';
-
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
+import { brukerMock } from '@/config/env';
 
 const url = brukerMock
     ? `${process.env.SISTEARBEIDSFORHOLD_FRA_AAREG_URL}`

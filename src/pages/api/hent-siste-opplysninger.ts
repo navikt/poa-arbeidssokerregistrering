@@ -7,8 +7,8 @@ import {
     hentSisteOpplysningerOmArbeidssoker,
 } from '@navikt/arbeidssokerregisteret-utils';
 import { withAuthenticatedApi } from '../../auth/withAuthentication';
+import { brukerMock } from '@/config/env';
 
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 const PERIODER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/arbeidssoekerperioder`;
 const OPPLYSNINGER_URL = `${process.env.ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL}/api/v1/opplysninger-om-arbeidssoeker`;
 
