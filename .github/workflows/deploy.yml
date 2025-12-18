@@ -29,6 +29,9 @@ jobs:
       - name: Test
         run: npm run test:ci
 
+      - name: Knip
+        run: npx knip --no-exit-code --reporter=markdown >> "$GITHUB_STEP_SUMMARY"
+
   build:
     name: Build and Publish Docker image
     runs-on: ubuntu-latest
