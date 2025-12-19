@@ -1,12 +1,3 @@
-export enum Feiltype {
-    UTVANDRET = 'utvandret',
-    MANGLER_ARBEIDSTILLATELSE = 'mangler-arbeidstillatelse',
-}
-
-export enum OppgaveRegistreringstype {
-    REGISTRERING = 'registrering',
-}
-
 export enum FeilKoderVedStartAvArbeidssoekerperiode {
     'UKJENT_FEIL' = 'UKJENT_FEIL',
     'UVENTET_FEIL_MOT_EKSTERN_TJENESTE' = 'UVENTET_FEIL_MOT_EKSTERN_TJENESTE',
@@ -17,16 +8,16 @@ export enum FeilKoderVedStartAvArbeidssoekerperiode {
 
 export enum ReglerForStartAvArbeidssoekerperiode {
     'UKJENT_REGEL' = 'UKJENT_REGEL',
-    'IKKE_FUNNET' = 'IKKE_FUNNET',
-    'SAVNET' = 'SAVNET',
-    'DOED' = 'DOED',
-    'ENDRE_FOR_ANNEN_BRUKER' = 'ENDRE_FOR_ANNEN_BRUKER',
-    'ANSATT_IKKE_TILGANG_TIL_BRUKER' = 'ANSATT_IKKE_TILGANG_TIL_BRUKER',
-    'IKKE_TILGANG' = 'IKKE_TILGANG',
+    // 'IKKE_FUNNET' = 'IKKE_FUNNET',
+    // 'SAVNET' = 'SAVNET',
+    // 'DOED' = 'DOED',
+    // 'ENDRE_FOR_ANNEN_BRUKER' = 'ENDRE_FOR_ANNEN_BRUKER',
+    // 'ANSATT_IKKE_TILGANG_TIL_BRUKER' = 'ANSATT_IKKE_TILGANG_TIL_BRUKER',
+    // 'IKKE_TILGANG' = 'IKKE_TILGANG',
     'UNDER_18_AAR' = 'UNDER_18_AAR',
     'IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN' = 'IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN',
-    'ER_EU_EOES_STATSBORGER_MED_STATUS_IKKE_BOSATT' = 'ER_EU_EOES_STATSBORGER_MED_STATUS_IKKE_BOSATT',
-    'UKJENT_ALDER' = 'UKJENT_ALDER',
+    // 'ER_EU_EOES_STATSBORGER_MED_STATUS_IKKE_BOSATT' = 'ER_EU_EOES_STATSBORGER_MED_STATUS_IKKE_BOSATT',
+    // 'UKJENT_ALDER' = 'UKJENT_ALDER',
 }
 
 type ReglerV2 = {
@@ -72,22 +63,10 @@ type Detaljer =
     | 'HAR_REGISTRERT_ADRESSE_I_EU_EOES'
     | 'UKJENT_OPPLYSNING';
 
-export type AarsakTilAvvisning = {
-    beskrivelse: string;
-    regel: ReglerForStartAvArbeidssoekerperiode;
-    detaljer: Detaljer[];
-};
-
-export type AarsakTilAvvisningV2 = {
+type AarsakTilAvvisningV2 = {
     beskrivelse: string;
     regler: ReglerV2[];
     detaljer: Detaljer[];
-};
-
-export type FeilmeldingVedStartAvArbeidssoekerperiode = {
-    melding: string;
-    feilKode: FeilKoderVedStartAvArbeidssoekerperiode;
-    aarsakTilAvvisning?: AarsakTilAvvisning;
 };
 
 export type FeilmeldingVedStartAvArbeidssoekerperiodeV2 = {

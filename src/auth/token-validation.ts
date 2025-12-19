@@ -18,8 +18,6 @@ const getIdPortenJwkSet = () => {
     return idPortenJWKSet;
 };
 
-export type AuthLevel = 'Level3' | 'Level4' | 'idporten-loa-substantial' | 'idporten-loa-high';
-
 function isTokenX(decodedToken: JWTPayload) {
     return decodedToken?.iss === process.env.TOKEN_X_ISSUER;
 }

@@ -27,7 +27,7 @@ export interface SkjemaProps {
     aktivSide: any;
 }
 
-export interface LagSkjemaSideProps {
+interface LagSkjemaSideProps {
     urlPrefix: 'opplysninger' | 'oppdater-opplysninger';
     validerSkjemaForSide: (side: SkjemaSide, skjemaState: SkjemaState) => boolean;
     hentKomponentForSide: (
@@ -39,7 +39,7 @@ export interface LagSkjemaSideProps {
     beregnNavigering: StandardRegistreringTilstandsmaskin;
 }
 
-export type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
+type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
 
 export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => {
     const { aktivSide, beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = props;

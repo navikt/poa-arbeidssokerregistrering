@@ -1,4 +1,4 @@
-export interface Periode {
+interface Periode {
     fraOgMedDato: string;
     tilOgMedDato: string | null;
 }

@@ -97,7 +97,7 @@ export const initTracker: AmplitudeInitFunction = async ({ apiKey }) => {
     }
 };
 
-export async function trackEvent(eventName: string, data: EventData) {
+async function trackEvent(eventName: string, data: EventData) {
     try {
         const eventData = data || {};
         if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
