@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { BodyLong, Button, Link, Modal } from '@navikt/ds-react';
+import { BodyLong, Button, Dialog, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/navigation';
 
 import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
@@ -34,42 +33,44 @@ const TEKSTER: Tekster<string> = {
 };
 
 const Avbryt = () => {
-    const [open, setOpen] = useState(false);
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const Router = useRouter();
 
     const avbrytRegistrering = () => {
         loggAktivitet({ aktivitet: 'Avbryter registreringen' });
         loggFlyt({ hendelse: 'Avbryter registreringen' });
-        setOpen(false);
         Router.push('/');
     };
 
     return (
         <>
-            <Modal
-                open={open}
-                onClose={() => setOpen(false)}
-                aria-label={tekst('ariaLabel')}
-                header={{ heading: tekst('avbryt') }}
-            >
-                <Modal.Body>
-                    <BodyLong className={'mb-6'}>{tekst('erDuSikker')}</BodyLong>
-                    <div className="flex justify-evenly">
+            <Dialog aria-label={tekst('ariaLabel')}>
+                <Dialog.Trigger>
+                    <Button variant={'tertiary'} icon={<XMarkIcon title="a11y-title" fontSize="1.5rem" />}>
+                        {tekst('avbryt')}
+                    </Button>
+                </Dialog.Trigger>
+                <Dialog.Popup width="small">
+                    <Dialog.Header>
+                        <Heading level={'1'} size={'medium'}>
+                            {tekst('avbryt')}
+                        </Heading>
+                    </Dialog.Header>
+                    <Dialog.Body>
+                        <BodyLong>{tekst('erDuSikker')}</BodyLong>
+                    </Dialog.Body>
+                    <Dialog.Footer>
                         <Button variant="secondary" onClick={avbrytRegistrering} className="w-40">
                             {tekst('knappJa')}
                         </Button>
-                        <Button variant="secondary" onClick={() => setOpen(false)} className="w-40">
-                            {tekst('knappNei')}
-                        </Button>
-                    </div>
-                </Modal.Body>
-            </Modal>
-            <div className="pb-4">
-                <Link href="#" onClick={() => setOpen(true)}>
-                    <XMarkIcon title="a11y-title" fontSize="1.5rem" /> {tekst('avbryt')}
-                </Link>
-            </div>
+                        <Dialog.CloseTrigger>
+                            <Button variant="secondary" className="w-40">
+                                {tekst('knappNei')}
+                            </Button>
+                        </Dialog.CloseTrigger>
+                    </Dialog.Footer>
+                </Dialog.Popup>
+            </Dialog>
         </>
     );
 };
