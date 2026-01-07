@@ -2,7 +2,7 @@
     "name": "poa-arbeidssokerregistrering",
     "private": true,
     "scripts": {
-        "dev": "next dev | pino-pretty",
+        "dev": "next dev --webpack | pino-pretty",
         "build": "next build --webpack",
         "start": "next start",
         "lint": "eslint",
