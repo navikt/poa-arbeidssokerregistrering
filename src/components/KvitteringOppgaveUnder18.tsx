@@ -103,7 +103,7 @@ const TEKSTER: Tekster<string> = {
         oppdatereOpplysningerLenke: 'https://www.nav.no/person/personopplysninger/en/#kontaktinformasjon',
         oppdatereOpplysningerLenkeTittel: 'Update your contact information',
         oppdatereOpplysningerLenkeBeskrivelse: 'Check if your contact information is correct.',
-        kontaktOssLenke: 'https://www.nav.no/kontaktoss',
+        kontaktOssLenke: 'https://www.nav.no/kontaktoss/en',
         kontaktOssLenkeTittel: 'Contact us',
         kontaktOssLenkeBeskrivelse: 'Contact Nav',
         alertVennligstVent: 'Please wait',
