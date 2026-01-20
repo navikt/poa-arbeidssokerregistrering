@@ -4,8 +4,6 @@ import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-ut
 
 import useSprak from '../hooks/useSprak';
 import { useConfig } from '../contexts/config-context';
-
-import RedirectTilVedlikehold from '../components/redirect-til-vedlikehold';
 import DemoPanel from '../components/forsiden/demo-panel';
 import { Config } from '../model/config';
 import { loggAktivitet } from '../lib/tracker';
@@ -58,7 +56,6 @@ const Home = () => {
 
     return (
         <div className="flex flex-col gap-4 mb-4">
-            <RedirectTilVedlikehold />
             <Alert variant="info">
                 <div className="flex flex-col gap-4">
                     <div>{tekst('informasjon')}</div>
