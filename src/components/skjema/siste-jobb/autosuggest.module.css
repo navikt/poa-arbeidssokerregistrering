@@ -8,8 +8,8 @@
     max-height: 300px;
     overflow: auto;
     background: white;
-    border: 1px solid var(--a-border-strong);
-    box-shadow: 0 1px 5px var(--a-gray-300);
+    border: 1px solid var(--ax-border-neutral-strong);
+    box-shadow: 0 1px 5px var(--ax-neutral-400);
     border-radius: 5px;
     z-index: 1;
     cursor: pointer;
@@ -23,6 +23,6 @@
     padding: 0.5em;
 }
 .suggestionHighlighted {
-    background-color: var(--a-border-focus);
+    background-color: var(--ax-border-focus);
     color: white;
 }
