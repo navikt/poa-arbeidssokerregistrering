@@ -2,6 +2,7 @@
 .container {
     position: relative;
 }
+
 .suggestionsContainerOpen {
     position: absolute;
     width: 100%;
@@ -14,14 +15,17 @@
     z-index: 1;
     cursor: pointer;
 }
+
 .suggestionsList {
     list-style: none;
     margin: 0;
     padding: 0
 }
+
 .suggestion {
     padding: 0.5em;
 }
+
 .suggestionHighlighted {
     background-color: var(--ax-border-focus);
     color: white;
