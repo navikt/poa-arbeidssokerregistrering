@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+
 import Head from 'next/head';
 import Image from 'next/image';
 import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
@@ -19,6 +20,7 @@ const TEKSTER = {
         heading: 'Du er registrert som arbeidssøker',
         body1: 'Du må bekrefte at du ønsker å være registrert hver 14. dag.',
         body2: 'Nav vil vurdere de opplysningene du har gitt oss mot opplysningene vi har om andre arbeidssøkere i omtrent samme situasjon. Basert på dette vil en veileder fatte et oppfølgingsvedtak som sendes til deg. Vedtaket forteller hvordan Nav vurderer din situasjon i arbeidsmarkedet og hvilken hjelp du kan få fra Nav.',
+        body3: 'Du kan nå fortsette på søknaden om dagpenger.',
         innholdHeading: 'Innhold for deg som er arbeidssøker',
         bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker',
         bekreftelseLenkeTittel: 'Bekreft at du vil være registrert som arbeidssøker',
@@ -29,12 +31,16 @@ const TEKSTER = {
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Søknad om dagpenger',
         dagpengerLenkeBeskrivelse: 'Søk digitalt',
+        fortsettTildagpengerLenkePostfix: '',
+        fortsettTildagpengerLenkeTittel: 'Fortsett på søknad om dagpenger',
+        fortsettTildagpengerLenkeBeskrivelse: 'Søk digitalt',
     },
     nn: {
         sideTittel: 'Du er no registrert som arbeidssøkjar',
         heading: 'Du er registrert som arbeidssøkjar',
         body1: 'Du må stadfesta at du ønskjer å vera registrert kvar 14. dag.',
         body2: 'Nav vil vurdera dei opplysningane du har gitt oss mot opplysningane me har om andre arbeidssøkjarar i omtrent same situasjon. Basert på dette vil ein rettleiar gjera eit oppfølgingsvedtak som blir sendt til deg. Vedtaket fortel korleis Nav vurderer din situasjon i arbeidsmarknaden og kva hjelp du kan få frå Nav.',
+        body3: 'Du kan no halda fram på søknaden om dagpengar.',
         innholdHeading: 'Innhald for deg som er arbeidssøkjar',
         bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker/nn',
         bekreftelseLenkeTittel: 'Stadfest at du vil vera registrert som arbeidssøkjar',
@@ -45,12 +51,16 @@ const TEKSTER = {
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Søknad om dagpengar',
         dagpengerLenkeBeskrivelse: 'Søk digitalt',
+        fortsettTildagpengerLenkePostfix: '',
+        fortsettTildagpengerLenkeTittel: 'Fortsett på søknad om dagpengar',
+        fortsettTildagpengerLenkeBeskrivelse: 'Søk digitalt',
     },
     en: {
         sideTittel: 'You are now registered as a jobseeker',
         heading: 'You are registered as a jobseeker',
         body1: 'To stay registered as a jobseeker with Nav, you must send a confirmation of this every 14 days.',
         body2: 'Nav will assess the information you have given us against the information we have about other job seekers in a similar situation. Based on this, a counselor will make a follow-up decision that will be sent to you. The decision will explain how Nav assesses your situation in the labor market and what help you can get from Nav.',
+        body3: 'You may now continue your application for unemployment benefit.',
         innholdHeading: 'Content for jobseekers',
         bekreftelseLenkeHref: 'https://www.nav.no/confirm-jobseeker/en',
         bekreftelseLenkeTittel: 'Confirm that you want to be registered as a jobseeker',
@@ -61,10 +71,55 @@ const TEKSTER = {
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Application for unemployment benefit',
         dagpengerLenkeBeskrivelse: 'Apply digitally',
+        fortsettTildagpengerLenkePostfix: '',
+        fortsettTildagpengerLenkeTittel: 'Continue your application for unemployment benefit',
+        fortsettTildagpengerLenkeBeskrivelse: 'Apply digitally',
     },
 };
 
-const NyKvittering = () => {
+const FortsettTilDagpenger = () => {
+    const sprak = useSprak();
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { dagpengesoknadUrl } = useConfig() as Config;
+
+    return (
+        <div className="max-w-4xl">
+            <Head>
+                <title>{tekst('sideTittel')}</title>
+            </Head>
+            <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+                <div style={{ width: '96px', height: '96px' }}>
+                    <Image src={kvitteringIkonSvg} alt="ikon" width={96} height={96} />
+                </div>
+                <div>
+                    <Overskrift erKvittering={true} />
+                    <BodyShort spacing>{tekst('body1')}</BodyShort>
+                    <BodyLong spacing>{tekst('body2')}</BodyLong>
+                    <BodyLong spacing className="mt-8">
+                        {tekst('body3')}
+                    </BodyLong>
+
+                    <ul className={'list-none'}>
+                        <li className={'bg-ax-bg-accent-moderate-hover rounded-lg'}>
+                            <LenkePanel
+                                href={`${dagpengesoknadUrl}${tekst('fortsettTildagpengerLenkePostfix')}`}
+                                title={tekst('fortsettTildagpengerLenkeTittel')}
+                                description={tekst('fortsettTildagpengerLenkeBeskrivelse')}
+                                onClick={() =>
+                                    loggAktivitet({
+                                        aktivitet: 'Fortsetter på dagpengesøknaden',
+                                    })
+                                }
+                            />
+                        </li>
+                    </ul>
+                </div>
+            </HGrid>
+        </div>
+    );
+};
+
+const StandardKvittering = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { dittNavUrl, dagpengesoknadUrl } = useConfig() as Config;
@@ -126,6 +181,15 @@ const NyKvittering = () => {
             </HGrid>
         </div>
     );
+};
+
+const NyKvittering = () => {
+    const isBrowser = () => typeof window !== 'undefined';
+
+    if (!isBrowser()) return null;
+
+    const kommerFraDagpenger = isBrowser() && sessionStorage.getItem('kommerFraDagpenger');
+    return kommerFraDagpenger ? <FortsettTilDagpenger /> : <StandardKvittering />;
 };
 
 export default NyKvittering;
