@@ -20,7 +20,6 @@ const TEKSTER = {
         heading: 'Du er registrert som arbeidssøker',
         body1: 'Du må bekrefte at du ønsker å være registrert hver 14. dag.',
         body2: 'Nav vil vurdere de opplysningene du har gitt oss mot opplysningene vi har om andre arbeidssøkere i omtrent samme situasjon. Basert på dette vil en veileder fatte et oppfølgingsvedtak som sendes til deg. Vedtaket forteller hvordan Nav vurderer din situasjon i arbeidsmarkedet og hvilken hjelp du kan få fra Nav.',
-        body3: 'Du kan nå fortsette på søknaden om dagpenger.',
         innholdHeading: 'Innhold for deg som er arbeidssøker',
         bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker',
         bekreftelseLenkeTittel: 'Bekreft at du vil være registrert som arbeidssøker',
@@ -40,7 +39,6 @@ const TEKSTER = {
         heading: 'Du er registrert som arbeidssøkjar',
         body1: 'Du må stadfesta at du ønskjer å vera registrert kvar 14. dag.',
         body2: 'Nav vil vurdera dei opplysningane du har gitt oss mot opplysningane me har om andre arbeidssøkjarar i omtrent same situasjon. Basert på dette vil ein rettleiar gjera eit oppfølgingsvedtak som blir sendt til deg. Vedtaket fortel korleis Nav vurderer din situasjon i arbeidsmarknaden og kva hjelp du kan få frå Nav.',
-        body3: 'Du kan no halda fram på søknaden om dagpengar.',
         innholdHeading: 'Innhald for deg som er arbeidssøkjar',
         bekreftelseLenkeHref: 'https://www.nav.no/bekreft-arbeidssoker/nn',
         bekreftelseLenkeTittel: 'Stadfest at du vil vera registrert som arbeidssøkjar',
@@ -60,7 +58,6 @@ const TEKSTER = {
         heading: 'You are registered as a jobseeker',
         body1: 'To stay registered as a jobseeker with Nav, you must send a confirmation of this every 14 days.',
         body2: 'Nav will assess the information you have given us against the information we have about other job seekers in a similar situation. Based on this, a counselor will make a follow-up decision that will be sent to you. The decision will explain how Nav assesses your situation in the labor market and what help you can get from Nav.',
-        body3: 'You may now continue your application for unemployment benefit.',
         innholdHeading: 'Content for jobseekers',
         bekreftelseLenkeHref: 'https://www.nav.no/confirm-jobseeker/en',
         bekreftelseLenkeTittel: 'Confirm that you want to be registered as a jobseeker',
@@ -95,10 +92,6 @@ const FortsettTilDagpenger = () => {
                     <Overskrift erKvittering={true} />
                     <BodyShort spacing>{tekst('body1')}</BodyShort>
                     <BodyLong spacing>{tekst('body2')}</BodyLong>
-                    <BodyLong spacing className="mt-8">
-                        {tekst('body3')}
-                    </BodyLong>
-
                     <ul className={'list-none'}>
                         <li className={'bg-ax-bg-accent-moderate-hover rounded-lg'}>
                             <LenkePanel
