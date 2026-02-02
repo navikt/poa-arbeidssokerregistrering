@@ -55,6 +55,8 @@ spec:
       value: https://www.nav.no/arbeidssoekerregisteret
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
       value: https://www.nav.no/dagpenger/dialog/soknad
+    - name: NEXT_PUBLIC_BRUKERDIALOG_DAGPENGER_URL
+      value: https://brukerdialog-dagpenger.nav.no
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.nav.no/arbeid/dialog
     - name: PAM_ONTOLOGI_URL

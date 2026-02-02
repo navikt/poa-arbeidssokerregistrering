@@ -11,6 +11,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         dittNavUrl: process.env.NEXT_PUBLIC_DITTNAV_URL!,
         arbeidssoekerregisteretUrl: process.env.NEXT_PUBLIC_ARBEIDSSOEKERREGISTERET_URL!,
         dagpengesoknadUrl: process.env.NEXT_PUBLIC_DAGPENGESOKNAD_URL!,
+        brukerdialogDagpengerUrl: process.env.NEXT_PUBLIC_BRUKERDIALOG_DAGPENGER_URL!,
         dialogUrl: process.env.NEXT_PUBLIC_DIALOG_URL!,
         enableMock: process.env.NEXT_PUBLIC_ENABLE_MOCK!,
         loginUrl: `${process.env.NEXT_PUBLIC_SELF_URL}/oauth2/login?redirect=${process.env.NEXT_PUBLIC_START_URL}`,
