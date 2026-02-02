@@ -77,7 +77,7 @@ const TEKSTER = {
 const FortsettTilDagpenger = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
-    const { dagpengesoknadUrl } = useConfig() as Config;
+    const { brukerdialogDagpengerUrl } = useConfig() as Config;
 
     return (
         <div className="max-w-4xl">
@@ -95,7 +95,7 @@ const FortsettTilDagpenger = () => {
                     <ul className={'list-none'}>
                         <li className={'bg-ax-bg-accent-moderate-hover rounded-lg'}>
                             <LenkePanel
-                                href={`${dagpengesoknadUrl}${tekst('fortsettTildagpengerLenkePostfix')}`}
+                                href={`${brukerdialogDagpengerUrl}${tekst('fortsettTildagpengerLenkePostfix')}`}
                                 title={tekst('fortsettTildagpengerLenkeTittel')}
                                 description={tekst('fortsettTildagpengerLenkeBeskrivelse')}
                                 onClick={() =>

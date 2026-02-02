@@ -7,6 +7,7 @@ export type Config = {
     dittNavUrl: string;
     arbeidssoekerregisteretUrl: string;
     dagpengesoknadUrl: string;
+    brukerdialogDagpengerUrl: string;
     dialogUrl: string;
     enableMock: string;
     loginUrl: string;
