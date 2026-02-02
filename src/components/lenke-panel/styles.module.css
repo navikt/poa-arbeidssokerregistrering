@@ -7,7 +7,7 @@
     border-width: 1px;
     border-radius: .5rem;
     border-style: solid;
-    border-color: var(--a-gray-300);
+    border-color: var(--ax-neutral-400);
     text-decoration: none;
     &:hover {
         background-color: #ecf3fe;
@@ -28,9 +28,9 @@
     margin-bottom: 0;
 }
 .tagline {
-    color: var(--a-text-subtle);
+    color: var(--ax-text-neutral-subtle);
     font-variant: all-small-caps;
     letter-spacing: 0.075rem;
-    margin-top: var(--a-spacing-05);
+    margin-top: var(--ax-space-2);
     text-transform: uppercase;
 }

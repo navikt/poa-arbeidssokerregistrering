@@ -61,6 +61,7 @@ type KvitteringAktivitet =
     | 'Velger å lese mer om økonomisk støtte'
     | 'Velger å ikke søke om økonomisk støtte'
     | 'Går til bekreftelse fra kvittering'
+    | 'Fortsetter på dagpengesøknaden'
     | 'Går til min side fra kvittering';
 
 type EksperimentData = {

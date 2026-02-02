@@ -14,12 +14,12 @@ function DemoPanel({ brukerMock }: Props) {
     const { visGammelDineOpplysninger } = router.query;
 
     return (
-        <Box className="text-center" style={{ backgroundColor: 'var(--a-orange-200)' }}>
+        <Box className="text-center" style={{ backgroundColor: 'var(--ax-warning-300)' }}>
             <Heading level="2" size="xlarge" className={'mb-6'}>
                 Demovalg
             </Heading>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }} className="flex-col sm:flex-row">
-                <Box className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }} padding="10">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }} className="flex-col ax-sm:flex-row">
+                <Box className={'mx-2'} style={{ backgroundColor: 'var(--ax-warning-100)' }} padding="space-40">
                     <div className="text-center">
                         <Heading level="3" size="large">
                             Velg side
@@ -70,7 +70,7 @@ function DemoPanel({ brukerMock }: Props) {
                         </div>
                     </div>
                 </Box>
-                <Box className={'mx-2'} style={{ backgroundColor: 'var(--a-orange-50)' }} padding="10">
+                <Box className={'mx-2'} style={{ backgroundColor: 'var(--ax-warning-100)' }} padding="space-40">
                     <Heading level="3" size="large">
                         Velg tekstversjon
                     </Heading>

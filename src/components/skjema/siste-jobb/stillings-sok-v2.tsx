@@ -36,7 +36,7 @@ const StillingsSok = (props: StillingsSokProps) => {
 
     const inputProps = {
         value,
-        className: 'navds-text-field__input navds-body-short navds-body-medium',
+        className: 'aksel-text-field__input aksel-body-short aksel-body-medium',
         autoFocus: true,
         onBlur: () => onClose(),
         onChange: (e: any) => {

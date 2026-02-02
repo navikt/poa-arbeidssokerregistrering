@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+
 import Head from 'next/head';
 import Image from 'next/image';
 import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
@@ -29,6 +30,9 @@ const TEKSTER = {
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Søknad om dagpenger',
         dagpengerLenkeBeskrivelse: 'Søk digitalt',
+        fortsettTildagpengerLenkePostfix: '',
+        fortsettTildagpengerLenkeTittel: 'Fortsett på søknad om dagpenger',
+        fortsettTildagpengerLenkeBeskrivelse: 'Søk digitalt',
     },
     nn: {
         sideTittel: 'Du er no registrert som arbeidssøkjar',
@@ -45,6 +49,9 @@ const TEKSTER = {
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Søknad om dagpengar',
         dagpengerLenkeBeskrivelse: 'Søk digitalt',
+        fortsettTildagpengerLenkePostfix: '',
+        fortsettTildagpengerLenkeTittel: 'Fortsett på søknad om dagpengar',
+        fortsettTildagpengerLenkeBeskrivelse: 'Søk digitalt',
     },
     en: {
         sideTittel: 'You are now registered as a jobseeker',
@@ -61,10 +68,51 @@ const TEKSTER = {
         dagpengerLenkePostfix: '',
         dagpengerLenkeTittel: 'Application for unemployment benefit',
         dagpengerLenkeBeskrivelse: 'Apply digitally',
+        fortsettTildagpengerLenkePostfix: '',
+        fortsettTildagpengerLenkeTittel: 'Continue your application for unemployment benefit',
+        fortsettTildagpengerLenkeBeskrivelse: 'Apply digitally',
     },
 };
 
-const NyKvittering = () => {
+const FortsettTilDagpenger = () => {
+    const sprak = useSprak();
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { dagpengesoknadUrl } = useConfig() as Config;
+
+    return (
+        <div className="max-w-4xl">
+            <Head>
+                <title>{tekst('sideTittel')}</title>
+            </Head>
+            <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+                <div style={{ width: '96px', height: '96px' }}>
+                    <Image src={kvitteringIkonSvg} alt="ikon" width={96} height={96} />
+                </div>
+                <div>
+                    <Overskrift erKvittering={true} />
+                    <BodyShort spacing>{tekst('body1')}</BodyShort>
+                    <BodyLong spacing>{tekst('body2')}</BodyLong>
+                    <ul className={'list-none'}>
+                        <li className={'bg-ax-bg-accent-moderate-hover rounded-lg'}>
+                            <LenkePanel
+                                href={`${dagpengesoknadUrl}${tekst('fortsettTildagpengerLenkePostfix')}`}
+                                title={tekst('fortsettTildagpengerLenkeTittel')}
+                                description={tekst('fortsettTildagpengerLenkeBeskrivelse')}
+                                onClick={() =>
+                                    loggAktivitet({
+                                        aktivitet: 'Fortsetter på dagpengesøknaden',
+                                    })
+                                }
+                            />
+                        </li>
+                    </ul>
+                </div>
+            </HGrid>
+        </div>
+    );
+};
+
+const StandardKvittering = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { dittNavUrl, dagpengesoknadUrl } = useConfig() as Config;
@@ -126,6 +174,15 @@ const NyKvittering = () => {
             </HGrid>
         </div>
     );
+};
+
+const NyKvittering = () => {
+    const isBrowser = () => typeof window !== 'undefined';
+
+    if (!isBrowser()) return null;
+
+    const kommerFraDagpenger = isBrowser() && sessionStorage.getItem('kommerFraDagpenger');
+    return kommerFraDagpenger ? <FortsettTilDagpenger /> : <StandardKvittering />;
 };
 
 export default NyKvittering;

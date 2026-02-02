@@ -20,6 +20,9 @@ const TEKSTER: Tekster<string> = {
     nb: {
         advarsel: 'Du må svare på spørsmålet før du kan gå videre.',
     },
+    nn: {
+        advarsel: 'Du må svara på spørsmålet før du kan gå vidare.',
+    },
     en: {
         advarsel: 'You will need to answer before you can continue.',
     },
