@@ -97,7 +97,7 @@ const TEKSTER: Tekster<string> = {
     en: {
         sideTittel: 'You need consent to register as a job seeker',
         tittel: 'You want to register as a job seeker',
-        samtykkeLenke: 'https://www.nav.no/samtykke-foresatte',
+        samtykkeLenke: 'https://www.nav.no/parental-consent/en',
         samtykkeLenkeTittel: 'Consent from guardians',
         samtykkeLenkeBeskrivelse: 'Read about why we need consent and find a link to the consent form.',
         oppdatereOpplysningerLenke: 'https://www.nav.no/person/personopplysninger/en/#kontaktinformasjon',
