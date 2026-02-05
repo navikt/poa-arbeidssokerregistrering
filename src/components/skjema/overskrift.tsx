@@ -38,7 +38,7 @@ const getKey = (props: Props) => {
 export default function Overskrift(props: Props) {
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     return (
-        <Heading size={'xlarge'} level={'1'} spacing>
+        <Heading size={'xlarge'} level={'1'} spacing data-color={props.erKvittering ? 'brand-magenta' : undefined}>
             {tekst(getKey(props))}
         </Heading>
     );

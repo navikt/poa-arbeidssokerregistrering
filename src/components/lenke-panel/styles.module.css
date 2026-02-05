@@ -17,13 +17,22 @@
             text-decoration-thickness: 2px;
             text-underline-offset: 0.15625rem;
         }
+        .LenkePanel__ikon {
+            transform: translateX(0.25em);
+        }
     }
 }
+.LenkePanel__ikon {
+    color: var(--ax-accent-800);
+    transition: transform .2s;
+}
+
 .LenkePanel__container {
     font-size: 1.25rem;
     line-height: 1.6;
 }
 .linkText {
+    color: var(--ax-accent-800);
     font-weight: 600;
     margin-bottom: 0;
 }
