@@ -16,7 +16,7 @@
         "@alheimsins/virkedager": "2.2.0",
         "@grafana/faro-web-sdk": "2.2.3",
         "@navikt/aksel-icons": "8.3.0",
-        "@navikt/arbeidssokerregisteret-utils": "1.9.2",
+        "@navikt/arbeidssokerregisteret-utils": "2.0.0",
         "@navikt/ds-css": "8.3.0",
         "@navikt/ds-react": "8.3.0",
         "@navikt/ds-tailwind": "8.3.0",
