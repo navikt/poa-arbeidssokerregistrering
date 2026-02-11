@@ -1,7 +1,8 @@
 import { NextApiHandler, NextApiRequest } from 'next';
 import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
-import { requestTokenxOboToken } from '@navikt/oasis';
+import { getToken, requestTokenxOboToken } from '@navikt/oasis';
+import { NextRequest } from 'next/server';
 
 export const getHeaders = (token: string, callId: string) => {
     return {
@@ -49,14 +50,11 @@ const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): P
     return result.token;
 };
 
-export const getTokenFromRequest = (req: NextApiRequest) => {
-    const bearerToken = req.headers['authorization'];
-    return bearerToken?.replace('Bearer ', '');
-};
+export const getTokenFromRequest = getToken;
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 
-export const getAaregToken = async (req: NextApiRequest) => {
+export const getAaregToken = async (req: NextRequest | NextApiRequest) => {
     return getTokenXToken(req, AAREG_CLIENT_ID);
 };
 
@@ -64,7 +62,7 @@ export const getInngangClientId = async (req: NextApiRequest) => {
     return getTokenXToken(req, INNGANG_CLIENT_ID);
 };
 
-const getTokenXToken = async (req: NextApiRequest, clientId: ClientIds) => {
+const getTokenXToken = async (req: NextApiRequest | NextRequest, clientId: ClientIds) => {
     return await exchangeIDPortenToken(clientId, getTokenFromRequest(req)!);
 };
 
