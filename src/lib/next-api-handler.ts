@@ -33,7 +33,7 @@ const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 export function proxyRequestWithAuth(
     url: string,
     clientId: ClientIds,
-    method: 'GET' | 'POST' = 'POST',
+    method: 'GET' | 'POST',
     mockResponse: () => NextResponse,
 ) {
     return async function (req: NextRequest): Promise<NextResponse> {
