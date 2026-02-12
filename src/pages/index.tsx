@@ -7,7 +7,7 @@ import { useConfig } from '../contexts/config-context';
 import DemoPanel from '../components/forsiden/demo-panel';
 import { Config } from '../model/config';
 import { loggAktivitet } from '../lib/tracker';
-import { hentFeatures } from '../app/api/features/route';
+import { hentFeatures } from '../app/api/features/hent-features';
 import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
 import { logger } from '@navikt/next-logger';
 import { useRouter } from 'next/router';
