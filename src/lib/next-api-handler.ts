@@ -2,7 +2,7 @@ import { NextApiHandler, NextApiRequest } from 'next';
 import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
 import { getToken, requestTokenxOboToken } from '@navikt/oasis';
-import { NextRequest } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 export const getHeaders = (token: string, callId: string) => {
     return {
@@ -35,7 +35,7 @@ export const OPPSLAG_V2_CLIENT_ID = `${process.env.NAIS_CLUSTER_NAME}:paw:paw-ar
 
 const AAREG_CLIENT_ID = `${process.env.AAREG_CLUSTER}:arbeidsforhold:${process.env.AAREG_APPNAME}`;
 
-type ClientIds =
+export type ClientIds =
     | typeof AIA_BACKEND_CLIENT_ID
     | typeof AAREG_CLIENT_ID
     | typeof INNGANG_CLIENT_ID
@@ -49,6 +49,52 @@ const exchangeIDPortenToken = async (clientId: string, idPortenToken: string): P
 
     return result.token;
 };
+
+export async function proxyRequestWithAuth(
+    req: NextRequest,
+    url: string,
+    clientId: ClientIds,
+    method: 'GET' | 'POST' = 'POST',
+): Promise<NextResponse> {
+    const callId = nanoid();
+    const body = method === 'POST' ? await req.json() : null;
+
+    try {
+        const idPortenToken = getToken(req)!;
+        const tokenResult = await requestTokenxOboToken(idPortenToken, clientId);
+
+        if (!tokenResult.ok) {
+            throw tokenResult.error;
+        }
+
+        logger.info(`Starter kall callId: ${callId} mot ${url}`);
+
+        const response = await fetch(url, {
+            method,
+            body: body ? JSON.stringify(body) : undefined,
+            headers: getHeaders(tokenResult.token, callId),
+        });
+
+        const contentType = response.headers.get('content-type');
+
+        if (!response.ok) {
+            logger.error(`apiResponse ikke ok, contentType: ${contentType}, callId - ${callId}`);
+            return new NextResponse(`Noe gikk galt (callId: ${callId})`, { status: response.status });
+        }
+
+        logger.info(`Kall callId: ${callId} mot ${url} er ferdig`);
+
+        if (contentType?.includes('application/json')) {
+            const json = await response.json();
+            return NextResponse.json(json);
+        } else {
+            return new NextResponse(response.body);
+        }
+    } catch (error) {
+        logger.error(`Kall mot ${url} (callId: ${callId}) feilet. Feilmelding: ${error}`);
+        return new NextResponse(`Noe gikk galt (callId: ${callId})`, { status: 500 });
+    }
+}
 
 export const getTokenFromRequest = getToken;
 

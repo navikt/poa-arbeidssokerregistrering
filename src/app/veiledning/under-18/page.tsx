@@ -18,17 +18,16 @@ export default function Under18() {
     const [feil, settFeil] = useState<Opprettelsesfeil | undefined>();
     const { enableMock } = useConfig() as Config;
 
-    const opprettOppgave = useCallback(async (brukerMock: boolean) => {
-        const oppgaveUrl = brukerMock ? 'api/mocks/oppgave-under-18' : 'api/oppgave-under-18';
+    const opprettOppgave = useCallback(async () => {
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave - under 18' });
         const beskrivelse = `Personen har forsøkt å registrere seg som arbeidssøker, men er sperret fra å gjøre dette da personen er under 18 år.
 For mindreårige arbeidssøkere trengs det samtykke fra begge foresatte for å kunne registrere seg.
 Se "Samtykke fra foresatte til unge under 18 år - registrering som arbeidssøker, øvrige tiltak og tjenester".
-        
+
 Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell registrering i modia.`;
 
         try {
-            await api(oppgaveUrl, {
+            await api('api/oppgave-under-18', {
                 method: 'post',
                 body: JSON.stringify({ beskrivelse }),
                 onError: (res) => {
@@ -49,9 +48,9 @@ Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell
         if (!oppretterOppgave && typeof enableMock !== 'undefined') {
             // eslint-disable-next-line react-hooks/set-state-in-effect
             settOppretterOppgave(true);
-            opprettOppgave(enableMock === 'enabled');
+            opprettOppgave();
         }
-    }, [oppretterOppgave, enableMock]);
+    }, [oppretterOppgave, enableMock, opprettOppgave]);
 
     if (responseMottatt) {
         return feil ? <KvitteringOppgaveIkkeOpprettet feil={feil} /> : <KvitteringOppgaveOpprettet />;
