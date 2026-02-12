@@ -16,7 +16,6 @@ export default function Under18() {
     const [responseMottatt, settResponseMottatt] = useState<boolean>(false);
     const [oppretterOppgave, settOppretterOppgave] = useState<boolean>(false);
     const [feil, settFeil] = useState<Opprettelsesfeil | undefined>();
-    const { enableMock } = useConfig() as Config;
 
     const opprettOppgave = useCallback(async () => {
         loggAktivitet({ aktivitet: 'Oppretter kontakt meg oppgave - under 18' });
@@ -45,12 +44,12 @@ Når samtykke er innhentet kan du registrere arbeidssøker via flate for manuell
     }, []);
 
     useEffect(() => {
-        if (!oppretterOppgave && typeof enableMock !== 'undefined') {
+        if (!oppretterOppgave) {
             // eslint-disable-next-line react-hooks/set-state-in-effect
             settOppretterOppgave(true);
             opprettOppgave();
         }
-    }, [oppretterOppgave, enableMock, opprettOppgave]);
+    }, [oppretterOppgave, opprettOppgave]);
 
     if (responseMottatt) {
         return feil ? <KvitteringOppgaveIkkeOpprettet feil={feil} /> : <KvitteringOppgaveOpprettet />;
