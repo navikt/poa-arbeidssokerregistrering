@@ -1,14 +1,10 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server';
 import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
 
-import { withAuthenticatedApi } from '../../auth/withAuthentication';
-
-const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
-
-async function yrkeMedStyrk(req: NextApiRequest, res: NextApiResponse<string>) {
+export async function GET(req: NextRequest) {
     const callId = nanoid();
-    const yrke = req.query.yrke;
+    const yrke = req.nextUrl.searchParams.get('yrke');
     const url = `${process.env.PAM_ONTOLOGI_URL}/typeahead/stilling?stillingstittel=${yrke}`;
 
     const response = await fetch(url, {
@@ -21,11 +17,9 @@ async function yrkeMedStyrk(req: NextApiRequest, res: NextApiResponse<string>) {
 
     if (!response.ok) {
         logger.error(`Respons fra PAM_ONTOLOGI typeahead ikke OK - [callId: ${callId}]`);
-        res.status(500);
+        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 
     const json = await response.json();
-    res.status(200).json(json);
+    return NextResponse.json(json);
 }
-
-export default withAuthenticatedApi(yrkeMedStyrk);

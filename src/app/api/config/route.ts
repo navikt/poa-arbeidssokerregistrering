@@ -1,8 +1,8 @@
-import { NextApiRequest, NextApiResponse } from 'next';
-import { Config } from '../../model/config';
+import { NextResponse } from 'next/server';
+import { Config } from '@/model/config';
 
-async function handler(req: NextApiRequest, res: NextApiResponse) {
-    res.status(200).json({
+export async function GET() {
+    const config: Config = {
         selfUrl: process.env.NEXT_PUBLIC_SELF_URL!,
         startUrl: process.env.NEXT_PUBLIC_START_URL!,
         amplitudeApiKey: process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!,
@@ -16,7 +16,7 @@ async function handler(req: NextApiRequest, res: NextApiResponse) {
         enableMock: process.env.NEXT_PUBLIC_ENABLE_MOCK!,
         loginUrl: `${process.env.NEXT_PUBLIC_SELF_URL}/oauth2/login?redirect=${process.env.NEXT_PUBLIC_START_URL}`,
         aarsTall: new Date().getFullYear(),
-    } as Config);
-}
+    };
 
-export default handler;
+    return NextResponse.json(config);
+}
