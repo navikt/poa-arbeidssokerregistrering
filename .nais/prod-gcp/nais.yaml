@@ -33,10 +33,6 @@ spec:
   env:
     - name: NEXT_PUBLIC_BASE_PATH
       value: /arbeid/registrering
-    - name: SELF_URL
-      value: https://www.nav.no/arbeid/registrering
-    - name: DEKORATOR_URL
-      value: https://dekoratoren.nav.no/
     - name: DEKORATOR_ENV
       value: prod
     - name: NEXT_PUBLIC_SELF_URL
@@ -77,10 +73,6 @@ spec:
       value: aareg-services-nais
     - name: INNGANG_API_URL
       value: http://paw-arbeidssokerregisteret-api-inngang
-    - name: OPPDATER_OPPLYSNINGER_URL
-      value: http://paw-arbeidssokerregisteret-api-inngang
-    - name: ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL
-      value: http://paw-arbeidssoekerregisteret-api-oppslag
     - name: ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL
       value: http://paw-arbeidssoekerregisteret-api-oppslag-v2
     - name: FORSIDE_URL
