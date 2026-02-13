@@ -1,10 +1,6 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { getDefinitions } from '@unleash/nextjs';
 
-const featureToggles = (req: NextApiRequest, res: NextApiResponse): void => {
-    res.status(200).json(mockToggles);
-};
-
-export const mockToggles = {
+const mockToggles = {
     version: 1,
     features: [
         {
@@ -23,4 +19,8 @@ export const mockToggles = {
     ],
 };
 
-export default featureToggles;
+const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
+
+export async function hentFeatures() {
+    return brukerMock ? Promise.resolve(mockToggles) : await getDefinitions();
+}

@@ -5,10 +5,6 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@navikt/ds-react';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
 import { logger } from '@navikt/next-logger';
-
-import { useConfig } from '@/contexts/config-context';
-
-import { Config } from '@/model/config';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
 import { fetcher as api } from '../../lib/api-utils';
 import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
@@ -37,14 +33,12 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     const [senderSkjema, settSenderSkjema] = useState<boolean>(false);
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
-    const { enableMock } = useConfig() as Config;
     const sprak = useSprak();
 
     const startPeriodeVersjon = 'start-arbeidssokerperiode-v2';
-    const brukerMock = enableMock === 'enabled';
     const { skjemaState, onSubmit, onValiderSkjema } = props;
-    const fullfoerRegistreringUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
-    const startArbeidssokerPeriodeUrl = brukerMock ? `api/mocks/${startPeriodeVersjon}` : `api/${startPeriodeVersjon}`;
+    const fullfoerRegistreringUrl = 'api/opplysninger';
+    const startArbeidssokerPeriodeUrl = `api/${startPeriodeVersjon}`;
 
     const validerOgFullfor = () => {
         if (onValiderSkjema()) {
@@ -91,7 +85,7 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
         } finally {
             settSenderSkjema(false);
         }
-    }, [onSubmit, router, skjemaState, fullfoerRegistreringUrl, sprak]);
+    }, [skjemaState, onSubmit, startArbeidssokerPeriodeUrl, router, sprak]);
 
     return (
         <>

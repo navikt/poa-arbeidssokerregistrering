@@ -24,10 +24,9 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
     const [senderSkjema, settSenderSkjema] = useState<boolean>(false);
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
-    const { enableMock, dittNavUrl } = useConfig() as Config;
-    const brukerMock = enableMock === 'enabled';
+    const { dittNavUrl } = useConfig() as Config;
     const { skjemaState, onSubmit, onValiderSkjema } = props;
-    const oppdaterOpplysningerUrl = brukerMock ? 'api/mocks/opplysninger' : 'api/opplysninger';
+    const oppdaterOpplysningerUrl = 'api/opplysninger';
 
     const validerOgFullfor = () => {
         if (onValiderSkjema()) {
@@ -60,7 +59,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
         } finally {
             settSenderSkjema(false);
         }
-    }, [onSubmit, router, skjemaState, oppdaterOpplysningerUrl]);
+    }, [skjemaState, onSubmit, dittNavUrl, router]);
 
     return (
         <>
