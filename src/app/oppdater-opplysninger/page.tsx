@@ -1,32 +1,29 @@
 import { Suspense } from 'react';
 import { Loader } from '@navikt/ds-react';
-import { fetchSisteOpplysninger } from '@/app/oppdater-opplysninger/api';
 import { SkjemaSide } from '@/model/skjema';
 import { redirect } from 'next/navigation';
 import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
 import { NextPageProps } from '@/types/next';
 import { Sprak } from '@navikt/arbeidssokerregisteret-utils';
+import { fetchArbeidssoekerregisteretSnapshot } from '@/app/oppdater-opplysninger/api';
 
 async function HentOpplysningerOgSendVidere({ sprak }: { sprak: Sprak }) {
-    const { data, error } = await fetchSisteOpplysninger();
+    const { data, error } = await fetchArbeidssoekerregisteretSnapshot();
     const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
     if (error) {
         return <FeilmeldingGenerell />;
     }
-
     if (!data) {
         redirect(`${sprakUrl}/start`);
         return;
     }
 
-    const { periode, opplysninger } = data!;
-
-    if (periode.avsluttet !== null) {
+    if (Boolean(data.avsluttet)) {
         // avsluttet periode
         return redirect(`${sprakUrl}/start`);
     }
 
-    if (opplysninger.opplysningerOmArbeidssoekerId) {
+    if (Boolean(data.opplysning?.id)) {
         redirect(`${sprakUrl}/oppdater-opplysninger/${SkjemaSide.Oppsummering}`);
     } else {
         // ingen eksisterende opplysninger
