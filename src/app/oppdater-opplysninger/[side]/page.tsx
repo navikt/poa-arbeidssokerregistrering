@@ -1,9 +1,9 @@
 import { NextPageProps } from '@/types/next';
 import Skjema from '@/app/oppdater-opplysninger/[side]/skjema';
-import { fetchSisteOpplysninger } from '@/app/oppdater-opplysninger/api';
+import { fetchArbeidssoekerregisteretSnapshot } from '@/app/oppdater-opplysninger/api';
 import { Suspense } from 'react';
 import { Loader } from '@navikt/ds-react';
-import { mapOpplysningerTilSkjemaState } from '@navikt/arbeidssokerregisteret-utils';
+import { mapOpplysningerHendelseTilSkjemaState } from '@navikt/arbeidssokerregisteret-utils';
 import HydrateSkjemaState from '@/app/oppdater-opplysninger/[side]/wrapper';
 import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
@@ -11,7 +11,7 @@ import { redirect } from 'next/navigation';
 
 async function SkjemaSide({ params }: NextPageProps) {
     const { side, lang } = await params;
-    const { data, error } = await fetchSisteOpplysninger();
+    const { data, error } = await fetchArbeidssoekerregisteretSnapshot();
 
     const sprakUrl = lang === 'nb' ? '' : `/${lang}`;
 
@@ -24,14 +24,14 @@ async function SkjemaSide({ params }: NextPageProps) {
         return;
     }
 
-    const { periode, opplysninger } = data!;
-
-    if (periode.avsluttet !== null) {
+    if (Boolean(data.avsluttet)) {
         // avsluttet periode
         return redirect(`${sprakUrl}/start`);
     }
 
-    const eksisterendeOpplysninger = opplysninger ? mapOpplysningerTilSkjemaState(opplysninger) : undefined;
+    const eksisterendeOpplysninger = data.opplysning
+        ? mapOpplysningerHendelseTilSkjemaState(data.opplysning)
+        : undefined;
     return (
         <>
             <HydrateSkjemaState eksisterendeOpplysninger={eksisterendeOpplysninger} />

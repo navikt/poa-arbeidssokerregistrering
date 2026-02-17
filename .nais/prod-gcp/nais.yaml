@@ -33,20 +33,10 @@ spec:
   env:
     - name: NEXT_PUBLIC_BASE_PATH
       value: /arbeid/registrering
-    - name: SELF_URL
-      value: https://www.nav.no/arbeid/registrering
-    - name: DEKORATOR_URL
-      value: https://dekoratoren.nav.no/
     - name: DEKORATOR_ENV
       value: prod
-    - name: NEXT_PUBLIC_SELF_URL
-      value: https://www.nav.no/arbeid/registrering
-    - name: NEXT_PUBLIC_START_URL
-      value: https://www.nav.no/arbeid/registrering/start
     - name: NEXT_PUBLIC_AMPLITUDE_API_KEY
       value: 913768927b84cde5eac0d0d18c737561
-    - name: NEXT_PUBLIC_AMPLITUDE_ENDPOINT
-      value: https://amplitude.nav.no/collect
     - name: NEXT_PUBLIC_ENABLE_MOCK
       value: disabled
     - name: NEXT_PUBLIC_DITTNAV_URL
@@ -77,10 +67,6 @@ spec:
       value: aareg-services-nais
     - name: INNGANG_API_URL
       value: http://paw-arbeidssokerregisteret-api-inngang
-    - name: OPPDATER_OPPLYSNINGER_URL
-      value: http://paw-arbeidssokerregisteret-api-inngang
-    - name: ARBEIDSSOKERREGISTERET_OPPSLAG_API_URL
-      value: http://paw-arbeidssoekerregisteret-api-oppslag
     - name: ARBEIDSSOKERREGISTERET_OPPSLAG_API_V2_URL
       value: http://paw-arbeidssoekerregisteret-api-oppslag-v2
     - name: FORSIDE_URL
