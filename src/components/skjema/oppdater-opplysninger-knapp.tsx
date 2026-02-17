@@ -24,7 +24,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
     const [senderSkjema, settSenderSkjema] = useState<boolean>(false);
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
-    const { dittNavUrl } = useConfig() as Config;
+    const { arbeidssoekerregisteretUrl } = useConfig() as Config;
     const { skjemaState, onSubmit, onValiderSkjema } = props;
     const oppdaterOpplysningerUrl = 'api/opplysninger';
 
@@ -49,7 +49,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
                 },
             });
 
-            document.location.href = dittNavUrl;
+            document.location.href = arbeidssoekerregisteretUrl;
             return;
         } catch (e) {
             settVisFeilmelding(true);
@@ -59,7 +59,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
         } finally {
             settSenderSkjema(false);
         }
-    }, [skjemaState, onSubmit, dittNavUrl, router]);
+    }, [skjemaState, onSubmit, arbeidssoekerregisteretUrl, router]);
 
     return (
         <>
