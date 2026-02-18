@@ -14,23 +14,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Set up node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: "24.13.0"
-          cache: "npm"
+          cache: "pnpm"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Install
-        run: npm install --no-save --no-audit --prefer-offline --ignore-scripts
+        run: pnpm install --no-frozen-lockfile --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
       - name: Test
-        run: npm run test:ci
+        run: pnpm run test:ci
 
       - name: Knip
-        run: npx knip --no-exit-code --reporter=markdown >> "$GITHUB_STEP_SUMMARY"
+        run: pnpm exec knip --no-exit-code --reporter=markdown >> "$GITHUB_STEP_SUMMARY"
 
   build:
     name: Build and Publish Docker image
@@ -45,27 +50,25 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
       - name: Set up node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
           node-version: "24.13.0"
-          cache: "npm"
+          cache: "pnpm"
           registry-url: "https://npm.pkg.github.com"
 
       - name: Install
-        run: npm install --no-save --no-audit --prefer-offline --ignore-scripts
+        run: pnpm install --no-frozen-lockfile --ignore-scripts
         env:
           NODE_AUTH_TOKEN: ${{ secrets.READER_TOKEN }}
 
-      - name: Set up node
-        uses: actions/setup-node@v5
-        with:
-          node-version: "24.13.0"
-          cache: "npm"
-          registry-url: "https://npm.pkg.github.com"
-
       - name: Build
-        run: npm run build
+        run: pnpm run build
         env:
           NEXT_PUBLIC_ASSET_PREFIX: https://cdn.nav.no/paw/arbeidssokerregistrering
           NEXT_PUBLIC_BASE_PATH: /arbeid/registrering
