@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@alheimsins/virkedager": "2.2.0",
-        "@grafana/faro-web-sdk": "2.2.3",
+        "@grafana/faro-web-sdk": "2.2.4",
         "@navikt/aksel-icons": "8.4.1",
         "@navikt/arbeidssokerregisteret-utils": "2.1.0",
         "@navikt/ds-css": "8.4.1",
