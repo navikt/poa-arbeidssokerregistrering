@@ -6,8 +6,8 @@
         "build": "next build --webpack",
         "start": "next start",
         "lint": "eslint",
-        "test": "pnpm run lint && jest --watch",
-        "test:ci": "pnpm run lint && jest",
+        "test": "pnpm run lint && vitest",
+        "test:ci": "pnpm run lint && vitest run",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
         "refresh": "rm -rf node_modules && rm pnpm-lock.yaml && pnpm i --ignore-scripts",
         "prepare": "husky"
@@ -44,6 +44,7 @@
         "@types/lodash": "4.17.23",
         "@types/node": "25.2.3",
         "@types/react": "19.2.14",
+        "@vitejs/plugin-react": "5.1.4",
         "eslint": "9.39.2",
         "eslint-config-next": "16.1.6",
         "husky": "9.1.7",

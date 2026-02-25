@@ -1,6 +1,7 @@
+import { describe, it, expect } from 'vitest';
+
 import byggFullforRegistreringPayload, { aldriJobbet } from './bygg-fullfor-registrering-payload';
 import { DinSituasjon, SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
-import { expect } from '@jest/globals';
 
 describe('bygg-fullfor-registrering-payload', () => {
     describe('sisteStilling', () => {

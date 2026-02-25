@@ -10,7 +10,7 @@ import { Loader } from '@navikt/ds-react';
 import { loggAktivitet } from '@/lib/tracker';
 import { fetcher as api } from '@/lib/api-utils';
 
-export default async function KvitteringUnder18Wrapper() {
+export default function KvitteringUnder18Wrapper() {
     const [responseMottatt, settResponseMottatt] = useState<boolean>(false);
     const [oppretterOppgave, settOppretterOppgave] = useState<boolean>(false);
     const [feil, settFeil] = useState<Opprettelsesfeil | undefined>();
