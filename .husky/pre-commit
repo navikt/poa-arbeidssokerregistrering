@@ -1,1 +1,1 @@
-npx tsc && npx lint-staged
+pnpm --package=typescript dlx tsc && pnpm exec lint-staged
