@@ -7,6 +7,7 @@
         "start": "next start",
         "lint": "eslint",
         "test": "pnpm run lint && jest --watch",
+        "typecheck": "pnpm tsc",
         "test:ci": "pnpm run lint && jest",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
         "refresh": "rm -rf node_modules && rm pnpm-lock.yaml && pnpm i --ignore-scripts",
@@ -55,10 +56,11 @@
         "postcss": "8.5.6",
         "prettier": "3.8.1",
         "tailwindcss": "4.1.18",
+        "tsc": "2.0.4",
         "typescript": "5.9.3"
     },
     "engines": {
-        "node": ">=24.13.0"
+        "node": ">=24.13.1"
     },
     "prettier": {
         "printWidth": 120,
