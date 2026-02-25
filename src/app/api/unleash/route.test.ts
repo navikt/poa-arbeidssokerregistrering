@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { vi } from 'vitest';
 import { GET } from './route';
 import { NextRequest } from 'next/server';
 import * as unleashIsEnabled from '@/lib/unleash-is-enabled';

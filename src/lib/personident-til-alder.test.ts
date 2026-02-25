@@ -1,5 +1,3 @@
-import { describe, it, expect } from 'vitest';
-
 import { personidentTilAlder } from './personident-til-alder';
 
 describe('tester funksjonen personidentTilAlder', () => {
