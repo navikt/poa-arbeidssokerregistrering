@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import '../styles/globals.css';
 import styles from '../styles/app.module.css';
 import { ConfigProvider } from '@/contexts/config-context';
+import { FeatureTogglesProvider } from '@/contexts/feature-toggle-context';
 import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
 import InitTracker from '@/components/init-tracker';
 import InitFaroKomponent from '@/components/init-faro-komponent';
@@ -58,11 +59,13 @@ export default async function RootLayout({
                 <Decorator.Header />
                 <InitTracker apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
                 <InitFaroKomponent />
-                <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
-                    <ConfigProvider>
-                        <SkjemaStateProvider>{children}</SkjemaStateProvider>
-                    </ConfigProvider>
-                </main>
+                <FeatureTogglesProvider>
+                    <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
+                        <ConfigProvider>
+                            <SkjemaStateProvider>{children}</SkjemaStateProvider>
+                        </ConfigProvider>
+                    </main>
+                </FeatureTogglesProvider>
                 <Decorator.Footer />
                 <Decorator.Scripts loader={Script} />
             </body>
