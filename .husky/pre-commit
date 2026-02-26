@@ -1,1 +1,1 @@
-pnpm --package=typescript dlx tsc && pnpm exec lint-staged
+pnpm --package=typescript dlx tsc --noEmit && pnpm exec lint-staged
