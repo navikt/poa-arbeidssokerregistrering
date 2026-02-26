@@ -12,23 +12,23 @@ importers:
         specifier: 2.2.0
         version: 2.2.0
       '@grafana/faro-web-sdk':
-        specifier: 2.2.3
-        version: 2.2.3
+        specifier: 2.2.4
+        version: 2.2.4
       '@navikt/aksel-icons':
-        specifier: 8.4.1
-        version: 8.4.1
+        specifier: 8.5.0
+        version: 8.5.0
       '@navikt/arbeidssokerregisteret-utils':
         specifier: 2.1.0
         version: 2.1.0
       '@navikt/ds-css':
-        specifier: 8.4.1
-        version: 8.4.1
+        specifier: 8.5.0
+        version: 8.5.0
       '@navikt/ds-react':
-        specifier: 8.4.1
-        version: 8.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+        specifier: 8.5.0
+        version: 8.5.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@navikt/ds-tailwind':
-        specifier: 8.4.1
-        version: 8.4.1
+        specifier: 8.5.0
+        version: 8.5.0
       '@navikt/nav-dekoratoren-moduler':
         specifier: 3.6.2
         version: 3.6.2(csp-header@6.3.0)(html-react-parser@5.2.17(@types/react@19.2.14)(react@19.2.4))(jsdom@26.1.0)(react@19.2.4)
@@ -492,8 +492,8 @@ packages:
   '@grafana/faro-core@2.2.4':
     resolution: {integrity: sha512-VUmvJgHUzgB7zGROpQfOHEW6xumwvcHJNwTSFLkAVfl7A5aNq+fXnMawn+W7qMJuUFkmUG6lMZ2N+WCvd0GPTA==}
 
-  '@grafana/faro-web-sdk@2.2.3':
-    resolution: {integrity: sha512-F1zefVb50b0De+kmS4Mcdaks7Kj1ywo1LleWQd4qSLacoM5lzab37iukfGBOw/ZAR4J4GxamxjyFIqmMW3vIYQ==}
+  '@grafana/faro-web-sdk@2.2.4':
+    resolution: {integrity: sha512-jvYa5dBf2bn+63yW6BwO4lBFDoiUu2Fc5wlNf1dZhdHb9mLOk1Rm1ZaxZmosgK9teaA+/77Nj739UpSNSnF9ww==}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -725,25 +725,25 @@ packages:
   '@napi-rs/wasm-runtime@1.1.1':
     resolution: {integrity: sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A==}
 
-  '@navikt/aksel-icons@8.4.1':
-    resolution: {integrity: sha512-NF1hXW7fmInZ9sT/Ld7e7UE7XaTIidgo/Mamf4Wpm1JlJoyi0vukKIXN9M4ULRw7nSmAz481I5+uJtMIRatCHA==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.4.1/deb922b2f447bfd3f95c8f88514d2428e161bb89}
+  '@navikt/aksel-icons@8.5.0':
+    resolution: {integrity: sha512-yEF3acxTDpP7Bn8XjtYvwTqTUH8gyIeyG+MFEqQz13U4SI5O942vU76BtV5p3YRKKmd92D3vh/sER3Vs5Qq2DQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.5.0/52f219af9bdfaca59f9548af94e58541bbf26b66}
 
   '@navikt/arbeidssokerregisteret-utils@2.1.0':
     resolution: {integrity: sha512-c3jlOlkYo1Rw8fAWlWBBNVyL8pWmzE/yaF8ULjFlXa8aiClFm8kCKnD4bkKYWRyFo2p+dYxLNhpav6Gs+sRn9g==, tarball: https://npm.pkg.github.com/download/@navikt/arbeidssokerregisteret-utils/2.1.0/b1b2c6f00dd23e7058b897c37f7cd551f07be3e9}
     engines: {node: '>=22.19.0'}
 
-  '@navikt/ds-css@8.4.1':
-    resolution: {integrity: sha512-VgsP5KSTEc6d8yRcBu4n2xacwt4iA45cpui5VSBmboQ5TZj87gttg3Vz+Dqq0anhiZqFDTwP5qhrsJhoauoZGA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.4.1/114d3e616f848b467b5e2ee4a55c194b2583726a}
+  '@navikt/ds-css@8.5.0':
+    resolution: {integrity: sha512-jSZxwNAVBE8587//jtL1dvs+JxuRNSy9fTvzheWeJCPJRGvsQ9Dgn3qzUuZG5qRo8/sif8iJNVBKCj5qH9yNcg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.5.0/7a866b3dcedf8b53729dc40a254768be89580128}
 
-  '@navikt/ds-react@8.4.1':
-    resolution: {integrity: sha512-QMHjwlEzYHgE6tab69uvrs1HZmctB8IWUe9rYcMVrB5ePGed5cRT6Hj/3DOQVbXt6K/m8u+71cK/mjI2cLiG0Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.4.1/d788c0c4bb03b58a4fd3d228caa0d76374f0e361}
+  '@navikt/ds-react@8.5.0':
+    resolution: {integrity: sha512-45uYSeTqWlBepDFFzlMLRAwflyy8u/Axrmh0WsxYsmgP46uv7hQvR6HEoby4ctvcfNdF5MtyJv+NKlpa1+Z4aQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-react/8.5.0/e1a3b7175e2f1e968c9f27d4afefc0bc226f5bb1}
     peerDependencies:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
 
-  '@navikt/ds-tailwind@8.4.1':
-    resolution: {integrity: sha512-2t3Tll7pT6n2ARJK1z1ShlkchFIMlsRoSJ5pHTOloUqh5Sd4t/u/h8a7TvZBy1gEjzM7QHskDm9rc7cDL0Hoxw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.4.1/4a80f2f72071430a188412d3b636e97068fded3f}
+  '@navikt/ds-tailwind@8.5.0':
+    resolution: {integrity: sha512-M1CRi/7lO4J61SABjBaDFBszavMUMl0ZikE4q1x89cL8Bmr88oO5OX0q3MOJiw/YCrXYAOG7cq8LwjOIn9K4+Q==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.5.0/847fab90d760f0957ad73fae54a1d1144dc539c0}
 
   '@navikt/ds-tokens@8.5.2':
     resolution: {integrity: sha512-39QOU6iQgkhyWa8coNyuyvMdmagXR3FI6wG4VbWVcxmOCbBdc+C4/uM7h/7reCbWW0QpTcKN5DPrHHBk4Q00OA==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.5.2/1339bac9146a8627a4446b54b921914eae1eb75a}
@@ -756,6 +756,9 @@ packages:
       html-react-parser: '>=5.x'
       jsdom: '>=16.x'
       react: '>=17.x'
+    peerDependenciesMeta:
+      react:
+        optional: true
 
   '@navikt/next-logger@4.5.1':
     resolution: {integrity: sha512-qfiBT/kPK92sCVKGHlUeD2N9vDvJzEFpjn2qRVZiatQivD9IE+qRZwsdCpuvdU1Hylsc/fcF9/i03YQzXBf0iQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/4.5.1/e8c32873a7931396b0871c77b94673cbfb12d376}
@@ -4127,7 +4130,7 @@ snapshots:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/otlp-transformer': 0.212.0(@opentelemetry/api@1.9.0)
 
-  '@grafana/faro-web-sdk@2.2.3':
+  '@grafana/faro-web-sdk@2.2.4':
     dependencies:
       '@grafana/faro-core': 2.2.4
       ua-parser-js: 1.0.41
@@ -4311,17 +4314,17 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
-  '@navikt/aksel-icons@8.4.1': {}
+  '@navikt/aksel-icons@8.5.0': {}
 
   '@navikt/arbeidssokerregisteret-utils@2.1.0': {}
 
-  '@navikt/ds-css@8.4.1': {}
+  '@navikt/ds-css@8.5.0': {}
 
-  '@navikt/ds-react@8.4.1(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
+  '@navikt/ds-react@8.5.0(@types/react@19.2.14)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@floating-ui/react': 0.27.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@floating-ui/react-dom': 2.1.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@navikt/aksel-icons': 8.4.1
+      '@navikt/aksel-icons': 8.5.0
       '@navikt/ds-tokens': 8.5.2
       '@types/react': 19.2.14
       date-fns: 4.1.0
@@ -4329,7 +4332,7 @@ snapshots:
       react-day-picker: 9.7.0(react@19.2.4)
       react-dom: 19.2.4(react@19.2.4)
 
-  '@navikt/ds-tailwind@8.4.1': {}
+  '@navikt/ds-tailwind@8.5.0': {}
 
   '@navikt/ds-tokens@8.5.2': {}
 
@@ -4339,6 +4342,7 @@ snapshots:
       html-react-parser: 5.2.17(@types/react@19.2.14)(react@19.2.4)
       js-cookie: 3.0.5
       jsdom: 26.1.0
+    optionalDependencies:
       react: 19.2.4
 
   '@navikt/next-logger@4.5.1(next@16.1.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(pino@10.3.1)':
