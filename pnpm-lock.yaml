@@ -741,9 +741,6 @@ packages:
       '@types/react': ^17.0.30 || ^18 || ^19
       react: ^17 || ^18 || ^19
       react-dom: ^17 || ^18 || ^19
-    peerDependenciesMeta:
-      '@types/react':
-        optional: true
 
   '@navikt/ds-tailwind@8.4.1':
     resolution: {integrity: sha512-2t3Tll7pT6n2ARJK1z1ShlkchFIMlsRoSJ5pHTOloUqh5Sd4t/u/h8a7TvZBy1gEjzM7QHskDm9rc7cDL0Hoxw==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tailwind/8.4.1/4a80f2f72071430a188412d3b636e97068fded3f}
@@ -759,9 +756,6 @@ packages:
       html-react-parser: '>=5.x'
       jsdom: '>=16.x'
       react: '>=17.x'
-    peerDependenciesMeta:
-      react:
-        optional: true
 
   '@navikt/next-logger@4.5.1':
     resolution: {integrity: sha512-qfiBT/kPK92sCVKGHlUeD2N9vDvJzEFpjn2qRVZiatQivD9IE+qRZwsdCpuvdU1Hylsc/fcF9/i03YQzXBf0iQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/4.5.1/e8c32873a7931396b0871c77b94673cbfb12d376}
@@ -1680,9 +1674,9 @@ packages:
   balanced-match@1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
 
-  balanced-match@4.0.3:
-    resolution: {integrity: sha512-1pHv8LX9CpKut1Zp4EXey7Z8OfH11ONNH6Dhi2WDUt31VVZFXZzKwXcysBgqSumFCmR+0dqjMK5v5JiFHzi0+g==}
-    engines: {node: 20 || >=22}
+  balanced-match@4.0.4:
+    resolution: {integrity: sha512-BLrgEcRTwX2o6gGxGOCNyMvGSp35YofuYzw9h1IMTRmKqttAZZVU67bdb9Pr2vUHA8+j3i2tJfjO6C6+4myGTA==}
+    engines: {node: 18 || 20 || >=22}
 
   baseline-browser-mapping@2.10.0:
     resolution: {integrity: sha512-lIyg0szRfYbiy67j9KN8IyeD7q7hcmqnJ1ddWmNt19ItGpNN64mnllmxUNFIOdOm6by97jlL6wfpTTJrmnjWAA==}
@@ -1695,9 +1689,9 @@ packages:
   brace-expansion@1.1.12:
     resolution: {integrity: sha512-9T9UjW3r0UW5c1Q7GTwllptXwhvYmEzFhzMfZ9H7FQWt+uZePjZPjBP/W1ZEyZ1twGWom5/56TF4lPcqjnDHcg==}
 
-  brace-expansion@5.0.2:
-    resolution: {integrity: sha512-Pdk8c9poy+YhOgVWw1JNN22/HcivgKWwpxKq04M/jTmHyCZn12WPJebZxdjSa5TmBqISrUSgNYU3eRORljfCCw==}
-    engines: {node: 20 || >=22}
+  brace-expansion@5.0.3:
+    resolution: {integrity: sha512-fy6KJm2RawA5RcHkLa1z/ScpBeA762UF9KmZQxwIbDtRJrgLzM10depAiEQ+CXYcoiqW1/m96OAAoke2nE9EeA==}
+    engines: {node: 18 || 20 || >=22}
 
   braces@3.0.3:
     resolution: {integrity: sha512-yQbXgO/OSZVD2IsiLlro+7Hf6Q18EJrKSEsdoMzKePKXct3gvD8oLcOQdIzGupr5Fj+EDe8gO/lxc1BzfMpxvA==}
@@ -1728,8 +1722,8 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
-  caniuse-lite@1.0.30001772:
-    resolution: {integrity: sha512-mIwLZICj+ntVTw4BT2zfp+yu/AqV6GMKfJVJMx3MwPxs+uk/uj2GLl2dH8LQbjiLDX66amCga5nKFyDgRR43kg==}
+  caniuse-lite@1.0.30001774:
+    resolution: {integrity: sha512-DDdwPGz99nmIEv216hKSgLD+D4ikHQHjBC/seF98N9CPqRX4M5mSxT9eTV6oyisnJcuzxtZy4n17yKKQYmYQOA==}
 
   chai@6.2.2:
     resolution: {integrity: sha512-NUPRluOfOiTKBKvWPtSD4PhFvWCqOi0BGStNWs57X9js7XGTprSmFoz5F0tWhR4WPjNeR9jXqdC7/UpSJTnlRg==}
@@ -4329,12 +4323,11 @@ snapshots:
       '@floating-ui/react-dom': 2.1.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@navikt/aksel-icons': 8.4.1
       '@navikt/ds-tokens': 8.5.2
+      '@types/react': 19.2.14
       date-fns: 4.1.0
       react: 19.2.4
       react-day-picker: 9.7.0(react@19.2.4)
       react-dom: 19.2.4(react@19.2.4)
-    optionalDependencies:
-      '@types/react': 19.2.14
 
   '@navikt/ds-tailwind@8.4.1': {}
 
@@ -4346,7 +4339,6 @@ snapshots:
       html-react-parser: 5.2.17(@types/react@19.2.14)(react@19.2.4)
       js-cookie: 3.0.5
       jsdom: 26.1.0
-    optionalDependencies:
       react: 19.2.4
 
   '@navikt/next-logger@4.5.1(next@16.1.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(react-dom@19.2.4(react@19.2.4))(react@19.2.4))(pino@10.3.1)':
@@ -5139,7 +5131,7 @@ snapshots:
 
   balanced-match@1.0.2: {}
 
-  balanced-match@4.0.3: {}
+  balanced-match@4.0.4: {}
 
   baseline-browser-mapping@2.10.0: {}
 
@@ -5150,9 +5142,9 @@ snapshots:
       balanced-match: 1.0.2
       concat-map: 0.0.1
 
-  brace-expansion@5.0.2:
+  brace-expansion@5.0.3:
     dependencies:
-      balanced-match: 4.0.3
+      balanced-match: 4.0.4
 
   braces@3.0.3:
     dependencies:
@@ -5161,7 +5153,7 @@ snapshots:
   browserslist@4.28.1:
     dependencies:
       baseline-browser-mapping: 2.10.0
-      caniuse-lite: 1.0.30001772
+      caniuse-lite: 1.0.30001774
       electron-to-chromium: 1.5.302
       node-releases: 2.0.27
       update-browserslist-db: 1.2.3(browserslist@4.28.1)
@@ -5199,7 +5191,7 @@ snapshots:
 
   callsites@3.1.0: {}
 
-  caniuse-lite@1.0.30001772: {}
+  caniuse-lite@1.0.30001774: {}
 
   chai@6.2.2: {}
 
@@ -6362,7 +6354,7 @@ snapshots:
 
   minimatch@10.2.2:
     dependencies:
-      brace-expansion: 5.0.2
+      brace-expansion: 5.0.3
 
   minimatch@3.1.3:
     dependencies:
@@ -6370,7 +6362,7 @@ snapshots:
 
   minimatch@9.0.6:
     dependencies:
-      brace-expansion: 5.0.2
+      brace-expansion: 5.0.3
 
   minimist@1.2.8: {}
 
@@ -6456,7 +6448,7 @@ snapshots:
       '@next/env': 16.1.6
       '@swc/helpers': 0.5.15
       baseline-browser-mapping: 2.10.0
-      caniuse-lite: 1.0.30001772
+      caniuse-lite: 1.0.30001774
       postcss: 8.4.31
       react: 19.2.4
       react-dom: 19.2.4(react@19.2.4)
