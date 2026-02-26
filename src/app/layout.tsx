@@ -59,13 +59,11 @@ export default async function RootLayout({
                 <Decorator.Header />
                 <InitTracker apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
                 <InitFaroKomponent />
-                <FeatureTogglesProvider>
-                    <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
-                        <ConfigProvider>
-                            <SkjemaStateProvider>{children}</SkjemaStateProvider>
-                        </ConfigProvider>
-                    </main>
-                </FeatureTogglesProvider>
+                <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
+                    <ConfigProvider>
+                        <SkjemaStateProvider>{children}</SkjemaStateProvider>
+                    </ConfigProvider>
+                </main>
                 <Decorator.Footer />
                 <Decorator.Scripts loader={Script} />
             </body>
