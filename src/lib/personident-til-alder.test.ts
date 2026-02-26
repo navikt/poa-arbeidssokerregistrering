@@ -1,5 +1,3 @@
-import { expect } from '@jest/globals';
-
 import { personidentTilAlder } from './personident-til-alder';
 
 describe('tester funksjonen personidentTilAlder', () => {
