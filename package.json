@@ -6,8 +6,8 @@
         "build": "next build --webpack",
         "start": "next start",
         "lint": "eslint",
-        "test": "pnpm run lint && vitest",
-        "test:ci": "pnpm run lint && vitest run",
+        "test": "pnpm lint && vitest",
+        "test:ci": "pnpm lint && vitest run",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
         "refresh": "rm -rf node_modules && rm pnpm-lock.yaml && pnpm i --ignore-scripts",
         "prepare": "husky"
