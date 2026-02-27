@@ -4,6 +4,7 @@ import type { Metadata } from 'next';
 import '../styles/globals.css';
 import styles from '../styles/app.module.css';
 import { ConfigProvider } from '@/contexts/config-context';
+import { FeatureTogglesProvider } from '@/contexts/feature-toggle-context';
 import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
 import InitTracker from '@/components/init-tracker';
 import InitFaroKomponent from '@/components/init-faro-komponent';

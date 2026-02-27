@@ -4,7 +4,7 @@ Arbeidssøkerregistrering for personbruker.
 
 # Utvikling
 
-Bruk Node.js 22 `nvm use` (dersom du bruker nvm til versjonshåndtering av Node.js).
+Bruk Node.js 24 `nvm use` (dersom du bruker nvm til versjonshåndtering av Node.js).
 
 Dersom du ikke kjører i mock-modus må du ha koblet til [naisdevice](https://doc.nais.io/device/) for å nå noen av endepunktene.
 
@@ -17,9 +17,9 @@ Siden noen av modulene hentes fra GitHubs package registry må du også gjøre l
 Deretter fortsetter du med
 
 - klon repo
-- innstaller avhengigheter `npm i`
-- kjør tester `npm t`
-- start utviklingsserver `npm run dev`
+- innstaller avhengigheter `pnpm i`
+- kjør tester `pnpm t`
+- start utviklingsserver `pnpm dev`
 - åpne nettleseren på `http://localhost:3000/arbeid/registrering`
 
 Dette er en Next.js løsning som har levd en stund. Den bruker derfor både app og pages.

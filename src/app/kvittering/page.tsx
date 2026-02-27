@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { loggAktivitet, loggFlyt } from '@/lib/tracker';
 import NyKvittering from '@/components/kvittering/ny-kvittering';
 import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
