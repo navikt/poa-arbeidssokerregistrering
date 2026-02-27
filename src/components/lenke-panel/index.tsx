@@ -21,7 +21,7 @@ const LenkePanel = (props: Props) => {
                     {description}
                 </BodyShort>
             </div>
-            <ArrowRightIcon title="Pil ikon" fontSize="1.5rem" />
+            <ArrowRightIcon title="Pil ikon" fontSize="1.5rem" className={styles.LenkePanel__ikon} />
         </a>
     );
 };
