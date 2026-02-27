@@ -17,9 +17,9 @@ Siden noen av modulene hentes fra GitHubs package registry må du også gjøre l
 Deretter fortsetter du med
 
 - klon repo
-- innstaller avhengigheter `npm i`
-- kjør tester `npm t`
-- start utviklingsserver `npm run dev`
+- innstaller avhengigheter `pnpm i`
+- kjør tester `pnpm t`
+- start utviklingsserver `pnpm dev`
 - åpne nettleseren på `http://localhost:3000/arbeid/registrering`
 
 Dette er en Next.js løsning som har levd en stund. Den bruker derfor både app og pages.
