@@ -38,7 +38,7 @@ function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbe
     } else if (manglendeOppholdstillatelse) {
         redirect('/veiledning/oppholdstillatelse/');
     } else {
-        redirect('/veiledning/registerdata/');
+        redirect('/veiledning/generell');
     }
 }
 

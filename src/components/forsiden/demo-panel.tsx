@@ -45,7 +45,7 @@ function DemoPanel({ brukerMock }: Props) {
                                 </NextLink>
                             </p>
                             <p>
-                                <NextLink href="/veiledning/registerdata/" passHref>
+                                <NextLink href="/veiledning/generell/" passHref>
                                     <Button variant="secondary">Mangler opplysninger til å beslutte</Button>
                                 </NextLink>
                             </p>
