@@ -15,8 +15,8 @@ importers:
         specifier: 2.2.4
         version: 2.2.4
       '@navikt/aksel-icons':
-        specifier: 8.5.0
-        version: 8.5.0
+        specifier: 8.6.0
+        version: 8.6.0
       '@navikt/arbeidssokerregisteret-utils':
         specifier: 2.1.0
         version: 2.1.0
@@ -709,8 +709,8 @@ packages:
   '@napi-rs/wasm-runtime@1.1.1':
     resolution: {integrity: sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A==}
 
-  '@navikt/aksel-icons@8.5.0':
-    resolution: {integrity: sha512-yEF3acxTDpP7Bn8XjtYvwTqTUH8gyIeyG+MFEqQz13U4SI5O942vU76BtV5p3YRKKmd92D3vh/sER3Vs5Qq2DQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.5.0/52f219af9bdfaca59f9548af94e58541bbf26b66}
+  '@navikt/aksel-icons@8.6.0':
+    resolution: {integrity: sha512-e+evlFA6eq7vW1pZDg1Fc9V7L7h/Mp1Luubv7kTJUp4IrWQN7Is+nfVj65TLcrQqMm9fjkmc1eI5PcmuY9ibvQ==, tarball: https://npm.pkg.github.com/download/@navikt/aksel-icons/8.6.0/ff360cbe68f878b6e8deb59c19a23aa30eacab9e}
 
   '@navikt/arbeidssokerregisteret-utils@2.1.0':
     resolution: {integrity: sha512-c3jlOlkYo1Rw8fAWlWBBNVyL8pWmzE/yaF8ULjFlXa8aiClFm8kCKnD4bkKYWRyFo2p+dYxLNhpav6Gs+sRn9g==, tarball: https://npm.pkg.github.com/download/@navikt/arbeidssokerregisteret-utils/2.1.0/b1b2c6f00dd23e7058b897c37f7cd551f07be3e9}
@@ -4257,7 +4257,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
-  '@navikt/aksel-icons@8.5.0': {}
+  '@navikt/aksel-icons@8.6.0': {}
 
   '@navikt/arbeidssokerregisteret-utils@2.1.0': {}
 
@@ -4267,7 +4267,7 @@ snapshots:
     dependencies:
       '@floating-ui/react': 0.27.8(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@floating-ui/react-dom': 2.1.7(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
-      '@navikt/aksel-icons': 8.5.0
+      '@navikt/aksel-icons': 8.6.0
       '@navikt/ds-tokens': 8.5.2
       '@types/react': 19.2.14
       date-fns: 4.1.0
