@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext } from 'react';
 import useSWR from 'swr';
 
 import { fetcher } from '../lib/api-utils';
@@ -14,16 +14,8 @@ function tilAktiveFeatures(data = []) {
     }, {});
 }
 function FeatureToggleProvider({ children }) {
-    const [toggles, setToggles] = useState({});
     const { data } = useSWR('api/features', fetcher);
-
-    useEffect(() => {
-        if (data) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setToggles(tilAktiveFeatures(data));
-        }
-    }, [data]);
-
+    const toggles = tilAktiveFeatures(data);
     return <FeatureToggleContext.Provider value={{ toggles }}>{children}</FeatureToggleContext.Provider>;
 }
 
