@@ -48,7 +48,6 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     const router = useRouter();
     const { arbeidssoekerregisteretUrl } = useConfig() as Config;
-    const [erSkjemaSendt, settErSkjemaSendt] = useState<boolean>(false);
 
     useEffect(() => {
         loggAktivitet({
@@ -57,13 +56,13 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     }, []);
 
     const { skjemaState, dispatch } = useSkjemaState();
-    const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
+    const [harNavigertMedUgyldigState, settHarNavigertMedUgyldigState] = useState<boolean>(false);
 
     const { forrige, neste, fremdrift } = beregnNavigering(aktivSide, skjemaState);
 
-    useEffect(() => {
-        const url = urlPrefix === 'oppdater-opplysninger' ? `${sprakUrl}/${urlPrefix}` : `${sprakUrl}/start`;
+    const ugyldigStateUrl = urlPrefix === 'oppdater-opplysninger' ? `${sprakUrl}/${urlPrefix}` : `${sprakUrl}/start`;
 
+    useEffect(() => {
         // forhindre redirect-loop før vi har initialisert state
         if (urlPrefix === 'oppdater-opplysninger' && !skjemaState.hasInitialized) {
             return;
@@ -72,14 +71,13 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
         // valider at forrige side har gyldig state. Hvis ikke starter vi registrering på nytt
         if (forrige) {
             if (!validerSkjemaForSide(forrige, skjemaState)) {
-                router.push(url);
+                router.push(ugyldigStateUrl);
             }
         }
-
         if (fremdrift < 0) {
-            router.push(url);
+            router.push(ugyldigStateUrl);
         }
-    }, [forrige, router, skjemaState, fremdrift]);
+    }, [forrige, router, skjemaState, fremdrift, urlPrefix, validerSkjemaForSide, ugyldigStateUrl]);
 
     const navigerTilSide = (side: SkjemaSide) => {
         return router.push(`${sprakUrl}/${urlPrefix}/${side}`);
@@ -87,35 +85,14 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     const validerOgGaaTilNeste = () => {
         if (!validerSkjemaForSide(aktivSide, skjemaState)) {
-            settVisFeilmelding(true);
+            settHarNavigertMedUgyldigState(true);
             return;
         }
 
-        settVisFeilmelding(false);
+        settHarNavigertMedUgyldigState(false);
 
         if (neste) {
             return navigerTilSide(neste);
-        }
-    };
-
-    useEffect(() => {
-        if (validerSkjemaForSide(aktivSide, skjemaState)) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            settVisFeilmelding(false);
-        }
-
-        if (aktivSide !== SkjemaSide.FullforRegistrering && erSkjemaSendt) {
-            settErSkjemaSendt(false);
-        }
-    }, [skjemaState, aktivSide, erSkjemaSendt]);
-
-    const forrigeLenke = forrige ? `${sprakUrl}/${urlPrefix}/${forrige}/` : undefined;
-
-    const dispatcher = (action: SkjemaAction) => {
-        if (action.type === 'SenderSkjema') {
-            settErSkjemaSendt(true);
-        } else {
-            dispatch(action);
         }
     };
 
@@ -129,6 +106,9 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
             inputElement.focus();
         }
     }, [aktivSide]);
+
+    const forrigeLenke = forrige ? `${sprakUrl}/${urlPrefix}/${forrige}/` : undefined;
+    const visFeilmelding = harNavigertMedUgyldigState && !validerSkjemaForSide(aktivSide, skjemaState);
 
     return (
         <div ref={skjemaWrapperRef} className={'max-w-4xl'}>
@@ -145,7 +125,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                         navigerTilSide={navigerTilSide}
                         skjemaPrefix={urlPrefix}
                     />
-                    {hentKomponentForSide(aktivSide, skjemaState, dispatcher, visFeilmelding)}
+                    {hentKomponentForSide(aktivSide, skjemaState, dispatch, visFeilmelding)}
                     {neste && (
                         <div className={'flex my-8'}>
                             <ForrigeSteg
