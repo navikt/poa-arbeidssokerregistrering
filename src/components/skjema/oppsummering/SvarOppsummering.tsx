@@ -112,11 +112,24 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2">{props.tittel}</FormSummary.Heading>
+                </FormSummary.Header>
+                <FormSummary.Answers>
+                    {props.alternativer.map((alternativ) => {
+                        return (
+                            alternativ.svaralternativ && (
+                                <FormSummary.Answer key={alternativ.key}>
+                                    <FormSummary.Label>{alternativ.spoersmal}</FormSummary.Label>
+                                    <FormSummary.Value>{alternativ.svaralternativ}</FormSummary.Value>
+                                </FormSummary.Answer>
+                            )
+                        );
+                    })}
+                </FormSummary.Answers>
+                <FormSummary.Footer>
                     <FormSummary.EditLink as={'span'}>
                         <NextLink
                             href={props.url}
                             aria-label={`${tekst('endreSvaret')}: ${props.tittel.toLowerCase()}`}
-                            className={'navds-link'}
                             onClick={() => {
                                 loggAktivitet({
                                     aktivitet: 'Trykker på "Endre svar" fra oppsummering',
@@ -128,17 +141,7 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
                             {tekst('endreSvaret')}
                         </NextLink>
                     </FormSummary.EditLink>
-                </FormSummary.Header>
-                {props.alternativer.map((alternativ) => {
-                    return (
-                        alternativ.svaralternativ && (
-                            <FormSummary.Answer className="pl-7 py-4 mb-0!" key={alternativ.key}>
-                                <FormSummary.Label>{alternativ.spoersmal}</FormSummary.Label>
-                                <FormSummary.Value>{alternativ.svaralternativ}</FormSummary.Value>
-                            </FormSummary.Answer>
-                        )
-                    );
-                })}
+                </FormSummary.Footer>
             </FormSummary>
         </Box>
     );
