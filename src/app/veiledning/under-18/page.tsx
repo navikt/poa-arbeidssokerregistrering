@@ -1,10 +1,13 @@
-import KvitteringUnder18Wrapper from '@/components/kvittering-oppgave-under-18-wrapper';
 import { KvitteringOppgaveOpprettet } from '@/components/KvitteringOppgaveUnder18';
-import { isEnabled } from '@/lib/unleash-is-enabled';
-import unleashKeys from '@/unleash-keys';
+import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
+import { NextPageProps } from '@/types/next';
 
-export default async function Under18() {
-    const opprettOppgaveFraHendelse = await isEnabled(unleashKeys.BRUK_OPPGAVE_FRA_HENDELSE);
-
-    return opprettOppgaveFraHendelse ? <KvitteringOppgaveOpprettet /> : <KvitteringUnder18Wrapper />;
+export default async function Under18({ params }: NextPageProps) {
+    const lang = (await params).lang;
+    return (
+        <>
+            <SettSprakIDekorator sprak={lang ?? 'nb'} />
+            <KvitteringOppgaveOpprettet />
+        </>
+    );
 }
