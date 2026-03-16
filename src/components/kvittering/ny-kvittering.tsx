@@ -2,7 +2,8 @@
 
 import Head from 'next/head';
 import Image from 'next/image';
-import { BodyLong, BodyShort, Heading, HGrid } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Heading, HGrid, Button } from '@navikt/ds-react';
+import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
@@ -92,20 +93,20 @@ const FortsettTilDagpenger = () => {
                     <Overskrift erKvittering={true} />
                     <BodyShort spacing>{tekst('body1')}</BodyShort>
                     <BodyLong spacing>{tekst('body2')}</BodyLong>
-                    <ul className={'list-none'}>
-                        <li className={'bg-ax-bg-accent-moderate-hover rounded-lg'}>
-                            <LenkePanel
-                                href={`${brukerdialogDagpengerUrl}${tekst('fortsettTildagpengerLenkePostfix')}`}
-                                title={tekst('fortsettTildagpengerLenkeTittel')}
-                                description={tekst('fortsettTildagpengerLenkeBeskrivelse')}
-                                onClick={() =>
-                                    loggAktivitet({
-                                        aktivitet: 'Fortsetter på dagpengesøknaden',
-                                    })
-                                }
-                            />
-                        </li>
-                    </ul>
+                    <Button
+                        as="a"
+                        variant="primary"
+                        href={`${brukerdialogDagpengerUrl}${tekst('fortsettTildagpengerLenkePostfix')}`}
+                        icon={<ArrowRightIcon aria-hidden />}
+                        iconPosition="right"
+                        onClick={() =>
+                            loggAktivitet({
+                                aktivitet: 'Fortsetter på dagpengesøknaden',
+                            })
+                        }
+                    >
+                        {tekst('fortsettTildagpengerLenkeTittel')}
+                    </Button>
                 </div>
             </HGrid>
         </div>
