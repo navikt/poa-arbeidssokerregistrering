@@ -96,6 +96,7 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
             )}
             <div style={{ textAlign: 'left' }}>
                 <Button
+                    data-testid="fullfor-registrering"
                     onClick={validerOgFullfor}
                     loading={senderSkjema}
                     disabled={senderSkjema}

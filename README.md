@@ -22,6 +22,11 @@ Deretter fortsetter du med
 - start utviklingsserver `pnpm dev`
 - åpne nettleseren på `http://localhost:3000/arbeid/registrering`
 
+### E2E (Playwright)
+
+- installer nettleser for Playwright: `pnpm test:e2e:install`
+- kjør e2e-tester: `pnpm test:e2e`
+
 Dette er en Next.js løsning som har levd en stund. Den bruker derfor både app og pages.
 
 ## Deploye kun til dev

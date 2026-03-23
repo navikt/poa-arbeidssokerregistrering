@@ -8,6 +8,9 @@
         "lint": "eslint",
         "test": "pnpm lint && vitest",
         "test:ci": "pnpm lint && vitest run",
+        "test:e2e": "playwright test",
+        "test:e2e:ci": "playwright test --reporter=line",
+        "test:e2e:install": "playwright install chromium",
         "prettier": "prettier --write 'src/**/*.ts' 'src/**/*.tsx' 'src/**/*.css'",
         "refresh": "rm -rf node_modules && rm pnpm-lock.yaml && pnpm i --ignore-scripts",
         "prepare": "husky"
@@ -37,6 +40,7 @@
         "swr": "2.4.0"
     },
     "devDependencies": {
+        "@playwright/test": "1.58.2",
         "@tailwindcss/postcss": "4.1.18",
         "@testing-library/jest-dom": "6.9.1",
         "@types/lodash": "4.17.23",

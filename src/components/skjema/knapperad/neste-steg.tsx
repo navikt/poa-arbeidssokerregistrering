@@ -26,6 +26,7 @@ const NesteSteg = (props: Props) => {
 
     return (
         <Button
+            data-testid="skjema-neste-steg"
             variant={'primary'}
             onClick={onClick}
             disabled={disabled}
