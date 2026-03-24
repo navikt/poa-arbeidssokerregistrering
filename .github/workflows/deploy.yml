@@ -34,6 +34,9 @@ jobs:
       - name: Test
         run: pnpm run test:ci
 
+      - name: E2E Tests
+        run: pnpm run test:e2e:install && pnpm run test:e2e:ci
+
       - name: Knip
         run: pnpm exec knip --no-exit-code --reporter=markdown >> "$GITHUB_STEP_SUMMARY"
 
