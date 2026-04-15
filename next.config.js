@@ -13,6 +13,7 @@ const appSecurityPolicy = {
 };
 
 const nextConfig = {
+    allowedDevOrigins: ['127.0.0.1'],
     experimental: {
         optimizePackageImports: ['@navikt/ds-react', '@navikt/aksel-icons'],
     },
