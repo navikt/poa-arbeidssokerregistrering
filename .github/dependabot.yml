@@ -9,3 +9,25 @@ updates:
       interval: "weekly"
     cooldown:
       default-days: 7
+    groups:
+      next:
+        patterns:
+          - "next"
+          - "eslint-config-next"
+      aksel:
+        patterns:
+          - "@navikt/aksel-*"
+          - "@navikt/ds-*"
+      react:
+        patterns:
+          - "react"
+          - "react-dom"
+          - "@types/react"
+      tailwind:
+        patterns:
+          - "tailwindcss"
+          - "@tailwindcss/*"
+      pino:
+        patterns:
+          - "pino"
+          - "pino-pretty"
