@@ -31,3 +31,8 @@ updates:
         patterns:
           - "pino"
           - "pino-pretty"
+      storybook:
+        patterns:
+          - "storybook"
+          - "@storybook/*"
+          - "msw-storybook-addon"
