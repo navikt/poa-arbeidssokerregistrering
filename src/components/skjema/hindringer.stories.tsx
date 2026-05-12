@@ -48,14 +48,10 @@ export const BeggeBesvart: Story = {
 
 export const Nynorsk: Story = {
     args: lagBarn(),
-    parameters: {
-        nextjs: { navigation: { params: { lang: 'nn' } } },
-    },
+    globals: { sprak: 'nn' },
 };
 
 export const English: Story = {
     args: lagBarn(),
-    parameters: {
-        nextjs: { navigation: { params: { lang: 'en' } } },
-    },
+    globals: { sprak: 'en' },
 };

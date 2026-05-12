@@ -75,14 +75,14 @@ export const Nynorsk: Story = {
     args: { valgt: stillingMock },
     parameters: {
         msw: { handlers: handlers.medArbeidsforhold },
-        nextjs: { navigation: { params: { lang: 'nn' } } },
     },
+    globals: { sprak: 'nn' },
 };
 
 export const English: Story = {
     args: { valgt: stillingMock },
     parameters: {
         msw: { handlers: handlers.medArbeidsforhold },
-        nextjs: { navigation: { params: { lang: 'en' } } },
     },
+    globals: { sprak: 'en' },
 };

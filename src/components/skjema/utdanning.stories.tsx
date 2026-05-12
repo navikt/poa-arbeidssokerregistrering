@@ -49,13 +49,9 @@ export const MedUndersporsmal: Story = {
 };
 
 export const Nynorsk: Story = {
-    parameters: {
-        nextjs: { navigation: { params: { lang: 'nn' } } },
-    },
+    globals: { sprak: 'nn' },
 };
 
 export const English: Story = {
-    parameters: {
-        nextjs: { navigation: { params: { lang: 'en' } } },
-    },
+    globals: { sprak: 'en' },
 };

@@ -37,14 +37,10 @@ export const MedValgtAlternativ: Story = {
 
 export const Nynorsk: Story = {
     args: { visFeilmelding: true },
-    parameters: {
-        nextjs: { navigation: { params: { lang: 'nn' } } },
-    },
+    globals: { sprak: 'nn' },
 };
 
 export const English: Story = {
     args: { visFeilmelding: true },
-    parameters: {
-        nextjs: { navigation: { params: { lang: 'en' } } },
-    },
+    globals: { sprak: 'en' },
 };

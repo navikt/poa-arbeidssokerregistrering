@@ -1,16 +1,18 @@
 import type { Preview, Decorator } from '@storybook/nextjs';
 import React from 'react';
 import { initialize, mswLoader } from 'msw-storybook-addon';
+import { useParams } from '@storybook/nextjs/navigation.mock';
 import '../src/styles/globals.css';
 
 initialize();
 
 /**
- * Decorator som sender sprak-global videre til nextjs navigation params.
- * useSprak() henter lang fra useParams(), som @storybook/nextjs mocker.
- * nb bruker root path (ingen lang-param), nn/en sender lang-param.
+ * Setter useParams-mocken basert på sprak-globalen slik at useSprak()-hooken
+ * plukker opp riktig språk. nb bruker root path (ingen lang-param).
  */
 const withSprak: Decorator = (Story, context) => {
+    const sprak = (context.globals.sprak ?? 'nb') as string;
+    useParams.mockReturnValue(sprak === 'nb' ? {} : { lang: sprak });
     return <Story />;
 };
 
@@ -33,12 +35,6 @@ const preview: Preview = {
     },
     decorators: [withSprak],
     parameters: {
-        nextjs: {
-            appDirectory: true,
-            navigation: {
-                params: {},
-            },
-        },
         controls: {
             matchers: {
                 color: /(background|color)$/i,
