@@ -26,10 +26,10 @@ spec:
     enabled: false
   resources:
     limits:
-      memory: "256Mi"
+      memory: "160Mi"
     requests:
-      cpu: "200m"
-      memory: "256Mi"
+      cpu: "50m"
+      memory: "160Mi"
   env:
     - name: NEXT_PUBLIC_BASE_PATH
       value: /arbeid/registrering
