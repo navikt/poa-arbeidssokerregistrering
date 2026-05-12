@@ -45,13 +45,3 @@ export const HelseproblemBesvart: Story = {
 export const BeggeBesvart: Story = {
     args: lagBarn(JaEllerNei.NEI, JaEllerNei.JA),
 };
-
-export const Nynorsk: Story = {
-    args: lagBarn(),
-    globals: { sprak: 'nn' },
-};
-
-export const English: Story = {
-    args: lagBarn(),
-    globals: { sprak: 'en' },
-};

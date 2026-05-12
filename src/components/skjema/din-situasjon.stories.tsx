@@ -25,11 +25,3 @@ export const MedValgtAlternativ: Story = {
 export const MedFeilmelding: Story = {
     args: { visFeilmelding: true },
 };
-
-export const Nynorsk: Story = {
-    globals: { sprak: 'nn' },
-};
-
-export const English: Story = {
-    globals: { sprak: 'en' },
-};

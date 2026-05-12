@@ -70,19 +70,3 @@ export const MedForhaandsvalgtStilling: Story = {
         msw: { handlers: handlers.medArbeidsforhold },
     },
 };
-
-export const Nynorsk: Story = {
-    args: { valgt: stillingMock },
-    parameters: {
-        msw: { handlers: handlers.medArbeidsforhold },
-    },
-    globals: { sprak: 'nn' },
-};
-
-export const English: Story = {
-    args: { valgt: stillingMock },
-    parameters: {
-        msw: { handlers: handlers.medArbeidsforhold },
-    },
-    globals: { sprak: 'en' },
-};

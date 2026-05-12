@@ -34,13 +34,3 @@ export const MedBeskrivelse: Story = {
 export const MedValgtAlternativ: Story = {
     args: { valgt: 'B' },
 };
-
-export const Nynorsk: Story = {
-    args: { visFeilmelding: true },
-    globals: { sprak: 'nn' },
-};
-
-export const English: Story = {
-    args: { visFeilmelding: true },
-    globals: { sprak: 'en' },
-};

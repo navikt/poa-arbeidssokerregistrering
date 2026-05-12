@@ -47,11 +47,3 @@ export const MedUndersporsmal: Story = {
         ),
     },
 };
-
-export const Nynorsk: Story = {
-    globals: { sprak: 'nn' },
-};
-
-export const English: Story = {
-    globals: { sprak: 'en' },
-};

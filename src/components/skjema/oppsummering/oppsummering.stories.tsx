@@ -54,13 +54,3 @@ export const FulltUtfylt: Story = {
 export const DelvisUtfylt: Story = {
     args: { skjemaState: delvisState },
 };
-
-export const Nynorsk: Story = {
-    args: { skjemaState: fullState },
-    globals: { sprak: 'nn' },
-};
-
-export const English: Story = {
-    args: { skjemaState: fullState },
-    globals: { sprak: 'en' },
-};
