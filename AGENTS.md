@@ -41,6 +41,8 @@ pnpm test:ci              # Lint + vitest run (CI, ingen watch)
 pnpm prettier             # Formater src/**
 pnpm test:e2e             # Playwright e2e-tester (starter dev-server automatisk)
 pnpm test:e2e:install     # Installer Playwright-nettlesere (kjøres én gang)
+pnpm storybook            # Start Storybook for isolert komponentutvikling → http://localhost:6006
+pnpm build-storybook      # Bygg Storybook til statiske filer
 ```
 
 **Mock-modus** — kjør uten naisdevice:
@@ -145,6 +147,7 @@ Unleash-toggles hentes via `/api/unleash` og konsumeres gjennom `FeatureTogglesP
 - **NAV-dekoratør:** Hentes server-side i `src/app/layout.tsx` via `fetchDecoratorReact`.
 - **Deploy til dev:** Prefiks branch-navn med `dev/` for å deploye kun til dev-miljøet.
 - **Formatering:** Prettier med `printWidth: 120`, `singleQuote: true`, `tabWidth: 4`.
+- **Storybook-stories:** Legg stories i samme mappe som komponenten (`komponent.stories.tsx`). Typer importeres fra `@storybook/nextjs`, test-utils (`fn`) fra `storybook/test`. Språkvarianter settes via `parameters.nextjs.navigation.params: { lang: 'nn' }`.
 
 ## Teststrategi og sikkerhetsnett
 
@@ -177,7 +180,8 @@ Tester er det primære sikkerhetsnettet i dette repoet. Kjør relevante tester e
 | `standard-registrering-tilstandsmaskin.ts` | `pnpm vitest run src/lib/standard-registrering-tilstandsmaskin.test.ts` |
 | `skjema-state.ts`                          | `pnpm vitest run src/lib/skjema-state.test.ts`                          |
 | API-ruter (`src/app/api/`)                 | `pnpm test:ci`                                                          |
-| UI-komponenter                             | `pnpm test:e2e`                                                         |
+| UI-komponenter                             | `pnpm test:e2e` + sjekk i `pnpm storybook`                              |
+| Stories (`*.stories.tsx`)                  | `pnpm storybook`                                                        |
 | Alt annet                                  | `pnpm test:ci`                                                          |
 
 ## Hva agenter bør gjøre

@@ -22,6 +22,14 @@ Deretter fortsetter du med
 - start utviklingsserver `pnpm dev`
 - åpne nettleseren på `http://localhost:3000/arbeid/registrering`
 
+For isolert komponentutvikling, bruk Storybook:
+
+```
+pnpm storybook
+```
+
+Åpner på `http://localhost:6006`
+
 ### E2E (Playwright)
 
 - installer nettleser for Playwright: `pnpm test:e2e:install`
