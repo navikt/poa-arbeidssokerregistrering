@@ -1,7 +1,7 @@
 import type { Preview, Decorator } from '@storybook/nextjs';
 import React from 'react';
 import { initialize, mswLoader } from 'msw-storybook-addon';
-import { useParams } from '@storybook/nextjs/navigation.mock';
+import { useParams, useRouter } from '@storybook/nextjs/navigation.mock';
 import '../src/styles/globals.css';
 
 initialize();
@@ -9,10 +9,20 @@ initialize();
 /**
  * Setter useParams-mocken basert på sprak-globalen slik at useSprak()-hooken
  * plukker opp riktig språk. nb bruker root path (ingen lang-param).
+ * Setter også useRouter med push/replace/back slik at komponenter som navigerer
+ * ikke kaster "router mocks not created yet"-feil.
  */
 const withSprak: Decorator = (Story, context) => {
     const sprak = (context.globals.sprak ?? 'nb') as string;
     useParams.mockReturnValue(sprak === 'nb' ? {} : { lang: sprak });
+    useRouter.mockReturnValue({
+        push: () => Promise.resolve(true),
+        replace: () => Promise.resolve(true),
+        back: () => {},
+        forward: () => {},
+        refresh: () => {},
+        prefetch: () => Promise.resolve(),
+    });
     return <Story />;
 };
 

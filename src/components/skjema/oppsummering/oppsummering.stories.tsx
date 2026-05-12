@@ -40,6 +40,14 @@ const meta: Meta<typeof Oppsummering> = {
         onSubmit: fn(),
         skjemaPrefix: '/opplysninger/',
     },
+    parameters: {
+        nextjs: {
+            appDirectory: true,
+            navigation: {
+                pathname: '/opplysninger/5',
+            },
+        },
+    },
 };
 
 export default meta;
