@@ -103,7 +103,7 @@ async function trackEvent(eventName: string, data: EventData) {
         const eventData = data || {};
         if (isBrowser() && !isDevelopment() && isConsentingToAnalytics()) {
             const tracker = getAnalyticsInstance('arbeidssokerregistrering');
-            await tracker(eventName, eventData);
+            await tracker.custom(eventName, eventData);
         }
     } catch (error) {
         if (isBrowser()) {
