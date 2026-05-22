@@ -36,3 +36,8 @@ updates:
           - "storybook"
           - "@storybook/*"
           - "msw-storybook-addon"
+      vite:
+        patterns:
+          - "vite"
+          - "@vitejs/*"
+          - "vitest"
