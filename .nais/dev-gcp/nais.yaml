@@ -46,7 +46,7 @@ spec:
     - name: NEXT_PUBLIC_DAGPENGESOKNAD_URL
       value: https://arbeid.ansatt.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_BRUKERDIALOG_DAGPENGER_URL
-      value: https://brukerdialog-dagpenger.ansatt.dev.nav.no
+      value: https://arbeid.ansatt.dev.nav.no/dagpenger/dialog/soknad
     - name: NEXT_PUBLIC_DIALOG_URL
       value: https://www.dev.nav.no/arbeid/dialog
     - name: PAM_ONTOLOGI_URL
@@ -75,6 +75,7 @@ spec:
     - secret: poa-arbeidssokerregistrering-unleash-api-token
   ingresses:
     - https://www.ansatt.dev.nav.no/arbeid/registrering
+    - https://arbeid.ansatt.dev.nav.no/arbeid/registrering
   idporten:
     enabled: true
     sidecar:
