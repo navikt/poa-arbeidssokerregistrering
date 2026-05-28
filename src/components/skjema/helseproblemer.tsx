@@ -1,8 +1,7 @@
+import { JaEllerNei, lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
-
-import { JaEllerNei, lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
-import { SkjemaKomponentProps } from './skjema-felleskomponenter';
+import type { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 const TEKSTER: Tekster<string> = {
     nb: {

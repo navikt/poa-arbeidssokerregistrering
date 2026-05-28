@@ -1,26 +1,25 @@
 'use client';
 
-import { NextPage } from 'next';
-import { Dispatch, JSX, useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/navigation';
-
-import { SkjemaSide, SkjemaState } from '@/model/skjema';
-import { SkjemaAction } from '@/lib/skjema-state';
-import Avbryt from './skjema/avbryt-lenke';
-import { StandardRegistreringTilstandsmaskin } from '@/lib/standard-registrering-tilstandsmaskin';
-import { loggAktivitet } from '@/lib/tracker';
-import { HGrid, Link } from '@navikt/ds-react';
-import { useConfig } from '@/contexts/config-context';
-import { Config } from '@/model/config';
-import RegistreringsOversikt from './registrerings-oversikt';
 import { XMarkIcon } from '@navikt/aksel-icons';
-import ForrigeSteg from './skjema/knapperad/forrige-steg';
-import NesteSteg from './skjema/knapperad/neste-steg';
+import { HGrid, Link } from '@navikt/ds-react';
+import type { NextPage } from 'next';
 import Image from 'next/image';
-import skjemaIkonSvg from './skjema-ikon.svg';
-import Overskrift from './skjema/overskrift';
+import { useRouter } from 'next/navigation';
+import { type Dispatch, type JSX, useEffect, useRef, useState } from 'react';
+import { useConfig } from '@/contexts/config-context';
 import { useSkjemaState } from '@/contexts/skjema-state-context';
 import useSprak from '@/hooks/useSprak';
+import type { SkjemaAction } from '@/lib/skjema-state';
+import type { StandardRegistreringTilstandsmaskin } from '@/lib/standard-registrering-tilstandsmaskin';
+import { loggAktivitet } from '@/lib/tracker';
+import type { Config } from '@/model/config';
+import { SkjemaSide, type SkjemaState } from '@/model/skjema';
+import RegistreringsOversikt from './registrerings-oversikt';
+import Avbryt from './skjema/avbryt-lenke';
+import ForrigeSteg from './skjema/knapperad/forrige-steg';
+import NesteSteg from './skjema/knapperad/neste-steg';
+import Overskrift from './skjema/overskrift';
+import skjemaIkonSvg from './skjema-ikon.svg';
 
 export type SiderMap = { [key: string]: JSX.Element };
 export interface SkjemaProps {

@@ -1,8 +1,7 @@
+import { JaEllerNei, lagHentTekstForSprak, type TeksterMedDefinerteNokler } from '@navikt/arbeidssokerregisteret-utils';
 import useSprak from '../../hooks/useSprak';
-
-import { JaEllerNei, lagHentTekstForSprak, TeksterMedDefinerteNokler } from '@navikt/arbeidssokerregisteret-utils';
 import RadioGruppe from '../radio-gruppe/radio-gruppe';
-import { SkjemaKomponentProps } from './skjema-felleskomponenter';
+import type { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 const TEKSTER: AndreProblemerTekster = {
     nb: {

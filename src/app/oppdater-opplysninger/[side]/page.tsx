@@ -1,13 +1,13 @@
-import { NextPageProps } from '@/types/next';
-import Skjema from '@/app/oppdater-opplysninger/[side]/skjema';
-import { fetchArbeidssoekerregisteretSnapshot } from '@/app/oppdater-opplysninger/api';
-import { Suspense } from 'react';
-import { Loader } from '@navikt/ds-react';
 import { mapOpplysningerHendelseTilSkjemaState } from '@navikt/arbeidssokerregisteret-utils';
-import HydrateSkjemaState from '@/app/oppdater-opplysninger/[side]/wrapper';
-import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
-import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
+import { Loader } from '@navikt/ds-react';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
+import Skjema from '@/app/oppdater-opplysninger/[side]/skjema';
+import HydrateSkjemaState from '@/app/oppdater-opplysninger/[side]/wrapper';
+import { fetchArbeidssoekerregisteretSnapshot } from '@/app/oppdater-opplysninger/api';
+import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
+import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
+import type { NextPageProps } from '@/types/next';
 
 async function SkjemaSide({ params }: NextPageProps) {
     const { side, lang } = await params;
@@ -24,7 +24,7 @@ async function SkjemaSide({ params }: NextPageProps) {
         return;
     }
 
-    if (Boolean(data.avsluttet)) {
+    if (data.avsluttet) {
         // avsluttet periode
         return redirect(`${sprakUrl}/start`);
     }

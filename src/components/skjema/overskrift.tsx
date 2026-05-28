@@ -1,6 +1,6 @@
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import useSprak from '../../hooks/useSprak';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Heading } from '@navikt/ds-react';
+import useSprak from '../../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {

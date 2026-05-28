@@ -1,7 +1,7 @@
-import React from 'react';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Page } from '@navikt/ds-react';
 import Head from 'next/head';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import React from 'react';
 
 import useSprak from '../hooks/useSprak';
 

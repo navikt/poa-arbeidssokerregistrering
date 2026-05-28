@@ -1,12 +1,12 @@
 'use server';
 
-import { headers } from 'next/headers';
 import { logger } from '@navikt/next-logger';
 import { getToken, requestTokenxOboToken } from '@navikt/oasis';
-import { nanoid } from 'nanoid';
-import { verifyToken } from '@/auth/token-validation';
 import { decodeJwt } from 'jose';
-import { ApiError, getHeaders, INNGANG_CLIENT_ID } from './next-api-handler';
+import { nanoid } from 'nanoid';
+import { headers } from 'next/headers';
+import { verifyToken } from '@/auth/token-validation';
+import { type ApiError, getHeaders, INNGANG_CLIENT_ID } from './next-api-handler';
 
 async function getTokenXToken(idPortenToken: string) {
     const oboToken = await requestTokenxOboToken(idPortenToken, INNGANG_CLIENT_ID);
@@ -22,7 +22,7 @@ async function getTokenXToken(idPortenToken: string) {
 export async function arbeidssokerApiKall(url: string) {
     const callId = nanoid();
     try {
-        let bearerToken = getToken(await headers())!;
+        const bearerToken = getToken(await headers())!;
         const result = await verifyToken(bearerToken, decodeJwt(bearerToken));
         const fnr = result.payload.pid as string;
 

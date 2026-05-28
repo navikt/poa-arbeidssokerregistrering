@@ -1,5 +1,11 @@
-import { Navigering, NavigeringsTilstandsMaskin, SkjemaSide, SkjemaSideType, SkjemaState } from '../model/skjema';
 import { DinSituasjon } from '@navikt/arbeidssokerregisteret-utils';
+import {
+    type Navigering,
+    type NavigeringsTilstandsMaskin,
+    SkjemaSide,
+    type SkjemaSideType,
+    type SkjemaState,
+} from '../model/skjema';
 
 const TILSTANDER: NavigeringsTilstandsMaskin<SkjemaSideType> = {
     [SkjemaSide.DinSituasjon]: (skjemaState: SkjemaState) => {

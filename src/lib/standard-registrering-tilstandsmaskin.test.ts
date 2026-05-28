@@ -1,6 +1,6 @@
-import { beregnNavigering } from './standard-registrering-tilstandsmaskin';
-import { SkjemaSide } from '../model/skjema';
 import { DinSituasjon, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
+import { SkjemaSide } from '../model/skjema';
+import { beregnNavigering } from './standard-registrering-tilstandsmaskin';
 
 const sisteStilling = {
     label: 'Klovn kommunal sektor',

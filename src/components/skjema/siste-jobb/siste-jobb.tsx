@@ -1,17 +1,16 @@
 'use client';
 
+import { lagHentTekstForSprak, type SisteJobb, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong, Button, Heading, ReadMore } from '@navikt/ds-react';
-import { JSX, useEffect, useState } from 'react';
-import useSWR from 'swr';
 import Head from 'next/head';
-import { lagHentTekstForSprak, SisteJobb, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { type JSX, useEffect, useState } from 'react';
+import useSWR from 'swr';
 
 import useSprak from '@/hooks/useSprak';
-
-import StillingsSok from './stillings-sok-v2';
-import { SkjemaKomponentProps } from '../skjema-felleskomponenter';
 import { fetcher } from '@/lib/api-utils';
 import { SkjemaBox } from '../skjema-box';
+import type { SkjemaKomponentProps } from '../skjema-felleskomponenter';
+import StillingsSok from './stillings-sok-v2';
 
 const TEKSTER: Tekster<string> = {
     nb: {

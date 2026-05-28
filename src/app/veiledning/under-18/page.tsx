@@ -1,5 +1,5 @@
-import KvitteringUnder18Wrapper from '@/components/kvittering-oppgave-under-18-wrapper';
 import { KvitteringOppgaveOpprettet } from '@/components/KvitteringOppgaveUnder18';
+import KvitteringUnder18Wrapper from '@/components/kvittering-oppgave-under-18-wrapper';
 import { isEnabled } from '@/lib/unleash-is-enabled';
 import unleashKeys from '@/unleash-keys';
 

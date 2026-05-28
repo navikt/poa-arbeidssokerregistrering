@@ -1,16 +1,15 @@
-import { useEffect } from 'react';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Alert, Button, Link } from '@navikt/ds-react';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-
-import useSprak from '../hooks/useSprak';
-import { useConfig } from '../contexts/config-context';
-import DemoPanel from '../components/forsiden/demo-panel';
-import { Config } from '../model/config';
-import { loggAktivitet } from '../lib/tracker';
-import { hentFeatures } from '../app/api/features/hent-features';
-import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
 import { logger } from '@navikt/next-logger';
 import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { hentFeatures } from '../app/api/features/hent-features';
+import DemoPanel from '../components/forsiden/demo-panel';
+import { useConfig } from '../contexts/config-context';
+import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
+import useSprak from '../hooks/useSprak';
+import { loggAktivitet } from '../lib/tracker';
+import type { Config } from '../model/config';
 
 const TEKSTER: Tekster<string> = {
     nb: {

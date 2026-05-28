@@ -1,10 +1,10 @@
-import {
-    FeilmeldingVedStartAvArbeidssoekerperiodeV2,
-    FeilKoderVedStartAvArbeidssoekerperiode,
-    ReglerForStartAvArbeidssoekerperiode,
-} from '@/model/feilsituasjonTyper';
 import { redirect } from 'next/navigation';
 import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
+import {
+    FeilKoderVedStartAvArbeidssoekerperiode,
+    type FeilmeldingVedStartAvArbeidssoekerperiodeV2,
+    ReglerForStartAvArbeidssoekerperiode,
+} from '@/model/feilsituasjonTyper';
 
 function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
     const { feilmelding } = props;

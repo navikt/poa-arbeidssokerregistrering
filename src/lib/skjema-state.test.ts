@@ -1,5 +1,3 @@
-import { SkjemaState } from '../model/skjema';
-import { oppdaterDinSituasjon, oppdaterUtdanning } from './skjema-state';
 import {
     DinSituasjon,
     JaEllerNei,
@@ -7,6 +5,8 @@ import {
     UtdanningGodkjentValg,
     Utdanningsnivaa,
 } from '@navikt/arbeidssokerregisteret-utils';
+import type { SkjemaState } from '../model/skjema';
+import { oppdaterDinSituasjon, oppdaterUtdanning } from './skjema-state';
 
 const sisteStilling = {
     label: 'Klovn kommunal sektor',

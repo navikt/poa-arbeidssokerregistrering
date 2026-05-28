@@ -1,23 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
-import { fn } from 'storybook/test';
-import { http, HttpResponse } from 'msw';
 import {
     DinSituasjon as DinSituasjonValg,
     JaEllerNei,
     SisteStillingValg,
-    Utdanningsnivaa,
     UtdanningGodkjentValg,
+    Utdanningsnivaa,
 } from '@navikt/arbeidssokerregisteret-utils';
+import type { Meta, StoryObj } from '@storybook/nextjs';
+import { HttpResponse, http } from 'msw';
+import { fn } from 'storybook/test';
+import type { SkjemaState } from '@/model/skjema';
+import AndreProblemer from './skjema/andre-problemer';
 import DinSituasjon from './skjema/din-situasjon';
+import Helseproblemer from './skjema/helseproblemer';
+import Hindringer from './skjema/hindringer';
+import Oppsummering from './skjema/oppsummering/oppsummering';
 import SisteJobbSkjema from './skjema/siste-jobb/siste-jobb';
 import Utdanning from './skjema/utdanning';
-import UtdanningGodkjent from './skjema/utdanning-godkjent';
 import BestattUtdanning from './skjema/utdanning-bestatt';
-import Hindringer from './skjema/hindringer';
-import Helseproblemer from './skjema/helseproblemer';
-import AndreProblemer from './skjema/andre-problemer';
-import Oppsummering from './skjema/oppsummering/oppsummering';
-import type { SkjemaState } from '@/model/skjema';
+import UtdanningGodkjent from './skjema/utdanning-godkjent';
 
 /**
  * Gjennomgang av hele registreringsskjemaet — ett steg per story.

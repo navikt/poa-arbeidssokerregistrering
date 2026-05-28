@@ -1,8 +1,8 @@
-import { headers } from 'next/headers';
-import { getToken, parseIdportenToken, requestOboToken } from '@navikt/oasis';
+import type { Snapshot } from '@navikt/arbeidssokerregisteret-utils/oppslag/v3';
 import { logger } from '@navikt/next-logger';
+import { getToken, parseIdportenToken, requestOboToken } from '@navikt/oasis';
+import { headers } from 'next/headers';
 import { snapshotMock } from '@/app/oppdater-opplysninger/mock-data';
-import { Snapshot } from '@navikt/arbeidssokerregisteret-utils/oppslag/v3';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 

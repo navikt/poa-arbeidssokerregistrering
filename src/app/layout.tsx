@@ -1,13 +1,17 @@
-import { DecoratorEnvProps, DecoratorFetchProps, fetchDecoratorReact } from '@navikt/nav-dekoratoren-moduler/ssr';
-import Script from 'next/script';
+import {
+    type DecoratorEnvProps,
+    type DecoratorFetchProps,
+    fetchDecoratorReact,
+} from '@navikt/nav-dekoratoren-moduler/ssr';
 import type { Metadata } from 'next';
+import Script from 'next/script';
 import '../styles/globals.css';
-import styles from '../styles/app.module.css';
+import InitFaroKomponent from '@/components/init-faro-komponent';
+import InitTracker from '@/components/init-tracker';
 import { ConfigProvider } from '@/contexts/config-context';
 import { FeatureTogglesProvider } from '@/contexts/feature-toggle-context';
 import { SkjemaStateProvider } from '@/contexts/skjema-state-context';
-import InitTracker from '@/components/init-tracker';
-import InitFaroKomponent from '@/components/init-faro-komponent';
+import styles from '../styles/app.module.css';
 
 export const metadata: Metadata = {
     title: 'Arbeidssøkerregistrering',
@@ -59,7 +63,7 @@ export default async function RootLayout({
                 <Decorator.Header />
                 <InitTracker apiKey={process.env.NEXT_PUBLIC_AMPLITUDE_API_KEY!} />
                 <InitFaroKomponent />
-                <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
+                <main className={styles.main} id="maincontent" tabIndex={-1}>
                     <ConfigProvider>
                         <SkjemaStateProvider>{children}</SkjemaStateProvider>
                     </ConfigProvider>

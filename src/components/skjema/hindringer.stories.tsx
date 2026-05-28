@@ -1,9 +1,9 @@
+import { JaEllerNei } from '@navikt/arbeidssokerregisteret-utils';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { fn } from 'storybook/test';
-import { JaEllerNei } from '@navikt/arbeidssokerregisteret-utils';
-import Hindringer from './hindringer';
-import Helseproblemer from './helseproblemer';
 import AndreProblemer from './andre-problemer';
+import Helseproblemer from './helseproblemer';
+import Hindringer from './hindringer';
 
 const meta: Meta<typeof Hindringer> = {
     title: 'Skjema/4 - Hindringer',

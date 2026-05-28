@@ -1,15 +1,14 @@
-import { useEffect } from 'react';
-import NextApp, { AppContext, AppProps } from 'next/app';
-import Head from 'next/head';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { onLanguageSelect } from '@navikt/nav-dekoratoren-moduler';
-
-import useSprak from '../hooks/useSprak';
-import { FeatureToggleProvider } from '../contexts/featuretoggle-context';
-import { ErrorProvider } from '../contexts/error-context';
+import NextApp, { type AppContext, type AppProps } from 'next/app';
+import Head from 'next/head';
+import { useEffect } from 'react';
 import { GlobalFeilmelding } from '../components/feilmeldinger/feilmeldinger';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { ConfigProvider } from '../contexts/config-context';
+import { ErrorProvider } from '../contexts/error-context';
+import { FeatureToggleProvider } from '../contexts/featuretoggle-context';
 import { initFaro } from '../faro/initFaro';
+import useSprak from '../hooks/useSprak';
 
 import styles from '../styles/app.module.css';
 import '../styles/globals.css';
@@ -38,7 +37,7 @@ function MyApp({ Component, pageProps, router }: AppProps) {
     }, []);
 
     return (
-        <main className={styles.main} id="maincontent" role="main" tabIndex={-1}>
+        <main className={styles.main} id="maincontent" tabIndex={-1}>
             <Head>
                 <title>{tekst('metaTittel')}</title>
                 <meta name="description" content={tekst('metaDescription')} />

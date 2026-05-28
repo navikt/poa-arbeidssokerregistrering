@@ -1,15 +1,15 @@
-import { SkjemaState } from '../model/skjema';
 import {
     DinSituasjon,
-    JaEllerNei,
-    JobbsituasjonBeskrivelse,
+    type JaEllerNei,
+    type JobbsituasjonBeskrivelse,
     mapSituasjonTilBeskrivelse,
     mapUtdanningsnivaaTilNusKode,
     NUS,
     SisteStillingValg,
     SporsmalId,
-    UtdanningGodkjentValg,
+    type UtdanningGodkjentValg,
 } from '@navikt/arbeidssokerregisteret-utils';
+import type { SkjemaState } from '../model/skjema';
 
 type Payload = {
     utdanning: {

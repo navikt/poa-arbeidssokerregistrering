@@ -1,13 +1,13 @@
-import { SkjemaState } from '@/model/skjema';
 import {
     DinSituasjon,
-    JaEllerNei,
+    type JaEllerNei,
+    type SisteJobb,
     SisteStillingValg,
     SporsmalId,
-    UtdanningGodkjentValg,
+    type UtdanningGodkjentValg,
     Utdanningsnivaa,
-    SisteJobb,
 } from '@navikt/arbeidssokerregisteret-utils';
+import type { SkjemaState } from '@/model/skjema';
 
 export type SkjemaAction =
     | { type: 'InitSkjema'; value: SkjemaState }

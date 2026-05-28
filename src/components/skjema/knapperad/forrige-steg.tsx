@@ -1,6 +1,6 @@
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { Button } from '@navikt/ds-react';
 import { ArrowLeftIcon } from '@navikt/aksel-icons';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { Button } from '@navikt/ds-react';
 import useSprak from '../../../hooks/useSprak';
 
 interface Props {

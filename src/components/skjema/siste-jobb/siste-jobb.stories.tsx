@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
+import { HttpResponse, http } from 'msw';
 import { fn } from 'storybook/test';
-import { http, HttpResponse } from 'msw';
 import SisteJobbSkjema from './siste-jobb';
 
 const stillingMock = {

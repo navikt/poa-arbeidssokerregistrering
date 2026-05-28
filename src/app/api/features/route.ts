@@ -1,5 +1,5 @@
-import { NextResponse } from 'next/server';
 import { logger } from '@navikt/next-logger';
+import { NextResponse } from 'next/server';
 import { hentFeatures } from '@/app/api/features/hent-features';
 
 export async function GET() {

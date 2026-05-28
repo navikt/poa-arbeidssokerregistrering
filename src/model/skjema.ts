@@ -1,11 +1,11 @@
 import {
     DinSituasjon,
-    JaEllerNei,
-    SisteStillingValg,
+    type JaEllerNei,
+    type SisteJobb,
+    type SisteStillingValg,
     SporsmalId,
-    UtdanningGodkjentValg,
-    Utdanningsnivaa,
-    SisteJobb,
+    type UtdanningGodkjentValg,
+    type Utdanningsnivaa,
 } from '@navikt/arbeidssokerregisteret-utils';
 
 export enum SkjemaSide {

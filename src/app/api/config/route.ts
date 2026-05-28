@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { Config } from '@/model/config';
+import type { Config } from '@/model/config';
 
 export async function GET() {
     const config: Config = {

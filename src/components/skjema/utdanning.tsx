@@ -1,14 +1,13 @@
 'use client';
 
+import { lagHentTekstForSprak, SporsmalId, type Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 import Head from 'next/head';
-import { lagHentTekstForSprak, SporsmalId, Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
-
-import RadioGruppe from '../radio-gruppe/radio-gruppe';
-import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { hentTekst } from '../../model/sporsmal';
+import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaBox } from './skjema-box';
+import type { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 const TEKSTER: Tekster<string> = {
     nb: {

@@ -1,23 +1,23 @@
 'use client';
 
-import { SkjemaSide, SkjemaState, visSisteStilling } from '@/model/skjema';
-import { Dispatch } from 'react';
-import { SkjemaAction } from '@/lib/skjema-state';
-import { SiderMap, SkjemaProps, SkjemaSideKomponent } from '@/components/skjema-side-factory';
-import DinSituasjon from '@/components/skjema/din-situasjon';
 import { OpplysningerOmArbeidssoker, SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import type { Dispatch } from 'react';
+import { validerOpplysningerSkjemaForSide } from '@/app/opplysninger/[side]/skjema';
+import AndreProblemer from '@/components/skjema/andre-problemer';
+import DinSituasjon from '@/components/skjema/din-situasjon';
+import Helseproblemer from '@/components/skjema/helseproblemer';
+import Hindringer from '@/components/skjema/hindringer';
+import OppsummeringOppdaterOpplysninger from '@/components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
 import SisteJobb from '@/components/skjema/siste-jobb/siste-jobb';
 import SisteStilling from '@/components/skjema/siste-jobb/siste-stilling';
 import Utdanning from '@/components/skjema/utdanning';
-import UtdanningGodkjent from '@/components/skjema/utdanning-godkjent';
-import visUtdanningsvalg from '@/lib/vis-utdanningsvalg';
 import BestattUtdanning from '@/components/skjema/utdanning-bestatt';
-import Hindringer from '@/components/skjema/hindringer';
-import Helseproblemer from '@/components/skjema/helseproblemer';
-import AndreProblemer from '@/components/skjema/andre-problemer';
-import OppsummeringOppdaterOpplysninger from '@/components/skjema/oppsummering/oppsummering-oppdater-opplysninger';
+import UtdanningGodkjent from '@/components/skjema/utdanning-godkjent';
+import { type SiderMap, type SkjemaProps, SkjemaSideKomponent } from '@/components/skjema-side-factory';
+import type { SkjemaAction } from '@/lib/skjema-state';
 import { beregnNavigering } from '@/lib/standard-registrering-tilstandsmaskin';
-import { validerOpplysningerSkjemaForSide } from '@/app/opplysninger/[side]/skjema';
+import visUtdanningsvalg from '@/lib/vis-utdanningsvalg';
+import { SkjemaSide, type SkjemaState, visSisteStilling } from '@/model/skjema';
 
 const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>, visFeilmelding: boolean): SiderMap => {
     return {

@@ -1,12 +1,10 @@
-import Head from 'next/head';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong } from '@navikt/ds-react';
-
+import Head from 'next/head';
 import useSprak from '../../../hooks/useSprak';
-
-import { SkjemaState } from '../../../model/skjema';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import SvarOppsummering from './SvarOppsummering';
+import type { SkjemaState } from '../../../model/skjema';
 import OppdaterOpplysningerKnapp from '../oppdater-opplysninger-knapp';
+import SvarOppsummering from './SvarOppsummering';
 
 const TEKSTER: Tekster<string> = {
     nb: {

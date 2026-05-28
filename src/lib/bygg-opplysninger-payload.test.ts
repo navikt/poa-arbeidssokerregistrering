@@ -1,4 +1,3 @@
-import byggOpplysningerPayload from './bygg-opplysninger-payload';
 import {
     DinSituasjon,
     JaEllerNei,
@@ -7,6 +6,7 @@ import {
     UtdanningGodkjentValg,
     Utdanningsnivaa,
 } from '@navikt/arbeidssokerregisteret-utils';
+import byggOpplysningerPayload from './bygg-opplysninger-payload';
 
 describe('bygg-opplysninger-payload', () => {
     describe('utdanning', () => {

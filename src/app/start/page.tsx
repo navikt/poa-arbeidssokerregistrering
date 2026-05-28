@@ -1,12 +1,12 @@
+import type { Sprak } from '@navikt/arbeidssokerregisteret-utils';
+import { Loader } from '@navikt/ds-react';
+import { logger } from '@navikt/next-logger';
 import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
 import KanIkkeStartePeriodeV2 from '@/components/feilmeldinger/kan-ikke-starte-periode-v2';
 import { SkjemaSide } from '@/model/skjema';
-import { Suspense } from 'react';
-import { Loader } from '@navikt/ds-react';
+import type { NextPageProps } from '@/types/next';
 import { fetchKanStartePeriode } from './api';
-import { NextPageProps } from '@/types/next';
-import { Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { logger } from '@navikt/next-logger';
 
 async function StartPage({ sprak }: { sprak: Sprak }) {
     const { error, data } = await fetchKanStartePeriode();

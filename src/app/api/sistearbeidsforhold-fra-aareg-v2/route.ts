@@ -1,10 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
-
-import { getAaregToken, getHeaders } from '../../../lib/next-api-handler';
-import { hentSisteArbeidsForhold } from '../../../lib/hent-siste-arbeidsforhold';
 import { getToken, parseIdportenToken } from '@navikt/oasis';
+import { nanoid } from 'nanoid';
+import { type NextRequest, NextResponse } from 'next/server';
+import { hentSisteArbeidsForhold } from '../../../lib/hent-siste-arbeidsforhold';
+import { getAaregToken, getHeaders } from '../../../lib/next-api-handler';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 

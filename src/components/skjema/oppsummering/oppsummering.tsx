@@ -1,12 +1,10 @@
 'use client';
 
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong } from '@navikt/ds-react';
 import Head from 'next/head';
-
+import type { SkjemaState } from '@/model/skjema';
 import useSprak from '../../../hooks/useSprak';
-
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { SkjemaState } from '@/model/skjema';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
 import SvarOppsummering from './SvarOppsummering';
 

@@ -1,10 +1,9 @@
 import { SporsmalId, UtdanningGodkjentValg } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
-
-import RadioGruppe from '../radio-gruppe/radio-gruppe';
-import { SkjemaKomponentProps } from './skjema-felleskomponenter';
 import { hentTekst } from '../../model/sporsmal';
+import RadioGruppe from '../radio-gruppe/radio-gruppe';
+import type { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 const UtdanningGodkjent = (props: SkjemaKomponentProps<UtdanningGodkjentValg> & { visKomponent: boolean }) => {
     const { onChange, valgt, visFeilmelding, visKomponent } = props;

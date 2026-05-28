@@ -27,7 +27,7 @@ export const personidentTilAlder = (fnrEllerDnr: string, dato?: string): number 
     const måned = parseInt(fnr.substring(2, 4), 10);
     const stringÅr = fnr.substring(4, 6);
 
-    let år =
+    const år =
         parseInt(stringÅr) < årNåKortform
             ? parseInt(`${detteÅrhundre}${stringÅr}`, 10)
             : parseInt(`${forrigeÅrhundre}${stringÅr}`, 10);

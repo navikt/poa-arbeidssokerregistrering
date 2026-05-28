@@ -1,7 +1,7 @@
-import { ErrorTypes } from '@/model/error';
-import { RegistreringType } from '@/model/registrering';
-import { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
+import type { DinSituasjon, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
 import { awaitDecoratorData, getAnalyticsInstance, getCurrentConsent } from '@navikt/nav-dekoratoren-moduler';
+import type { ErrorTypes } from '@/model/error';
+import type { RegistreringType } from '@/model/registrering';
 
 const isBrowser = () => typeof window !== 'undefined';
 const isDevelopment = () => isBrowser() && /^http:\/\/localhost/.test(window.location.href);

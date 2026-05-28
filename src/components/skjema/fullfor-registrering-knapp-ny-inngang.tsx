@@ -1,17 +1,17 @@
 'use client';
 
-import { useCallback, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { Button } from '@navikt/ds-react';
 import { PaperplaneIcon } from '@navikt/aksel-icons';
+import { Button } from '@navikt/ds-react';
 import { logger } from '@navikt/next-logger';
-import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
+import { useRouter } from 'next/navigation';
+import { useCallback, useState } from 'react';
+import useSprak from '@/hooks/useSprak';
+import { loggAktivitet, loggFlyt } from '@/lib/tracker';
+import type { SkjemaState } from '@/model/skjema';
 import { fetcher as api } from '../../lib/api-utils';
+import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
 import hentKvitteringsUrl from '../../lib/hent-kvitterings-url';
 import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
-import { SkjemaState } from '@/model/skjema';
-import { loggAktivitet, loggFlyt } from '@/lib/tracker';
-import useSprak from '@/hooks/useSprak';
 
 interface FullforKnappProps {
     skjemaState: SkjemaState;

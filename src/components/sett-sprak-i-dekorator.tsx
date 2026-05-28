@@ -1,9 +1,9 @@
 'use client';
 
-import { erStottetSprak, Sprak } from '@navikt/arbeidssokerregisteret-utils';
-import { useEffect } from 'react';
+import { erStottetSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { onLanguageSelect, setParams } from '@navikt/nav-dekoratoren-moduler';
 import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const getSprakAttribute = (sprak: Sprak) => {
     if (['nb', 'en', 'nn'].includes(sprak)) {

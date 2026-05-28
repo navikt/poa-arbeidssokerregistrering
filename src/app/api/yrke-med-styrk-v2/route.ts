@@ -1,6 +1,6 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
+import { nanoid } from 'nanoid';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export async function GET(req: NextRequest) {
     const callId = nanoid();

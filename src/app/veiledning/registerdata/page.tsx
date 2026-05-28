@@ -1,8 +1,8 @@
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react';
-import { NextPageProps } from '@/types/next';
-import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 import LoggVisning from '@/app/veiledning/registerdata/logg-visning';
+import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
+import type { NextPageProps } from '@/types/next';
 
 const TEKSTER: Tekster<string> = {
     nb: {

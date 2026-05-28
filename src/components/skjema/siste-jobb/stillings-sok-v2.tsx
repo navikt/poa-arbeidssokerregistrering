@@ -1,10 +1,8 @@
-import { useCallback, useState } from 'react';
 import { debounce } from 'lodash';
-
-import { loggAktivitet } from '@/lib/tracker';
-
-import styles from './autosuggest.module.css';
+import { useCallback, useState } from 'react';
 import config from '@/config';
+import { loggAktivitet } from '@/lib/tracker';
+import styles from './autosuggest.module.css';
 
 const Autosuggest = require('react-autosuggest');
 
@@ -18,7 +16,7 @@ const StillingsSok = (props: StillingsSokProps) => {
     const { onClose } = props;
     const [resultat, setResultat] = useState([] as any[]);
     const [value, setValue] = useState<string>('');
-    const [endret, setEndret] = useState<Boolean>(false);
+    const [endret, setEndret] = useState<boolean>(false);
     const { basePath } = config;
 
     const onSuggestionsFetchRequested = useCallback(

@@ -1,11 +1,11 @@
-import { Suspense } from 'react';
+import type { Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { Loader } from '@navikt/ds-react';
-import { SkjemaSide } from '@/model/skjema';
 import { redirect } from 'next/navigation';
-import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
-import { NextPageProps } from '@/types/next';
-import { Sprak } from '@navikt/arbeidssokerregisteret-utils';
+import { Suspense } from 'react';
 import { fetchArbeidssoekerregisteretSnapshot } from '@/app/oppdater-opplysninger/api';
+import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
+import { SkjemaSide } from '@/model/skjema';
+import type { NextPageProps } from '@/types/next';
 
 async function HentOpplysningerOgSendVidere({ sprak }: { sprak: Sprak }) {
     const { data, error } = await fetchArbeidssoekerregisteretSnapshot();
@@ -18,12 +18,12 @@ async function HentOpplysningerOgSendVidere({ sprak }: { sprak: Sprak }) {
         return;
     }
 
-    if (Boolean(data.avsluttet)) {
+    if (data.avsluttet) {
         // avsluttet periode
         return redirect(`${sprakUrl}/start`);
     }
 
-    if (Boolean(data.opplysning?.id)) {
+    if (data.opplysning?.id) {
         redirect(`${sprakUrl}/oppdater-opplysninger/${SkjemaSide.Oppsummering}`);
     } else {
         // ingen eksisterende opplysninger

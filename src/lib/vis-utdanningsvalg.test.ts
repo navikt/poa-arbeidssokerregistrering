@@ -1,6 +1,6 @@
-import visUtdanningsvalg from './vis-utdanningsvalg';
 import { Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
-import { SkjemaState } from '../model/skjema';
+import type { SkjemaState } from '../model/skjema';
+import visUtdanningsvalg from './vis-utdanningsvalg';
 
 describe('vis-utdanningsvalg', () => {
     it('returnerer false for INGEN UTDANNING', () => {
