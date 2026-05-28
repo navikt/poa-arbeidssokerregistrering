@@ -1,19 +1,17 @@
 'use client';
 
-import Head from 'next/head';
-import Image from 'next/image';
-import { BodyLong, BodyShort, Heading, HGrid, Button } from '@navikt/ds-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-
-import useSprak from '../../hooks/useSprak';
+import { BodyLong, BodyShort, Button, Heading, HGrid } from '@navikt/ds-react';
+import Head from 'next/head';
+import Image from 'next/image';
 import { useConfig } from '../../contexts/config-context';
-
-import { Config } from '../../model/config';
-import kvitteringIkonSvg from './kvittering-ikon.svg';
-import LenkePanel from '../lenke-panel';
+import useSprak from '../../hooks/useSprak';
 import { loggAktivitet } from '../../lib/tracker';
+import type { Config } from '../../model/config';
+import LenkePanel from '../lenke-panel';
 import Overskrift from '../skjema/overskrift';
+import kvitteringIkonSvg from './kvittering-ikon.svg';
 
 const TEKSTER = {
     nb: {

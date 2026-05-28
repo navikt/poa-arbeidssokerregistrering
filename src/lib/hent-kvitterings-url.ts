@@ -1,4 +1,4 @@
-import { Sprak } from '@navikt/arbeidssokerregisteret-utils';
+import type { Sprak } from '@navikt/arbeidssokerregisteret-utils';
 
 export default function hentKvitteringsUrl(sprak: Sprak) {
     const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;

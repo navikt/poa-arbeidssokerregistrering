@@ -1,14 +1,14 @@
 import {
     DinSituasjon,
     JaEllerNei,
+    type SisteJobb,
     SisteStillingValg,
     SporsmalId,
-    Svar,
+    type Svar,
     UtdanningGodkjentValg,
     Utdanningsnivaa,
-    SisteJobb,
 } from '@navikt/arbeidssokerregisteret-utils';
-import { Side, SkjemaState } from '@/model/skjema';
+import type { Side, SkjemaState } from '@/model/skjema';
 import { hentTekst } from '@/model/sporsmal';
 
 export const aldriJobbet: SisteJobb = {

@@ -1,13 +1,11 @@
-import Document, { DocumentContext, Head, Html, Main, NextScript } from 'next/document';
-
 import {
-    DecoratorComponentsReact,
-    DecoratorEnvProps,
-    DecoratorFetchProps,
+    type DecoratorComponentsReact,
+    type DecoratorEnvProps,
+    type DecoratorFetchProps,
     fetchDecoratorReact,
 } from '@navikt/nav-dekoratoren-moduler/ssr';
-
 import { logger } from '@navikt/next-logger';
+import Document, { type DocumentContext, Head, Html, Main, NextScript } from 'next/document';
 
 const dekoratorEnv = process.env.DEKORATOR_ENV as Exclude<DecoratorEnvProps['env'], 'localhost'>;
 

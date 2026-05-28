@@ -1,7 +1,7 @@
 'use client';
 
+import { createContext, type ReactNode, useContext, useEffect, useState } from 'react';
 import unleashKeys from '@/unleash-keys';
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 interface FeatureTogglesContextState {
     [unleashKeys.BRUK_UXSIGNALS]: boolean;

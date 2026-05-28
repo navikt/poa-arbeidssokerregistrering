@@ -1,6 +1,6 @@
+import { DinSituasjon as DinSituasjonValg } from '@navikt/arbeidssokerregisteret-utils';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { fn } from 'storybook/test';
-import { DinSituasjon as DinSituasjonValg } from '@navikt/arbeidssokerregisteret-utils';
 import DinSituasjon from './din-situasjon';
 
 const meta: Meta<typeof DinSituasjon> = {

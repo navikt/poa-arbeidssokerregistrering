@@ -1,14 +1,14 @@
-import type { Meta, StoryObj } from '@storybook/nextjs';
-import { fn } from 'storybook/test';
 import {
     DinSituasjon,
     JaEllerNei,
     SisteStillingValg,
-    Utdanningsnivaa,
     UtdanningGodkjentValg,
+    Utdanningsnivaa,
 } from '@navikt/arbeidssokerregisteret-utils';
-import Oppsummering from './oppsummering';
+import type { Meta, StoryObj } from '@storybook/nextjs';
+import { fn } from 'storybook/test';
 import type { SkjemaState } from '@/model/skjema';
+import Oppsummering from './oppsummering';
 
 const fullState: SkjemaState = {
     dinSituasjon: DinSituasjon.MISTET_JOBBEN,

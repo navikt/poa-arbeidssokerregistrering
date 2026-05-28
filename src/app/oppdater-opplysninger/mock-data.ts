@@ -1,4 +1,4 @@
-import { Snapshot } from '@navikt/arbeidssokerregisteret-utils/oppslag/v3';
+import type { Snapshot } from '@navikt/arbeidssokerregisteret-utils/oppslag/v3';
 
 export const snapshotMock: Snapshot = {
     id: '3fa85f64-5717-4562-b3fc-2c963f66afa6',

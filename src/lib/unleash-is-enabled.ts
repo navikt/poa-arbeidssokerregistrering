@@ -1,6 +1,6 @@
-import { cookies } from 'next/headers';
-import { evaluateFlags, flagsClient, getDefinitions } from '@unleash/nextjs';
 import { logger } from '@navikt/next-logger';
+import { evaluateFlags, flagsClient, getDefinitions } from '@unleash/nextjs';
+import { cookies } from 'next/headers';
 
 const brukerMock = process.env.ENABLE_MOCK === 'enabled';
 

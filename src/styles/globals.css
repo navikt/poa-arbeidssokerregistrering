@@ -1,22 +1,22 @@
-@import 'tailwindcss';
-@import '@navikt/ds-css' layer(components);
+@import "tailwindcss";
+@import "@navikt/ds-css" layer(components);
 
-@config '../../tailwind.config.ts';
+@config "../../tailwind.config.ts";
 
 body {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
 }
 
 #__next {
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 .maxWidth {
-  max-width: 1280px;
+    max-width: 1280px;
 }
 
 .tekst-svak-graa {
-  color: var(--ax-neutral-400);
+    color: var(--ax-neutral-400);
 }

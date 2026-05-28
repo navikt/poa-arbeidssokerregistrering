@@ -3,9 +3,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: .75rem 1.25rem;
+    padding: 0.75rem 1.25rem;
     border-width: 1px;
-    border-radius: .5rem;
+    border-radius: 0.5rem;
     border-style: solid;
     border-color: var(--ax-neutral-400);
     text-decoration: none;
@@ -24,7 +24,7 @@
 }
 .LenkePanel__ikon {
     color: var(--ax-accent-800);
-    transition: transform .2s;
+    transition: transform 0.2s;
 }
 
 .LenkePanel__container {

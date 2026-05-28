@@ -1,13 +1,11 @@
 'use client';
 
-import { useEffect } from 'react';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Alert, BodyLong, Button, Heading, Link } from '@navikt/ds-react';
-
-import useSprak from '../../hooks/useSprak';
+import { useEffect } from 'react';
 import { useErrorContext } from '@/contexts/error-context';
-
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { loggStoppsituasjon } from '@/lib/tracker';
+import useSprak from '../../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {

@@ -1,6 +1,6 @@
 'use client';
+import { erStottetSprak, type Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { useParams } from 'next/navigation';
-import { erStottetSprak, Sprak } from '@navikt/arbeidssokerregisteret-utils';
 
 const useSprak = (): Sprak => {
     const lang = useParams<any>()?.lang;

@@ -27,4 +27,4 @@ function useFeatureToggles() {
     return context;
 }
 
-export { FeatureToggleProvider, useFeatureToggles, tilAktiveFeatures };
+export { FeatureToggleProvider, tilAktiveFeatures, useFeatureToggles };

@@ -1,11 +1,11 @@
 'use client';
 
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import useSprak from '../../hooks/useSprak';
-import { ReactNode } from 'react';
-import Head from 'next/head';
-import { SkjemaBox } from './skjema-box';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Alert, Heading } from '@navikt/ds-react';
+import Head from 'next/head';
+import type { ReactNode } from 'react';
+import useSprak from '../../hooks/useSprak';
+import { SkjemaBox } from './skjema-box';
 
 const Hindringer = (props: { children: ReactNode }) => {
     const TEKSTER: Tekster<string> = {

@@ -1,4 +1,4 @@
-import { createRemoteJWKSet, FlattenedJWSInput, JWSHeaderParameters, JWTPayload, jwtVerify } from 'jose';
+import { createRemoteJWKSet, type FlattenedJWSInput, type JWSHeaderParameters, type JWTPayload, jwtVerify } from 'jose';
 
 let tokenxJWKSet: (protectedHeader?: JWSHeaderParameters, token?: FlattenedJWSInput) => Promise<CryptoKey>;
 const getTokenXJwkSet = () => {

@@ -1,8 +1,8 @@
-import { NextApiRequest } from 'next';
-import { nanoid } from 'nanoid';
 import { logger } from '@navikt/next-logger';
 import { getToken, requestTokenxOboToken } from '@navikt/oasis';
-import { NextRequest, NextResponse } from 'next/server';
+import { nanoid } from 'nanoid';
+import type { NextApiRequest } from 'next';
+import { type NextRequest, NextResponse } from 'next/server';
 
 export const getHeaders = (token: string, callId: string) => {
     return {
@@ -36,7 +36,7 @@ export function proxyRequestWithAuth(
     method: 'GET' | 'POST',
     mockResponse: () => NextResponse,
 ) {
-    return async function (req: NextRequest): Promise<NextResponse> {
+    return async (req: NextRequest): Promise<NextResponse> => {
         if (brukerMock) {
             return mockResponse();
         }

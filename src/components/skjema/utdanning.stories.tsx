@@ -1,9 +1,9 @@
+import { JaEllerNei, UtdanningGodkjentValg, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { fn } from 'storybook/test';
-import { JaEllerNei, UtdanningGodkjentValg, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 import Utdanning from './utdanning';
-import UtdanningGodkjent from './utdanning-godkjent';
 import BestattUtdanning from './utdanning-bestatt';
+import UtdanningGodkjent from './utdanning-godkjent';
 
 const meta: Meta<typeof Utdanning> = {
     title: 'Skjema/3 - Utdanning',

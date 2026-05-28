@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useCallback, useContext, useState } from 'react';
+import { createContext, type ReactNode, useCallback, useContext, useState } from 'react';
 
 interface ErrorProviderType {
     error: Error | null;
@@ -26,7 +26,7 @@ function ErrorProvider({ children }: { children: ReactNode }) {
                     setError(e as Error);
                 }
             },
-            [setError]
+            [setError],
         ),
     };
 

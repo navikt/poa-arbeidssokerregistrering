@@ -1,6 +1,6 @@
-import { isEnabled } from '@/lib/unleash-is-enabled';
-import { NextRequest } from 'next/server';
 import { HttpResponse } from 'msw';
+import type { NextRequest } from 'next/server';
+import { isEnabled } from '@/lib/unleash-is-enabled';
 
 function brukerMock() {
     return process.env.ENABLE_MOCK === 'enabled';

@@ -1,6 +1,6 @@
-import styles from './styles.module.css';
-import { BodyShort } from '@navikt/ds-react';
 import { ArrowRightIcon } from '@navikt/aksel-icons';
+import { BodyShort } from '@navikt/ds-react';
+import styles from './styles.module.css';
 
 interface Props {
     href: string;

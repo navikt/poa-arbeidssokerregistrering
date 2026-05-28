@@ -1,4 +1,4 @@
-import { Faro, initializeFaro } from '@grafana/faro-web-sdk';
+import { type Faro, initializeFaro } from '@grafana/faro-web-sdk';
 
 const isBrowser = () => typeof window !== 'undefined';
 const isProduction = isBrowser() && window.location.href.includes('www.nav.no');

@@ -1,6 +1,6 @@
-import { Alert, Link } from '@navikt/ds-react';
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { Alert, Link } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 

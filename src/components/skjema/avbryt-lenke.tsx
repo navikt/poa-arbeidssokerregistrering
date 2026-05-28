@@ -1,12 +1,11 @@
 'use client';
 
+import { XMarkIcon } from '@navikt/aksel-icons';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong, Button, Dialog, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/navigation';
-
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import useSprak from '../../hooks/useSprak';
 import { loggAktivitet, loggFlyt } from '@/lib/tracker';
-import { XMarkIcon } from '@navikt/aksel-icons';
+import useSprak from '../../hooks/useSprak';
 
 const TEKSTER: Tekster<string> = {
     nb: {

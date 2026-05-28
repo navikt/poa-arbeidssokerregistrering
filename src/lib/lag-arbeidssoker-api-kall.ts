@@ -1,8 +1,8 @@
-import { nanoid } from 'nanoid';
-import { getHeaders, INNGANG_CLIENT_ID } from './next-api-handler';
 import { logger } from '@navikt/next-logger';
-import { NextRequest, NextResponse } from 'next/server';
 import { getToken, parseIdportenToken, requestTokenxOboToken } from '@navikt/oasis';
+import { nanoid } from 'nanoid';
+import { type NextRequest, NextResponse } from 'next/server';
+import { getHeaders, INNGANG_CLIENT_ID } from './next-api-handler';
 
 const brukerMock = process.env.NEXT_PUBLIC_ENABLE_MOCK === 'enabled';
 

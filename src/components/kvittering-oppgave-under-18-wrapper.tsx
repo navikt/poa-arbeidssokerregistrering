@@ -1,14 +1,14 @@
 'use client';
 
+import { Loader } from '@navikt/ds-react';
 import { useCallback, useEffect, useState } from 'react';
+import { fetcher as api } from '@/lib/api-utils';
+import { loggAktivitet } from '@/lib/tracker';
 import {
     KvitteringOppgaveIkkeOpprettet,
     KvitteringOppgaveOpprettet,
-    Opprettelsesfeil,
+    type Opprettelsesfeil,
 } from './KvitteringOppgaveUnder18';
-import { Loader } from '@navikt/ds-react';
-import { loggAktivitet } from '@/lib/tracker';
-import { fetcher as api } from '@/lib/api-utils';
 
 export default function KvitteringUnder18Wrapper() {
     const [responseMottatt, settResponseMottatt] = useState<boolean>(false);

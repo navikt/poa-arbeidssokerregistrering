@@ -1,6 +1,6 @@
+import { Box, Button, Heading } from '@navikt/ds-react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { Box, Button, Heading } from '@navikt/ds-react';
 
 import { SkjemaSide } from '../../model/skjema';
 

@@ -1,27 +1,25 @@
 'use client';
 
-import Head from 'next/head';
-import Image from 'next/image';
 import virkedager from '@alheimsins/virkedager';
+import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import {
     Alert,
-    AlertProps,
+    type AlertProps,
     BodyLong,
     BodyShort,
+    GlobalAlert,
     GuidePanel,
     Heading,
-    Link,
     HGrid,
-    GlobalAlert,
+    Link,
 } from '@navikt/ds-react';
-import { lagHentTekstForSprak, Tekster } from '@navikt/arbeidssokerregisteret-utils';
-
-import useSprak from '../hooks/useSprak';
-
-import { formaterDato } from '../lib/date-utils';
-import { Kontaktinformasjon } from './kontaktinformasjonUnder18';
-import { loggAktivitet } from '../lib/tracker';
+import Head from 'next/head';
+import Image from 'next/image';
 import LenkePanel from '../components/lenke-panel';
+import useSprak from '../hooks/useSprak';
+import { formaterDato } from '../lib/date-utils';
+import { loggAktivitet } from '../lib/tracker';
+import { Kontaktinformasjon } from './kontaktinformasjonUnder18';
 import kvitteringIkonSvg from './kvittering-under18-ikon.svg';
 
 const TEKSTER: Tekster<string> = {

@@ -1,8 +1,8 @@
 'use client';
 
-import { createContext, Dispatch, useContext, useReducer } from 'react';
-import { SkjemaAction, skjemaReducer } from '@/lib/skjema-state';
-import { SkjemaState } from '@/model/skjema';
+import { createContext, type Dispatch, useContext, useReducer } from 'react';
+import { type SkjemaAction, skjemaReducer } from '@/lib/skjema-state';
+import type { SkjemaState } from '@/model/skjema';
 
 interface SkjemaProvider {
     skjemaState: SkjemaState;

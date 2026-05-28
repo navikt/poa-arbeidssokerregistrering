@@ -1,20 +1,18 @@
-import { preload } from 'swr';
-import Head from 'next/head';
 import {
     DinSituasjon as Jobbsituasjon,
     lagHentTekstForSprak,
     SporsmalId,
-    Tekster,
+    type Tekster,
 } from '@navikt/arbeidssokerregisteret-utils';
+import Head from 'next/head';
+import { preload } from 'swr';
 
 import useSprak from '../../hooks/useSprak';
-
-import RadioGruppe from '../radio-gruppe/radio-gruppe';
-import { SkjemaKomponentProps } from './skjema-felleskomponenter';
-import { hentTekst } from '../../model/sporsmal';
 import { fetcher } from '../../lib/api-utils';
-
+import { hentTekst } from '../../model/sporsmal';
+import RadioGruppe from '../radio-gruppe/radio-gruppe';
 import { SkjemaBox } from './skjema-box';
+import type { SkjemaKomponentProps } from './skjema-felleskomponenter';
 
 const TEKSTER: Tekster<string> = {
     nb: {

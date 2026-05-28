@@ -1,20 +1,18 @@
 'use client';
 
-import { Box, FormSummary } from '@navikt/ds-react';
-import NextLink from 'next/link';
 import {
     DinSituasjon,
     lagHentTekstForSprak,
     SisteStillingValg,
     SporsmalId,
-    Tekster,
+    type Tekster,
 } from '@navikt/arbeidssokerregisteret-utils';
-
-import useSprak from '../../../hooks/useSprak';
-
-import { hentTekst } from '@/model/sporsmal';
-import { hentSkjemaside, SkjemaState } from '@/model/skjema';
+import { Box, FormSummary } from '@navikt/ds-react';
+import NextLink from 'next/link';
 import { loggAktivitet } from '@/lib/tracker';
+import { hentSkjemaside, type SkjemaState } from '@/model/skjema';
+import { hentTekst } from '@/model/sporsmal';
+import useSprak from '../../../hooks/useSprak';
 
 type Svar = {
     spoersmal: string;
