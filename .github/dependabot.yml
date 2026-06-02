@@ -6,14 +6,15 @@ updates:
     directory: "/"
     # Check the npm registry for updates once a week
     schedule:
-      interval: "weekly"
+      interval: weekly
+      day: monday
+      time: "06:00"
+      timezone: Europe/Oslo
     cooldown:
       default-days: 7
+      semver-major-days: 14
+    open-pull-requests-limit: 10
     groups:
-      next:
-        patterns:
-          - "next"
-          - "eslint-config-next"
       aksel:
         patterns:
           - "@navikt/aksel-*"
@@ -41,3 +42,18 @@ updates:
           - "vite"
           - "@vitejs/*"
           - "vitest"
+
+  - package-ecosystem: github-actions
+      directory: /
+      schedule:
+        interval: weekly
+        day: monday
+        time: "06:00"
+        timezone: Europe/Oslo
+      cooldown:
+        default-days: 7
+      open-pull-requests-limit: 5
+      groups:
+        github-actions:
+          patterns:
+            - "*"
