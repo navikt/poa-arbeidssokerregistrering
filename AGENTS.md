@@ -35,10 +35,10 @@ pnpm install
 ```bash
 pnpm dev                  # Start dev-server (trenger naisdevice for backend-kall)
 pnpm build                # Produksjonsbygg
-pnpm lint                 # Kjør ESLint
+pnpm lint                 # Kjører biome
 pnpm test                 # Lint + vitest (watch-modus)
 pnpm test:ci              # Lint + vitest run (CI, ingen watch)
-pnpm prettier             # Formater src/**
+pnpm format               # Formater src/** med biome
 pnpm test:e2e             # Playwright e2e-tester (starter dev-server automatisk)
 pnpm test:e2e:install     # Installer Playwright-nettlesere (kjøres én gang)
 pnpm storybook            # Start Storybook for isolert komponentutvikling → http://localhost:6006
