@@ -73,7 +73,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /arbeid/registrering
 
       - name: Upload static files to NAV CDN
-        uses: nais/deploy/actions/cdn-upload/v2@master
+        uses: nais/deploy/actions/cdn-upload/v2@a7f8690f9b367fcbf5348a0a1e21d44f1aae50eb # v2
         with:
           team: paw
           source: ./.next/static
