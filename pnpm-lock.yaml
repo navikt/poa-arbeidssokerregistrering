@@ -38,8 +38,8 @@ importers:
         specifier: 8.10.6
         version: 8.10.6
       '@navikt/nav-dekoratoren-moduler':
-        specifier: 4.1.1
-        version: 4.1.1(html-react-parser@6.1.1(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
+        specifier: 4.2.1
+        version: 4.2.1(html-react-parser@6.1.1(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)
       '@navikt/next-logger':
         specifier: 5.0.0
         version: 5.0.0(next@16.2.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.1)(@playwright/test@1.60.0)(react-dom@19.2.6(react@19.2.6))(react@19.2.6))(pino@10.3.1)
@@ -1302,8 +1302,8 @@ packages:
   '@navikt/ds-tokens@8.10.6':
     resolution: {integrity: sha512-tsYS9Wy5/t6fryllnQfbzNkjD8lTA4b+enkbDj0SLTYfB4naCeXO4cog1jl3u/y3IhqqVTIMnyO7ujv1mLbYTg==, tarball: https://npm.pkg.github.com/download/@navikt/ds-tokens/8.10.6/3070167a2ab8445b7f04935d47175c87cc0167a3}
 
-  '@navikt/nav-dekoratoren-moduler@4.1.1':
-    resolution: {integrity: sha512-OyCVWavseiyGQwk8xHb6vShJtL+kOO/HIJe65QIsWrk85JV/ZeirB1/B4seA9klor1Zi9IvqyJkzl+nsJVZq9g==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.1.1/14a1ab3742f4564e5fd921553b5cce65f534edf1}
+  '@navikt/nav-dekoratoren-moduler@4.2.1':
+    resolution: {integrity: sha512-7APU6VFygRbt0uvNbc1Qrh8MZ0v6LwTXaybLwgTUxByr9ErtaUnsxvIK/ojvQi9GtXsqPWdrv/qgLwLvR/8OSQ==, tarball: https://npm.pkg.github.com/download/@navikt/nav-dekoratoren-moduler/4.2.1/085010a71cf51cc25abd0572ba569720e866afe2}
     engines: {node: 24.x}
     peerDependencies:
       html-react-parser: '>=5.x'
@@ -6389,7 +6389,7 @@ snapshots:
 
   '@navikt/ds-tokens@8.10.6': {}
 
-  '@navikt/nav-dekoratoren-moduler@4.1.1(html-react-parser@6.1.1(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)':
+  '@navikt/nav-dekoratoren-moduler@4.2.1(html-react-parser@6.1.1(@types/react@19.2.15)(react@19.2.6))(react@19.2.6)':
     dependencies:
       '@navikt/analytics-types': 0.0.9
       csp-header: 6.3.1
