@@ -17,14 +17,14 @@ interface OppdaterOpplysningerKnappProps {
     onSubmit(): void;
     onValiderSkjema(): boolean;
     tekst(s: string): string;
+    arbeidssoekerregisteretUrl: string;
 }
 
 const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
-    const { tekst } = props;
+    const { tekst, arbeidssoekerregisteretUrl } = props;
     const [senderSkjema, settSenderSkjema] = useState<boolean>(false);
     const [visFeilmelding, settVisFeilmelding] = useState<boolean>(false);
     const router = useRouter();
-    const { arbeidssoekerregisteretUrl } = useConfig() as Config;
     const { skjemaState, onSubmit, onValiderSkjema } = props;
     const oppdaterOpplysningerUrl = 'api/opplysninger';
 
