@@ -1,6 +1,7 @@
 import { lagHentTekstForSprak, type Sprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong } from '@navikt/ds-react';
 import Head from 'next/head';
+import { tilSprakSensitivUrl } from '@/components/skjema/avbryt-oppdatering';
 import { useConfig } from '@/contexts/config-context';
 import type { Config } from '@/model/config';
 import useSprak from '../../../hooks/useSprak';
@@ -35,11 +36,6 @@ interface Props {
 
     onSubmit(): void;
 }
-
-const tilSprakSensitivUrl = (url: string, sprak: Sprak) => {
-    const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
-    return `${url}${sprakUrl}`;
-};
 
 const OppsummeringOppdaterOpplysninger = (props: Props) => {
     const { skjemaState, skjemaPrefix, onSubmit } = props;

@@ -5,8 +5,6 @@ import { Button } from '@navikt/ds-react';
 import { logger } from '@navikt/next-logger';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
-import { useConfig } from '@/contexts/config-context';
-import type { Config } from '@/model/config';
 import type { SkjemaState } from '@/model/skjema';
 import { fetcher as api } from '../../lib/api-utils';
 import byggOpplysningerPayload from '../../lib/bygg-opplysninger-payload';
@@ -14,9 +12,13 @@ import { FeilmeldingGenerell } from '../feilmeldinger/feilmeldinger';
 
 interface OppdaterOpplysningerKnappProps {
     skjemaState: SkjemaState;
+
     onSubmit(): void;
+
     onValiderSkjema(): boolean;
+
     tekst(s: string): string;
+
     arbeidssoekerregisteretUrl: string;
 }
 

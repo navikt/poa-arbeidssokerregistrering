@@ -1,18 +1,16 @@
 'use client';
 
-import { XMarkIcon } from '@navikt/aksel-icons';
-import { HGrid, Link } from '@navikt/ds-react';
+import { HGrid } from '@navikt/ds-react';
 import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { type Dispatch, type JSX, useEffect, useRef, useState } from 'react';
-import { useConfig } from '@/contexts/config-context';
+import AvbrytOppdatering from '@/components/skjema/avbryt-oppdatering';
 import { useSkjemaState } from '@/contexts/skjema-state-context';
 import useSprak from '@/hooks/useSprak';
 import type { SkjemaAction } from '@/lib/skjema-state';
 import type { StandardRegistreringTilstandsmaskin } from '@/lib/standard-registrering-tilstandsmaskin';
 import { loggAktivitet } from '@/lib/tracker';
-import type { Config } from '@/model/config';
 import { SkjemaSide, type SkjemaState } from '@/model/skjema';
 import RegistreringsOversikt from './registrerings-oversikt';
 import Avbryt from './skjema/avbryt-lenke';
@@ -22,6 +20,7 @@ import Overskrift from './skjema/overskrift';
 import skjemaIkonSvg from './skjema-ikon.svg';
 
 export type SiderMap = { [key: string]: JSX.Element };
+
 export interface SkjemaProps {
     aktivSide: any;
 }
@@ -46,7 +45,6 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
 
     const router = useRouter();
-    const { arbeidssoekerregisteretUrl } = useConfig() as Config;
 
     useEffect(() => {
         loggAktivitet({
@@ -141,9 +139,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                     )}
                     {urlPrefix === 'oppdater-opplysninger' && (
                         <div className="my-8">
-                            <Link href={`${arbeidssoekerregisteretUrl}${sprakUrl}`}>
-                                <XMarkIcon title="a11y-title" fontSize="1.5rem" /> Avbryt oppdatering
-                            </Link>
+                            <AvbrytOppdatering sprak={sprak} />
                         </div>
                     )}
                 </div>
