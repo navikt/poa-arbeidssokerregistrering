@@ -1,6 +1,9 @@
-import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, type Sprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong } from '@navikt/ds-react';
 import Head from 'next/head';
+import { tilSprakSensitivUrl } from '@/components/skjema/avbryt-oppdatering';
+import { useConfig } from '@/contexts/config-context';
+import type { Config } from '@/model/config';
 import useSprak from '../../../hooks/useSprak';
 import type { SkjemaState } from '../../../model/skjema';
 import OppdaterOpplysningerKnapp from '../oppdater-opplysninger-knapp';
@@ -30,6 +33,7 @@ const TEKSTER: Tekster<string> = {
 interface Props {
     skjemaState: SkjemaState;
     skjemaPrefix: '/oppdater-opplysninger/';
+
     onSubmit(): void;
 }
 
@@ -37,6 +41,7 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
     const { skjemaState, skjemaPrefix, onSubmit } = props;
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
+    const { arbeidssoekerregisteretUrl } = useConfig() as Config;
 
     const onValiderSkjema = () => {
         return true;
@@ -56,6 +61,7 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
                 onSubmit={onSubmit}
                 onValiderSkjema={onValiderSkjema}
                 tekst={tekst}
+                arbeidssoekerregisteretUrl={tilSprakSensitivUrl(arbeidssoekerregisteretUrl, sprak)}
             />
         </>
     );
