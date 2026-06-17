@@ -1,7 +1,7 @@
-import type { Preview, Decorator } from '@storybook/nextjs';
-import React from 'react';
-import { initialize, mswLoader } from 'msw-storybook-addon';
+import type { Decorator, Preview } from '@storybook/nextjs';
 import { useParams, useRouter } from '@storybook/nextjs/navigation.mock';
+import { initialize, mswLoader } from 'msw-storybook-addon';
+import React from 'react';
 import '../src/styles/globals.css';
 
 initialize();
