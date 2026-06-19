@@ -1,15 +1,13 @@
-import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
+import { lagHentTekstForSprak, type Sprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Alert, Button, Link } from '@navikt/ds-react';
-import { logger } from '@navikt/next-logger';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
-import { hentFeatures } from '../app/api/features/hent-features';
-import DemoPanel from '../components/forsiden/demo-panel';
-import { useConfig } from '../contexts/config-context';
-import { tilAktiveFeatures } from '../contexts/featuretoggle-context';
-import useSprak from '../hooks/useSprak';
-import { loggAktivitet } from '../lib/tracker';
-import type { Config } from '../model/config';
+import NextLink from 'next/link';
+import { redirect } from 'next/navigation';
+import DemoPanel from '@/components/forsiden/demo-panel';
+import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
+import { tilSprakUrl } from '@/lib/til-sprak-url';
+import { isEnabled } from '@/lib/unleash-is-enabled';
+import type { NextPageProps } from '@/types/next';
+import unleashKeys from '@/unleash-keys';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -38,20 +36,10 @@ const TEKSTER: Tekster<string> = {
     },
 };
 
-const Home = () => {
-    const router = useRouter();
-    const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
-    const { enableMock } = useConfig() as Config;
-    const brukerMock = enableMock === 'enabled';
+const brukerMock = process.env.ENABLE_MOCK === 'enabled';
 
-    useEffect(() => {
-        loggAktivitet({ aktivitet: 'Viser forsiden for arbeidssøkerregistreringen' });
-    }, []);
-
-    const logStartHandler = () => {
-        loggAktivitet({ aktivitet: 'Går til start registrering' });
-        router.push('/start');
-    };
+const DevPage = ({ sprak }: { sprak: Sprak }) => {
+    const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
         <div className="flex flex-col gap-4 mb-4">
@@ -79,31 +67,29 @@ const Home = () => {
                 </div>
             </Alert>
             <div className="flex justify-center py-8">
-                <Button onClick={() => logStartHandler()}>{tekst('startRegistrering')}</Button>
+                <NextLink href={tilSprakUrl('/start', sprak)} passHref>
+                    <Button>{tekst('startRegistrering')}</Button>
+                </NextLink>
             </div>
             <DemoPanel brukerMock={brukerMock} />
         </div>
     );
 };
 
-export default Home;
+export default async function Home({ params }: NextPageProps) {
+    const { lang } = await params;
+    const skalRedirecte = await isEnabled(unleashKeys.REDIRECT_FORSIDE);
 
-export async function getServerSideProps() {
-    try {
-        const { features } = await hentFeatures();
-        const aktiveFeatures = tilAktiveFeatures(features);
-
-        if (aktiveFeatures['arbeidssoekerregistrering.redirect-forside']) {
-            return {
-                redirect: {
-                    permanent: false,
-                    destination: process.env.FORSIDE_URL,
-                },
-            };
-        }
-    } catch (err) {
-        logger.error(`Feil ved server-side henting av feature toggles: ${err}`);
+    if (!brukerMock && skalRedirecte) {
+        return redirect(
+            tilSprakUrl(process.env.FORSIDE_URL ?? 'https://www.nav.no/registrer-arbeidssoker', lang ?? 'nb'),
+        );
     }
 
-    return { props: {} };
+    return (
+        <>
+            <SettSprakIDekorator sprak={lang ?? 'nb'} />
+            <DevPage sprak={lang ?? 'nb'} />
+        </>
+    );
 }
