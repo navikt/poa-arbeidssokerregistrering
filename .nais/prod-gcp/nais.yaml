@@ -85,6 +85,8 @@ spec:
         - /arbeid/registrering/api/isalive
         - /arbeid/registrering/api/isready
         - /arbeid/registrering/
+        - /arbeid/registrering/nn
+        - /arbeid/registrering/en
   tokenx:
     enabled: true
   accessPolicy:
