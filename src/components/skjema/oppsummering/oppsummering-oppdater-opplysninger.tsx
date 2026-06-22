@@ -2,7 +2,7 @@ import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregister
 import { BodyLong } from '@navikt/ds-react';
 import Head from 'next/head';
 import { useConfig } from '@/contexts/config-context';
-import { tilSprakUrl } from '@/lib/til-sprak-url';
+import { tilSprakUrlEkstern } from '@/lib/til-sprak-url';
 import type { Config } from '@/model/config';
 import useSprak from '../../../hooks/useSprak';
 import type { SkjemaState } from '../../../model/skjema';
@@ -61,7 +61,7 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
                 onSubmit={onSubmit}
                 onValiderSkjema={onValiderSkjema}
                 tekst={tekst}
-                arbeidssoekerregisteretUrl={tilSprakUrl(arbeidssoekerregisteretUrl, sprak)}
+                arbeidssoekerregisteretUrl={tilSprakUrlEkstern(arbeidssoekerregisteretUrl, sprak)}
             />
         </>
     );

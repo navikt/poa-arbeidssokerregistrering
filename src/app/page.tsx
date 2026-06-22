@@ -4,7 +4,7 @@ import NextLink from 'next/link';
 import { redirect } from 'next/navigation';
 import DemoPanel from '@/components/forsiden/demo-panel';
 import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
-import { tilSprakUrl } from '@/lib/til-sprak-url';
+import { tilSprakUrlEkstern, tilSprakUrlIntern } from '@/lib/til-sprak-url';
 import { isEnabled } from '@/lib/unleash-is-enabled';
 import type { NextPageProps } from '@/types/next';
 import unleashKeys from '@/unleash-keys';
@@ -67,7 +67,7 @@ const DevPage = ({ sprak }: { sprak: Sprak }) => {
                 </div>
             </Alert>
             <div className="flex justify-center py-8">
-                <NextLink href={tilSprakUrl('/start', sprak)} passHref>
+                <NextLink href={tilSprakUrlIntern('/start', sprak)} passHref>
                     <Button>{tekst('startRegistrering')}</Button>
                 </NextLink>
             </div>
@@ -82,7 +82,7 @@ export default async function Home({ params }: NextPageProps) {
 
     if (!brukerMock && skalRedirecte) {
         return redirect(
-            tilSprakUrl(process.env.FORSIDE_URL ?? 'https://www.nav.no/registrer-arbeidssoker', lang ?? 'nb'),
+            tilSprakUrlEkstern(process.env.FORSIDE_URL ?? 'https://www.nav.no/registrer-arbeidssoker', lang ?? 'nb'),
         );
     }
 
