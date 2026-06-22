@@ -71,7 +71,7 @@ const DevPage = ({ sprak }: { sprak: Sprak }) => {
                     <Button>{tekst('startRegistrering')}</Button>
                 </NextLink>
             </div>
-            <DemoPanel brukerMock={brukerMock || process.env.DEKORATOR_ENV === 'dev'} />
+            <DemoPanel brukerMock={brukerMock} />
         </div>
     );
 };
