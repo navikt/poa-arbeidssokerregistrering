@@ -1,13 +1,15 @@
+import type { Sprak } from '@navikt/arbeidssokerregisteret-utils';
 import { redirect } from 'next/navigation';
 import { FeilmeldingGenerell } from '@/components/feilmeldinger/feilmeldinger';
+import { tilSprakUrlIntern } from '@/lib/til-sprak-url';
 import {
     FeilKoderVedStartAvArbeidssoekerperiode,
     type FeilmeldingVedStartAvArbeidssoekerperiodeV2,
     ReglerForStartAvArbeidssoekerperiode,
 } from '@/model/feilsituasjonTyper';
 
-function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2 }) {
-    const { feilmelding } = props;
+function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbeidssoekerperiodeV2; sprak: Sprak }) {
+    const { feilmelding, sprak } = props;
     if (!feilmelding) return <FeilmeldingGenerell />;
 
     const { feilKode, aarsakTilAvvisning } = feilmelding;
@@ -32,13 +34,13 @@ function KanIkkeStartePeriodeV2(props: { feilmelding?: FeilmeldingVedStartAvArbe
         aarsaker.includes(ReglerForStartAvArbeidssoekerperiode.IKKE_BOSATT_I_NORGE_I_HENHOLD_TIL_FOLKEREGISTERLOVEN);
 
     if (erUnder18) {
-        redirect('/veiledning/under-18/');
+        redirect(tilSprakUrlIntern('/veiledning/under-18/', sprak));
     } else if (tekniskFeil) {
-        redirect('/feil/');
+        redirect(tilSprakUrlIntern('/feil/', sprak));
     } else if (manglendeOppholdstillatelse) {
-        redirect('/veiledning/oppholdstillatelse/');
+        redirect(tilSprakUrlIntern('/veiledning/oppholdstillatelse/', sprak));
     } else {
-        redirect('/veiledning/generell');
+        redirect(tilSprakUrlIntern('/veiledning/generell', sprak));
     }
 }
 
