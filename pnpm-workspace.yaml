@@ -24,3 +24,4 @@ minimumReleaseAgeExclude:
   - '@vitejs/plugin-react@6.0.3'
   - knip@6.18.0
   - swr@2.4.2
+  - elliptic@6.6.2
