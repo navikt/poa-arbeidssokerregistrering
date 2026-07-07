@@ -4,7 +4,8 @@ const isBrowser = () => typeof window !== 'undefined';
 const isProduction = isBrowser() && window.location.href.includes('www.nav.no');
 const isDevelopment = isBrowser() && window.location.href.includes('ansatt.dev.nav.no');
 const isDemo = isBrowser() && window.location.href.includes('ekstern.dev.nav.no');
-const isLocal = isBrowser() && window.location.href.includes('localhost');
+const isLocal =
+    isBrowser() && (window.location.href.includes('localhost') || window.location.href.includes('127.0.0.1'));
 
 const getEnvironment = () => {
     if (isProduction) {
