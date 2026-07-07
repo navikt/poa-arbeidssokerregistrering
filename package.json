@@ -44,7 +44,7 @@
     },
     "devDependencies": {
         "@biomejs/biome": "2.5.1",
-        "@playwright/test": "1.61.0",
+        "@playwright/test": "1.61.1",
         "@storybook/addon-a11y": "10.4.6",
         "@storybook/nextjs": "10.4.6",
         "@tailwindcss/postcss": "4.3.1",
