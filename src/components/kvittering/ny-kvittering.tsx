@@ -73,7 +73,7 @@ const TEKSTER = {
     },
 };
 
-const FortsettTilDagpenger = () => {
+export const FortsettTilDagpenger = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { brukerdialogDagpengerUrl } = useConfig() as Config;
@@ -111,7 +111,7 @@ const FortsettTilDagpenger = () => {
     );
 };
 
-const StandardKvittering = () => {
+export const StandardKvittering = () => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { dittNavUrl, dagpengesoknadUrl } = useConfig() as Config;
