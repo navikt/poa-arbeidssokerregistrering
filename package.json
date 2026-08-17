@@ -55,7 +55,7 @@
         "@vitejs/plugin-react": "6.0.5",
         "husky": "9.1.7",
         "jsdom": "^29.1.1",
-        "knip": "6.31.0",
+        "knip": "6.32.0",
         "lint-staged": "17.3.0",
         "msw": "2.14.6",
         "msw-storybook-addon": "3.0.0",
