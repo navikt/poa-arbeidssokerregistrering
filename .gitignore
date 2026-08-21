@@ -19,7 +19,6 @@
 
 # misc
 .DS_Store
-.idea
 *.pem
 
 # debug
@@ -39,3 +38,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 storybook-static/
+
+# IDE
+.idea
+.vscode
+.zed
