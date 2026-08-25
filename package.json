@@ -54,7 +54,7 @@
         "@types/react": "19.2.18",
         "@vitejs/plugin-react": "6.0.5",
         "husky": "9.1.7",
-        "jsdom": "^29.1.1",
+        "jsdom": "^30.0.1",
         "knip": "6.32.0",
         "lint-staged": "17.3.0",
         "msw": "2.14.6",
