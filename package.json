@@ -50,7 +50,7 @@
         "@tailwindcss/postcss": "4.3.3",
         "@testing-library/jest-dom": "7.0.0",
         "@types/lodash": "4.17.25",
-        "@types/node": "26.1.2",
+        "@types/node": "26.2.0",
         "@types/react": "19.2.18",
         "@vitejs/plugin-react": "6.0.5",
         "husky": "9.1.7",
