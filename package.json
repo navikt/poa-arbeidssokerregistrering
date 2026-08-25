@@ -49,7 +49,7 @@
         "@storybook/nextjs": "10.5.8",
         "@tailwindcss/postcss": "4.3.3",
         "@testing-library/jest-dom": "7.0.0",
-        "@types/lodash": "4.17.24",
+        "@types/lodash": "4.17.25",
         "@types/node": "26.1.2",
         "@types/react": "19.2.18",
         "@vitejs/plugin-react": "6.0.5",
