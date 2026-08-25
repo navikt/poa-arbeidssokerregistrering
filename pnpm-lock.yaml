@@ -40,7 +40,7 @@ importers:
         version: 8.16.1
       '@navikt/nav-dekoratoren-moduler':
         specifier: 4.2.2
-        version: 4.2.2(html-react-parser@6.1.5(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
+        version: 4.2.2(html-react-parser@6.1.7(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)
       '@navikt/next-logger':
         specifier: 5.0.0
         version: 5.0.0(next@16.3.0(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.62.1)(@types/node@26.1.2)(react-dom@19.2.8(react@19.2.8))(react@19.2.8))(pino@10.3.1)
@@ -54,8 +54,8 @@ importers:
         specifier: 6.3.1
         version: 6.3.1
       html-react-parser:
-        specifier: 6.1.5
-        version: 6.1.5(@types/react@19.2.18)(react@19.2.8)
+        specifier: 6.1.7
+        version: 6.1.7(@types/react@19.2.18)(react@19.2.8)
       jose:
         specifier: 6.2.8
         version: 6.2.8
@@ -3239,8 +3239,8 @@ packages:
   hmac-drbg@1.0.1:
     resolution: {integrity: sha512-Tti3gMqLdZfhOQY1Mzf/AanLiqh1WTiJgEj26ZuYQ9fbkLomzGchCws4FyrSd4VkpBfiNhaE1On+lOz894jvXg==}
 
-  html-dom-parser@8.0.0:
-    resolution: {integrity: sha512-cWLJ8mt930VceOzVfY/J+T1ou9v3ENT0BgWqy5aEZjdFp37TYLXULjX8u0vD2rBpFAkK5IofOPl0y4Gq0QLIyA==}
+  html-dom-parser@8.0.2:
+    resolution: {integrity: sha512-UnUW0rcyfkYo9OCgeo+5Pzc4lRaifZB4h8RlGRwYIJmEz97Q3OKIYhNVXhG53jmNKWvBrq9n4ZzZIZAECnatSw==}
 
   html-encoding-sniffer@6.0.0:
     resolution: {integrity: sha512-CV9TW3Y3f8/wT0BRFc1/KAVQ3TUHiXmaAb6VW9vtiMFf7SLoMd1PdAc4W3KFOFETBJUb90KatHqlsZMWV+R9Gg==}
@@ -3254,8 +3254,8 @@ packages:
     engines: {node: '>=12'}
     hasBin: true
 
-  html-react-parser@6.1.5:
-    resolution: {integrity: sha512-jhdRR0fSkdkVlAmDIk5lS+IMSjCgFSfe+nI69DUwaxkWOgid2mk7RhoYxsQ7B6hzCghAI5YPz2B1jbskHhbaLg==}
+  html-react-parser@6.1.7:
+    resolution: {integrity: sha512-TU3KHM2bDXHetJ7mKddkwdMiMJZdgpq2ZmbzGwVo7O4VECTbvczXKwjeA7+LNvy1iAr2/av351VvIis1OPEGfg==}
     peerDependencies:
       '@types/react': 0.14 || 15 || 16 || 17 || 18 || 19
       react: 0.14 || 15 || 16 || 17 || 18 || 19
@@ -6349,11 +6349,11 @@ snapshots:
 
   '@navikt/ds-tokens@8.16.1': {}
 
-  '@navikt/nav-dekoratoren-moduler@4.2.2(html-react-parser@6.1.5(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)':
+  '@navikt/nav-dekoratoren-moduler@4.2.2(html-react-parser@6.1.7(@types/react@19.2.18)(react@19.2.8))(react@19.2.8)':
     dependencies:
       '@navikt/analytics-types': 0.0.9
       csp-header: 6.3.1
-      html-react-parser: 6.1.5(@types/react@19.2.18)(react@19.2.8)
+      html-react-parser: 6.1.7(@types/react@19.2.18)(react@19.2.8)
       js-cookie: 3.0.7
       react: 19.2.8
 
@@ -8199,7 +8199,7 @@ snapshots:
       minimalistic-assert: 1.0.1
       minimalistic-crypto-utils: 1.0.1
 
-  html-dom-parser@8.0.0:
+  html-dom-parser@8.0.2:
     dependencies:
       domhandler: 6.0.1
       htmlparser2: 12.0.0
@@ -8222,10 +8222,10 @@ snapshots:
       relateurl: 0.2.7
       terser: 5.50.0
 
-  html-react-parser@6.1.5(@types/react@19.2.18)(react@19.2.8):
+  html-react-parser@6.1.7(@types/react@19.2.18)(react@19.2.8):
     dependencies:
       domhandler: 6.0.1
-      html-dom-parser: 8.0.0
+      html-dom-parser: 8.0.2
       react: 19.2.8
       react-property: 2.0.2
       style-to-js: 2.0.2
