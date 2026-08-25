@@ -43,7 +43,7 @@
         "swr": "2.4.2"
     },
     "devDependencies": {
-        "@biomejs/biome": "2.5.7",
+        "@biomejs/biome": "2.5.9",
         "@playwright/test": "1.62.1",
         "@storybook/addon-a11y": "10.5.8",
         "@storybook/nextjs": "10.5.8",
