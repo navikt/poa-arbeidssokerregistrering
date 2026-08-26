@@ -16,6 +16,7 @@ const mockConfigHandler = http.get('/arbeid/registrering/api/config/', () =>
 const meta: Meta = {
     title: 'Kvittering',
     tags: ['autodocs'],
+
     decorators: [
         (Story) => (
             <ConfigProvider>
@@ -23,12 +24,14 @@ const meta: Meta = {
             </ConfigProvider>
         ),
     ],
+
+    beforeEach({ msw }) {
+        msw.use(mockConfigHandler);
+    },
+
     parameters: {
         nextjs: {
             appDirectory: true,
-        },
-        msw: {
-            handlers: [mockConfigHandler],
         },
     },
 };

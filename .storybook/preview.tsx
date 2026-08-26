@@ -1,10 +1,8 @@
 import type { Decorator, Preview } from '@storybook/nextjs';
 import { useParams, useRouter } from '@storybook/nextjs/navigation.mock';
-import { initialize, mswLoader } from 'msw-storybook-addon';
+import { mswLoader } from 'msw-storybook-addon/csf3';
 import React from 'react';
 import '../src/styles/globals.css';
-
-initialize();
 
 /**
  * Setter useParams-mocken basert på sprak-globalen slik at useSprak()-hooken
@@ -52,7 +50,7 @@ const preview: Preview = {
             },
         },
     },
-    loaders: [mswLoader],
+    loaders: [mswLoader()],
 };
 
 export default preview;

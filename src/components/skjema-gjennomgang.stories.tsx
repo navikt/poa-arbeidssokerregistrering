@@ -26,14 +26,13 @@ import UtdanningGodkjent from './skjema/utdanning-godkjent';
 const meta: Meta = {
     title: 'Skjema/Gjennomgang',
     tags: ['autodocs'],
-    parameters: {
-        msw: {
-            handlers: [
-                http.get('/arbeid/registrering/api/sistearbeidsforhold-fra-aareg-v2/', () =>
-                    HttpResponse.json({ label: 'Sykepleier', konseptId: 628, styrk08: '2221' }),
-                ),
-            ],
-        },
+
+    beforeEach({ msw }) {
+        msw.use(
+            http.get('/arbeid/registrering/api/sistearbeidsforhold-fra-aareg-v2/', () =>
+                HttpResponse.json({ label: 'Sykepleier', konseptId: 628, styrk08: '2221' }),
+            ),
+        );
     },
 };
 
