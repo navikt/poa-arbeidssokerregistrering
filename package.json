@@ -31,7 +31,7 @@
         "@navikt/oasis": "4.2.2",
         "@unleash/nextjs": "1.6.7",
         "csp-header": "6.4.0",
-        "html-react-parser": "6.1.7",
+        "html-react-parser": "6.1.8",
         "jose": "6.2.12",
         "lodash": "4.18.1",
         "nanoid": "5.1.16",
