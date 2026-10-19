@@ -1,7 +1,7 @@
 {
     "name": "poa-arbeidssokerregistrering",
     "private": true,
-    "packageManager": "pnpm@11.22.0",
+    "packageManager": "pnpm@11.28.6",
     "scripts": {
         "dev": "next dev | pino-pretty",
         "build": "next build",
