@@ -37,7 +37,8 @@ export const initFaro = (): Faro | null => {
         isolate: true,
         url: TELEMETRY_URL[getEnvironment()],
         app: {
-            name: 'poa-arbeidssokerregistrering',
+            name: 'arbeidssokerregistrering',
+            namespace: 'paw',
             version: getEnvironment(),
         },
     });
