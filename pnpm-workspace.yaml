@@ -26,3 +26,4 @@ minimumReleaseAgeExclude:
   - swr@2.4.2
   - elliptic@6.6.2
   - image-size@2.0.3
+  - '@navikt/arbeidssokerregisteret-utils@3.0.1'

@@ -27,8 +27,8 @@ importers:
         specifier: 8.17.2
         version: 8.17.2
       '@navikt/arbeidssokerregisteret-utils':
-        specifier: 2.1.0
-        version: 2.1.0
+        specifier: 3.0.1
+        version: 3.0.1
       '@navikt/ds-css':
         specifier: 8.17.2
         version: 8.17.2
@@ -1308,9 +1308,9 @@ packages:
     resolution: {integrity: sha512-bopCvqEogyFcmrJiBxK/Mr25d6yPKF7GR36MGrJqiHCPJYf1rDu6lK4cpooTG4Q//D/1xTkHRom8ZH5BI6dTew==, tarball: https://npm.pkg.github.com/download/@navikt/analytics-types/0.0.9/5919241a6dbb782eb101fff3234ce5c36d16e942}
     engines: {node: '>=20.0.0', npm: '>=9.0.0'}
 
-  '@navikt/arbeidssokerregisteret-utils@2.1.0':
-    resolution: {integrity: sha512-c3jlOlkYo1Rw8fAWlWBBNVyL8pWmzE/yaF8ULjFlXa8aiClFm8kCKnD4bkKYWRyFo2p+dYxLNhpav6Gs+sRn9g==, tarball: https://npm.pkg.github.com/download/@navikt/arbeidssokerregisteret-utils/2.1.0/b1b2c6f00dd23e7058b897c37f7cd551f07be3e9}
-    engines: {node: '>=22.19.0'}
+  '@navikt/arbeidssokerregisteret-utils@3.0.1':
+    resolution: {integrity: sha512-OS03Rv/EthMc1itE9DNK6Fwwlrv+uXxxK8rC1sjdSXAirGzB335NdOLqd2cQmX2C9NpYeha5QcNOajUYF3FhGw==, tarball: https://npm.pkg.github.com/download/@navikt/arbeidssokerregisteret-utils/3.0.1/0d34cf9cd48a70c76c8c8d419813a21bfd9d37a6}
+    engines: {node: '>=24.22.0'}
 
   '@navikt/ds-css@8.17.2':
     resolution: {integrity: sha512-k+xkEVF5ZBSM5UoLjqDsRAn/mBrlLXL3S8JLQj3syW1i4HIu6N6FaIGMveZeobZef5rIBWwhLGsIJ8doWtgyOQ==, tarball: https://npm.pkg.github.com/download/@navikt/ds-css/8.17.2/b0294b41e7004be0e010c409ae4d42c6167c8538}
@@ -6584,7 +6584,7 @@ snapshots:
 
   '@navikt/analytics-types@0.0.9': {}
 
-  '@navikt/arbeidssokerregisteret-utils@2.1.0': {}
+  '@navikt/arbeidssokerregisteret-utils@3.0.1': {}
 
   '@navikt/ds-css@8.17.2': {}
 
