@@ -92,10 +92,10 @@ importers:
         version: 1.63.0
       '@storybook/addon-a11y':
         specifier: 10.6.1
-        version: 10.6.1(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))
+        version: 10.6.1(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))
       '@storybook/nextjs':
         specifier: 10.6.1
-        version: 10.6.1(@types/react@19.3.0)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(next@16.3.8(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.63.0)(@types/node@26.6.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(type-fest@2.19.0)(typescript@7.0.2)(webpack-hot-middleware@2.26.1)(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
+        version: 10.6.1(@types/react@19.3.0)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(next@16.3.8(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.63.0)(@types/node@26.6.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(type-fest@2.19.0)(typescript@7.0.2)(webpack-hot-middleware@2.26.1)(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       '@tailwindcss/postcss':
         specifier: 4.3.3
         version: 4.3.3
@@ -131,7 +131,7 @@ importers:
         version: 2.15.0(@types/node@26.6.4)(typescript@7.0.2)
       msw-storybook-addon:
         specifier: 3.0.3
-        version: 3.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@7.0.2))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))
+        version: 3.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@7.0.2))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))
       pino-pretty:
         specifier: 13.2.0
         version: 13.2.0
@@ -139,8 +139,8 @@ importers:
         specifier: 8.5.15
         version: 8.5.15
       storybook:
-        specifier: 10.6.1
-        version: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+        specifier: 10.6.2
+        version: 10.6.2(@types/react@19.3.0)(react@19.3.0)
       tailwindcss:
         specifier: 4.3.3
         version: 4.3.3
@@ -4806,8 +4806,8 @@ packages:
   std-env@4.2.0:
     resolution: {integrity: sha512-oCUKSupKTHX53EyjDtuZQ64pjLJ6yYCtpmEw0goYxtjG9KpbRe8KAsl2tBUGU9DyMcJ0RwJ8GqJAFzMXcXW1Rw==}
 
-  storybook@10.6.1:
-    resolution: {integrity: sha512-NeEmukMWPA5OqHizUkQtxCIhGt7MUZLPY4FFgpC0LNiipjrac/oKpH0TxI+9Zc+vI5+IoN+NiskOmBP7gtYfmA==}
+  storybook@10.6.2:
+    resolution: {integrity: sha512-qHDINMiapxFUxYb+xC3j8u7Y+85X3u+/PlytE/wmnyg+bU0agCW3jUmWP4vIh2MioO2jTK/2B3Lcw6IpRFzQBA==}
     hasBin: true
     peerDependencies:
       '@types/react': ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
@@ -7061,15 +7061,15 @@ snapshots:
 
   '@rolldown/pluginutils@1.0.1': {}
 
-  '@storybook/addon-a11y@10.6.1(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))':
+  '@storybook/addon-a11y@10.6.1(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))':
     dependencies:
       '@storybook/global': 5.0.0
       axe-core: 4.13.0
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
 
-  '@storybook/builder-webpack5@10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(typescript@7.0.2)':
+  '@storybook/builder-webpack5@10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(typescript@7.0.2)':
     dependencies:
-      '@storybook/core-webpack': 10.6.1(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))
+      '@storybook/core-webpack': 10.6.1(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))
       case-sensitive-paths-webpack-plugin: 2.4.0
       cjs-module-lexer: 1.4.3
       css-loader: 7.1.5(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
@@ -7078,7 +7078,7 @@ snapshots:
       html-webpack-plugin: 5.6.8(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       magic-string: 1.3.1
       semver: 7.8.5
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
       style-loader: 4.0.0(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       terser-webpack-plugin: 5.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       ts-dedent: 2.3.0
@@ -7108,9 +7108,9 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@storybook/core-webpack@10.6.1(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))':
+  '@storybook/core-webpack@10.6.1(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))':
     dependencies:
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
       ts-dedent: 2.3.0
 
   '@storybook/global@5.0.0': {}
@@ -7119,7 +7119,7 @@ snapshots:
     dependencies:
       react: 19.3.0
 
-  '@storybook/nextjs@10.6.1(@types/react@19.3.0)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(next@16.3.8(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.63.0)(@types/node@26.6.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(type-fest@2.19.0)(typescript@7.0.2)(webpack-hot-middleware@2.26.1)(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))':
+  '@storybook/nextjs@10.6.1(@types/react@19.3.0)(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(next@16.3.8(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.63.0)(@types/node@26.6.4)(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(type-fest@2.19.0)(typescript@7.0.2)(webpack-hot-middleware@2.26.1)(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/plugin-syntax-bigint': 7.8.3(@babel/core@7.29.7(supports-color@8.1.1))
@@ -7135,9 +7135,9 @@ snapshots:
       '@babel/preset-typescript': 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/runtime': 7.29.7
       '@pmmmwh/react-refresh-webpack-plugin': 0.5.17(react-refresh@0.14.2)(type-fest@2.19.0)(webpack-hot-middleware@2.26.1)(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
-      '@storybook/builder-webpack5': 10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(typescript@7.0.2)
-      '@storybook/preset-react-webpack': 10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)
-      '@storybook/react': 10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)
+      '@storybook/builder-webpack5': 10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(typescript@7.0.2)
+      '@storybook/preset-react-webpack': 10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)
+      '@storybook/react': 10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)
       '@types/semver': 7.8.0
       babel-loader: 9.2.1(@babel/core@7.29.7(supports-color@8.1.1))(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       css-loader: 6.11.0(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
@@ -7153,7 +7153,7 @@ snapshots:
       resolve-url-loader: 5.0.0
       sass-loader: 16.0.8(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       semver: 7.8.5
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
       style-loader: 3.3.4(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       styled-jsx: 5.1.7(@babel/core@7.29.7(supports-color@8.1.1))(react@19.3.0)
       tsconfig-paths: 4.2.0
@@ -7192,9 +7192,9 @@ snapshots:
       - webpack-hot-middleware
       - webpack-plugin-serve
 
-  '@storybook/preset-react-webpack@10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)':
+  '@storybook/preset-react-webpack@10.6.1(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(sharp@0.35.4(@types/node@26.6.4))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)':
     dependencies:
-      '@storybook/core-webpack': 10.6.1(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))
+      '@storybook/core-webpack': 10.6.1(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))
       '@storybook/react-docgen-typescript-plugin': 1.0.6--canary.9.0c3f3b7.0(supports-color@8.1.1)(typescript@7.0.2)(webpack@5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4)))
       '@types/semver': 7.8.0
       magic-string: 1.3.1
@@ -7203,7 +7203,7 @@ snapshots:
       react-dom: 19.3.0(react@19.3.0)
       resolve: 1.22.12
       semver: 7.8.5
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
       tsconfig-paths: 4.2.0
       webpack: 5.111.0(clean-css@5.3.3)(esbuild@0.28.2)(html-minifier-terser@6.1.0)(lightningcss@1.33.0)(postcss@8.5.15)(sharp@0.35.4(@types/node@26.6.4))
     optionalDependencies:
@@ -7242,23 +7242,23 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@storybook/react-dom-shim@10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))':
+  '@storybook/react-dom-shim@10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))':
     dependencies:
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
     optionalDependencies:
       '@types/react': 19.3.0
 
-  '@storybook/react@10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)':
+  '@storybook/react@10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))(supports-color@8.1.1)(typescript@7.0.2)':
     dependencies:
       '@storybook/global': 5.0.0
-      '@storybook/react-dom-shim': 10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0))
+      '@storybook/react-dom-shim': 10.6.1(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0))
       react: 19.3.0
       react-docgen: 8.0.3(supports-color@8.1.1)
       react-docgen-typescript: 2.4.0(typescript@7.0.2)
       react-dom: 19.3.0(react@19.3.0)
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
     optionalDependencies:
       '@types/react': 19.3.0
       typescript: 7.0.2
@@ -9102,10 +9102,10 @@ snapshots:
 
   ms@2.1.3: {}
 
-  msw-storybook-addon@3.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@7.0.2))(storybook@10.6.1(@types/react@19.3.0)(react@19.3.0)):
+  msw-storybook-addon@3.0.3(msw@2.15.0(@types/node@26.6.4)(typescript@7.0.2))(storybook@10.6.2(@types/react@19.3.0)(react@19.3.0)):
     dependencies:
       msw: 2.15.0(@types/node@26.6.4)(typescript@7.0.2)
-      storybook: 10.6.1(@types/react@19.3.0)(react@19.3.0)
+      storybook: 10.6.2(@types/react@19.3.0)(react@19.3.0)
 
   msw@2.15.0(@types/node@26.6.4)(typescript@7.0.2):
     dependencies:
@@ -10010,7 +10010,7 @@ snapshots:
 
   std-env@4.2.0: {}
 
-  storybook@10.6.1(@types/react@19.3.0)(react@19.3.0):
+  storybook@10.6.2(@types/react@19.3.0)(react@19.3.0):
     dependencies:
       '@storybook/global': 5.0.0
       '@storybook/icons': 2.1.0(react@19.3.0)
