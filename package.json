@@ -60,7 +60,7 @@
         "msw": "2.15.0",
         "msw-storybook-addon": "3.0.3",
         "pino-pretty": "13.2.0",
-        "postcss": "8.5.29",
+        "postcss": "8.5.31",
         "storybook": "10.6.3",
         "tailwindcss": "4.3.3",
         "typescript": "7.0.2",
