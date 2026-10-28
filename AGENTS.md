@@ -6,8 +6,8 @@ Denne filen er rettet mot AI-agenter (GitHub Copilot, Claude, Cursor, o.l.) som 
 
 **poa-arbeidssokerregistrering** er arbeidssøkerregistreringen for innbyggere på nav.no. Appen lar brukere registrere seg som arbeidssøkere via et flertrinns skjema.
 
-- **Stack:** Next.js 16, TypeScript, React 19, App Router + Pages Router
-- **Designsystem:** NAV Aksel (`@navikt/ds-react`, `@navikt/aksel-icons`)
+- **Stack:** Next.js 16, TypeScript, React 19, App Router
+- **Designsystem:** Nav Aksel (`@navikt/ds-react`, `@navikt/aksel-icons`)
 - **Auth:** ID-porten + Wonderwall (innbygger), TokenX for service-til-service
 - **Plattform:** Nais/GCP, namespace `paw`, team `paw`
 - **URL:** `/arbeid/registrering`
@@ -15,7 +15,7 @@ Denne filen er rettet mot AI-agenter (GitHub Copilot, Claude, Cursor, o.l.) som 
 
 ## Oppsett
 
-Krever Node.js 24+ og pnpm 10.
+Krever Node.js >=24.22.1 og pnpm 11.28.6. Se `engines` og `packageManager` i `package.json`. `.nvmrc` og CI bruker Node.js 24.22.1.
 
 Noen avhengigheter hentes fra GitHubs package registry. Du trenger et PAT med `read:packages`-scope og SSO konfigurert mot NAVIKT:
 
@@ -67,20 +67,23 @@ pnpm playwright test e2e/fullfor-registrering.spec.ts
 
 ### Routing
 
-Appen bruker **både App Router og Pages Router**:
+Appen bruker **App Router**:
 
-- `src/app/[lang]/` — App Router med i18n-støtte. Språk: `nb` (standard), `nn`, `en`. `[lang]`-segmentet brukes kun for `nn` og `en`; bokmål bruker rot-path.
-- `src/pages/` — Legacy Pages Router for redirect, 404 og feilsider.
+- `src/app/` inneholder bokmålsrutene, redirects, 404 og feilsider. `src/pages/` finnes ikke.
+- `src/app/[lang]/` inneholder språkvariantene `nn` og `en`. Bokmål (`nb`) er standard og bruker URL-er uten språksegment. Språkrutene gjenbruker sidekomponentene fra bokmålsrutene.
+- Alle URL-er nedenfor er relative til base-path `/arbeid/registrering`.
 
 ### Skjemaflyt
 
 Registreringen er et flertrinns skjema:
 
 ```
-/opplysninger/start → /opplysninger/1 → /opplysninger/2 → /opplysninger/3 → /opplysninger/4 → /opplysninger/5 → /opplysninger/kvittering
+/start → /opplysninger/1 → /opplysninger/2 → /opplysninger/3 → /opplysninger/4 → /opplysninger/5 → /kvittering
 ```
 
-Sidene tilsvarer `SkjemaSide`-enum-verdiene:
+`/start` sjekker om brukeren kan starte en arbeidssøkerperiode før skjemaet åpnes. `/opplysninger` videresender til `/start`.
+
+De aktive skjemasidene tilsvarer disse `SkjemaSide`-enum-verdiene:
 
 | Side | Innhold                        |
 | ---- | ------------------------------ |
@@ -89,7 +92,16 @@ Sidene tilsvarer `SkjemaSide`-enum-verdiene:
 | 3    | Utdanning                      |
 | 4    | Hindringer                     |
 | 5    | Oppsummering                   |
-| 6    | Fullfør registrering           |
+
+Brukeren fullfører registreringen fra oppsummeringen på side 5. `FullforRegistrering = '6'` finnes fortsatt i enumen, men inngår ikke i sidekartet eller tilstandsmaskinen.
+
+### Oppdatering av opplysninger
+
+`/oppdater-opplysninger` henter et snapshot av eksisterende opplysninger. Ved manglende eller avsluttet periode sendes brukeren til `/start`. Med eksisterende opplysninger åpnes oppsummeringen på `/oppdater-opplysninger/5`, ellers første skjemaside.
+
+- `src/app/oppdater-opplysninger/api.ts` henter snapshot fra backend med TokenX.
+- `src/app/oppdater-opplysninger/[side]/wrapper.tsx` initialiserer skjemastate med eksisterende opplysninger via `InitSkjema`.
+- `src/app/oppdater-opplysninger/[side]/skjema.tsx` definerer oppdateringsskjemaet. Begge skjemaflytene bruker `src/components/skjema-side-factory.tsx`.
 
 ### Tilstandsmaskin og skjemastate
 
@@ -97,26 +109,32 @@ Skjemastatus styres via `useReducer` i `SkjemaStateContext`:
 
 - **Context:** `src/contexts/skjema-state-context.tsx`
 - **Reducer og actions:** `src/lib/skjema-state.ts`
-- **Navigeringslogikk:** `src/lib/standard-registrering-tilstandsmaskin.ts` — beregner `neste`/`forrige`/`fremdrift` basert på brukerens svar. Hvilke sider som vises avhenger av `dinSituasjon`-svaret (f.eks. hopper `ALDRI_HATT_JOBB` over «Siste jobb»).
+- **Navigeringslogikk:** `src/lib/standard-registrering-tilstandsmaskin.ts` beregner `neste`/`forrige`/`fremdrift` ut fra brukerens svar. `ALDRI_HATT_JOBB` hopper over «Siste jobb», og `VIL_FORTSETTE_I_JOBB` hopper over «Utdanning».
 
 ### API-ruter (`src/app/api/`)
 
-Alle API-ruter er et proxy-lag mot backend-tjenester. Hjelpefunksjonen `lagArbeidssokerApiKall` (`src/lib/lag-arbeidssoker-api-kall.ts`) håndterer:
+API-rutene omfatter backend-proxyer, health checks (`isalive`/`isready`), konfigurasjon og Unleash. Backend-rutene bruker flere hjelpere eller egne kall. Hjelpefunksjonen `lagArbeidssokerApiKall` (`src/lib/lag-arbeidssoker-api-kall.ts`) håndterer:
 
 - Mock-modus bypass når `NEXT_PUBLIC_ENABLE_MOCK=enabled`
 - TokenX OBO token exchange via `@navikt/oasis`
 - Standard headers (`Nav-Consumer-Id`, `Nav-Call-Id`)
 
-Backend-tjenester og client IDs er definert i `src/lib/next-api-handler.ts`.
+`src/lib/next-api-handler.ts` definerer felles headers, flere client IDs, `proxyRequestWithAuth` og en TokenX-hjelper for Aareg.
+
+Serverkomponenter kaller også backend direkte. `src/app/start/api.ts` bruker `arbeidssokerApiKall` fra `src/lib/arbeidssoker-api-kall.ts`, som validerer innkommende token og utfører TokenX OBO token exchange. Snapshot-kallet i `src/app/oppdater-opplysninger/api.ts` har egen implementasjon.
 
 ### Auth
 
-- **Innbygger:** ID-porten + Wonderwall (Nais-sidecar). Tokens valideres i `src/auth/token-validation.ts` med `jose`. Støtter både TokenX og ID-porten JWTs.
-- **Service-til-service:** TokenX OBO exchange for alle kall til backend.
+- **Innbygger:** ID-porten + Wonderwall (Nais-sidecar). `src/lib/arbeidssoker-api-kall.ts` bruker `src/auth/token-validation.ts` til JWT-validering med `jose`. Valideringsfunksjonen støtter både TokenX- og ID-porten-token. Ikke anta at alle API-ruter bruker denne funksjonen.
+- **Service-til-service:** Brukerautentiserte backend-kall bruker TokenX OBO token exchange via `@navikt/oasis`.
 
 ### Feature toggles
 
-Unleash-toggles hentes via `/api/unleash` og konsumeres gjennom `FeatureTogglesProvider`. Toggle-nøkler er definert i `src/unleash-keys.ts`. I mock-modus returnerer alle toggles `true`.
+Toggle-nøkler er definert i `src/unleash-keys.ts`. Serverfunksjonen `isEnabled` i `src/lib/unleash-is-enabled.ts` brukes blant annet på forsiden og veiledningssiden for brukere under 18 år. Den returnerer `true` i mock-modus (`ENABLE_MOCK=enabled`) og `false` ved feil fra Unleash.
+
+`/api/unleash?toggle=...` bruker samme funksjon utenfor mock-modus og returnerer `true` for de forespurte nøklene i mock-modus. `FeatureTogglesProvider` i `src/contexts/feature-toggle-context.tsx` finnes fortsatt, men er ikke montert i root-layouten og har ingen brukere av hooken i appen.
+
+`/api/features` er en separat rute for Unleash-definisjoner. Den bruker `NEXT_PUBLIC_ENABLE_MOCK`; mock-definisjonen setter `arbeidssoekerregistrering.redirect-forside` til `false`.
 
 ### Språk
 
@@ -131,23 +149,27 @@ Unleash-toggles hentes via `/api/unleash` og konsumeres gjennom `FeatureTogglesP
 | `src/lib/skjema-state.ts`                          | Reducer og actions for skjemastate                                            |
 | `src/contexts/skjema-state-context.tsx`            | React context som wrapper hele skjemaet                                       |
 | `src/lib/lag-arbeidssoker-api-kall.ts`             | API-hjelper med TokenX og mock-bypass                                         |
+| `src/lib/arbeidssoker-api-kall.ts`                 | Backend-kall fra server med JWT-validering og TokenX                          |
 | `src/lib/next-api-handler.ts`                      | Backend client IDs og felles API-handler                                      |
 | `src/auth/token-validation.ts`                     | JWT-validering for ID-porten og TokenX                                        |
 | `src/unleash-keys.ts`                              | Feature toggle-nøkler                                                         |
-| `src/app/layout.tsx`                               | Root layout med NAV-dekoratør (server-side)                                   |
+| `src/lib/unleash-is-enabled.ts`                    | Evaluering av feature toggles på serveren                                    |
+| `src/components/skjema-side-factory.tsx`           | Felles visning og navigering for registrering og oppdatering                  |
+| `src/app/oppdater-opplysninger/api.ts`             | Henting av eksisterende opplysninger fra snapshot-API-et                      |
+| `src/app/layout.tsx`                               | Root layout med Nav-dekoratør (server-side)                                   |
 | `.nais/dev-gcp/nais.yaml`                          | Nais-manifest for dev                                                         |
 | `.nais/prod-gcp/nais.yaml`                         | Nais-manifest for prod                                                        |
 
 ## Konvensjoner
 
 - **Norsk navngiving:** Domenekode (variabler, funksjoner, filer) bruker norsk. `sprak` = language, `skjema` = form, `opplysninger` = information, `veiledning` = guidance, `kvittering` = receipt.
-- **Path alias:** `@/` peker på `src/` (konfigurert i `tsconfig.json` og `vitest.config.ts`).
+- **Path alias:** `@/` peker på `src/` (konfigurert i `tsconfig.json` og `vitest.config.mts`).
 - **Designsystem:** Bruk alltid Aksel-komponenter fra `@navikt/ds-react`. Ikke lag egne UI-komponenter.
 - **Logging:** Bruk `logger` fra `@navikt/next-logger` i API-ruter — aldri `console.log`.
-- **NAV-dekoratør:** Hentes server-side i `src/app/layout.tsx` via `fetchDecoratorReact`.
+- **Nav-dekoratør:** Hentes server-side i `src/app/layout.tsx` via `fetchDecoratorReact`.
 - **Deploy til dev:** Prefiks branch-navn med `dev/` for å deploye kun til dev-miljøet.
-- **Formatering:** Prettier med `printWidth: 120`, `singleQuote: true`, `tabWidth: 4`.
-- **Storybook-stories:** Legg stories i samme mappe som komponenten (`komponent.stories.tsx`). Typer importeres fra `@storybook/nextjs`, test-utils (`fn`) fra `storybook/test`. Språkvarianter settes via `parameters.nextjs.navigation.params: { lang: 'nn' }`.
+- **Formatering og lint:** Biome, konfigurert i `biome.json`, med `lineWidth: 120`, `indentWidth: 4` og `quoteStyle: 'single'`. `pnpm lint` kjører `biome check ./src`.
+- **Storybook-stories:** Legg stories i samme mappe som komponenten (`komponent.stories.tsx`). Typer importeres fra `@storybook/nextjs`, test-utils (`fn`) fra `storybook/test`. Språk styres av `globals.sprak`, for eksempel `globals: { sprak: 'nn' }` på en story, eller språkvelgeren i verktøylinjen. Dekoratøren i `.storybook/preview.tsx` setter `useParams` fra denne globalen.
 
 ## Teststrategi og sikkerhetsnett
 
@@ -166,6 +188,9 @@ Tester er det primære sikkerhetsnettet i dette repoet. Kjør relevante tester e
 | `hent-siste-arbeidsforhold.test.ts`             | Henting av arbeidsforhold              |
 | `personident-til-alder.test.ts`                 | Aldersberegning fra personident        |
 | `vis-utdanningsvalg.test.ts`                    | Visningslogikk for utdanningsvalg      |
+| `til-sprak-url.test.ts`                        | Språktilpasning av interne og eksterne URL-er |
+
+API-ruten `/api/unleash` har egne tester i `src/app/api/unleash/route.test.ts`.
 
 ### E2E-tester (Playwright) — `e2e/`
 
@@ -186,7 +211,7 @@ Tester er det primære sikkerhetsnettet i dette repoet. Kjør relevante tester e
 
 ## Hva agenter bør gjøre
 
-- **Kjør alltid `pnpm test:ci`** etter endringer — ESLint + alle enhetstester.
+- **Kjør alltid `pnpm test:ci`** etter endringer. Kommandoen kjører Biome og alle Vitest-tester.
 - **Kjør `pnpm test:e2e`** etter endringer i skjemaflyt eller UI-komponenter.
 - **Bruk mock-modus** for lokal testing (`NEXT_PUBLIC_ENABLE_MOCK=enabled ENABLE_MOCK=enabled`).
 - **Bruk norsk navngiving** for nye domenekonsepter, i tråd med eksisterende kode.
@@ -214,7 +239,7 @@ Tester er det primære sikkerhetsnettet i dette repoet. Kjør relevante tester e
 ## Bakgrunnsinformasjon
 
 - [Next.js-dokumentasjon](https://nextjs.org/)
-- [NAV Aksel designsystem](https://aksel.nav.no/)
+- [Nav Aksel designsystem](https://aksel.nav.no/)
 - [Nais-dokumentasjon](https://doc.nais.io/)
 - Testbrukere opprettes i [Dolly](https://dolly.ekstern.dev.nav.no/) for dev-miljøet.
 - Dev-miljøet nås på [ansatt.dev.nav.no/arbeid/registrering](https://www.ansatt.dev.nav.no/arbeid/registrering).
