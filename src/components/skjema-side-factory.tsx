@@ -1,7 +1,6 @@
 'use client';
 
 import { HGrid } from '@navikt/ds-react';
-import type { NextPage } from 'next';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { type Dispatch, type JSX, useEffect, useRef, useState } from 'react';
@@ -36,8 +35,6 @@ interface LagSkjemaSideProps {
     ) => JSX.Element;
     beregnNavigering: StandardRegistreringTilstandsmaskin;
 }
-
-type SkjemaSideFactory = (opts: LagSkjemaSideProps) => NextPage<SkjemaProps>;
 
 export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => {
     const { aktivSide, beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = props;
@@ -147,20 +144,3 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
         </div>
     );
 };
-
-const skjemaSideFactory: SkjemaSideFactory = (opts) => {
-    const { beregnNavigering, urlPrefix, validerSkjemaForSide, hentKomponentForSide } = opts;
-    return function SkjemaSide(props: SkjemaProps) {
-        return (
-            <SkjemaSideKomponent
-                aktivSide={props.aktivSide}
-                urlPrefix={urlPrefix}
-                validerSkjemaForSide={validerSkjemaForSide}
-                hentKomponentForSide={hentKomponentForSide}
-                beregnNavigering={beregnNavigering}
-            />
-        );
-    };
-};
-
-export default skjemaSideFactory;

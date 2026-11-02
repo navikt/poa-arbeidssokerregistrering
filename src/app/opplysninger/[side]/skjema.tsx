@@ -12,7 +12,7 @@ import SisteStilling from '@/components/skjema/siste-jobb/siste-stilling';
 import Utdanning from '@/components/skjema/utdanning';
 import BestattUtdanning from '@/components/skjema/utdanning-bestatt';
 import UtdanningGodkjent from '@/components/skjema/utdanning-godkjent';
-import skjemaSideFactory, { type SiderMap } from '@/components/skjema-side-factory';
+import { type SiderMap, SkjemaSideKomponent } from '@/components/skjema-side-factory';
 import type { SkjemaAction } from '@/lib/skjema-state';
 import { beregnNavigering } from '@/lib/standard-registrering-tilstandsmaskin';
 import visUtdanningsvalg from '@/lib/vis-utdanningsvalg';
@@ -127,17 +127,23 @@ const loggOgDispatch = (dispatch: Dispatch<SkjemaAction>) => {
     };
 };
 
-const SkjemaKomponent = skjemaSideFactory({
-    urlPrefix: 'opplysninger',
-    validerSkjemaForSide: validerOpplysningerSkjemaForSide,
-    beregnNavigering,
-    hentKomponentForSide: (side, skjemaState, dispatch, visFeilmelding) => {
-        return hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
-    },
-});
+const hentKomponentForSide = (
+    side: SkjemaSide,
+    skjemaState: SkjemaState,
+    dispatch: Dispatch<SkjemaAction>,
+    visFeilmelding: boolean,
+) => hentKomponentForSkjemaSide(side, lagSiderMap(skjemaState, loggOgDispatch(dispatch), visFeilmelding));
 
 const Skjema = (props: any) => {
-    return <SkjemaKomponent aktivSide={props.side} />;
+    return (
+        <SkjemaSideKomponent
+            aktivSide={props.side}
+            urlPrefix={'opplysninger'}
+            validerSkjemaForSide={validerOpplysningerSkjemaForSide}
+            beregnNavigering={beregnNavigering}
+            hentKomponentForSide={hentKomponentForSide}
+        />
+    );
 };
 
 export default Skjema;
