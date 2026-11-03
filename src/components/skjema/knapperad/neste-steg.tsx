@@ -30,7 +30,7 @@ const NesteSteg = (props: Props) => {
             variant={'primary'}
             onClick={onClick}
             disabled={disabled}
-            icon={<ArrowRightIcon title="a11y-title" fontSize="1.5rem" />}
+            icon={<ArrowRightIcon aria-hidden="true" fontSize="1.5rem" />}
             iconPosition={'right'}
         >
             {tekst('neste')}

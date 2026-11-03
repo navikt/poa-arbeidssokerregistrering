@@ -43,15 +43,15 @@ const Avbryt = () => {
 
     return (
         <>
-            <Dialog aria-label={tekst('ariaLabel')}>
+            <Dialog>
                 <Dialog.Trigger>
-                    <Button variant={'tertiary'} icon={<XMarkIcon title="a11y-title" fontSize="1.5rem" />}>
+                    <Button variant={'tertiary'} icon={<XMarkIcon aria-hidden="true" fontSize="1.5rem" />}>
                         {tekst('avbryt')}
                     </Button>
                 </Dialog.Trigger>
-                <Dialog.Popup width="small">
+                <Dialog.Popup width="small" aria-label={tekst('ariaLabel')}>
                     <Dialog.Header>
-                        <Heading level={'1'} size={'medium'}>
+                        <Heading level={'2'} size={'medium'}>
                             {tekst('avbryt')}
                         </Heading>
                     </Dialog.Header>

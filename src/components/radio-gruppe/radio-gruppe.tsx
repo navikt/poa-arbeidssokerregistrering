@@ -1,5 +1,6 @@
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { Radio, RadioGroup } from '@navikt/ds-react';
+import { useId } from 'react';
 import useSprak from '../../hooks/useSprak';
 
 interface RadioGruppeProps {
@@ -26,12 +27,17 @@ const TEKSTER: Tekster<string> = {
 const RadioGruppe = (props: RadioGruppeProps) => {
     const { valg, onSelect, valgt, visFeilmelding, legend, beskrivelse } = props;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
-    const error = visFeilmelding ? tekst('advarsel') : undefined;
+    const harValgtGyldigVerdi = valg.some((alternativ) => alternativ.value === valgt);
+    const error = visFeilmelding && !harValgtGyldigVerdi ? tekst('advarsel') : undefined;
+    const id = `radio-gruppe-${useId()}`;
 
     return (
         <>
             <RadioGroup
-                defaultValue={valgt}
+                id={id}
+                tabIndex={-1}
+                data-error-message={error}
+                value={valgt ?? ''}
                 legend={legend}
                 onChange={onSelect}
                 error={error}

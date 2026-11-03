@@ -8,6 +8,8 @@
 # testing
 /coverage
 /playwright-report
+/blob-report
+/all-blob-reports
 /test-results
 
 # next.js

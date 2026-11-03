@@ -54,7 +54,7 @@ const RegistreringsOversikt = (props: Props) => {
     return (
         <>
             {heading && (
-                <Heading size={'medium'} level="2" spacing>
+                <Heading id={`skjema-steg-${aktivSide}`} size={'medium'} level="2" spacing tabIndex={-1}>
                     {tekst(heading)}
                 </Heading>
             )}

@@ -18,7 +18,7 @@ const TEKSTER: Tekster<string> = {
 export function RegisteerdataVeiledningInnhold({ sprak }: { sprak: Sprak }) {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     return (
-        <Alert variant="warning">
+        <Alert variant="warning" lang={sprak === 'nb' ? undefined : 'nb'}>
             <Heading spacing size="small" level="1">
                 {tekst('overskrift')}
             </Heading>

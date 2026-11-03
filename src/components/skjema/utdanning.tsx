@@ -1,7 +1,6 @@
 'use client';
 
-import { lagHentTekstForSprak, SporsmalId, type Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
-import Head from 'next/head';
+import { SporsmalId, type Tekster, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
 
 import useSprak from '../../hooks/useSprak';
 import { hentTekst } from '../../model/sporsmal';
@@ -25,7 +24,6 @@ const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa> & { children?: R
     const { onChange, valgt, visFeilmelding, children } = props;
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
-    const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     const valg = [
         { tekst: tekst(Utdanningsnivaa.INGEN_UTDANNING), value: Utdanningsnivaa.INGEN_UTDANNING },
@@ -47,9 +45,6 @@ const Utdanning = (props: SkjemaKomponentProps<Utdanningsnivaa> & { children?: R
 
     return (
         <>
-            <Head>
-                <title>{sideTekst('sideTittel')}</title>
-            </Head>
             <SkjemaBox>
                 <form>
                     <RadioGruppe

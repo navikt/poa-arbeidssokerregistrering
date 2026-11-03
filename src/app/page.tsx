@@ -1,8 +1,8 @@
 import { lagHentTekstForSprak, type Sprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { Alert, Button, Link } from '@navikt/ds-react';
-import NextLink from 'next/link';
+import { Alert, Heading, Link } from '@navikt/ds-react';
 import { redirect } from 'next/navigation';
 import DemoPanel from '@/components/forsiden/demo-panel';
+import StartRegistreringLenke from '@/components/forsiden/start-registrering-lenke';
 import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 import { tilSprakUrlEkstern, tilSprakUrlIntern } from '@/lib/til-sprak-url';
 import { isEnabled } from '@/lib/unleash-is-enabled';
@@ -11,6 +11,7 @@ import unleashKeys from '@/unleash-keys';
 
 const TEKSTER: Tekster<string> = {
     nb: {
+        sidetittel: 'Arbeidssøkerregistrering',
         startRegistrering: 'Start registrering',
         informasjon: 'Dette er testsiden for arbeidssøkerregistrering.',
         dolly1: 'Du må ha en testbruker fra',
@@ -19,6 +20,7 @@ const TEKSTER: Tekster<string> = {
         lenke: 'startsiden for arbeidssøkerregistrering på nav.no',
     },
     nn: {
+        sidetittel: 'Arbeidssøkarregistrering',
         startRegistrering: 'Start registrering',
         informasjon: 'Dette er testsida for registrering av arbeidssøkarar.',
         dolly1: 'Du må ha ein testbrukar frå',
@@ -27,6 +29,7 @@ const TEKSTER: Tekster<string> = {
         lenke: 'startsida for arbeidssøkarregistrering på nav.no',
     },
     en: {
+        sidetittel: 'Job seeker registration',
         startRegistrering: 'Start registration',
         informasjon: 'This is the test page for job seeker registration.',
         dolly1: 'You must have a test user from',
@@ -42,8 +45,11 @@ const DevPage = ({ sprak }: { sprak: Sprak }) => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <div className="flex flex-col gap-4 mb-4">
-            <Alert variant="info">
+        <div className="flex flex-col gap-4 mb-4 w-full max-w-4xl min-w-0">
+            <Heading size="large" level="1" style={{ overflowWrap: 'anywhere' }}>
+                {tekst('sidetittel')}
+            </Heading>
+            <Alert variant="info" style={{ overflowWrap: 'anywhere' }}>
                 <div className="flex flex-col gap-4">
                     <div>{tekst('informasjon')}</div>
                     <div>
@@ -67,9 +73,7 @@ const DevPage = ({ sprak }: { sprak: Sprak }) => {
                 </div>
             </Alert>
             <div className="flex justify-center py-8">
-                <NextLink href={tilSprakUrlIntern('/start', sprak)} passHref>
-                    <Button>{tekst('startRegistrering')}</Button>
-                </NextLink>
+                <StartRegistreringLenke href={tilSprakUrlIntern('/start', sprak)} tekst={tekst('startRegistrering')} />
             </div>
             <DemoPanel brukerMock={brukerMock} />
         </div>

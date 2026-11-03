@@ -49,7 +49,7 @@ const EndreOpplysningerLink = (props: { tekst: string }) => {
     return (
         <Link href="https://www.nav.no/person/personopplysninger/#kontaktinformasjon" target="_blank">
             {props.tekst}
-            <ExternalLinkIcon />
+            <ExternalLinkIcon aria-hidden />
         </Link>
     );
 };

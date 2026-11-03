@@ -2,7 +2,6 @@
 
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong } from '@navikt/ds-react';
-import Head from 'next/head';
 import type { SkjemaState } from '@/model/skjema';
 import useSprak from '../../../hooks/useSprak';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
@@ -47,9 +46,6 @@ const Oppsummering = (props: OppsummeringProps) => {
 
     return (
         <>
-            <Head>
-                <title>{tekst('sideTittel')}</title>
-            </Head>
             <BodyLong size={'large'} className="mb-6">
                 {tekst('ingress')}
             </BodyLong>

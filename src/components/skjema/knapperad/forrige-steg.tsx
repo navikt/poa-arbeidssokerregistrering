@@ -29,7 +29,7 @@ const ForrigeSteg = (props: Props) => {
             variant={'secondary'}
             disabled={disabled}
             onClick={onClick}
-            icon={<ArrowLeftIcon title="a11y-title" fontSize="1.5rem" />}
+            icon={<ArrowLeftIcon aria-hidden="true" fontSize="1.5rem" />}
         >
             {tekst('forrige')}
         </Button>
