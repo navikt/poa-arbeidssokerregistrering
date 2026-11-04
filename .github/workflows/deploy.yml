@@ -45,7 +45,7 @@ jobs:
         run: pnpm exec knip --no-exit-code --reporter=markdown >> "$GITHUB_STEP_SUMMARY"
 
   e2e:
-    name: E2E tests (shard ${{ matrix.shard }}/4)
+    name: E2E tests (shard ${{ matrix.shard }}/8)
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -53,7 +53,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        shard: [1, 2, 3, 4]
+        shard: [1, 2, 3, 4, 5, 6, 7, 8]
     env:
       NEXT_PUBLIC_DITTNAV_URL: https://www.nav.no/minside
       NEXT_PUBLIC_ARBEIDSSOEKERREGISTERET_URL: https://www.nav.no/arbeidssoekerregisteret
@@ -85,7 +85,7 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Run E2E tests
-        run: pnpm exec playwright test --shard=${{ matrix.shard }}/4 --workers=2 --reporter=line,blob
+        run: pnpm exec playwright test --shard=${{ matrix.shard }}/8 --workers=2 --reporter=line,blob
         env:
           PLAYWRIGHT_BLOB_OUTPUT_NAME: e2e-${{ matrix.shard }}.zip
 
