@@ -35,6 +35,12 @@ const KVITTERING_SIDETITLER: Record<Sprak, string> = {
     en: 'You are now registered as a jobseeker',
 };
 
+const UNDER_18_SIDETITLER: Record<Sprak, string> = {
+    nb: 'Du trenger samtykke for å registrere deg som arbeidssøker',
+    nn: 'Du treng samtykke for å registrera deg som arbeidssøkjar',
+    en: 'You need consent to register as a job seeker',
+};
+
 const sprakMedFallback = (sprak: string): Sprak => (STOTTEDE_SPRAK.includes(sprak) ? (sprak as Sprak) : 'nb');
 
 export const hentSkjemaSidetittel = (side: string, sprak: string, prefix: SkjemaPrefix): string => {
@@ -48,3 +54,5 @@ export const hentSkjemaSidetittel = (side: string, sprak: string, prefix: Skjema
 };
 
 export const hentKvitteringSidetittel = (sprak: string): string => KVITTERING_SIDETITLER[sprakMedFallback(sprak)];
+
+export const hentUnder18Sidetittel = (sprak: string): string => UNDER_18_SIDETITLER[sprakMedFallback(sprak)];

@@ -125,7 +125,6 @@ export const KvitteringOppgaveOpprettet = () => {
 
     return (
         <div className="max-w-4xl">
-            <title>{tekst('sideTittel')}</title>
             <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
@@ -202,12 +201,10 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
             { variant: 'info', children: tekst('alertVennligstVent') },
             tekst('alleredeBedtOmKontakt'),
             tekst('tittel'),
-            tekst('sideTittel'),
         );
     }
     return (
         <GuidePanel poster illustration={<Image src={kvitteringIkonSvg} alt="" width={80} height={80} />}>
-            <title>{tekst('sideTittel')}</title>
             <Alert variant="error" className={'mb-6'}>
                 <Heading level="1" size="small">
                     {tekst('klarteIkkeOppretteHenvendelsen')}
@@ -222,10 +219,9 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     );
 };
 
-const Kvittering = (alertProps: AlertProps, infotekst: string, tittel: string, sideTittel: string) => {
+const Kvittering = (alertProps: AlertProps, infotekst: string, tittel: string) => {
     return (
         <GuidePanel poster illustration={<Image src={kvitteringIkonSvg} alt="" width={80} height={80} />}>
-            <title>{sideTittel}</title>
             <Alert variant={alertProps.variant} className={'mb-6'}>
                 {alertProps.children}
             </Alert>

@@ -1,9 +1,11 @@
 import { generateMetadata as generateEnglishReceiptMetadata } from '@/app/[lang]/kvittering/layout';
 import { generateMetadata as generateEnglishUpdateMetadata } from '@/app/[lang]/oppdater-opplysninger/[side]/layout';
 import { generateMetadata as generateEnglishRegistrationMetadata } from '@/app/[lang]/opplysninger/[side]/layout';
+import { generateMetadata as generateEnglishUnder18Metadata } from '@/app/[lang]/veiledning/under-18/layout';
 import { generateMetadata as generateReceiptMetadata } from '@/app/kvittering/layout';
 import { generateMetadata as generateUpdateMetadata } from '@/app/oppdater-opplysninger/[side]/layout';
 import { generateMetadata as generateRegistrationMetadata } from '@/app/opplysninger/[side]/layout';
+import { generateMetadata as generateUnder18Metadata } from '@/app/veiledning/under-18/layout';
 
 const sprak = {
     nb: {
@@ -16,6 +18,7 @@ const sprak = {
         ],
         oppdatering: 'Arbeidssøkerregistrering: Oppdater opplysninger',
         kvittering: 'Du er nå registrert som arbeidssøker',
+        under18: 'Du trenger samtykke for å registrere deg som arbeidssøker',
     },
     nn: {
         registrering: [
@@ -27,6 +30,7 @@ const sprak = {
         ],
         oppdatering: 'Arbeidssøkjarregistrering: Oppdater opplysningar',
         kvittering: 'Du er no registrert som arbeidssøkjar',
+        under18: 'Du treng samtykke for å registrera deg som arbeidssøkjar',
     },
     en: {
         registrering: [
@@ -38,6 +42,7 @@ const sprak = {
         ],
         oppdatering: 'Register as a Job Seeker: Is the information correct?',
         kvittering: 'You are now registered as a jobseeker',
+        under18: 'You need consent to register as a job seeker',
     },
 } as const;
 
@@ -85,5 +90,29 @@ describe('metadata for the receipt page', () => {
 
     it('re-exports the same metadata function for the language route', () => {
         expect(generateEnglishReceiptMetadata).toBe(generateReceiptMetadata);
+    });
+});
+
+describe('metadata for the under-18 guidance page', () => {
+    it.each(Object.entries(sprak))('uses the %s under-18 title', async (lang, expected) => {
+        await expect(generateUnder18Metadata({ params: Promise.resolve({ lang }), children: null })).resolves.toEqual({
+            title: expected.under18,
+        });
+    });
+
+    it('defaults to the Norwegian Bokmål title when the language is omitted', async () => {
+        await expect(generateUnder18Metadata({ params: Promise.resolve({}), children: null })).resolves.toEqual({
+            title: sprak.nb.under18,
+        });
+    });
+
+    it('defaults to the Norwegian Bokmål title for an unknown language', async () => {
+        await expect(
+            generateUnder18Metadata({ params: Promise.resolve({ lang: 'unknown' }), children: null }),
+        ).resolves.toEqual({ title: sprak.nb.under18 });
+    });
+
+    it('re-exports the same metadata function for the language route', () => {
+        expect(generateEnglishUnder18Metadata).toBe(generateUnder18Metadata);
     });
 });
