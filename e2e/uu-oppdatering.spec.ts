@@ -31,6 +31,12 @@ const editNames: Record<TestSprak, Record<'situasjon' | 'stilling' | 'utdanning'
         hindringer: /change your reply: challenges/i,
     },
 };
+const edits = [
+    { key: 'situasjon', side: 1 },
+    { key: 'stilling', side: 2 },
+    { key: 'utdanning', side: 3 },
+    { key: 'hindringer', side: 4 },
+] as const satisfies readonly { key: keyof (typeof editNames)['nb']; side: Skjemaside }[];
 
 async function gotoOppdatering(page: import('@playwright/test').Page, language: TestSprak) {
     await page.goto(language === 'nb' ? './oppdater-opplysninger' : `./${language}/oppdater-opplysninger`);
@@ -73,36 +79,54 @@ async function stubEksternDestinasjon(page: import('@playwright/test').Page, tar
 }
 
 for (const language of sprak) {
-    test(`@uu oppdatering på ${language}: oppsummering, keyboardredigering av alle fire felt og axe`, async ({
+    test(`@uu oppdatering på ${language}: oppsummering, tastaturredigering av alle fire felt og axe`, async ({
         page,
     }, testInfo) => {
         await gotoOppdatering(page, language);
         const summary = await ventPaSkjemaside(page, 5, language, 'oppdater-opplysninger');
         await expect(summary.getByRole('link', { name: /endre svaret|change your reply/i })).toHaveCount(4);
-        await assertAxeClean(page, testInfo, `oppdatering-${language}-oppsummering`);
+        await assertAxeClean(page, testInfo, `oppdatering-${language}-alle-felt-oppsummering-side-5`);
 
-        const edits: Array<{ key: keyof (typeof editNames)[typeof language]; side: Skjemaside }> = [
-            { key: 'situasjon', side: 1 },
-            { key: 'stilling', side: 2 },
-            { key: 'utdanning', side: 3 },
-            { key: 'hindringer', side: 4 },
-        ];
         for (const edit of edits) {
             await pressByKeyboard(page, page.getByRole('link', { name: editNames[language][edit.key] }));
             await ventPaSkjemaside(page, edit.side, language, 'oppdater-opplysninger');
             await expect(page.locator(`#skjema-steg-${edit.side}`)).toBeFocused({ timeout: 10_000 });
-            await assertAxeClean(page, testInfo, `oppdatering-${language}-rediger-side-${edit.side}`);
-            let currentSide = edit.side;
+            let currentSide: Skjemaside = edit.side;
+            while (currentSide < 5) {
+                currentSide = await nesteSteg(page, currentSide, language, 'oppdater-opplysninger');
+            }
+            await ventPaSkjemaside(page, 5, language, 'oppdater-opplysninger');
+        }
+    });
+
+    for (const edit of edits) {
+        test(`@uu oppdatering på ${language}: tastaturredigering av ${edit.key}, navigasjon og axe`, async ({
+            page,
+        }, testInfo) => {
+            await gotoOppdatering(page, language);
+            const summary = await ventPaSkjemaside(page, 5, language, 'oppdater-opplysninger');
+            await expect(summary.getByRole('link', { name: /endre svaret|change your reply/i })).toHaveCount(4);
+
+            await pressByKeyboard(page, page.getByRole('link', { name: editNames[language][edit.key] }));
+            await ventPaSkjemaside(page, edit.side, language, 'oppdater-opplysninger');
+            await expect(page.locator(`#skjema-steg-${edit.side}`)).toBeFocused({ timeout: 10_000 });
+            await assertAxeClean(page, testInfo, `oppdatering-${language}-${edit.key}-redigert-side-${edit.side}`);
+
+            let currentSide: Skjemaside = edit.side;
             while (currentSide < 5) {
                 currentSide = await nesteSteg(page, currentSide, language, 'oppdater-opplysninger');
                 if (currentSide < 5) {
-                    await assertAxeClean(page, testInfo, `oppdatering-${language}-navigert-side-${currentSide}`);
+                    await assertAxeClean(
+                        page,
+                        testInfo,
+                        `oppdatering-${language}-${edit.key}-navigert-side-${currentSide}`,
+                    );
                 }
             }
             await ventPaSkjemaside(page, 5, language, 'oppdater-opplysninger');
-            await assertAxeClean(page, testInfo, `oppdatering-${language}-oppsummering-etter-${edit.key}`);
-        }
-    });
+            await assertAxeClean(page, testInfo, `oppdatering-${language}-${edit.key}-oppsummering-side-5`);
+        });
+    }
 }
 
 test('@uu oppdatering: endret svar vises i oppsummering og er valgt ved ny redigering', async ({ page }, testInfo) => {

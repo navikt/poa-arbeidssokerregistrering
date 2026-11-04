@@ -2,7 +2,7 @@
 
 ## Status og avgrensning
 
-Utvikleren har bekreftet at alle lokale testkjøringer er grønne. CI-oppsettet er kontrollert statisk, men ikke kjørt i GitHub Actions ennå. Typekontroll og enhetstester supplerer nettlesertestene, men erstatter dem ikke. Testene skal synliggjøre avvik, ikke godta dem for å få en grønn kjøring.
+Utvikleren har bekreftet grønne lokale testkjøringer og bestått CI. CI-rapporten fra kjøringen med åtte shards viste fire oppdateringstester som først bestod etter retry. Oppdateringstestene er nå delt i kortere scenarioer, og CI bruker fire shards med eksplisitte testlister. Dette oppsettet er kontrollert med testlisting, typekontroll og enhetstester. Nettlesertestene er ikke kjørt etter endringen. Resultatene og tidsgevinsten må verifiseres i en ny CI-kjøring. Testene skal synliggjøre avvik, ikke godta dem for å få en grønn kjøring.
 
 En grønn testkjøring er ikke en bekreftelse på at appen oppfyller WCAG. Automatisk testing må kombineres med manuell vurdering og testing med hjelpemidler.
 
@@ -32,13 +32,15 @@ Trace, skjermbilder og video kan inneholde skjemaets svar. Ikke kjør disse test
 | Jobb | Innhold |
 | --- | --- |
 | `test` | Lint, enhetstester og Knip. |
-| `e2e` | Hele appens Playwright-suite, inkludert UU og happy-path. Fire shards kjører på separate runners med én worker hver. |
+| `e2e` | Hele appens Playwright-suite, inkludert UU og happy-path. Fire shards kjører på separate runners med to workers hver. |
 | `uu-komponenter` | Storybook-testene, med én worker på egen runner. |
 | `dekorator-smoke` | Smoke-test mot ekte dekoratør, med én worker på egen runner. |
 
 `build` venter på alle fire testjobbene. Hvis én shard eller en annen obligatorisk testjobb feiler, starter ikke produksjonsbygg, CDN-opplasting eller image-publisering. Deploy-jobbene beholder eksisterende branch-regler og avhengigheter, og er dermed også blokkert av testene. Appens UU-tester kjøres ikke en ekstra gang som egen jobb.
 
-Shardene fordeler enkelttester fordi `fullyParallel` er aktivert. Dagens 192 appkjøringer fordeles med 48 på hver shard. Installasjon og serveroppstart skjer på hver runner, så CI-tiden må måles før antallet shards justeres. `fail-fast: false` lar alle shardene fullføre og rapportere funn hvis én feiler.
+Hver runner lister alle appens tester med Playwright før nettleserkjøringen. `scripts/fordel-e2e-tester.mjs` sorterer testene etter fil, prosjekt og tittel og fordeler dem på fire testlister etter tur. Dermed spres tester fra hver fil og skjermvariant mellom shardene. Nye tester tas automatisk med. Skriptet avviser duplikater og kontrollerer at hver testidentitet inngår nøyaktig én gang. Skriptets enhetstester kjøres også i CI.
+
+Dagens 216 appkjøringer fordeles med 54 på hver shard og kjøres med `--test-list`. `fullyParallel` lar workerne hente enkelttester innenfor sin liste. Fordelingen bruker ikke historiske testvarigheter og garanterer ikke lik kjøretid. `--shuffle` brukes ikke, siden det endrer rekkefølgen innenfor en shard, ikke shardmedlemskapet. Installasjon og serveroppstart skjer på hver runner. Sammenlign tid til siste obligatoriske testjobb er ferdig, antall retries og totaltid ved neste CI-kjøring. `fail-fast: false` lar alle shardene fullføre og rapportere funn hvis én feiler.
 
 Testjobbene bruker eksplisitte, syntetiske URL-er for offentlig appkonfigurasjon. Disse verdiene er ikke satt i byggjobben og endrer ikke produksjonskonfigurasjonen. GitHub-secreten `READER_TOKEN` brukes bare under pakkeinstallasjonen. Chromium og nødvendige Linux-pakker installeres med `playwright install --with-deps chromium`.
 
@@ -54,7 +56,7 @@ En pågående kjøring avbrytes ikke av en ny push på samme branch. GitHub kan 
 | --- | --- | --- |
 | `e2e/fullfor-registrering.spec.ts` | Registrering fra `/start` gjennom fem skjemasteg til kvittering, valgt svar, forventede URL-er og ubehandlede JavaScript-feil gjennom registreringen. Kjøres i Chromium med desktop-bredde og 320 CSS-piksler. | Tastaturbetjening, skjermleseropplevelse, kontrast og fravær av avklipping. Testen bruker fortsatt museklikk. |
 | `e2e/uu-skjemaflyt.spec.ts` | Registrering på bokmål, nynorsk og engelsk, tastaturbetjening, struktur, språk, sidetitler og fokus. Axe-skanning av skjemasteg og kvittering. Egne tester for hopp over siste jobb eller utdanning, underspørsmål og radiogruppe for tidligere jobb. | At alle kombinasjoner av svar er brukervennlige, eller at skjermleseren formidler innholdet godt. |
-| `e2e/uu-oppdatering.spec.ts` | Oppsummering og tastaturredigering av de fire seksjonene på tre språk. Endrede svar beholdes. Reflow og tekstavstand på oppsummering og utdanning. Innsending og avbrudd til konfigurert destinasjon fanges lokalt. | Innhold eller UU i appen det videresendes til. |
+| `e2e/uu-oppdatering.spec.ts` | Selvstendige tastaturtester per seksjon på tre språk, med fokus, navigasjon og axe på redigert side, mellomliggende sider og oppsummering. En sammenhengende redigeringsflyt per språk beholder navigasjonskontrollene, men skanner bare første oppsummering med axe. Endrede svar beholdes. Reflow og tekstavstand på oppsummering og utdanning. Innsending og avbrudd til konfigurert destinasjon fanges lokalt. | Innhold eller UU i appen det videresendes til. |
 | `e2e/uu-interaksjon.spec.ts` | Manglende svar, feiloppsummering, lenker til feilfelter og retting av feil. Stillingssøk med piltaster, Enter og Escape, inkludert fallback når søket ikke har treff. Avbryt-dialog med navn, fokusfelle og retur av fokus. Axe-skanning av åpne og ugyldige tilstander. | Faktisk opplesning av feil og søkeforslag. Fokuskontrast og om hele fokusindikatoren er synlig. |
 | `e2e/uu-innsending.spec.ts` | Lastende og deaktivert innsendingsknapp, tilgjengelig navn, kvittering og teknisk feil fra hvert av registreringens to API-kall. Kontrollert forsinkelse brukes i stedet for fast ventetid. | Driftssituasjoner og sesjonsutløp mot ekte backend. |
 | `e2e/uu-sider.spec.ts` | Feilsider, veiledning, begge kvitteringsvariantene, 404 og mockforsiden på tilgjengelige språk. Separate tester for axe, reflow ved 320 CSS-piksler og økt tekstavstand. | Språklig kvalitet eller full lesbarhet ved zoom og skjermleserbruk. Mockforsiden er ikke den eksterne innbyggerforsiden på nav.no. |
