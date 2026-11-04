@@ -1,6 +1,6 @@
 'use client';
 
-import { HGrid } from '@navikt/ds-react';
+import { ErrorSummary, HGrid } from '@navikt/ds-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { type Dispatch, type JSX, useEffect, useRef, useState } from 'react';
@@ -19,6 +19,12 @@ import Overskrift from './skjema/overskrift';
 import skjemaIkonSvg from './skjema-ikon.svg';
 
 export type SiderMap = { [key: string]: JSX.Element };
+
+interface RadioGruppeFeil {
+    id: string;
+    legend: string;
+    melding: string;
+}
 
 export interface SkjemaProps {
     aktivSide: any;
@@ -51,6 +57,10 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
 
     const { skjemaState, dispatch } = useSkjemaState();
     const [harNavigertMedUgyldigState, settHarNavigertMedUgyldigState] = useState<boolean>(false);
+    const [valideringsforsok, settValideringsforsok] = useState(0);
+    const [radioGruppeFeil, settRadioGruppeFeil] = useState<RadioGruppeFeil[]>([]);
+    const sisteFokuserteValideringsforsok = useRef(0);
+    const errorSummaryRef = useRef<HTMLDivElement>(null);
 
     const { forrige, neste, fremdrift } = beregnNavigering(aktivSide, skjemaState);
 
@@ -80,6 +90,7 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     const validerOgGaaTilNeste = () => {
         if (!validerSkjemaForSide(aktivSide, skjemaState)) {
             settHarNavigertMedUgyldigState(true);
+            settValideringsforsok((antall) => antall + 1);
             return;
         }
 
@@ -93,24 +104,54 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     const skjemaWrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        const inputElement: HTMLInputElement | null | undefined =
-            skjemaWrapperRef.current?.querySelector('input[checked]') ||
-            skjemaWrapperRef.current?.querySelector('input');
-        if (inputElement) {
-            inputElement.focus();
-        }
+        const heading =
+            skjemaWrapperRef.current?.querySelector<HTMLElement>(`#skjema-steg-${aktivSide}`) ??
+            skjemaWrapperRef.current?.querySelector<HTMLElement>('h1');
+        heading?.focus();
     }, [aktivSide]);
 
     const forrigeLenke = forrige ? `${sprakUrl}/${urlPrefix}/${forrige}/` : undefined;
     const visFeilmelding = harNavigertMedUgyldigState && !validerSkjemaForSide(aktivSide, skjemaState);
 
+    useEffect(() => {
+        if (!visFeilmelding) {
+            settRadioGruppeFeil([]);
+            return;
+        }
+
+        const feil = Array.from(
+            skjemaWrapperRef.current?.querySelectorAll<HTMLFieldSetElement>(
+                'fieldset[role="radiogroup"][data-error-message]',
+            ) ?? [],
+        ).map((gruppe) => ({
+            id: gruppe.id,
+            legend: gruppe.querySelector('legend')?.textContent?.trim() ?? '',
+            melding: gruppe.dataset.errorMessage ?? '',
+        }));
+        settRadioGruppeFeil(feil.filter((gruppe) => gruppe.id && gruppe.melding));
+    }, [aktivSide, skjemaState, valideringsforsok, visFeilmelding]);
+
+    useEffect(() => {
+        if (!visFeilmelding || !valideringsforsok || sisteFokuserteValideringsforsok.current === valideringsforsok) {
+            return;
+        }
+
+        if (radioGruppeFeil.length === 1) {
+            document.getElementById(radioGruppeFeil[0].id)?.focus();
+            sisteFokuserteValideringsforsok.current = valideringsforsok;
+        } else if (radioGruppeFeil.length > 1 && errorSummaryRef.current) {
+            errorSummaryRef.current.focus();
+            sisteFokuserteValideringsforsok.current = valideringsforsok;
+        }
+    }, [radioGruppeFeil, valideringsforsok, visFeilmelding]);
+
     return (
-        <div ref={skjemaWrapperRef} className={'max-w-4xl'}>
-            <HGrid columns={{ sm: 1, md: 1, lg: '1fr 11fr', xl: '1fr 11fr' }} gap={{ lg: 'space-24' }}>
+        <div ref={skjemaWrapperRef} className={'w-full max-w-4xl min-w-0'}>
+            <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: '1fr 11fr', xl: '1fr 11fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
-                    <Image src={skjemaIkonSvg} alt="ikon" width={96} height={96} />
+                    <Image src={skjemaIkonSvg} alt="" width={96} height={96} />
                 </div>
-                <div className={urlPrefix === 'oppdater-opplysninger' ? '' : 'sm:mt-8'}>
+                <div className={`min-w-0 max-w-full ${urlPrefix === 'oppdater-opplysninger' ? '' : 'sm:mt-8'}`}>
                     <Overskrift erOppdaterOpplysninger={urlPrefix === 'oppdater-opplysninger'} />
                     <RegistreringsOversikt
                         aktivSide={props.aktivSide}
@@ -120,8 +161,27 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                         skjemaPrefix={urlPrefix}
                     />
                     {hentKomponentForSide(aktivSide, skjemaState, dispatch, visFeilmelding)}
+                    {visFeilmelding && radioGruppeFeil.length > 1 && (
+                        <ErrorSummary
+                            ref={errorSummaryRef}
+                            className="my-8"
+                            heading={
+                                sprak === 'nn'
+                                    ? 'Du må rette desse feila før du kan gå vidare:'
+                                    : sprak === 'en'
+                                      ? 'You must correct these errors before you can continue:'
+                                      : 'Du må rette disse feilene før du kan fortsette:'
+                            }
+                        >
+                            {radioGruppeFeil.map(({ id, legend, melding }) => (
+                                <ErrorSummary.Item href={`#${id}`} key={id}>
+                                    {legend ? `${legend}: ${melding}` : melding}
+                                </ErrorSummary.Item>
+                            ))}
+                        </ErrorSummary>
+                    )}
                     {neste && (
-                        <div className={'flex my-8'}>
+                        <div className={'my-8 flex flex-wrap gap-4'}>
                             <ForrigeSteg
                                 disabled={!forrigeLenke}
                                 onClick={() => navigerTilSide(forrige as SkjemaSide)}

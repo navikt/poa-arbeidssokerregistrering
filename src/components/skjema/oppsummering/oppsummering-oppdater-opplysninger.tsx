@@ -1,6 +1,5 @@
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong } from '@navikt/ds-react';
-import Head from 'next/head';
 import { useConfig } from '@/contexts/config-context';
 import { tilSprakUrlEkstern } from '@/lib/til-sprak-url';
 import type { Config } from '@/model/config';
@@ -49,9 +48,6 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
 
     return (
         <>
-            <Head>
-                <title>{tekst('sideTittel')}</title>
-            </Head>
             <BodyLong size={'large'} className="mb-6">
                 {tekst('ingress')}
             </BodyLong>

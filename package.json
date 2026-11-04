@@ -12,6 +12,9 @@
         "test": "pnpm lint && vitest",
         "test:ci": "pnpm lint && vitest run",
         "test:e2e": "playwright test",
+        "test:uu": "playwright test --grep @uu",
+        "test:uu:komponenter": "playwright test --config playwright.uu-komponenter.config.ts",
+        "test:dekorator": "UU_DEKORATOR_SMOKE=1 playwright test",
         "test:e2e:ci": "playwright test --reporter=line",
         "test:e2e:install": "playwright install chromium",
         "refresh": "rm -rf node_modules && rm pnpm-lock.yaml && pnpm i --ignore-scripts",
@@ -39,11 +42,11 @@
         "next": "16.4.3",
         "pino": "10.4.0",
         "react": "19.3.1",
-        "react-autosuggest": "10.1.0",
         "react-dom": "19.3.1",
         "swr": "2.5.1"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.14.0",
         "@biomejs/biome": "2.6.3",
         "@playwright/test": "1.64.1",
         "@storybook/addon-a11y": "10.6.3",

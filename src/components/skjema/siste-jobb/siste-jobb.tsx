@@ -2,8 +2,7 @@
 
 import { lagHentTekstForSprak, type SisteJobb, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { BodyLong, Button, Heading, ReadMore } from '@navikt/ds-react';
-import Head from 'next/head';
-import { type JSX, useEffect, useState } from 'react';
+import { type JSX, useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 
 import useSprak from '@/hooks/useSprak';
@@ -21,6 +20,7 @@ const TEKSTER: Tekster<string> = {
         brukesTilInnhold:
             'Vi bruker opplysningene til å lage offentlig statistikk om arbeidsmarkedet. Hvis opplysningene er feil, kan du endre dem. Da får NAV riktigere statistikk. Vær oppmerksom på at opplysningene er hentet fra Arbeidsgiver- og arbeidstakerregisteret (Aa-registeret). Endrer du opplysninger hos NAV, blir de bare lagret hos oss. I Aa-registeret er det kun arbeidsgivere som kan endre.',
         stilling: 'Stilling',
+        stillingSokLabel: 'Søk etter stilling',
         endreKnapp: 'Endre',
     },
     nn: {
@@ -31,6 +31,7 @@ const TEKSTER: Tekster<string> = {
         brukesTilInnhold:
             'Vi bruker opplysningane til å lage offentleg statistikk om arbeidsmarknaden. Dersom opplysningane er feil, kan du endre dei. Dette bidrar til at NAV får rettare statistikk. Ver merksam på at opplysningane er henta frå Arbeidsgivar- og arbeidstakarregisteret (Aa-registeret). Dersom du endrar opplysningar hos NAV, blir dei berre lagra hos oss. Det er berre arbeidsgivarar som kan gjere endringar i Aa-registeret.',
         stilling: 'Stilling',
+        stillingSokLabel: 'Søk etter stilling',
         endreKnapp: 'Endre',
     },
     en: {
@@ -42,6 +43,7 @@ const TEKSTER: Tekster<string> = {
         brukesTilInnhold:
             "We use the information to compile public statistics on the labour market. If the information is incorrect, you can change it. This will give NAV more accurate statistics. Please note that the information is retrieved from the State Register of Employers and Employees (Aa Register). If you change NAV's information, it will only be stored with us. Only employers can change the information in the Aa Register.",
         stilling: 'Position',
+        stillingSokLabel: 'Search for a position',
         endreKnapp: 'Change',
     },
 };
@@ -58,12 +60,22 @@ const SisteJobbSkjema = (
     const { onChange, visSisteJobb } = props;
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
     const [visStillingsSok, settVisStillingsSok] = useState<boolean>(false);
+    const endreKnappRef = useRef<HTMLButtonElement>(null);
+    const fokusEndreKnappEtterSok = useRef(false);
     const onCloseStillingssok = (value?: any) => {
+        fokusEndreKnappEtterSok.current = true;
         if (value) {
             onChange(value);
         }
         settVisStillingsSok(false);
     };
+
+    useEffect(() => {
+        if (!visStillingsSok && fokusEndreKnappEtterSok.current) {
+            endreKnappRef.current?.focus();
+            fokusEndreKnappEtterSok.current = false;
+        }
+    }, [visStillingsSok]);
 
     const sisteArbeidsforholdUrl = 'api/sistearbeidsforhold-fra-aareg-v2/';
 
@@ -87,9 +99,6 @@ const SisteJobbSkjema = (
 
     return (
         <>
-            <Head>
-                <title>{tekst('sideTittel')}</title>
-            </Head>
             <SkjemaBox>
                 <div>
                     <BodyLong>{tekst('registrert')}</BodyLong>
@@ -103,13 +112,14 @@ const SisteJobbSkjema = (
                                 {tekst('stilling')}
                             </Heading>
                             {visStillingsSok ? (
-                                <StillingsSok onClose={onCloseStillingssok} />
+                                <StillingsSok label={tekst('stillingSokLabel')} onClose={onCloseStillingssok} />
                             ) : (
                                 <div>
                                     {props.valgt?.label}
                                     <Button
                                         variant="tertiary"
                                         className="ml-4"
+                                        ref={endreKnappRef}
                                         onClick={() => settVisStillingsSok(true)}
                                     >
                                         {tekst('endreKnapp')}

@@ -15,19 +15,21 @@ const getSprakAttribute = (sprak: Sprak) => {
 const SettSprakIDekorator = ({ sprak }: { sprak: Sprak }) => {
     const router = useRouter();
 
-    onLanguageSelect((language) => {
-        const [_leadingSlash, _arbeid, _registrering, _oldLocale, ...rest] = window.location.pathname.split('/');
+    useEffect(() => {
+        onLanguageSelect((language) => {
+            const [_leadingSlash, _arbeid, _registrering, _oldLocale, ...rest] = window.location.pathname.split('/');
 
-        if (!erStottetSprak(_oldLocale)) {
-            // språk er 'nb', så _oldLocale inneholder basePath
-            rest.unshift(_oldLocale);
-        }
+            if (!erStottetSprak(_oldLocale)) {
+                // språk er 'nb', så _oldLocale inneholder basePath
+                rest.unshift(_oldLocale);
+            }
 
-        const slug = rest.join('/');
-        const sprakUrl = language.locale === 'nb' ? '' : `/${language.locale}`;
+            const slug = rest.join('/');
+            const sprakUrl = language.locale === 'nb' ? '' : `/${language.locale}`;
 
-        router.push(`${sprakUrl}/${slug}`);
-    });
+            router.push(`${sprakUrl}/${slug}`);
+        });
+    }, [router]);
 
     useEffect(() => {
         setParams({ language: sprak });

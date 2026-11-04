@@ -2,18 +2,7 @@
 
 import virkedager from '@alheimsins/virkedager';
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import {
-    Alert,
-    type AlertProps,
-    BodyLong,
-    BodyShort,
-    GlobalAlert,
-    GuidePanel,
-    Heading,
-    HGrid,
-    Link,
-} from '@navikt/ds-react';
-import Head from 'next/head';
+import { Alert, type AlertProps, BodyLong, GlobalAlert, GuidePanel, Heading, HGrid, Link } from '@navikt/ds-react';
 import Image from 'next/image';
 import LenkePanel from '../components/lenke-panel';
 import useSprak from '../hooks/useSprak';
@@ -35,11 +24,7 @@ const TEKSTER: Tekster<string> = {
         kontaktOssLenke: 'https://www.nav.no/kontaktoss',
         kontaktOssLenkeTittel: 'Kontakt oss',
         kontaktOssLenkeBeskrivelse: 'Ta kontakt med Nav',
-        alertTittel: 'Du må ha samtykke for å registrere deg',
-        alertContent1:
-            'Du er under 18 år og trenger samtykke fra foresatte for å kunne registrere deg som arbeidssøker',
-        alertContent2: 'En veileder hos oss vil kontakte deg innen utgangen av',
-        alertContent3: 'Veilederen vil hjelpe deg videre med samtykke og registrering',
+        innholdHeading: 'Informasjon og hjelp',
         alertVennligstVent: 'Vennligst vent',
         alleredeBedtOmKontakt:
             'Du har allerede bedt oss kontakte deg. Vi tar kontakt i løpet av to arbeidsdager regnet fra den første meldingen. Pass på at kontaktopplysningene dine er oppdatert ellers kan vi ikke nå deg.',
@@ -73,6 +58,7 @@ const TEKSTER: Tekster<string> = {
         kontaktOssLenke: 'https://www.nav.no/kontaktoss',
         kontaktOssLenkeTittel: 'Kontakt oss',
         kontaktOssLenkeBeskrivelse: 'Ta kontakt med Nav',
+        innholdHeading: 'Informasjon og hjelp',
         alertVennligstVent: 'Vent litt',
         alleredeBedtOmKontakt:
             'Du har allereie spurt oss om å kontakte deg. Vi tek kontakt i løpet av to arbeidsdagar rekna frå første melding. Pass på at kontaktopplysningane dine er oppdaterte, slik at vi kan nå tak i deg.',
@@ -106,6 +92,7 @@ const TEKSTER: Tekster<string> = {
         kontaktOssLenke: 'https://www.nav.no/kontaktoss/en',
         kontaktOssLenkeTittel: 'Contact us',
         kontaktOssLenkeBeskrivelse: 'Contact Nav',
+        innholdHeading: 'Information and help',
         alertVennligstVent: 'Please wait',
         alleredeBedtOmKontakt:
             'You have already asked us to contact you. We will contact you within two working days counting from the first message. Make sure your contact information is up to date or we will not be able to reach you.',
@@ -138,12 +125,9 @@ export const KvitteringOppgaveOpprettet = () => {
 
     return (
         <div className="max-w-4xl">
-            <Head>
-                <title>{tekst('sideTittel')}</title>
-            </Head>
             <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
-                    <Image src={kvitteringIkonSvg} alt="ikon" width={96} height={96} />
+                    <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
                 </div>
                 <div>
                     <Heading size={'xlarge'} level={'1'} spacing>
@@ -151,18 +135,16 @@ export const KvitteringOppgaveOpprettet = () => {
                     </Heading>
                     <GlobalAlert status="warning">
                         <GlobalAlert.Header>
-                            <GlobalAlert.Title>{tekst('alertTittel')}</GlobalAlert.Title>
+                            <GlobalAlert.Title>{tekst('sideTittel')}</GlobalAlert.Title>
                         </GlobalAlert.Header>
                         <GlobalAlert.Content>
-                            <BodyLong spacing>{tekst('alertContent1')}</BodyLong>
+                            <BodyLong spacing>{tekst('trengerSamtykke')}</BodyLong>
                             <BodyLong spacing>
-                                {tekst('alertContent2')} {toVirkedagerFraNaa} {tekst('alertContent3')}
+                                {tekst('veilederKontakterDeg')} {toVirkedagerFraNaa} {tekst('veilederenHjelperDeg')}
                             </BodyLong>
                         </GlobalAlert.Content>
                     </GlobalAlert>
-                    <BodyShort spacing>{tekst('body1')}</BodyShort>
-                    <BodyLong spacing>{tekst('body2')}</BodyLong>
-                    <Heading spacing size={'small'} level={'3'}>
+                    <Heading spacing size={'small'} level={'2'}>
                         {tekst('innholdHeading')}
                     </Heading>
                     <ul className={'list-none'}>
@@ -215,12 +197,18 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     const tekst = lagHentTekstForSprak(TEKSTER, useSprak());
 
     if (props.feil === 'finnesAllerede') {
-        return Kvittering({ variant: 'info', children: tekst('alertVennligstVent') }, tekst('alleredeBedtOmKontakt'));
+        return Kvittering(
+            { variant: 'info', children: tekst('alertVennligstVent') },
+            tekst('alleredeBedtOmKontakt'),
+            tekst('tittel'),
+        );
     }
     return (
-        <GuidePanel poster>
+        <GuidePanel poster illustration={<Image src={kvitteringIkonSvg} alt="" width={80} height={80} />}>
             <Alert variant="error" className={'mb-6'}>
-                {tekst('klarteIkkeOppretteHenvendelsen')}
+                <Heading level="1" size="small">
+                    {tekst('klarteIkkeOppretteHenvendelsen')}
+                </Heading>
             </Alert>
             <BodyLong spacing>{tekst('duErUnder18')}</BodyLong>
             <BodyLong spacing>{tekst('viHarForsoektOppretteMelding')}</BodyLong>
@@ -231,9 +219,9 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     );
 };
 
-const Kvittering = (alertProps: AlertProps, infotekst: string, tittel?: string) => {
+const Kvittering = (alertProps: AlertProps, infotekst: string, tittel: string) => {
     return (
-        <GuidePanel poster>
+        <GuidePanel poster illustration={<Image src={kvitteringIkonSvg} alt="" width={80} height={80} />}>
             <Alert variant={alertProps.variant} className={'mb-6'}>
                 {alertProps.children}
             </Alert>

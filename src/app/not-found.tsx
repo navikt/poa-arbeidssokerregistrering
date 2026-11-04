@@ -17,7 +17,7 @@ export default function NotFound() {
                         </ListItem>
                     </List>
                 </VStack>
-                <div>
+                <div lang="en">
                     <Heading level="2" size="large" spacing>
                         Page not found
                     </Heading>

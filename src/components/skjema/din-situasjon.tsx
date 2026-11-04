@@ -1,10 +1,4 @@
-import {
-    DinSituasjon as Jobbsituasjon,
-    lagHentTekstForSprak,
-    SporsmalId,
-    type Tekster,
-} from '@navikt/arbeidssokerregisteret-utils';
-import Head from 'next/head';
+import { DinSituasjon as Jobbsituasjon, SporsmalId, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
 import { preload } from 'swr';
 
 import useSprak from '../../hooks/useSprak';
@@ -30,7 +24,6 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
     const { onChange, valgt, visFeilmelding } = props;
     const sprak = useSprak();
     const tekst = (key: string) => hentTekst(sprak, key);
-    const sideTekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     const valg = [
         { tekst: tekst(Jobbsituasjon.MISTET_JOBBEN), value: Jobbsituasjon.MISTET_JOBBEN },
@@ -58,9 +51,6 @@ const DinSituasjon = (props: SkjemaKomponentProps<Jobbsituasjon>) => {
 
     return (
         <>
-            <Head>
-                <title>{sideTekst('sideTittel')}</title>
-            </Head>
             <SkjemaBox>
                 <form>
                     <RadioGruppe

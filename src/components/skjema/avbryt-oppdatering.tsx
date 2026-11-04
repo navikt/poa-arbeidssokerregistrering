@@ -28,7 +28,7 @@ function AvbrytOppdatering(props: Props) {
         <Link href={tilSprakUrlEkstern(arbeidssoekerregisteretUrl, props.sprak)}>
             {' '}
             {tekst('avbryt')}
-            <XMarkIcon title="a11y-title" fontSize="1.5rem" />
+            <XMarkIcon aria-hidden="true" fontSize="1.5rem" />
         </Link>
     );
 }

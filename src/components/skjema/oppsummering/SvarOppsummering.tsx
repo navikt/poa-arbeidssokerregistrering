@@ -156,7 +156,11 @@ const SvarOppsummering = (props: Props) => {
     const sprakUrl = sprak === 'nb' ? '' : `/${sprak}`;
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const oppsummering = Object.entries(skjemaState)
-        .filter(([sporsmalId]) => {
+        .filter(([sporsmalId, svar]) => {
+            if (svar === undefined || svar === null) {
+                return false;
+            }
+
             const filtrerVekkSporsmalId = [SporsmalId.sisteStilling, 'startTid', 'hasInitialized'];
 
             if (

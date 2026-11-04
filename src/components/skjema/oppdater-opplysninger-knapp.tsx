@@ -75,7 +75,7 @@ const OppdaterOpplysningerKnapp = (props: OppdaterOpplysningerKnappProps) => {
                     onClick={validerOgFullfor}
                     loading={senderSkjema}
                     disabled={senderSkjema}
-                    icon={<PaperplaneIcon />}
+                    icon={<PaperplaneIcon aria-hidden />}
                     iconPosition="right"
                 >
                     {tekst('fullfoerRegistrering')}

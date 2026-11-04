@@ -5,11 +5,11 @@ import Skjema from '@/app/opplysninger/[side]/skjema';
 import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 
 export default function SkjemaSide() {
-    const { side, sprak } = useParams<any>();
+    const { side, lang } = useParams<any>();
 
     return (
         <>
-            <SettSprakIDekorator sprak={sprak} />
+            <SettSprakIDekorator sprak={lang ?? 'nb'} />
             <Skjema side={side} />
         </>
     );
