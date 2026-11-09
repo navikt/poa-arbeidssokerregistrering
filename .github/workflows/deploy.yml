@@ -316,7 +316,7 @@ jobs:
           NEXT_PUBLIC_BASE_PATH: /arbeid/registrering
 
       - name: Upload static files to NAV CDN
-        uses: nais/deploy/actions/cdn-upload/v2@3944168fd20b7eea3818e97de3810f74b54c78ff # v2
+        uses: nais/deploy/actions/cdn-upload/v2@7b60caaded00332e9aa117a8342daa0876851dfe # v2
         with:
           team: paw
           source: ./.next/static
@@ -344,7 +344,7 @@ jobs:
 #      - name: Checkout
 #        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 #      - name: Deploy
-#        uses: nais/deploy/actions/deploy@3944168fd20b7eea3818e97de3810f74b54c78ff # v2
+#        uses: nais/deploy/actions/deploy@7b60caaded00332e9aa117a8342daa0876851dfe # v2
 #        env:
 #          CLUSTER: dev-gcp
 #          RESOURCE: .nais/demo.yaml
@@ -363,7 +363,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Deploy
-        uses: nais/deploy/actions/deploy@3944168fd20b7eea3818e97de3810f74b54c78ff # v2
+        uses: nais/deploy/actions/deploy@7b60caaded00332e9aa117a8342daa0876851dfe # v2
         env:
           CLUSTER: dev-gcp
           RESOURCE: .nais/dev-gcp/nais.yaml
@@ -383,7 +383,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Deploy
-        uses: nais/deploy/actions/deploy@3944168fd20b7eea3818e97de3810f74b54c78ff # v2
+        uses: nais/deploy/actions/deploy@7b60caaded00332e9aa117a8342daa0876851dfe # v2
         env:
           CLUSTER: prod-gcp
           RESOURCE: .nais/prod-gcp/nais.yaml
@@ -402,12 +402,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: deploy to dev
-        uses: nais/deploy/actions/deploy@3944168fd20b7eea3818e97de3810f74b54c78ff # v2
+        uses: nais/deploy/actions/deploy@7b60caaded00332e9aa117a8342daa0876851dfe # v2
         env:
           CLUSTER: dev-gcp
           RESOURCE: .nais/dev-gcp/unleash-apitoken.yaml
       - name: deploy to prod
-        uses: nais/deploy/actions/deploy@3944168fd20b7eea3818e97de3810f74b54c78ff # v2
+        uses: nais/deploy/actions/deploy@7b60caaded00332e9aa117a8342daa0876851dfe # v2
         env:
           CLUSTER: prod-gcp
           RESOURCE: .nais/prod-gcp/unleash-apitoken.yaml
