@@ -79,6 +79,7 @@ const RegistreringsOversikt = (props: Props) => {
                     const harGyldigTilstand = validerSkjemaForSide(s.side, skjemaState);
                     return (
                         <FormProgress.Step
+                            as="button"
                             key={s.tittel}
                             interactive={harGyldigTilstand}
                             completed={!s.sisteSteg && harGyldigTilstand}
