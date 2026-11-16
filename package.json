@@ -31,7 +31,7 @@
         "@navikt/ds-react": "8.22.1",
         "@navikt/ds-tailwind": "8.22.1",
         "@navikt/nav-dekoratoren-moduler": "4.6.0",
-        "@navikt/next-logger": "5.0.1",
+        "@navikt/next-logger": "5.0.2",
         "@navikt/oasis": "4.2.2",
         "@unleash/nextjs": "1.6.7",
         "csp-header": "6.4.0",
