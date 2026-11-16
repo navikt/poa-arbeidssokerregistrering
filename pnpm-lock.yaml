@@ -53,8 +53,8 @@ importers:
         specifier: 4.6.0
         version: 4.6.0(html-react-parser@6.1.9(@types/react@19.3.0)(react@19.3.1))(react@19.3.1)
       '@navikt/next-logger':
-        specifier: 5.0.1
-        version: 5.0.1(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.64.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(pino@10.4.0)
+        specifier: 5.0.2
+        version: 5.0.2(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.64.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(pino@10.4.0)
       '@navikt/oasis':
         specifier: 4.2.2
         version: 4.2.2
@@ -1487,8 +1487,8 @@ packages:
       html-react-parser: '>=5.x'
       react: '>=17.x'
 
-  '@navikt/next-logger@5.0.1':
-    resolution: {integrity: sha512-3P9ygoIGJ5u8REkYG7lCd/GDsmnfdfEAgmVvb1GjEFdWXaWgpXBCHhiaXfXlCu3szO6/fuJDW7XeOFec4owCVQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.1/9b62906c0f9db26caae24c314197f3e33f016474}
+  '@navikt/next-logger@5.0.2':
+    resolution: {integrity: sha512-5XIQ/n0J0BstgdCyGh0uNiNQKfbJLnd2z3UuJBwFWyUSSdJEQOXGv65aC6oeriReYu4cixiWxe9TVLC72wz2fQ==, tarball: https://npm.pkg.github.com/download/@navikt/next-logger/5.0.2/e0119897f7c5bb3eab51bebb182fcc9b09aef94f}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x}
     peerDependencies:
       next: 14 || 15 || 16
@@ -1498,8 +1498,8 @@ packages:
     resolution: {integrity: sha512-EVMsF8uKbLPNRWuPfH1IKVJhqtibFzSTSyNkzj5mTCVMZV2QPS5W3uYMD4r0rXsmLx7nv0HnLovDphb3AFEjvw==, tarball: https://npm.pkg.github.com/download/@navikt/oasis/4.2.2/3c43e1e89bb2d46646a9a2aaf27972a024377a6f}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x || 25.x}
 
-  '@navikt/pino-logger@5.0.1':
-    resolution: {integrity: sha512-E69LgUqIjM/zSv1HxToYHTZA85jZC3L/eD/+InirLEJDwbd58K4lj8hzSFe+4uunNzyraTQNwZfZONN+vd3r2A==, tarball: https://npm.pkg.github.com/download/@navikt/pino-logger/5.0.1/819f7f398e4378c014dd39f704c26f691a0915a1}
+  '@navikt/pino-logger@5.0.2':
+    resolution: {integrity: sha512-wF8tWdLueNZ6KMhzJoe9Cyl2ScPvL380SJtdtJBuTZ8vG6uI9ufo/CY3R8zjW/pwFsiQDUni8vweWxLaHwdkWw==, tarball: https://npm.pkg.github.com/download/@navikt/pino-logger/5.0.2/7cb892a73d8c4b0480edf989cf46dfdb123b8361}
     engines: {node: ^20.19.0 || >= 22.12.0 || 24.x}
     peerDependencies:
       pino: 8 || 9 || 10
@@ -6907,9 +6907,9 @@ snapshots:
       js-cookie: 3.0.7
       react: 19.3.1
 
-  '@navikt/next-logger@5.0.1(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.64.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(pino@10.4.0)':
+  '@navikt/next-logger@5.0.2(next@16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.64.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1))(pino@10.4.0)':
     dependencies:
-      '@navikt/pino-logger': 5.0.1(pino@10.4.0)
+      '@navikt/pino-logger': 5.0.2(pino@10.4.0)
       next: 16.4.5(@babel/core@7.29.7(supports-color@8.1.1))(@opentelemetry/api@1.9.1)(@playwright/test@1.64.1)(@types/node@26.6.6)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)
       pino: 10.4.0
 
@@ -6920,7 +6920,7 @@ snapshots:
       '@prometheus-io/client': 0.16.1
       jose: 6.2.15
 
-  '@navikt/pino-logger@5.0.1(pino@10.4.0)':
+  '@navikt/pino-logger@5.0.2(pino@10.4.0)':
     dependencies:
       '@opentelemetry/api': 1.9.1
       pino: 10.4.0
