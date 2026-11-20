@@ -1,7 +1,7 @@
 'use client';
 
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-import { FormProgress, Heading } from '@navikt/ds-react';
+import { Box, FormProgress, Heading } from '@navikt/ds-react';
 import { loggAktivitet } from '@/lib/tracker';
 import { SkjemaSide, type SkjemaState } from '@/model/skjema';
 import useSprak from '../hooks/useSprak';
@@ -58,44 +58,45 @@ const RegistreringsOversikt = (props: Props) => {
                     {tekst(heading)}
                 </Heading>
             )}
-            <FormProgress
-                translations={
-                    sprak === 'en'
-                        ? {
-                              step: `Step ${aktivSide} of 5`,
-                              showAllSteps: 'Show all steps',
-                              hideAllSteps: 'Hide all steps',
-                          }
-                        : undefined
-                }
-                totalSteps={5}
-                activeStep={aktivSide}
-                onStepChange={(step: unknown) => {
-                    navigerTilSide(step as SkjemaSide);
-                }}
-                className={'mb-8'}
-            >
-                {steps.map((s) => {
-                    const harGyldigTilstand = validerSkjemaForSide(s.side, skjemaState);
-                    return (
-                        <FormProgress.Step
-                            as="button"
-                            key={s.tittel}
-                            interactive={harGyldigTilstand}
-                            completed={!s.sisteSteg && harGyldigTilstand}
-                            onClick={() => {
-                                loggAktivitet({
-                                    aktivitet: 'Trykker på steg i SkjemaVelger',
-                                    steg: s.tittel,
-                                    skjemaPrefix: props.skjemaPrefix,
-                                });
-                            }}
-                        >
-                            {tekst(s.tittel)}
-                        </FormProgress.Step>
-                    );
-                })}
-            </FormProgress>
+            <Box marginBlock="space-0 space-32">
+                <FormProgress
+                    translations={
+                        sprak === 'en'
+                            ? {
+                                  step: `Step ${aktivSide} of 5`,
+                                  showAllSteps: 'Show all steps',
+                                  hideAllSteps: 'Hide all steps',
+                              }
+                            : undefined
+                    }
+                    totalSteps={5}
+                    activeStep={aktivSide}
+                    onStepChange={(step: unknown) => {
+                        navigerTilSide(step as SkjemaSide);
+                    }}
+                >
+                    {steps.map((s) => {
+                        const harGyldigTilstand = validerSkjemaForSide(s.side, skjemaState);
+                        return (
+                            <FormProgress.Step
+                                as="button"
+                                key={s.tittel}
+                                interactive={harGyldigTilstand}
+                                completed={!s.sisteSteg && harGyldigTilstand}
+                                onClick={() => {
+                                    loggAktivitet({
+                                        aktivitet: 'Trykker på steg i SkjemaVelger',
+                                        steg: s.tittel,
+                                        skjemaPrefix: props.skjemaPrefix,
+                                    });
+                                }}
+                            >
+                                {tekst(s.tittel)}
+                            </FormProgress.Step>
+                        );
+                    })}
+                </FormProgress>
+            </Box>
         </>
     );
 };

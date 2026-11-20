@@ -1,9 +1,9 @@
-import { Loader } from '@navikt/ds-react';
+import { Box, Loader } from '@navikt/ds-react';
 
 export default function Loading() {
     return (
-        <div className="flex flex-col max-w-3xl mx-auto px-4 py-8">
+        <Box width="100%" maxWidth="768px" marginInline="auto" paddingInline="space-16" paddingBlock="space-32">
             <Loader size="xlarge" title="Laster innhold..." />
-        </div>
+        </Box>
     );
 }

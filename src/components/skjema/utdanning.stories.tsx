@@ -1,4 +1,5 @@
 import { JaEllerNei, UtdanningGodkjentValg, Utdanningsnivaa } from '@navikt/arbeidssokerregisteret-utils';
+import { Box } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { fn } from 'storybook/test';
 import Utdanning from './utdanning';
@@ -34,14 +35,14 @@ export const MedUndersporsmal: Story = {
         valgt: Utdanningsnivaa.HOYERE_UTDANNING_1_TIL_4,
         children: (
             <>
-                <div className="my-8">
+                <Box marginBlock="space-32">
                     <UtdanningGodkjent
                         onChange={fn()}
                         valgt={UtdanningGodkjentValg.JA}
                         visFeilmelding={false}
                         visKomponent={true}
                     />
-                </div>
+                </Box>
                 <BestattUtdanning onChange={fn()} valgt={JaEllerNei.JA} visFeilmelding={false} visKomponent={true} />
             </>
         ),

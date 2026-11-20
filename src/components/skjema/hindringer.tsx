@@ -1,7 +1,7 @@
 'use client';
 
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { Alert, Heading } from '@navikt/ds-react';
+import { Alert, Box } from '@navikt/ds-react';
 import type { ReactNode } from 'react';
 import useSprak from '../../hooks/useSprak';
 import { SkjemaBox } from './skjema-box';
@@ -33,9 +33,11 @@ const Hindringer = (props: { children: ReactNode }) => {
             <SkjemaBox>
                 <form>{children}</form>
             </SkjemaBox>
-            <Alert variant="info" inline={true} className={'mt-6'}>
-                {tekst('fortellMer')}
-            </Alert>
+            <Box marginBlock="space-24 space-0">
+                <Alert variant="info" inline={true}>
+                    {tekst('fortellMer')}
+                </Alert>
+            </Box>
         </>
     );
 };

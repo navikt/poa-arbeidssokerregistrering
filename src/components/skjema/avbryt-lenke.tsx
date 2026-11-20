@@ -6,6 +6,7 @@ import { BodyLong, Button, Dialog, Heading } from '@navikt/ds-react';
 import { useRouter } from 'next/navigation';
 import { loggAktivitet, loggFlyt } from '@/lib/tracker';
 import useSprak from '../../hooks/useSprak';
+import styles from './avbryt-lenke.module.css';
 
 const TEKSTER: Tekster<string> = {
     nb: {
@@ -59,11 +60,11 @@ const Avbryt = () => {
                         <BodyLong>{tekst('erDuSikker')}</BodyLong>
                     </Dialog.Body>
                     <Dialog.Footer>
-                        <Button variant="secondary" onClick={avbrytRegistrering} className="w-40">
+                        <Button variant="secondary" onClick={avbrytRegistrering} className={styles.dialogButton}>
                             {tekst('knappJa')}
                         </Button>
                         <Dialog.CloseTrigger>
-                            <Button variant="secondary" className="w-40">
+                            <Button variant="secondary" className={styles.dialogButton}>
                                 {tekst('knappNei')}
                             </Button>
                         </Dialog.CloseTrigger>

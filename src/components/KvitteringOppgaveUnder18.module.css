@@ -1,0 +1,17 @@
+.linkList {
+    margin: 0;
+}
+
+.linkList ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.linkList :global(.aksel-list__item-marker) {
+    display: none;
+}
+
+.linkListItem:not(:last-child) {
+    margin-block-end: var(--ax-space-16);
+}

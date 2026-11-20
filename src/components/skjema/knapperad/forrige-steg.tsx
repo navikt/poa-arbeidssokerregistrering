@@ -25,7 +25,6 @@ const ForrigeSteg = (props: Props) => {
 
     return (
         <Button
-            className={'mr-8'}
             variant={'secondary'}
             disabled={disabled}
             onClick={onClick}

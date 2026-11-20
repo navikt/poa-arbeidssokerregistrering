@@ -1,5 +1,5 @@
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, Box } from '@navikt/ds-react';
 import { useConfig } from '@/contexts/config-context';
 import { tilSprakUrlEkstern } from '@/lib/til-sprak-url';
 import type { Config } from '@/model/config';
@@ -48,9 +48,9 @@ const OppsummeringOppdaterOpplysninger = (props: Props) => {
 
     return (
         <>
-            <BodyLong size={'large'} className="mb-6">
-                {tekst('ingress')}
-            </BodyLong>
+            <Box marginBlock="space-0 space-24">
+                <BodyLong size={'large'}>{tekst('ingress')}</BodyLong>
+            </Box>
             <SvarOppsummering skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             <OppdaterOpplysningerKnapp
                 skjemaState={skjemaState}

@@ -1,7 +1,7 @@
 'use client';
 
 import { PaperplaneIcon } from '@navikt/aksel-icons';
-import { Button } from '@navikt/ds-react';
+import { Box, Button, HStack } from '@navikt/ds-react';
 import { logger } from '@navikt/next-logger';
 import { useRouter } from 'next/navigation';
 import { useCallback, useState } from 'react';
@@ -90,11 +90,11 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
     return (
         <>
             {visFeilmelding && (
-                <div className="mb-6">
+                <Box marginBlock="space-0 space-24">
                     <FeilmeldingGenerell />
-                </div>
+                </Box>
             )}
-            <div style={{ textAlign: 'left' }}>
+            <HStack justify="start">
                 <Button
                     data-testid="fullfor-registrering"
                     onClick={validerOgFullfor}
@@ -105,7 +105,7 @@ const FullforRegistreringKnappNyInngang = (props: FullforKnappProps) => {
                 >
                     {tekst('fullfoerRegistrering')}
                 </Button>
-            </div>
+            </HStack>
         </>
     );
 };

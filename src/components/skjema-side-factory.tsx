@@ -1,6 +1,6 @@
 'use client';
 
-import { ErrorSummary, HGrid } from '@navikt/ds-react';
+import { Box, ErrorSummary, HGrid, HStack } from '@navikt/ds-react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { type Dispatch, type JSX, useEffect, useRef, useState } from 'react';
@@ -146,12 +146,16 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
     }, [radioGruppeFeil, valideringsforsok, visFeilmelding]);
 
     return (
-        <div ref={skjemaWrapperRef} className={'w-full max-w-4xl min-w-0'}>
+        <Box ref={skjemaWrapperRef} width="100%" maxWidth="56rem" minWidth="0">
             <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: '1fr 11fr', xl: '1fr 11fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={skjemaIkonSvg} alt="" width={96} height={96} />
                 </div>
-                <div className={`min-w-0 max-w-full ${urlPrefix === 'oppdater-opplysninger' ? '' : 'sm:mt-8'}`}>
+                <Box
+                    minWidth="0"
+                    maxWidth="100%"
+                    marginBlock={urlPrefix === 'oppdater-opplysninger' ? undefined : { sm: 'space-32 space-0' }}
+                >
                     <Overskrift erOppdaterOpplysninger={urlPrefix === 'oppdater-opplysninger'} />
                     <RegistreringsOversikt
                         aktivSide={props.aktivSide}
@@ -162,45 +166,46 @@ export const SkjemaSideKomponent = (props: SkjemaProps & LagSkjemaSideProps) => 
                     />
                     {hentKomponentForSide(aktivSide, skjemaState, dispatch, visFeilmelding)}
                     {visFeilmelding && radioGruppeFeil.length > 1 && (
-                        <ErrorSummary
-                            ref={errorSummaryRef}
-                            className="my-8"
-                            heading={
-                                sprak === 'nn'
-                                    ? 'Du må rette desse feila før du kan gå vidare:'
-                                    : sprak === 'en'
-                                      ? 'You must correct these errors before you can continue:'
-                                      : 'Du må rette disse feilene før du kan fortsette:'
-                            }
-                        >
-                            {radioGruppeFeil.map(({ id, legend, melding }) => (
-                                <ErrorSummary.Item href={`#${id}`} key={id}>
-                                    {legend ? `${legend}: ${melding}` : melding}
-                                </ErrorSummary.Item>
-                            ))}
-                        </ErrorSummary>
+                        <Box marginBlock="space-32">
+                            <ErrorSummary
+                                ref={errorSummaryRef}
+                                heading={
+                                    sprak === 'nn'
+                                        ? 'Du må rette desse feila før du kan gå vidare:'
+                                        : sprak === 'en'
+                                          ? 'You must correct these errors before you can continue:'
+                                          : 'Du må rette disse feilene før du kan fortsette:'
+                                }
+                            >
+                                {radioGruppeFeil.map(({ id, legend, melding }) => (
+                                    <ErrorSummary.Item href={`#${id}`} key={id}>
+                                        {legend ? `${legend}: ${melding}` : melding}
+                                    </ErrorSummary.Item>
+                                ))}
+                            </ErrorSummary>
+                        </Box>
                     )}
                     {neste && (
-                        <div className={'my-8 flex flex-wrap gap-4'}>
+                        <HStack marginBlock="space-32" gap="space-16 space-48" wrap>
                             <ForrigeSteg
                                 disabled={!forrigeLenke}
                                 onClick={() => navigerTilSide(forrige as SkjemaSide)}
                             />
                             <NesteSteg onClick={validerOgGaaTilNeste} disabled={!neste} />
-                        </div>
+                        </HStack>
                     )}
                     {urlPrefix !== 'oppdater-opplysninger' && aktivSide === SkjemaSide.Oppsummering && (
-                        <div className={'py-8'}>
+                        <Box paddingBlock="space-32">
                             <Avbryt />
-                        </div>
+                        </Box>
                     )}
                     {urlPrefix === 'oppdater-opplysninger' && (
-                        <div className="my-8">
+                        <Box marginBlock="space-32">
                             <AvbrytOppdatering sprak={sprak} />
-                        </div>
+                        </Box>
                     )}
-                </div>
+                </Box>
             </HGrid>
-        </div>
+        </Box>
     );
 };

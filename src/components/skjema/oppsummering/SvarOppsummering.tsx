@@ -106,7 +106,7 @@ const Oppsummeringsboks = (props: OppsummeringProps) => {
     const sprak = useSprak();
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     return (
-        <Box className="mb-8">
+        <Box marginBlock="space-0 space-32">
             <FormSummary>
                 <FormSummary.Header>
                     <FormSummary.Heading level="2">{props.tittel}</FormSummary.Heading>

@@ -2,7 +2,7 @@
 
 import { ArrowRightIcon } from '@navikt/aksel-icons';
 import { lagHentTekstForSprak } from '@navikt/arbeidssokerregisteret-utils';
-import { BodyLong, BodyShort, Button, Heading, HGrid } from '@navikt/ds-react';
+import { BodyLong, BodyShort, Box, Button, Heading, HGrid, List } from '@navikt/ds-react';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { useConfig } from '../../contexts/config-context';
@@ -12,6 +12,7 @@ import type { Config } from '../../model/config';
 import LenkePanel from '../lenke-panel';
 import Overskrift from '../skjema/overskrift';
 import kvitteringIkonSvg from './kvittering-ikon.svg';
+import styles from './ny-kvittering.module.css';
 
 const TEKSTER = {
     nb: {
@@ -76,7 +77,7 @@ export const FortsettTilDagpenger = () => {
     const { brukerdialogDagpengerUrl } = useConfig() as Config;
 
     return (
-        <div className="w-full max-w-4xl min-w-0">
+        <Box width="100%" maxWidth="896px" minWidth="0">
             <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
@@ -101,7 +102,7 @@ export const FortsettTilDagpenger = () => {
                     </Button>
                 </div>
             </HGrid>
-        </div>
+        </Box>
     );
 };
 
@@ -110,7 +111,7 @@ export const StandardKvittering = () => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
     const { dittNavUrl, dagpengesoknadUrl } = useConfig() as Config;
     return (
-        <div className="w-full max-w-4xl min-w-0">
+        <Box width="100%" maxWidth="896px" minWidth="0">
             <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
@@ -122,8 +123,8 @@ export const StandardKvittering = () => {
                     <Heading spacing size={'small'} level={'2'}>
                         {tekst('innholdHeading')}
                     </Heading>
-                    <ul className={'list-none'}>
-                        <li className={'mb-4'}>
+                    <List className={styles.linkList}>
+                        <List.Item className={styles.linkListItem}>
                             <LenkePanel
                                 href={tekst('bekreftelseLenkeHref')}
                                 title={tekst('bekreftelseLenkeTittel')}
@@ -134,8 +135,8 @@ export const StandardKvittering = () => {
                                     })
                                 }
                             />
-                        </li>
-                        <li className={'mb-4'}>
+                        </List.Item>
+                        <List.Item className={styles.linkListItem}>
                             <LenkePanel
                                 href={`${dittNavUrl}${tekst('minSideLenkePostfix')}`}
                                 title={tekst('minSideLenkeTittel')}
@@ -146,8 +147,8 @@ export const StandardKvittering = () => {
                                     })
                                 }
                             />
-                        </li>
-                        <li className={'mb-4'}>
+                        </List.Item>
+                        <List.Item className={styles.linkListItem}>
                             <LenkePanel
                                 href={`${dagpengesoknadUrl}${tekst('dagpengerLenkePostfix')}`}
                                 title={tekst('dagpengerLenkeTittel')}
@@ -158,11 +159,11 @@ export const StandardKvittering = () => {
                                     })
                                 }
                             />
-                        </li>
-                    </ul>
+                        </List.Item>
+                    </List>
                 </div>
             </HGrid>
-        </div>
+        </Box>
     );
 };
 
