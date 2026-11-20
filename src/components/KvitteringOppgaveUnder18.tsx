@@ -137,7 +137,7 @@ export const KvitteringOppgaveOpprettet = () => {
 
     return (
         <Box maxWidth="896px">
-            <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+            <HGrid columns={{ sm: 1, md: 1, lg: 'auto 1fr', xl: 'auto 1fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
                 </div>

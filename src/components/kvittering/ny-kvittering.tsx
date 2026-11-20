@@ -78,7 +78,7 @@ export const FortsettTilDagpenger = () => {
 
     return (
         <Box width="100%" maxWidth="896px" minWidth="0">
-            <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+            <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: 'auto 1fr', xl: 'auto 1fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
                 </div>
@@ -112,7 +112,7 @@ export const StandardKvittering = () => {
     const { dittNavUrl, dagpengesoknadUrl } = useConfig() as Config;
     return (
         <Box width="100%" maxWidth="896px" minWidth="0">
-            <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+            <HGrid columns={{ xs: 1, sm: 1, md: 1, lg: 'auto 1fr', xl: 'auto 1fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
                 </div>

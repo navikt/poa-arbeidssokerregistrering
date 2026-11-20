@@ -15,3 +15,9 @@
 .linkListItem:not(:last-child) {
     margin-block-end: var(--ax-space-16);
 }
+
+/* Aksel legger li i et grid med kolonnene `auto 1fr`. Uten markør havner innholdet i auto-kolonnen og krymper. */
+.linkList ul > li.linkListItem {
+    display: block;
+    width: 100%;
+}
