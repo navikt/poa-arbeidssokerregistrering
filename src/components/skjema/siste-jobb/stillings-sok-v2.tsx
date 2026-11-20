@@ -51,7 +51,12 @@ const StillingsSok = (props: StillingsSokProps) => {
         };
     }, [value]);
 
-    const options = resultat.map((stilling) => ({ label: stilling.label, value: String(stilling.konseptId) }));
+    // Aksel bruker `value` som React-key og DOM-id. Synonymer kan dele konseptId, så indeksen gjør verdien unik.
+    // Stillingen som sendes videre, slås opp via indeksen og beholder sin opprinnelige konseptId.
+    const options = resultat.map((stilling, indeks) => ({
+        label: stilling.label,
+        value: `${stilling.konseptId}-${indeks}`,
+    }));
 
     useLayoutEffect(() => {
         // Aksel 8.20 navngir inputen, men ikke den interne listeboksen.
@@ -82,7 +87,7 @@ const StillingsSok = (props: StillingsSokProps) => {
             }}
             onToggleSelected={(valgtVerdi, erValgt) => {
                 if (!erValgt) return;
-                const stilling = resultat.find((alternativ) => String(alternativ.konseptId) === valgtVerdi);
+                const stilling = resultat[options.findIndex((option) => option.value === valgtVerdi)];
                 if (stilling) onClose(stilling);
             }}
             onKeyDownCapture={(event) => {
