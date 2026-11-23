@@ -49,6 +49,8 @@ const preview: Preview = {
                 date: /Date$/i,
             },
         },
+        // Playwright-testene kjører axe selv. Automatisk kjøring i addon-a11y gir «Axe is already running».
+        a11y: { manual: true },
     },
     loaders: [mswLoader()],
 };

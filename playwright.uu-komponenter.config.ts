@@ -7,6 +7,7 @@ export default defineConfig({
     testMatch: '**/uu-komponenter.storybook.ts',
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
+    retries: process.env.CI ? 2 : 0,
     reporter: 'line',
     use: {
         baseURL: storybookUrl,
