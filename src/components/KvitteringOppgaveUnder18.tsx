@@ -2,12 +2,24 @@
 
 import virkedager from '@alheimsins/virkedager';
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { Alert, type AlertProps, BodyLong, GlobalAlert, GuidePanel, Heading, HGrid, Link } from '@navikt/ds-react';
+import {
+    Alert,
+    type AlertProps,
+    BodyLong,
+    Box,
+    GlobalAlert,
+    GuidePanel,
+    Heading,
+    HGrid,
+    Link,
+    List,
+} from '@navikt/ds-react';
 import Image from 'next/image';
 import LenkePanel from '../components/lenke-panel';
 import useSprak from '../hooks/useSprak';
 import { formaterDato } from '../lib/date-utils';
 import { loggAktivitet } from '../lib/tracker';
+import styles from './KvitteringOppgaveUnder18.module.css';
 import { Kontaktinformasjon } from './kontaktinformasjonUnder18';
 import kvitteringIkonSvg from './kvittering-under18-ikon.svg';
 
@@ -124,8 +136,8 @@ export const KvitteringOppgaveOpprettet = () => {
     const toVirkedagerFraNaa = formaterDato(virkedager(idag, 2));
 
     return (
-        <div className="max-w-4xl">
-            <HGrid columns={{ sm: 1, md: 1, lg: '1fr auto', xl: '1fr auto' }} gap={{ lg: 'space-24' }}>
+        <Box maxWidth="896px">
+            <HGrid columns={{ sm: 1, md: 1, lg: 'auto 1fr', xl: 'auto 1fr' }} gap={{ lg: 'space-24' }}>
                 <div style={{ width: '96px', height: '96px' }}>
                     <Image src={kvitteringIkonSvg} alt="" width={96} height={96} />
                 </div>
@@ -147,8 +159,8 @@ export const KvitteringOppgaveOpprettet = () => {
                     <Heading spacing size={'small'} level={'2'}>
                         {tekst('innholdHeading')}
                     </Heading>
-                    <ul className={'list-none'}>
-                        <li className={'mb-4'}>
+                    <List className={styles.linkList}>
+                        <List.Item className={styles.linkListItem}>
                             <LenkePanel
                                 href={tekst('samtykkeLenke')}
                                 title={tekst('samtykkeLenkeTittel')}
@@ -159,8 +171,8 @@ export const KvitteringOppgaveOpprettet = () => {
                                     })
                                 }
                             />
-                        </li>
-                        <li className={'mb-4'}>
+                        </List.Item>
+                        <List.Item className={styles.linkListItem}>
                             <LenkePanel
                                 href={tekst('oppdatereOpplysningerLenke')}
                                 title={tekst('oppdatereOpplysningerLenkeTittel')}
@@ -172,8 +184,8 @@ export const KvitteringOppgaveOpprettet = () => {
                                     })
                                 }
                             />
-                        </li>
-                        <li className={'mb-4'}>
+                        </List.Item>
+                        <List.Item className={styles.linkListItem}>
                             <LenkePanel
                                 href={tekst('kontaktOssLenke')}
                                 title={tekst('kontaktOssLenkeTittel')}
@@ -185,11 +197,11 @@ export const KvitteringOppgaveOpprettet = () => {
                                     })
                                 }
                             />
-                        </li>
-                    </ul>
+                        </List.Item>
+                    </List>
                 </div>
             </HGrid>
-        </div>
+        </Box>
     );
 };
 
@@ -205,11 +217,13 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
     }
     return (
         <GuidePanel poster illustration={<Image src={kvitteringIkonSvg} alt="" width={80} height={80} />}>
-            <Alert variant="error" className={'mb-6'}>
-                <Heading level="1" size="small">
-                    {tekst('klarteIkkeOppretteHenvendelsen')}
-                </Heading>
-            </Alert>
+            <Box marginBlock="space-0 space-24">
+                <Alert variant="error">
+                    <Heading level="1" size="small">
+                        {tekst('klarteIkkeOppretteHenvendelsen')}
+                    </Heading>
+                </Alert>
+            </Box>
             <BodyLong spacing>{tekst('duErUnder18')}</BodyLong>
             <BodyLong spacing>{tekst('viHarForsoektOppretteMelding')}</BodyLong>
             <BodyLong spacing>
@@ -222,15 +236,17 @@ export const KvitteringOppgaveIkkeOpprettet = (props: { feil: Opprettelsesfeil }
 const Kvittering = (alertProps: AlertProps, infotekst: string, tittel: string) => {
     return (
         <GuidePanel poster illustration={<Image src={kvitteringIkonSvg} alt="" width={80} height={80} />}>
-            <Alert variant={alertProps.variant} className={'mb-6'}>
-                {alertProps.children}
-            </Alert>
+            <Box marginBlock="space-0 space-24">
+                <Alert variant={alertProps.variant}>{alertProps.children}</Alert>
+            </Box>
             {tittel && (
                 <Heading level="1" spacing size={'small'}>
                     {tittel}
                 </Heading>
             )}
-            <BodyLong className="mb-6">{infotekst}</BodyLong>
+            <Box marginBlock="space-0 space-24">
+                <BodyLong>{infotekst}</BodyLong>
+            </Box>
             <Kontaktinformasjon />
         </GuidePanel>
     );

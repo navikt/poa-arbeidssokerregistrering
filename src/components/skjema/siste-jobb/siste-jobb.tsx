@@ -1,7 +1,7 @@
 'use client';
 
 import { lagHentTekstForSprak, type SisteJobb, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { BodyLong, Button, Heading, ReadMore } from '@navikt/ds-react';
+import { BodyLong, Box, Button, Heading, HStack, ReadMore } from '@navikt/ds-react';
 import { type JSX, useEffect, useRef, useState } from 'react';
 import useSWR from 'swr';
 
@@ -102,35 +102,38 @@ const SisteJobbSkjema = (
             <SkjemaBox>
                 <div>
                     <BodyLong>{tekst('registrert')}</BodyLong>
-                    <BodyLong className="mb-6">{tekst('feilOpplysninger')}</BodyLong>
+                    <Box marginBlock="space-0 space-24">
+                        <BodyLong>{tekst('feilOpplysninger')}</BodyLong>
+                    </Box>
 
                     {props.children}
 
                     {visSisteJobb && (
-                        <div className="mb-4">
-                            <Heading spacing size={'small'} level="2" className={'mt-6'}>
-                                {tekst('stilling')}
-                            </Heading>
+                        <Box marginBlock="space-0 space-16">
+                            <Box marginBlock="space-24 space-0">
+                                <Heading spacing size={'small'} level="2">
+                                    {tekst('stilling')}
+                                </Heading>
+                            </Box>
                             {visStillingsSok ? (
                                 <StillingsSok label={tekst('stillingSokLabel')} onClose={onCloseStillingssok} />
                             ) : (
-                                <div>
+                                <HStack gap="space-16" align="center">
                                     {props.valgt?.label}
                                     <Button
                                         variant="tertiary"
-                                        className="ml-4"
                                         ref={endreKnappRef}
                                         onClick={() => settVisStillingsSok(true)}
                                     >
                                         {tekst('endreKnapp')}
                                     </Button>
-                                </div>
+                                </HStack>
                             )}
-                        </div>
+                        </Box>
                     )}
 
                     <ReadMore header={tekst('brukesTilTittel')}>
-                        <div style={{ maxWidth: '34rem' }}>{tekst('brukesTilInnhold')}</div>
+                        <Box maxWidth="34rem">{tekst('brukesTilInnhold')}</Box>
                     </ReadMore>
                 </div>
             </SkjemaBox>

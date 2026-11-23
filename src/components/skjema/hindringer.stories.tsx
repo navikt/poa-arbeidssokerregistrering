@@ -1,4 +1,5 @@
 import { JaEllerNei } from '@navikt/arbeidssokerregisteret-utils';
+import { Box } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { fn } from 'storybook/test';
 import AndreProblemer from './andre-problemer';
@@ -17,9 +18,9 @@ type Story = StoryObj<typeof Hindringer>;
 const lagBarn = (helseHinder?: JaEllerNei, andreForhold?: JaEllerNei, visFeilmelding = false) => ({
     children: (
         <>
-            <div className="my-8">
+            <Box marginBlock="space-32">
                 <Helseproblemer onChange={fn()} valgt={helseHinder} visFeilmelding={visFeilmelding && !helseHinder} />
-            </div>
+            </Box>
             <AndreProblemer
                 onChange={fn()}
                 valgt={andreForhold}

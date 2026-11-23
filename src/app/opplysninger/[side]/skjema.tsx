@@ -1,7 +1,8 @@
 'use client';
 
 import { SisteStillingValg, SporsmalId } from '@navikt/arbeidssokerregisteret-utils';
-import React, { type Dispatch } from 'react';
+import { Box } from '@navikt/ds-react';
+import type { Dispatch } from 'react';
 import AndreProblemer from '@/components/skjema/andre-problemer';
 import DinSituasjon from '@/components/skjema/din-situasjon';
 import Helseproblemer from '@/components/skjema/helseproblemer';
@@ -48,14 +49,14 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
                 valgt={skjemaState.utdanning}
                 visFeilmelding={visFeilmelding}
             >
-                <div className={'my-8'}>
+                <Box marginBlock="space-32">
                     <UtdanningGodkjent
                         onChange={(value) => dispatch({ type: SporsmalId.utdanningGodkjent, value: value })}
                         valgt={skjemaState.utdanningGodkjent}
                         visFeilmelding={visFeilmelding}
                         visKomponent={visUtdanningsvalg(skjemaState)}
                     />
-                </div>
+                </Box>
                 <BestattUtdanning
                     onChange={(value) => dispatch({ type: SporsmalId.utdanningBestatt, value: value })}
                     valgt={skjemaState.utdanningBestatt}
@@ -66,13 +67,13 @@ const lagSiderMap = (skjemaState: SkjemaState, dispatch: Dispatch<SkjemaAction>,
         ),
         [SkjemaSide.Hindringer]: (
             <Hindringer>
-                <div className={'my-8'}>
+                <Box marginBlock="space-32">
                     <Helseproblemer
                         onChange={(value) => dispatch({ type: SporsmalId.helseHinder, value: value })}
                         valgt={skjemaState.helseHinder}
                         visFeilmelding={visFeilmelding && !skjemaState.helseHinder}
                     />
-                </div>
+                </Box>
                 <AndreProblemer
                     onChange={(value) => dispatch({ type: SporsmalId.andreForhold, value: value })}
                     valgt={skjemaState.andreForhold}

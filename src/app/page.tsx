@@ -1,7 +1,7 @@
 import { lagHentTekstForSprak, type Sprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { Alert, Heading, Link } from '@navikt/ds-react';
+import { Alert, BodyShort, Heading, HStack, Link, VStack } from '@navikt/ds-react';
+import { PageBlock } from '@navikt/ds-react/Page';
 import { redirect } from 'next/navigation';
-import DemoPanel from '@/components/forsiden/demo-panel';
 import StartRegistreringLenke from '@/components/forsiden/start-registrering-lenke';
 import SettSprakIDekorator from '@/components/sett-sprak-i-dekorator';
 import { tilSprakUrlEkstern, tilSprakUrlIntern } from '@/lib/til-sprak-url';
@@ -45,38 +45,37 @@ const DevPage = ({ sprak }: { sprak: Sprak }) => {
     const tekst = lagHentTekstForSprak(TEKSTER, sprak);
 
     return (
-        <div className="flex flex-col gap-4 mb-4 w-full max-w-4xl min-w-0">
-            <Heading size="large" level="1" style={{ overflowWrap: 'anywhere' }}>
-                {tekst('sidetittel')}
-            </Heading>
-            <Alert variant="info" style={{ overflowWrap: 'anywhere' }}>
-                <div className="flex flex-col gap-4">
-                    <div>{tekst('informasjon')}</div>
-                    <div>
-                        {tekst('dolly1')}{' '}
-                        <Link href="https://dolly.ekstern.dev.nav.no" target="_blank" rel="noreferrer">
-                            Dolly
-                        </Link>{' '}
-                        {tekst('dolly2')}
-                    </div>
-                    <div>
-                        {tekst('lenkeIngress')}
-                        <Link
-                            className="ml-1"
-                            href="https://www.nav.no/registrer-arbeidssoker"
-                            target="_blank"
-                            rel="noreferrer"
-                        >
-                            {tekst('lenke')}
-                        </Link>
-                    </div>
-                </div>
-            </Alert>
-            <div className="flex justify-center py-8">
-                <StartRegistreringLenke href={tilSprakUrlIntern('/start', sprak)} tekst={tekst('startRegistrering')} />
-            </div>
-            <DemoPanel brukerMock={brukerMock} />
-        </div>
+        <PageBlock width="lg">
+            <VStack gap="space-16" marginBlock="space-0 space-16" minWidth="0">
+                <Heading size="large" level="1" style={{ overflowWrap: 'anywhere' }}>
+                    {tekst('sidetittel')}
+                </Heading>
+                <Alert variant="info" style={{ overflowWrap: 'anywhere' }}>
+                    <VStack gap="space-16">
+                        <BodyShort>{tekst('informasjon')}</BodyShort>
+                        <BodyShort>
+                            {tekst('dolly1')}{' '}
+                            <Link href="https://dolly.ekstern.dev.nav.no" target="_blank" rel="noreferrer">
+                                Dolly
+                            </Link>{' '}
+                            {tekst('dolly2')}
+                        </BodyShort>
+                        <BodyShort>
+                            {tekst('lenkeIngress')}{' '}
+                            <Link href="https://www.nav.no/registrer-arbeidssoker" target="_blank" rel="noreferrer">
+                                {tekst('lenke')}
+                            </Link>
+                        </BodyShort>
+                    </VStack>
+                </Alert>
+                <HStack justify="center" paddingBlock="space-32">
+                    <StartRegistreringLenke
+                        href={tilSprakUrlIntern('/start', sprak)}
+                        tekst={tekst('startRegistrering')}
+                    />
+                </HStack>
+            </VStack>
+        </PageBlock>
     );
 };
 

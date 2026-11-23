@@ -1,6 +1,6 @@
 import { ExternalLinkIcon } from '@navikt/aksel-icons';
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { Alert, Link } from '@navikt/ds-react';
+import { Alert, Box, Link } from '@navikt/ds-react';
 
 import useSprak from '../hooks/useSprak';
 
@@ -37,9 +37,11 @@ export const Kontaktinformasjon = () => {
 
     return (
         <>
-            <Alert variant="info" inline className="mb-6">
-                {tekst('hjelpetekst')}
-            </Alert>
+            <Box marginBlock="space-0 space-24">
+                <Alert variant="info" inline>
+                    {tekst('hjelpetekst')}
+                </Alert>
+            </Box>
             <EndreOpplysningerLink tekst={tekst('leggInnOpplysninger')} />
         </>
     );

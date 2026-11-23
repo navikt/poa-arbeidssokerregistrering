@@ -5,6 +5,7 @@ import {
     UtdanningGodkjentValg,
     Utdanningsnivaa,
 } from '@navikt/arbeidssokerregisteret-utils';
+import { Box } from '@navikt/ds-react';
 import type { Meta, StoryObj } from '@storybook/nextjs';
 import { HttpResponse, http } from 'msw';
 import { fn } from 'storybook/test';
@@ -67,14 +68,14 @@ export const Steg2SisteJobb: StoryObj = {
 export const Steg3Utdanning: StoryObj = {
     render: () => (
         <Utdanning onChange={fn()} valgt={Utdanningsnivaa.HOYERE_UTDANNING_1_TIL_4} visFeilmelding={false}>
-            <div className="my-8">
+            <Box marginBlock="space-32">
                 <UtdanningGodkjent
                     onChange={fn()}
                     valgt={UtdanningGodkjentValg.JA}
                     visFeilmelding={false}
                     visKomponent={true}
                 />
-            </div>
+            </Box>
             <BestattUtdanning onChange={fn()} valgt={JaEllerNei.JA} visFeilmelding={false} visKomponent={true} />
         </Utdanning>
     ),
@@ -84,9 +85,9 @@ export const Steg3Utdanning: StoryObj = {
 export const Steg4Hindringer: StoryObj = {
     render: () => (
         <Hindringer>
-            <div className="my-8">
+            <Box marginBlock="space-32">
                 <Helseproblemer onChange={fn()} valgt={JaEllerNei.NEI} visFeilmelding={false} />
-            </div>
+            </Box>
             <AndreProblemer onChange={fn()} valgt={JaEllerNei.NEI} skjematype="standard" visFeilmelding={false} />
         </Hindringer>
     ),

@@ -1,7 +1,4 @@
-@import "tailwindcss";
-@import "@navikt/ds-css" layer(components);
-
-@config "../../tailwind.config.ts";
+@import "@navikt/ds-css";
 
 body {
     min-height: 100dvh;
@@ -11,12 +8,4 @@ body {
 
 #__next {
     flex-grow: 1;
-}
-
-.maxWidth {
-    max-width: 1280px;
-}
-
-.tekst-svak-graa {
-    color: var(--ax-neutral-400);
 }

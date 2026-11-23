@@ -1,7 +1,7 @@
 'use client';
 
 import { lagHentTekstForSprak, type Tekster } from '@navikt/arbeidssokerregisteret-utils';
-import { BodyLong } from '@navikt/ds-react';
+import { BodyLong, Box } from '@navikt/ds-react';
 import type { SkjemaState } from '@/model/skjema';
 import useSprak from '../../../hooks/useSprak';
 import FullforRegistreringKnappNyInngang from '../fullfor-registrering-knapp-ny-inngang';
@@ -46,9 +46,9 @@ const Oppsummering = (props: OppsummeringProps) => {
 
     return (
         <>
-            <BodyLong size={'large'} className="mb-6">
-                {tekst('ingress')}
-            </BodyLong>
+            <Box marginBlock="space-0 space-24">
+                <BodyLong size={'large'}>{tekst('ingress')}</BodyLong>
+            </Box>
             <SvarOppsummering skjemaState={skjemaState} skjemaPrefix={skjemaPrefix} />
             <FullforRegistreringKnappNyInngang
                 skjemaState={skjemaState}

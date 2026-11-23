@@ -15,7 +15,7 @@ Denne filen er rettet mot AI-agenter (GitHub Copilot, Claude, Cursor, o.l.) som 
 
 ## Oppsett
 
-Krever Node.js >=24.22.1 og pnpm 11.28.6. Se `engines` og `packageManager` i `package.json`. `.nvmrc` og CI bruker Node.js 24.22.1.
+Krever Node.js >=26.13.1 og pnpm 11.28.6. Se `engines` og `packageManager` i `package.json`. `.nvmrc` angir Node.js 26.13.1, og CI leser versjonen derfra.
 
 Noen avhengigheter hentes fra GitHubs package registry. Du trenger et PAT med `read:packages`-scope og SSO konfigurert mot NAVIKT:
 
@@ -166,6 +166,7 @@ Toggle-nøkler er definert i `src/unleash-keys.ts`. Serverfunksjonen `isEnabled`
 - **Path alias:** `@/` peker på `src/` (konfigurert i `tsconfig.json` og `vitest.config.mts`).
 - **Designsystem:** Bruk alltid Aksel-komponenter fra `@navikt/ds-react`. Ikke lag egne UI-komponenter.
 - **Logging:** Bruk `logger` fra `@navikt/next-logger` i API-ruter — aldri `console.log`.
+- **Styling:** Appen bruker ikke Tailwind. Bruk props på Aksel-primitiver (`Box`, `VStack`, `HStack`, `PageBlock`) til avstand og layout. Det Aksel ikke dekker, legges i en CSS-modul ved siden av komponenten (`komponent.module.css`) med Aksel-tokens som `var(--ax-space-16)`. `src/styles/globals.css` er bare for globale regler. Importer `PageBlock` fra `@navikt/ds-react/Page` i Server Components, fordi `Page.Block` er `undefined` der.
 - **Nav-dekoratør:** Hentes server-side i `src/app/layout.tsx` via `fetchDecoratorReact`.
 - **Deploy til dev:** Prefiks branch-navn med `dev/` for å deploye kun til dev-miljøet.
 - **Formatering og lint:** Biome, konfigurert i `biome.json`, med `lineWidth: 120`, `indentWidth: 4` og `quoteStyle: 'single'`. `pnpm lint` kjører `biome check ./src`.
