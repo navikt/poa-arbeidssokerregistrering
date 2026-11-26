@@ -190,12 +190,15 @@ Tester er det primære sikkerhetsnettet i dette repoet. Kjør relevante tester e
 | `personident-til-alder.test.ts`                 | Aldersberegning fra personident        |
 | `vis-utdanningsvalg.test.ts`                    | Visningslogikk for utdanningsvalg      |
 | `til-sprak-url.test.ts`                        | Språktilpasning av interne og eksterne URL-er |
+| `lag-arbeidssoker-api-kall.test.ts`             | Integritet: kallet til backend, identitet fra token |
+| `ingen-person-unntak.test.ts`                   | Integritet: statisk vakt mot unntak for enkeltpersoner |
 
 API-ruten `/api/unleash` har egne tester i `src/app/api/unleash/route.test.ts`.
 
 ### E2E-tester (Playwright) — `e2e/`
 
 - `fullfor-registrering.spec.ts` — happy-path gjennom hele registreringsflyten i mock-modus.
+- `innsending-integritet.spec.ts` — at svarene sendes uendret og at perioden startes først. Se `docs/integritetstesting.md`.
 - Playwright starter appen automatisk med mock-flagg via `playwright.config.ts`.
 
 ### Testguide per endringstype
