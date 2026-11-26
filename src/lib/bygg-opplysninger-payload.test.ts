@@ -167,3 +167,104 @@ describe('bygg-opplysninger-payload', () => {
         });
     });
 });
+
+// Integritetstester: hvert svaralternativ i skjemaet skal havne i payloaden til backend.
+// Forventede verdier er skrevet eksplisitt slik at testene også dokumenterer hva som sendes.
+describe('integritet: svar i skjemaet havner i payloaden', () => {
+    const sisteJobb = { styrk08: '5120', label: 'Kokk', konseptId: 1 };
+
+    test.each([
+        [DinSituasjon.MISTET_JOBBEN, 'HAR_BLITT_SAGT_OPP'],
+        [DinSituasjon.HAR_SAGT_OPP, 'HAR_SAGT_OPP'],
+        [DinSituasjon.DELTIDSJOBB_VIL_MER, 'DELTIDSJOBB_VIL_MER'],
+        [DinSituasjon.VIL_BYTTE_JOBB, 'VIL_BYTTE_JOBB'],
+        [DinSituasjon.JOBB_OVER_2_AAR, 'IKKE_VAERT_I_JOBB_SISTE_2_AAR'],
+        [DinSituasjon.ER_PERMITTERT, 'ER_PERMITTERT'],
+        [DinSituasjon.USIKKER_JOBBSITUASJON, 'USIKKER_JOBBSITUASJON'],
+        [DinSituasjon.AKKURAT_FULLFORT_UTDANNING, 'AKKURAT_FULLFORT_UTDANNING'],
+        [DinSituasjon.VIL_FORTSETTE_I_JOBB, 'ANNET'],
+    ])('situasjon %s sendes som %s med siste jobb', (situasjon, beskrivelse) => {
+        const result = byggOpplysningerPayload({
+            [SporsmalId.dinSituasjon]: situasjon,
+            [SporsmalId.sisteJobb]: sisteJobb,
+        }).opplysningerOmArbeidssoeker;
+        expect(result.jobbsituasjon).toEqual({
+            beskrivelser: [{ beskrivelse, detaljer: { stilling: 'Kokk', stilling_styrk08: '5120' } }],
+        });
+    });
+
+    test('alle situasjoner i skjemaet er dekket av testene over', () => {
+        const dekket = [
+            'MISTET_JOBBEN',
+            'HAR_SAGT_OPP',
+            'DELTIDSJOBB_VIL_MER',
+            'VIL_BYTTE_JOBB',
+            'JOBB_OVER_2_AAR',
+            'ER_PERMITTERT',
+            'USIKKER_JOBBSITUASJON',
+            'AKKURAT_FULLFORT_UTDANNING',
+            'VIL_FORTSETTE_I_JOBB',
+            'ALDRI_HATT_JOBB',
+            'INGEN_SVAR',
+            'INGEN_VERDI',
+        ];
+        expect(Object.values(DinSituasjon).sort()).toEqual(dekket.sort());
+    });
+
+    test.each([
+        [Utdanningsnivaa.VIDEREGAENDE_GRUNNUTDANNING, '3'],
+        [Utdanningsnivaa.VIDEREGAENDE_FAGBREV_SVENNEBREV, '4'],
+        [Utdanningsnivaa.HOYERE_UTDANNING_1_TIL_4, '6'],
+        [Utdanningsnivaa.HOYERE_UTDANNING_5_ELLER_MER, '7'],
+    ])('utdanning %s sendes som nus %s med bestått og godkjent', (utdanning, nus) => {
+        for (const bestaatt of [JaEllerNei.JA, JaEllerNei.NEI]) {
+            for (const godkjent of [
+                UtdanningGodkjentValg.JA,
+                UtdanningGodkjentValg.NEI,
+                UtdanningGodkjentValg.VET_IKKE,
+            ]) {
+                const result = byggOpplysningerPayload({
+                    [SporsmalId.utdanning]: utdanning,
+                    [SporsmalId.utdanningBestatt]: bestaatt,
+                    [SporsmalId.utdanningGodkjent]: godkjent,
+                }).opplysningerOmArbeidssoeker;
+                expect(result.utdanning).toEqual({ nus, bestaatt, godkjent });
+            }
+        }
+    });
+
+    test.each([
+        [Utdanningsnivaa.INGEN_UTDANNING, '0'],
+        [Utdanningsnivaa.GRUNNSKOLE, '2'],
+        [Utdanningsnivaa.INGEN_SVAR, '9'],
+    ])('utdanning %s sendes som nus %s uten bestått og godkjent', (utdanning, nus) => {
+        const result = byggOpplysningerPayload({ [SporsmalId.utdanning]: utdanning }).opplysningerOmArbeidssoeker;
+        expect(result.utdanning).toEqual({ nus });
+    });
+
+    test.each([JaEllerNei.JA, JaEllerNei.NEI])('helsehinder %s sendes uendret', (svar) => {
+        const result = byggOpplysningerPayload({ [SporsmalId.helseHinder]: svar }).opplysningerOmArbeidssoeker;
+        expect(result.helse).toEqual({ helsetilstandHindrerArbeid: svar });
+    });
+
+    test.each([JaEllerNei.JA, JaEllerNei.NEI])('andre forhold %s sendes uendret', (svar) => {
+        const result = byggOpplysningerPayload({ [SporsmalId.andreForhold]: svar }).opplysningerOmArbeidssoeker;
+        expect(result.annet).toEqual({ andreForholdHindrerArbeid: svar });
+    });
+
+    test('payloaden inneholder bare opplysningsfelt, ingen identitet', () => {
+        const result = byggOpplysningerPayload({
+            [SporsmalId.dinSituasjon]: DinSituasjon.HAR_SAGT_OPP,
+            [SporsmalId.sisteJobb]: sisteJobb,
+            [SporsmalId.utdanning]: Utdanningsnivaa.HOYERE_UTDANNING_1_TIL_4,
+            [SporsmalId.utdanningBestatt]: JaEllerNei.JA,
+            [SporsmalId.utdanningGodkjent]: UtdanningGodkjentValg.JA,
+            [SporsmalId.helseHinder]: JaEllerNei.NEI,
+            [SporsmalId.andreForhold]: JaEllerNei.NEI,
+        });
+        expect(Object.keys(result)).toEqual(['opplysningerOmArbeidssoeker']);
+        expect(Object.keys(result.opplysningerOmArbeidssoeker).sort()).toEqual(
+            ['annet', 'helse', 'jobbsituasjon', 'utdanning'].sort(),
+        );
+    });
+});

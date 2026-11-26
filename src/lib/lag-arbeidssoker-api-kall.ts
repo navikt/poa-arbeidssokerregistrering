@@ -28,14 +28,20 @@ const lagArbeidssokerApiKall = (url: string, opts: Opts) => async (req: NextRequ
 
         const idporten = parseIdportenToken(idPortenToken);
         const identitetsnummer = idporten.ok ? idporten.pid : undefined;
+        if (!identitetsnummer) {
+            logger.warn(`Mangler identitet i token, callId: ${callId}`);
+            return new NextResponse(null, { status: 401 });
+        }
 
+        const parsetBody = opts.method !== 'GET' && opts.method !== 'DELETE' ? await req.json().catch(() => ({})) : {};
         const incomingBody =
-            opts.method !== 'GET' && opts.method !== 'DELETE' ? await req.json().catch(() => ({})) : {};
+            parsetBody && typeof parsetBody === 'object' && !Array.isArray(parsetBody) ? parsetBody : {};
 
+        // Rekkefølgen er sikkerhetskritisk: verdier satt av serveren skal alltid vinne over klientens kropp.
         const body = {
-            identitetsnummer,
-            ...(opts.body ?? {}),
             ...(incomingBody ?? {}),
+            ...(opts.body ?? {}),
+            identitetsnummer,
         };
 
         logger.info(`Starter kall callId: ${callId} mot ${url}`);
